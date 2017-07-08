@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-var config = require('./config.js'); // run mongod 
+var config = require('../db/config.js'); // run mongod 
 
 const app = express();
 

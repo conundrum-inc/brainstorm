@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var Comment = mongoose.Schema({
-  // unique id look up syntax
+  // unique id syntax: _id
   parent_id: {type: String, required: true},
   children: [],
   creator_id: {type: String, required: true}, // references User
