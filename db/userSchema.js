@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var User = mongoose.Schema({
-  // unique id look up syntax
+  // unique id syntax: _id
   username: {type: String, required: true},
   created_sessions: [],
   accessible_sessions: [], // referes to Session ids
