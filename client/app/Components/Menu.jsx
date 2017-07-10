@@ -15,13 +15,14 @@ const Menu = () => {
         {route: SESSIONS_PAGE_ROUTE, label: 'My Sessions'}
       ].map((link) => {
         return (
-            <NavLink 
-              key={link.label}
-              to={link.route}
-              exact
-            >
-              {link.label}
-            </NavLink>
+            <div key={link.label}>
+              <NavLink 
+                to={link.route}
+                exact
+              >
+                {link.label}
+              </NavLink>
+            </div>
           )
       })
     }
