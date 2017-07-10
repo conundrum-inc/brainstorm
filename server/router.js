@@ -19,17 +19,25 @@ router.route('/session')
 
 router.route('/comment')
   .post(function(req, res) {
-    // call appropriate helper here to create a new comment
+    // call appropriate helper here to create a new comment (be sure to send comment back to front end)
   })
   .get(function(req, res) {
     // call appropriate helper here to get a specific comment
   })
 
+// edit comment
+
+router.route('/edit')
+  .post(function(req, res) {
+    // call appropriate helper here to edit a new comment (WRITE THIS HELPER)
+  })
+
 
 // fetch all comments for a given session
 
-router.route('/fetchComments')
+router.route('/allComments')
   .get(function(req, res) {
+    //req.query = sessionId
     // call appropriate helper here to fetch all comments for a given session
   })
 
@@ -39,14 +47,16 @@ router.route('/fetchComments')
 router.route('/upvote')
   .post(function(req, res) {
     // call appropriate helper here to upvote a comment
+    // send score, nothing else
   })
 
 
 // downvote a comment
 
-router.route('/upvote')
+router.route('/downvote')
   .post(function(req, res) {
     // call appropriate helper here to downvote a comment
+    // send score, nothing else
   })
 
 
