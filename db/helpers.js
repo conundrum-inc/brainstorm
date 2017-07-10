@@ -37,6 +37,7 @@ function addComment(params) {
     } else {
       //saved!
       console.log('saved!');
+      res.send(comment);
     }
   })
 };
@@ -51,8 +52,7 @@ function findOne(comment_id, cb) {
 
 // fetch all comments for a given session
 
-function findAll(req, res) {
-  var session_id = req.body.session_id;
+function findAll(session_id) {
   Comment.find({ session_id: session_id }, (err, comments) => {
     if (err) {
       console.log('err: ', err)
@@ -67,13 +67,13 @@ function findAll(req, res) {
 
 // upvote a comment
 
-function upVote(req, res) {
+function upVote(req, res) {    // refactor this to send score not status
   var comment_id = req.body.comment_id;
   var clickUser = req.body.user_id;
   //clickUser = the user who clicked the upvote button
   console.log('in upVote!!!')
 
-  Comment.findOne({_id: comment_id}, function(err, comment) {
+  Comment.findOne({ _id: comment_id }, function(err, comment) {
     if (err) {
       console.log('error in upvote', err);
       res.sendStatus(400);
@@ -101,13 +101,13 @@ function upVote(req, res) {
 
 // downvote a comment
 
-function downVote(req, res) {
+function downVote(req, res) {     // refactor this to send score not status
   var comment_id = req.body.comment_id;
   var clickUser = req.body.user_id;
   //clickUser = the user who clicked the upvote button
   console.log('in downVote!!!')
 
-  Comment.findOne({_id: comment_id}, function(err, comment) {
+  Comment.findOne({ _id: comment_id }, function(err, comment) {
     if (err) {
       console.log('error in downvote', err);
       res.sendStatus(400);
