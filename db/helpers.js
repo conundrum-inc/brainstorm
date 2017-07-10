@@ -9,6 +9,7 @@ var Comment = require('./commentSchema');
 // create new session
 
 function addSession(creator_id, timestamp) {
+// be sure to add timestamp in the router
   console.log('addSession params', creator_id, timestamp)
 
   Session.create({creator_id: creator_id, timestamp: timestamp}, (err, session) => {
@@ -26,6 +27,8 @@ function addSession(creator_id, timestamp) {
 
 function addComment(params) {
   // params should be an object including the follwoing keys: parent_id, children, creator_id, session_id, title, text, upvotes, downvotes, score
+
+  //NOTE: add all new comments to parent comment's children array
   console.log('addComment params', params)
 
   Comment.create(params, (err, comment) => {
@@ -38,6 +41,7 @@ function addComment(params) {
   })
 };
 
+//NOTE: add edit comment function
 
 // fetch a single comment (used to modify data e.g. upvotes etc) --> is this necessary?? method already built in
 
@@ -65,7 +69,7 @@ function findAll(req, res) {
 
 function upVote(req, res) {
   var comment_id = req.body.comment_id;
-  var clickUser = req.body.clickUser;
+  var clickUser = req.body.user_id;
   //clickUser = the user who clicked the upvote button
   console.log('in upVote!!!')
 
@@ -99,7 +103,7 @@ function upVote(req, res) {
 
 function downVote(req, res) {
   var comment_id = req.body.comment_id;
-  var clickUser = req.body.clickUser;
+  var clickUser = req.body.user_id;
   //clickUser = the user who clicked the upvote button
   console.log('in downVote!!!')
 
