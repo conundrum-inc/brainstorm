@@ -8,12 +8,14 @@ import { Switch, Route, BrowserRouter} from 'react-router-dom';
 import {
   LOGIN_PAGE_ROUTE,
   MAIN_PAGE_ROUTE,
-  PROFILE_PAGE_ROUTE
+  PROFILE_PAGE_ROUTE,
+  SESSIONS_PAGE_ROUTE
 } from './routes';
 
 import LoginPage from './Components/page/login.jsx';
 import MainPage from './Components/page/main.jsx';
 import ProfilePage from './Components/page/profile.jsx';
+
 
 
 class App extends React.Component {
