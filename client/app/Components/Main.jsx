@@ -1,10 +1,15 @@
 import React from 'react';
+import Menu from './Menu.jsx';
+import Session from './Session.jsx'
 
 
 const Main = (props) => {
   return (
     <div>
-      I am the Main page!
+      <h2>I am the Main page!</h2>
+      <Menu />
+      <button>Start a new Session</button>
+      <Session /> 
     </div>
   )
 }
