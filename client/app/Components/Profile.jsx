@@ -7,7 +7,7 @@ const Profile = (props) => {
   return (
     <div>
       <Menu />
-      I am the profile page!
+      I am the profile component!
     </div>
   )
 }

@@ -5,8 +5,7 @@ import Menu from './Menu.jsx'
 const MySessions = () => {
   return (
       <div>
-        <Menu />
-        I am the MySessions page!
+        I am the MySessions component!
       </div>
     )
 }

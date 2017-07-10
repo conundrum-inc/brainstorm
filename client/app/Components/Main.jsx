@@ -6,7 +6,7 @@ import Session from './Session.jsx'
 const Main = (props) => {
   return (
     <div>
-      <h2>I am the Main page!</h2>
+      <h2>I am the Main component!</h2>
       <Menu />
       <button>Start a new Session</button>
       <Session /> 

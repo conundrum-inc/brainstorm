@@ -15,7 +15,7 @@ import {
 import LoginPage from './Components/page/login.jsx';
 import MainPage from './Components/page/main.jsx';
 import ProfilePage from './Components/page/profile.jsx';
-import SessionsPage from './Components/page/sessions.jsx';
+
 
 
 class App extends React.Component {
@@ -31,7 +31,6 @@ class App extends React.Component {
             <Route exact path={ LOGIN_PAGE_ROUTE } render={() => <LoginPage />} />
             <Route exact path={ MAIN_PAGE_ROUTE } render={() => <MainPage />} />
             <Route exact path={ PROFILE_PAGE_ROUTE } render={() => <ProfilePage />} />
-            <Route exact path={ SESSIONS_PAGE_ROUTE } render={() => <SessionsPage />} />
           </Switch>
         </BrowserRouter>
       </div>
