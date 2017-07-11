@@ -10,14 +10,20 @@ var router = express.Router();
 
 // create new session
 
+//NOTE: also need to add sessionId to user [] for session permissions and also render all comments
+
 router.route('/session')
   .post(function(req, res) {
     // call appropriate helper here to create a new session
     creator_id = req.body.user_id // make sure this matches up to fetch method body params
     var timestamp = new Date();
     helpers.addSession(creator_id, timestamp);
+    // return comment to front end (will have sessionId attached)
     res.sendStatus(201);
   })
+  .get(
+    // this is to switch sessions for when a user clicks on an existing session
+  )
 
 // create new comment
 

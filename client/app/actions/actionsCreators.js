@@ -3,6 +3,9 @@ import fetchDownVote from './fetchCalls'
 import fetchAddComment from './fetchCalls'
 import fetchEditComment from './fetchCalls'
 import fetchComments from './fetchCalls'
+import fetchEditComment from './fetchCalls'
+import createSession from './fetchCalls'
+
 
 export function upVote(score, commentId) {
   console.log("UPVOTE!");
@@ -22,7 +25,7 @@ export function downVote(score, commentId) {
   }
 }
 
-export function addComment(comment) { //comment will be an object with properties {userid, sessionId, commentId, title, text}
+export function addComment(comment) { //comment will be an object with properties parent_id, children, creator_id, session_id, title, text, upvotes, downvotes, score
   console.log("Comment Added");
   return {
     type: 'ADD_COMMENT',
@@ -30,21 +33,20 @@ export function addComment(comment) { //comment will be an object with propertie
   }
 }
 
-export function editComment(commentId, title, text) {
+export function editComment(comment) { //comment will be an object with properties {userid, sessionId, commentId, title, text}
+  console.log("Comment Added");
   console.log("Comment Edited");
   return {
     type: 'EDIT_COMMENT',
-    commentId,
-    title,
-    text
+    comment
   }
 }
 
-export function updateSession(sessionId) {
+export function updateSession(comments) {
   console.log("Session Changed");
   return {
     type: 'UPDATE_SESSION',
-    sessionId
+    comments
   }
 }
 
@@ -106,3 +108,29 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
     )
   }
 }
+
+export function thunkEditComment(commentId, title, text) {
+  return function(dispatch) {
+    return fetchEditComment(commentId, title, text).then(
+      comment => dispatch(editComment(comment)); // comment will be an object
+    )
+  }
+}
+
+export function thunkCreateSession(comment) {
+  return function(dispatch) {
+    return fetchCreateSession(comment).then(
+      comments => dispatch(updateSession(comments));
+    )
+  }
+}
+
+export function thunkSwitchSession(sessionId) {
+  return function(dispatch) {
+    return fetchCreateSession(sessionId).then(
+      comments => dispatch(updateSession(comments));
+    )
+  }
+}
+
+// deal with assign user once passport/google auth infrastucture is implemented
