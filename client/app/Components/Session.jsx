@@ -1,42 +1,52 @@
 import React from 'react';
-import { select } from 'd3-selection';
+import * as d3 from 'd3'
+import { withFauxDOM } from 'react-faux-dom'
 
+class Session extends React.Component {
 
-const ideas = [];
+  componentDidMount() {
 
+    const drawCircle = function(x, y, size) {
+      console.log('Drawing circle at', x, y, size);
+      d3.select('svg').append("circle")
+          .attr('class', 'click-circle')
+          .attr("cx", x)
+          .attr("cy", y)
+          .attr("r", size);
+    }
 
-const Session = (props) => {
+    const click = function() {
+      var coords = d3.mouse(d3.select('svg').node());
+      console.log(coords);
+      drawCircle(coords[0], coords[1], 50);
+    }
 
-  const draw = (val) => {
-    console.log(val);
-    select("#session").append("div")
-    ideas.push(val);
-    var p = select("#session").selectAll("div")
-              .data(ideas)
-              .text(function(d,i){return i + ": " + d;})
+    const board = this.props.connectFauxDOM('div','board')
+    d3.select(board)
+      .append('svg')
+      .attr("height", "100%")
+      .attr("width", "100%")
+      .on('click', function() {
 
+        const x = d3.event.layerX
+        const y = d3.event.layerY
+        click()
+      });
+    this.props.animateFauxDOM(800);
   }
 
-  const handleClick = (e) => {
-    e.preventDefault()
-    draw(document.getElementById("myVal").value)
-    document.getElementById("myVal").value = '';
-    console.log('clicked!')
-    return false;
+  render() {
+
+    return (
+      <div>
+        <div>
+          {this.props.board}
+        </div>
+      </div>
+    )
   }
 
-  return (
-    <div>
-      I am a session!
-      <form name="myform" onSubmit={handleClick}>
-        <input name="Submit"  type="submit" value="Post idea"></input>
-        <input type="text" id="myVal" placeholder="Add some text"></input>
-      </form>
-      <div id="session"></div>
-      
-
-    </div>
-  )
 }
 
-export default Session;
+
+export default withFauxDOM(Session);
