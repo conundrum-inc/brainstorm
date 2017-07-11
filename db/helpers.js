@@ -28,7 +28,7 @@ function addSession(creator_id, timestamp) {
 
 function addSessionToUser(session_id, user_id, creator_id) {
 // be sure to add timestamp in the router
-  User.findOne( { _id: user_id }, (err, user) {
+  User.findOne( { _id: user_id }, (err, user) => {
     if (err) {
       console.log('error in permissions helper', err)
     } else {
@@ -86,7 +86,7 @@ function findAll(session_id) {
 //edit a comment
 
 function editComment(comment_id, title, text) {
-  Comment.findOne({ _id: comment_id }, function(err, comment) {
+  Comment.findOne({ _id: comment_id }, (err, comment) => {
     if (err) {
       console.log('error in edit', err);
     } else {
