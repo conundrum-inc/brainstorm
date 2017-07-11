@@ -8,18 +8,18 @@ var Comment = require('./commentSchema');
 
 // create new session
 
-function addSession(creator_id, timestamp) {
+function addSession(creator_id, timestamp, title, text) {
 // be sure to add timestamp in the router
   console.log('addSession params', creator_id, timestamp)
 
   Session.create({creator_id: creator_id, timestamp: timestamp}, (err, session) => {
     if (err) {
-      console.log('error!', err)
+      console.log('error in add session!', err)
     } else {
       //saved!
-      console.log('saved!');
+      console.log('session saved!');
       // return session_id
-      return { session_id: session._id, creator_id: session.creator_id };
+      return  { session_id: session._id, creator_id: session.creator_id };
     }
   })
 };
@@ -57,56 +57,39 @@ function addComment(params) {
       console.log('error!', err)
     } else {
       //saved!
-      console.log('saved!');
-      res.send(comment);
+      console.log('comment saved!');
     }
   })
 };
 
 // fetch a single comment (used to modify data e.g. upvotes etc) --> is this necessary?? method already built in
 
-function findOne(comment_id, cb) {
-  Comment.findOne({ _id: comment_id }, cb);
+function findOne(params, cb) {
+  Comment.findOne(params, cb);
 };
 
 // fetch all comments for a given session
 
-function findAll(session_id) {
-  Comment.find({ session_id: session_id }, (err, comments) => {
-    if (err) {
-      console.log('err: ', err)
-      res.sendStatus(400)
-    } else {
-      console.log('comments: ', comments)
-      res.send(comments);
-    }
-  });
+function findAll(session_id, cb) {
+  Comment.find({ session_id: session_id }, cb);
 }
 
 //edit a comment
 
-function editComment(comment_id, title, text) {
-  Comment.findOne({ _id: comment_id }, (err, comment) => {
-    if (err) {
-      console.log('error in edit', err);
-    } else {
-      comment.title = title;
-      comment.text = text;
-      comment.save();
-      res.send(comment);
-    }
-  })
+function editComment(comment_id, title, text, cb) {
+  Comment.findOne({ _id: comment_id }, cb)
 }
 
 // upvote a comment
 
 function upVote(req, res) {
-  var comment_id = req.body.comment_id;
-  var clickUser = req.body.user_id;
+  var comment_id = req.body[0].comment_id;
+  var clickUser = req.body[0].user_id;
+  console.log('upvote variables', comment_id, clickUser)
   //clickUser = the user who clicked the upvote button
   console.log('in upVote!!!')
 
-  Comment.findOne({ _id: comment_id }, function(err, comment) {
+  Comment.findOne({ _id: comment_id }, (err, comment) => {
     if (err) {
       console.log('error in upvote', err);
       res.sendStatus(400);
@@ -126,7 +109,7 @@ function upVote(req, res) {
       }
       comment.save();
       console.log('upvote saved!')
-      res.send(comment.score);
+      res.send({score: comment.score});
     }
   })
 }
@@ -135,8 +118,8 @@ function upVote(req, res) {
 // downvote a comment
 
 function downVote(req, res) {
-  var comment_id = req.body.comment_id;
-  var clickUser = req.body.user_id;
+  var comment_id = req.body[0].comment_id;
+  var clickUser = req.body[0].user_id;
   //clickUser = the user who clicked the upvote button
   console.log('in downVote!!!')
 
@@ -160,7 +143,7 @@ function downVote(req, res) {
       }
       comment.save();
       console.log('downvote saved!')
-      res.send(comment.score);
+      res.send({score: comment.score});
     }
   })
 }

@@ -12,14 +12,18 @@ var router = express.Router();
 
 router.route('/session')
   .post(function(req, res) {
-    user_id = req.body.user_id // make sure this matches up to fetch method body params
+    console.log('REQ.BODY', req.body);
+    var user_id = req.body[0].user_id; // make sure this matches up to fetch method body params
+    var title = req.body[0].title;
+    var text = req.body[0].text;
     var timestamp = new Date();
-    var params = helpers.addSession(user_id, timestamp);
-
-    //call helper function to add session to user permissions
-    helpers.addSessionToUser(params.session_id, user_id, params.creator_id);
+    helpers.addSession(user_id, timestamp, title, text)
+    // .then(helpers.addComment({ user_id: user_id, parent_id: null, session_id: obj.session_id, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 }))
+    // .then(helpers.findAll(session_id))
+    // //call helper function to add session to user permissions
+    // helpers.addSessionToUser(params.session_id, user_id, params.creator_id) // THIS CAN'T BE TESTED UNTIL AUTH IS DONE!!!
     // send all comments with session_id to front end
-    helpers.findAll(params.session_id);
+    // helpers.findAll(params.session_id);
   })
   .get(function(req, res) {
     // this is to get all comments for a selected session when a user clicks on an existing session
@@ -31,20 +35,31 @@ router.route('/session')
 
 router.route('/comment')
   .post(function(req, res) {
-    var userId = req.body.user_id;
-    var parentId = req.body.parent_id;
-    var sessionId = req.body.session_id;
-    var title = req.body.title;
-    var text = req.body.text;
+    var userId = req.body[0].creator_id;
+    var parentId = req.body[0].parent_id;
+    var sessionId = req.body[0].session_id;
+    var title = req.body[0].title;
+    var text = req.body[0].text;
 
-    helpers.addComment({ user_id: userId, parent_id: parentId, session_id: sessionId, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 })
+    helpers.addComment({ creator_id: userId, parent_id: parentId, session_id: sessionId, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 })
+    helpers.findOne({ session_id: sessionId, title: title, text: text }, (err, comment) => {
+      if (err) {
+        console.log('err in comment find one');
+        res.sendStatus(404);
+      } else {
+        console.log('comment', comment);
+        res.send(comment);
+      }
+    })
   })
   .get(function(req, res) {
-    var commentId = req.query; // req.query needs to be should be comment_id ( is it called req.query or req.params? )
-    helpers.findOne(commentId, (err, comment) => {
+    console.log('req.query.id', req.query.id)
+    var commentId = req.query.id; // req.query needs to be should be comment_id ( is it called req.query or req.params? )
+    helpers.findOne({ _id: commentId }, (err, comment) => {
       if (err) {
         console.log('err in /comment get function')
       } else {
+        console.log(comment);
         res.send(comment);
       }
     })
@@ -54,7 +69,20 @@ router.route('/comment')
 
 router.route('/edit')
   .post(function(req, res) {
-    helpers.editComment(comment_id, title, text);
+    console.log('edit req.body', req.body)
+    var comment_id = req.body[0].comment_id;
+    var title = req.body[0].title;
+    var text = req.body[0].text;
+    helpers.editComment(comment_id, title, text, (err, comment) => {
+      if (err) {
+        console.log('error in edit', err);
+      } else {
+        comment.title = title;
+        comment.text = text;
+        comment.save();
+        res.send(comment);
+      }
+    });
   })
 
 
@@ -63,8 +91,17 @@ router.route('/edit')
 router.route('/allComments')
   .get(function(req, res) {
     //req.query = sessionId ( is it called req.query or req.params? )
-    var session_id = req.query;
-    helpers.findAll(session_id);
+    console.log('REQ.QUERY in all comments', req.query.id)
+    var session_id = req.query.id;
+    helpers.findAll(session_id, (err, comments) => {
+      if (err) {
+        console.log('err: ', err)
+        res.sendStatus(400)
+      } else {
+        console.log('comments: ', comments)
+        res.send(comments);
+      }
+    });
   })
 
 
