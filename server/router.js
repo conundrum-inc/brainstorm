@@ -10,26 +10,27 @@ var router = express.Router();
 
 // create new session
 
-//NOTE: also need to add sessionId to user [] for session permissions and also render all comments
-
 router.route('/session')
   .post(function(req, res) {
-    // call appropriate helper here to create a new session
-    creator_id = req.body.user_id // make sure this matches up to fetch method body params
+    user_id = req.body.user_id // make sure this matches up to fetch method body params
     var timestamp = new Date();
-    helpers.addSession(creator_id, timestamp);
-    // return comment to front end (will have sessionId attached)
-    res.sendStatus(201);
+    var params = helpers.addSession(user_id, timestamp);
+
+    //call helper function to add session to user permissions
+    helpers.addSessionToUser(params.session_id, user_id, params.creator_id);
+    // send all comments with session_id to front end
+    helpers.findAll(params.session_id);
   })
-  .get(
-    // this is to switch sessions for when a user clicks on an existing session
-  )
+  .get(function(req, res) {
+    // this is to get all comments for a selected session when a user clicks on an existing session
+    var session_id = req.query; // req.query = sessionId ( is it called req.query or req.params? )
+    helpers.findAll(session_id);
+  })
 
 // create new comment
 
 router.route('/comment')
   .post(function(req, res) {
-    // call appropriate helper here to create a new comment (be sure to send comment back to front end)
     var userId = req.body.user_id;
     var parentId = req.body.parent_id;
     var sessionId = req.body.session_id;
@@ -39,8 +40,7 @@ router.route('/comment')
     helpers.addComment({ user_id: userId, parent_id: parentId, session_id: sessionId, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 })
   })
   .get(function(req, res) {
-    // call appropriate helper here to get a specific comment
-    var commentId = req.body.comment_id;
+    var commentId = req.query; // req.query needs to be should be comment_id ( is it called req.query or req.params? )
     helpers.findOne(commentId, (err, comment) => {
       if (err) {
         console.log('err in /comment get function')
@@ -54,7 +54,7 @@ router.route('/comment')
 
 router.route('/edit')
   .post(function(req, res) {
-    // call appropriate helper here to edit a new comment (WRITE THIS HELPER)
+    helpers.editComment(comment_id, title, text);
   })
 
 
@@ -62,8 +62,7 @@ router.route('/edit')
 
 router.route('/allComments')
   .get(function(req, res) {
-    //req.query = sessionId
-    // call appropriate helper here to fetch all comments for a given session
+    //req.query = sessionId ( is it called req.query or req.params? )
     var session_id = req.query;
     helpers.findAll(session_id);
   })
@@ -73,10 +72,8 @@ router.route('/allComments')
 
 router.route('/upvote')
   .post(function(req, res) {
-    // call appropriate helper here to upvote a comment
     // send score, nothing else
     helpers.upVote(req, res);
-    // refactor helper to send updated score
   })
 
 
@@ -84,10 +81,8 @@ router.route('/upvote')
 
 router.route('/downvote')
   .post(function(req, res) {
-    // call appropriate helper here to downvote a comment
     // send score, nothing else
     helpers.downVote(req, res);
-    // refactor helper to send updated score
   })
 
 
