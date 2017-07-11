@@ -1,21 +1,19 @@
+import _.findIndex from 'lodash';
+
 function postComments(state = [], action) {
   switch(action.type){
     case 'ADD_COMMENT':
       console.log("Comment Added");
-      return [...state,{
-        user: action.comment.creator_id,
-        parent: action.comment.parent_id,
-        title: action.comment.title,
-        text: action.comment.text,
-        children: action.comment.children,
-        score: action.comment.score
-        //parent_id, children, creator_id, session_id, title, text, upvotes, downvotes, score
-      }];
+      return [...state, action.comment]; // comment is an object with all comment properties
+
     case 'EDIT_COMMENT':
       console.log("Comment Edited");
+      var commentIndex = _.findIndex(state, action.comment._id)
+
       return [
-        // ...state.slice(0, action.i),
-        // ...state.slice(action.i + 1)
+        ...state.slice(0, commentIndex), // before the comment we want to change
+        action.comment,
+        ...state.slice(commentIndex + 1) // after the comment we want to change
       ]
     default:
       return state;

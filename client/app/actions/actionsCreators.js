@@ -34,7 +34,6 @@ export function addComment(comment) { //comment will be an object with propertie
 }
 
 export function editComment(comment) { //comment will be an object with properties {userid, sessionId, commentId, title, text}
-  console.log("Comment Added");
   console.log("Comment Edited");
   return {
     type: 'EDIT_COMMENT',
