@@ -2,6 +2,8 @@ import React from 'react';
 import {render} from 'react-dom';
 import { createStore } from 'redux';
 import { Switch, Route, BrowserRouter} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store'
 
 // import Main from './Components/Main';
 
@@ -25,7 +27,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <Provider store={store}>
         <BrowserRouter>
           <Switch>
             <Route exact path={ LOGIN_PAGE_ROUTE } render={() => <LoginPage />} />
@@ -33,7 +35,7 @@ class App extends React.Component {
             <Route exact path={ PROFILE_PAGE_ROUTE } render={() => <ProfilePage />} />
           </Switch>
         </BrowserRouter>
-      </div>
+      </Provider>
     )
   }
 }
