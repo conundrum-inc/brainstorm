@@ -18,8 +18,29 @@ function addSession(creator_id, timestamp) {
     } else {
       //saved!
       console.log('saved!');
+      // return session_id
+      return { session_id: session._id, creator_id: session.creator_id };
     }
   })
+};
+
+// add session to user permissions array
+
+function addSessionToUser(session_id, user_id, creator_id) {
+// be sure to add timestamp in the router
+  User.findOne( { _id: user_id }, (err, user) {
+    if (err) {
+      console.log('error in permissions helper', err)
+    } else {
+      if (user_id === creator_id && !user.created_sessions.includes(session_id)) {
+        user.created_sessions.push(session_id);
+        console.log('session permissions updated!')
+      } else if (!user.accessible_sessions.includes(session_id)) {
+        user.accessible_sessions.push(session_id);
+        console.log('session permissions updated!')
+      }
+    }
+  });
 };
 
 
@@ -42,8 +63,6 @@ function addComment(params) {
   })
 };
 
-//NOTE: add edit comment function
-
 // fetch a single comment (used to modify data e.g. upvotes etc) --> is this necessary?? method already built in
 
 function findOne(comment_id, cb) {
@@ -64,10 +83,24 @@ function findAll(session_id) {
   });
 }
 
+//edit a comment
+
+function editComment(comment_id, title, text) {
+  Comment.findOne({ _id: comment_id }, function(err, comment) {
+    if (err) {
+      console.log('error in edit', err);
+    } else {
+      comment.title = title;
+      comment.text = text;
+      comment.save();
+      res.send(comment);
+    }
+  })
+}
 
 // upvote a comment
 
-function upVote(req, res) {    // refactor this to send score not status
+function upVote(req, res) {
   var comment_id = req.body.comment_id;
   var clickUser = req.body.user_id;
   //clickUser = the user who clicked the upvote button
@@ -93,7 +126,7 @@ function upVote(req, res) {    // refactor this to send score not status
       }
       comment.save();
       console.log('upvote saved!')
-      res.sendStatus(201);
+      res.send(comment.score);
     }
   })
 }
@@ -101,7 +134,7 @@ function upVote(req, res) {    // refactor this to send score not status
 
 // downvote a comment
 
-function downVote(req, res) {     // refactor this to send score not status
+function downVote(req, res) {
   var comment_id = req.body.comment_id;
   var clickUser = req.body.user_id;
   //clickUser = the user who clicked the upvote button
@@ -127,7 +160,7 @@ function downVote(req, res) {     // refactor this to send score not status
       }
       comment.save();
       console.log('downvote saved!')
-      res.sendStatus(201);
+      res.send(comment.score);
     }
   })
 }
@@ -139,5 +172,6 @@ exports.findAll = findAll;
 exports.findOne = findOne;
 exports.addSession = addSession;
 exports.addComment = addComment;
+exports.editComment = editComment;
 exports.upVote = upVote;
 exports.downVote = downVote;
