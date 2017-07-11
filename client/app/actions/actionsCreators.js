@@ -65,7 +65,7 @@ export function showMenu() {
 
 export function hideMenu() {
   return {
-    type: 'SHOW_MENU'
+    type: 'HIDE_MENU'
   }
 }
 
@@ -77,7 +77,7 @@ export function showDetail() {
 
 export function hideDetail() {
   return {
-    type: 'SHOW_DETAIL'
+    type: 'HIDE_DETAIL'
   }
 }
 
