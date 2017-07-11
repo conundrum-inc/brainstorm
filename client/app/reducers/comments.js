@@ -3,8 +3,13 @@ function postComments(state = [], action) {
     case 'ADD_COMMENT':
       console.log("Comment Added");
       return [...state,{
-        // user: action.author,
-        // text: action.comment
+        user: action.comment.creator_id,
+        parent: action.comment.parent_id,
+        title: action.comment.title,
+        text: action.comment.text,
+        children: action.comment.children,
+        score: action.comment.score
+        //parent_id, children, creator_id, session_id, title, text, upvotes, downvotes, score
       }];
     case 'EDIT_COMMENT':
       console.log("Comment Edited");

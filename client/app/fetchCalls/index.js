@@ -50,6 +50,22 @@ export function fetchComments(sessionId) {
   fetch({
     type: 'GET',
     url: '/comment',
-    query: sessionId
+    query: sessionId // params or query??
+  })
+}
+
+export function createSession(comment) { // comment will be an object with keys: userId, title, text
+  fetch({
+    type: 'POST',
+    url: '/session',
+    body: comment
+  })
+}
+
+export function fetchSession(sessionId) {
+  fetch({
+    type: 'GET',
+    url: '/session'
+    query: sessionId // params or query??
   })
 }
