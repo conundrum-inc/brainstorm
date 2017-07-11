@@ -1,6 +1,6 @@
-import _.findIndex from 'lodash';
+import _ from 'lodash';
 
-function postComments(state = [], action) {
+function comments(state = [], action) {
   switch(action.type){
     case 'ADD_COMMENT':
       console.log("Comment Added");
@@ -34,4 +34,4 @@ function postComments(state = [], action) {
 
 // ^^ Above commented-out code is from the Redux example
 
-export default postComments;
+export default comments;
