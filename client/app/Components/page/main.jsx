@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 // import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../actions/actionsCreators';
+
 import Main from '../Main.jsx';
 
 const MainPage = (props) => {
@@ -13,8 +17,23 @@ const MainPage = (props) => {
   )
 }
 
+function mapStateToProps(state) {
+  return {
+    comments: state.comments,
+    detailViewVisible: state.detailViewVisible,
+    menuVisible: state.menuVisible
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
 MainPage.propTypes = {
   history: PropTypes.object.isRequired
 }
 
-export default withRouter(MainPage);
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainPage));
