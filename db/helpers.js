@@ -6,42 +6,6 @@ var Comment = require('./commentSchema');
 // authentication -- figure out what's needed here from passport
 
 
-// create new session
-
-function addSession(creator_id, timestamp, title, text) {
-// be sure to add timestamp in the router
-  console.log('addSession params', creator_id, timestamp)
-
-  Session.create({creator_id: creator_id, timestamp: timestamp}, (err, session) => {
-    if (err) {
-      console.log('error in add session!', err)
-    } else {
-      //saved!
-      console.log('session saved!');
-      // return session_id
-      return  { session_id: session._id, creator_id: session.creator_id };
-    }
-  })
-};
-
-// add session to user permissions array
-
-function addSessionToUser(session_id, user_id, creator_id) {
-// be sure to add timestamp in the router
-  User.findOne( { _id: user_id }, (err, user) => {
-    if (err) {
-      console.log('error in permissions helper', err)
-    } else {
-      if (user_id === creator_id && !user.created_sessions.includes(session_id)) {
-        user.created_sessions.push(session_id);
-        console.log('session permissions updated!')
-      } else if (!user.accessible_sessions.includes(session_id)) {
-        user.accessible_sessions.push(session_id);
-        console.log('session permissions updated!')
-      }
-    }
-  });
-};
 
 
 // create new comment
@@ -147,6 +111,65 @@ function downVote(req, res) {
     }
   })
 }
+
+// create new session
+
+function addSession(req, res) {
+// be sure to add timestamp in the router
+  var creator_id = req.body[0].user_id; // make sure this matches up to fetch method body params
+  var title = req.body[0].title;
+  var text = req.body[0].text;
+  var timestamp = new Date();
+  console.log('addSession params', creator_id, timestamp, title, text)
+
+  Session.create({creator_id: creator_id, timestamp: timestamp}, (err, session) => {
+    if (err) {
+      console.log('error in add session!', err)
+    } else {
+      //saved!
+      console.log('session saved!');
+      // return session_id
+      console.log('SESSION ID', session._id)
+      Comment.create({ creator_id: session.creator_id, parent_id: 'root', session_id: session._id, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 }, (err, comment) => {
+        if (err) {
+          console.log('error!', err)
+        } else {
+          //saved!
+          console.log('comment saved!');
+          Comment.find({session_id: session._id}, (err, comments) => {
+            if (err) {
+              console.log('err: ', err)
+              res.sendStatus(400)
+            } else {
+              console.log('comments: ', comments)
+              res.send(comments);
+            }
+          });
+        }
+      })
+    }
+  })
+};
+
+// add session to user permissions array -- TEST THIS AFTER AUTHENTICATION IS IMPLEMENTED!!!!
+
+function addSessionToUser(session_id, user_id, creator_id) {
+// be sure to add timestamp in the router
+  User.findOne( { _id: user_id }, (err, user) => {
+    if (err) {
+      console.log('error in permissions helper', err)
+    } else {
+      if (user_id === creator_id && !user.created_sessions.includes(session_id)) {
+        user.created_sessions.push(session_id);
+        console.log('session permissions updated!')
+      } else if (!user.accessible_sessions.includes(session_id)) {
+        user.accessible_sessions.push(session_id);
+        console.log('session permissions updated!')
+      }
+    }
+  });
+};
+
 
 
 // remember to export these and import them in the router file

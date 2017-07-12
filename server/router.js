@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+var bluebird = require('bluebird');
 var config = require('../db/config'); // run mongod
 var helpers = require('../db/helpers.js');
 
@@ -13,22 +14,20 @@ var router = express.Router();
 router.route('/session')
   .post(function(req, res) {
     console.log('REQ.BODY', req.body);
-    var user_id = req.body[0].user_id; // make sure this matches up to fetch method body params
-    var title = req.body[0].title;
-    var text = req.body[0].text;
-    var timestamp = new Date();
-    helpers.addSession(user_id, timestamp, title, text)
-    // .then(helpers.addComment({ user_id: user_id, parent_id: null, session_id: obj.session_id, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 }))
-    // .then(helpers.findAll(session_id))
-    // //call helper function to add session to user permissions
-    // helpers.addSessionToUser(params.session_id, user_id, params.creator_id) // THIS CAN'T BE TESTED UNTIL AUTH IS DONE!!!
-    // send all comments with session_id to front end
-    // helpers.findAll(params.session_id);
+    helpers.addSession(req, res)
   })
   .get(function(req, res) {
     // this is to get all comments for a selected session when a user clicks on an existing session
-    var session_id = req.query; // req.query = sessionId ( is it called req.query or req.params? )
-    helpers.findAll(session_id);
+    var session_id = req.query.id; // req.query = sessionId ( is it called req.query or req.params? )
+    helpers.findAll(session_id, (err, comments) => {
+      if (err) {
+        console.log('err: ', err)
+        res.sendStatus(400)
+      } else {
+        console.log('comments: ', comments)
+        res.send(comments);
+      }
+    });
   })
 
 // create new comment
