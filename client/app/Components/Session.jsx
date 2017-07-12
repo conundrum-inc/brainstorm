@@ -3,6 +3,7 @@ import * as d3 from 'd3'
 import { withFauxDOM } from 'react-faux-dom'
 import { click } from '../../d3/d3helpers.js'
 
+
 class Session extends React.Component {
 
   componentDidMount() {
@@ -30,8 +31,6 @@ class Session extends React.Component {
       </div>
     )
   }
-
 }
-
 
 export default withFauxDOM(Session);
