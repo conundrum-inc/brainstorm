@@ -50,7 +50,7 @@ export function fetchComments(sessionId) {
   fetch({
     type: 'GET',
     url: '/comment',
-    query: sessionId // params or query??
+    query: { id: sessionId }
   })
 }
 
@@ -66,6 +66,6 @@ export function fetchSession(sessionId) {
   fetch({
     type: 'GET',
     url: '/session',
-    query: sessionId // params or query??
+    query: { id: sessionId }
   })
 }

@@ -38,7 +38,7 @@ router.route('/session')
 
 router.route('/comment')
   .post(function(req, res) {
-    var userId = req.body[0].creator_id;
+    var userId = req.body[0].user_id;
     var parentId = req.body[0].parent_id;
     var sessionId = req.body[0].session_id;
     var title = req.body[0].title;
