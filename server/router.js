@@ -1,12 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 var bluebird = require('bluebird');
+var passport = require('passport');
+var passportGoogle = require('passport-google-oauth');
 var config = require('../db/config'); // run mongod
 var helpers = require('../db/helpers.js');
 
 var router = express.Router();
 
 // authentication -- signup, login, logout (use passport to implement google auth)
+
+
 
 
 // create new session
