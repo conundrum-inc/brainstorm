@@ -65,7 +65,7 @@ export function createSession(comment) { // comment will be an object with keys:
 export function fetchSession(sessionId) {
   fetch({
     type: 'GET',
-    url: '/session'
+    url: '/session',
     query: sessionId // params or query??
   })
 }

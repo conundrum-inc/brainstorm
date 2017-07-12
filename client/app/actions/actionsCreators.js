@@ -1,10 +1,12 @@
-import fetchUpVote from './fetchCalls'
-import fetchDownVote from './fetchCalls'
-import fetchAddComment from './fetchCalls'
-import fetchEditComment from './fetchCalls'
-import fetchComments from './fetchCalls'
-import fetchEditComment from './fetchCalls'
-import createSession from './fetchCalls'
+import *  as fetchCalls from '../fetchCalls'
+
+// import fetchUpVote from './fetchCalls'
+// import fetchDownVote from './fetchCalls'
+// import fetchAddComment from './fetchCalls'
+// import fetchEditComment from './fetchCalls'
+// import fetchComments from './fetchCalls'
+// import fetchEditComment from './fetchCalls'
+// import createSession from './fetchCalls'
 
 
 export function upVote(score, commentId) {
@@ -87,7 +89,7 @@ export function hideDetail() {
 export function thunkUpVote(userId, commentId) {
   return function(dispatch) {
     return fetchUpVote(userId, commentId).then(
-      score => dispatch(upVote(score, commentId));
+      score => dispatch(upVote(score, commentId))
     )
   }
 }
@@ -95,7 +97,7 @@ export function thunkUpVote(userId, commentId) {
 export function thunkDownVote(userId, commentId) {
   return function(dispatch) {
     return fetchDownVote(userId, commentId).then(
-      score => dispatch(downVote(score, commentId));
+      score => dispatch(downVote(score, commentId))
     )
   }
 }
@@ -103,7 +105,7 @@ export function thunkDownVote(userId, commentId) {
 export function thunkAddComment(userId, parentId, sessionId, title, text) {
   return function(dispatch) {
     return fetchAddComment(userId, parentId, sessionId, title, text).then(
-      comment => dispatch(addComment(comment)); // comment will be an object
+      comment => dispatch(addComment(comment)) // comment will be an object
     )
   }
 }
@@ -111,7 +113,7 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
 export function thunkEditComment(commentId, title, text) {
   return function(dispatch) {
     return fetchEditComment(commentId, title, text).then(
-      comment => dispatch(editComment(comment)); // comment will be an object
+      comment => dispatch(editComment(comment)) // comment will be an object
     )
   }
 }
@@ -119,7 +121,7 @@ export function thunkEditComment(commentId, title, text) {
 export function thunkCreateSession(comment) {
   return function(dispatch) {
     return fetchCreateSession(comment).then(
-      comments => dispatch(updateSession(comments));
+      comments => dispatch(updateSession(comments))
     )
   }
 }
@@ -127,7 +129,7 @@ export function thunkCreateSession(comment) {
 export function thunkSwitchSession(sessionId) {
   return function(dispatch) {
     return fetchCreateSession(sessionId).then(
-      comments => dispatch(updateSession(comments));
+      comments => dispatch(updateSession(comments))
     )
   }
 }
