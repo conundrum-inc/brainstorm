@@ -5,25 +5,25 @@ var Comment = require('./commentSchema');
 
 // authentication -- figure out what's needed here from passport
 
-
-
+function insertUser(profile) {
+  User.create({google_id: profile.id, displayName: profile.displayName, created_sessions: [], accessible_sessions: [], comments: []}, (err, user) => {
+    if (err) {
+      console.log('error in insert user', err);
+    } else {
+      console.log('user saved!');
+    }
+  })
+}
 
 // create new comment
 
-function addComment(params) {
+function addComment(params, cb) {
   // params should be an object including the follwoing keys: parent_id, children, creator_id, session_id, title, text, upvotes, downvotes, score
 
   //NOTE: add all new comments to parent comment's children array
   console.log('addComment params', params)
 
-  Comment.create(params, (err, comment) => {
-    if (err) {
-      console.log('error!', err)
-    } else {
-      //saved!
-      console.log('comment saved!');
-    }
-  })
+  Comment.create(params, cb);
 };
 
 // fetch a single comment (used to modify data e.g. upvotes etc) --> is this necessary?? method already built in
@@ -181,3 +181,4 @@ exports.addComment = addComment;
 exports.editComment = editComment;
 exports.upVote = upVote;
 exports.downVote = downVote;
+exports.insertUser = insertUser;

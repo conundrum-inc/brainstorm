@@ -3,7 +3,8 @@ import _ from 'lodash';
 function comments(state = [], action) {
   switch(action.type){
     case 'ADD_COMMENT':
-      console.log("Comment Added");
+    console.log("Comment Added");
+    console.log("action", JSON.stringify(action.comment.body));
       return [...state, action.comment]; // comment is an object with all comment properties
 
     case 'EDIT_COMMENT':

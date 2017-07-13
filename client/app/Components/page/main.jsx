@@ -10,9 +10,10 @@ import * as actionCreators from '../../actions/actionsCreators';
 import Main from '../Main.jsx';
 
 const MainPage = (props) => {
+  // props.thunkAddComment('123', '456', '789', 'title', 'this is text');
   return (
     <div>
-      <Main history={props.history} />
+      <Main history={props.history} addComment={props.thunkAddComment} />
     </div>
   )
 }
