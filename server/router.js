@@ -82,7 +82,7 @@ router.route('/session')
         res.sendStatus(400)
       } else {
         console.log('comments: ', comments)
-        res.send(comments);
+        res.json(comments);
       }
     });
   })
@@ -110,7 +110,7 @@ router.route('/comment')
               res.sendStatus(404);
             } else {
               console.log('comment', comment);
-              res.send(comment);
+              res.json(comment);
             }
         })
       }
@@ -124,7 +124,7 @@ router.route('/comment')
         console.log('err in /comment get function')
       } else {
         console.log(comment);
-        res.send(comment);
+        res.json(comment);
       }
     })
   })
@@ -144,7 +144,7 @@ router.route('/edit')
         comment.title = title;
         comment.text = text;
         comment.save();
-        res.send(comment);
+        res.json(comment);
       }
     });
   })
@@ -163,7 +163,7 @@ router.route('/allComments')
         res.sendStatus(400)
       } else {
         console.log('comments: ', comments)
-        res.send(comments);
+        res.json(comments);
       }
     });
   })
