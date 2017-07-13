@@ -11,7 +11,7 @@ import Login from '../Login.jsx';
 
 const LoginPage = (props) => {
   return (
-    <div>
+    <div id="login-container">
       <Login history={props.history} />
     </div>
   )
