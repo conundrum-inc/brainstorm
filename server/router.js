@@ -99,15 +99,21 @@ router.route('/comment')
     var text = req.body.text;
 
     helpers.addComment({ creator_id: userId, parent_id: parentId, session_id: sessionId, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 }, (err, comment) => {
-      helpers.findOne({ _id: comment._id }, (err, comment) => {
         if (err) {
-          console.log('err in comment find one');
-          res.sendStatus(404);
+          console.log('error!', err)
         } else {
-          console.log('comment', comment);
-          res.send(comment);
-        }
-      })
+          //saved!
+          console.log('comment saved!');
+          helpers.findOne({ _id: comment._id }, (err, comment) => {
+            if (err) {
+              console.log('err in comment find one');
+              res.sendStatus(404);
+            } else {
+              console.log('comment', comment);
+              res.send(comment);
+            }
+        })
+      }
     })
   })
   .get(function(req, res) {
