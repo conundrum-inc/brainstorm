@@ -4,7 +4,7 @@ import React from 'react';
 const Login = (props) => {
   return (
     <div>
-      I am the Login page!
+      <a href="/auth/google">Sign In with Google</a>
     </div>
   )
 }
