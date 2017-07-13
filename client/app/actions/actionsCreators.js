@@ -134,4 +134,6 @@ export function thunkSwitchSession(sessionId) {
   }
 }
 
+// not sure where the dispatch() function is coming from or what it's doing in these thunk functions (thunky!)
+
 // deal with assign user once passport/google auth infrastucture is implemented
