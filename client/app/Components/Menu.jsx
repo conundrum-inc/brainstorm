@@ -10,7 +10,7 @@ import { PROFILE_PAGE_ROUTE,
 const Menu = (props) => {
   if (props.menuVisible) {
     return (
-      <nav>
+      <nav onClick={() => props.onClick()>
         {[
           {route: MAIN_PAGE_ROUTE, label: 'Home' },
           {route: PROFILE_PAGE_ROUTE, label: 'My Profile'},
