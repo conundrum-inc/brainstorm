@@ -38,7 +38,7 @@ class Graph extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log("links: ", this.props.links)
+    
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
   
     const d3Links = this.d3Graph.selectAll('.link')
