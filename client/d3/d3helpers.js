@@ -136,7 +136,7 @@ export const force = d3.layout.force()
 
 
 export const enterNode = (selection) => {
-  console.log('inside enterNode')
+  
   selection.classed('node', true);
 
   selection.append('circle')
@@ -145,12 +145,13 @@ export const enterNode = (selection) => {
 }
 
 export const updateNode = (selection) => {
-  console.log('insinde updateNode')
-  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")");
+  console.log('inside updateNode')
+  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
+           
 }
 
 export const enterLink = (selection) => {
-  console.log('inside enterLink')
+  
   selection.classed('link', true)
     .attr("stroke", "#cccccc")
     .attr("stroke-opacity", ".6;")
@@ -158,15 +159,16 @@ export const enterLink = (selection) => {
 }
 
 export const updateLink = (selection) => {
-  console.log('inside updateLink')
+  
   selection.attr("x1", (d) => d.source.x)
     .attr("y1", (d) => d.source.y)
     .attr("x2", (d) => d.target.x)
-    .attr("y2", (d) => d.target.y);
+    .attr("y2", (d) => d.target.y)
+    
 };
 
 export const updateGraph = (selection) => {
-  console.log('inside updateGraph')
+  
   selection.selectAll('.node')
     .call(updateNode);
   selection.selectAll('.link')

@@ -26,15 +26,10 @@ class Graph extends React.Component {
     const d3Links = this.d3Graph.selectAll('.link')
       .data(this.props.links, (link) => link.key);
     d3Links.enter().insert('line', '.node').call(enterLink);
-    d3Links.exit().remove();
-    d3Links.call(updateLink);
     
     const d3Nodes = this.d3Graph.selectAll('.node')
       .data(this.props.nodes, (node) => node.key);
     d3Nodes.enter().append('g').call(enterNode);
-    d3Nodes.exit().remove()
-    d3Links.call(updateLink);
-
 
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
@@ -43,19 +38,26 @@ class Graph extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
+    console.log("links: ", this.props.links)
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
-
-    const d3Nodes = this.d3Graph.selectAll('.node')
-      .data(nextProps.nodes, (node) => node.key);
-    d3Nodes.enter().append('g').call(enterNode);
-    d3Nodes.exit().remove()
+  
+    const d3Links = this.d3Graph.selectAll('.link')
+      .data(this.props.links, (link) => link.key);
+    d3Links.enter().insert('line', '.node').call(enterLink);
+    //d3Links.exit().remove();
     d3Links.call(updateLink);
+    
+    const d3Nodes = this.d3Graph.selectAll('.node')
+      .data(this.props.nodes, (node) => node.key);
+    d3Nodes.enter().append('g').call(enterNode);
+    //d3Nodes.exit().remove()
+    //d3Nodes.call(updateNode);
+
 
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
-    force.nodes(nextProps.nodes).links(nextProps.links);
+    force.nodes(this.props.nodes).links(this.props.links);
     force.start();
-
     return false;
   }
 

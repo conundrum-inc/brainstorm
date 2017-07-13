@@ -5,6 +5,7 @@ import { click, forceDiagram} from '../../d3/d3helpers.js'
 
 import Graph from './Graph.jsx'
 
+
   var nodes = [
     {key: 1, size: 20},
     {key: 2, size: 40},
@@ -18,7 +19,6 @@ import Graph from './Graph.jsx'
     {source: 2, target: 1, key: 2, size: 2},
     {source: 3, target: 1, key: 3, size: 2}
   ]
-
 
 class Session extends React.Component {
 
@@ -42,10 +42,23 @@ class Session extends React.Component {
     }
   }
 
+  addNode() {
+    const lastKey = nodes[nodes.length - 1].key;
+    const lastSource = links[links.length - 1].source;
+    const lastLinkKey = links[links.length - 1].key
+    nodes.push({key: lastKey+1, size: 10, x: 20, y: 20})
+    links.push({source: nodes.length-1, target: 1, key: lastLinkKey+1, size: 2})
+    this.setState({
+      nodes,
+      links
+    })
+  }
+
   render() {
 
     return (
       <div>
+        <button onClick={this.addNode.bind(this)}>Add Node</button>
         <Graph nodes={this.state.nodes} links={this.state.links} /> 
       </div>
     )
