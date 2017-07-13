@@ -106,7 +106,9 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
   return function(dispatch) {
     console.log('In thunkAddComment!')
     return fetchCalls.fetchAddComment(userId, parentId, sessionId, title, text).then(
-      comment => dispatch(addComment(comment)) // comment will be an object
+      (comment) => {
+        console.log(comment, 'thunk comment here')
+        return dispatch(addComment(comment)) } // comment will be an object
     )
   }
 }

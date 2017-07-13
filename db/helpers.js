@@ -73,7 +73,7 @@ function upVote(req, res) {
       }
       comment.save();
       console.log('upvote saved!')
-      res.send({score: comment.score});
+      res.json({score: comment.score});
     }
   })
 }
@@ -107,7 +107,7 @@ function downVote(req, res) {
       }
       comment.save();
       console.log('downvote saved!')
-      res.send({score: comment.score});
+      res.json({score: comment.score});
     }
   })
 }
@@ -142,7 +142,7 @@ function addSession(req, res) {
               res.sendStatus(400)
             } else {
               console.log('comments: ', comments)
-              res.send(comments);
+              res.json(comments);
             }
           });
         }
