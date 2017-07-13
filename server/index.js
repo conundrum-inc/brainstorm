@@ -1,11 +1,31 @@
 const express = require('express');
 const path = require('path');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var session = require('express-session');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var router = require('./router')
+var User = require('../db/userSchema');
 
 const app = express();
 
 app.use(bodyParser());
+
+app.use(session({ secret: 'leopard cat' }));
+
+app.use(passport.initialize());
+
+app.use(passport.session());
+
+// passport.serializeUser(function(user, done) {
+//   done(null, user.id);
+// });
+//
+// passport.deserializeUser(function(id, done) {
+//   User.findById(id, function(err, user) {
+//     done(err, user);
+//   });
+// });
 
 // implement express router
 
