@@ -1,1 +1,10 @@
-style.css
+#login-container {
+  margin-top: 50px;
+  width: 20%;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  background-color: #e0ebfc;
+}
+
+/* JB: just messing around with the css properties for the login page */

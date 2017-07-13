@@ -13,7 +13,12 @@ const MainPage = (props) => {
   // props.thunkAddComment('123', '456', '789', 'title', 'this is text');
   return (
     <div>
-      <Main history={props.history} addComment={props.thunkAddComment} />
+      <Main history={props.history}
+            addComment={props.thunkAddComment}
+            showMenu={props.showMenu}
+            hideMenu={props.hideMenu}
+            menuVisible={props.menuVisible}
+          />
     </div>
   )
 }
