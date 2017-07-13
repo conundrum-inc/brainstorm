@@ -23,15 +23,7 @@ function addComment(params, cb) {
   //NOTE: add all new comments to parent comment's children array
   console.log('addComment params', params)
 
-  Comment.create(params, (err, comment) => {
-    if (err) {
-      console.log('error!', err)
-    } else {
-      //saved!
-      console.log('comment saved!');
-      return comment;
-    }
-  })
+  Comment.create(params, cb);
 };
 
 // fetch a single comment (used to modify data e.g. upvotes etc) --> is this necessary?? method already built in
