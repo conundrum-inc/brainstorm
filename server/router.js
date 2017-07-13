@@ -103,13 +103,13 @@ router.route('/comment')
           console.log('error!', err)
         } else {
           //saved!
-          console.log('comment saved!');
+          console.log('comment saved in db!');
           helpers.findOne({ _id: comment._id }, (err, comment) => {
             if (err) {
               console.log('err in comment find one');
               res.sendStatus(404);
             } else {
-              console.log('comment', comment);
+
               res.json(comment);
             }
         })

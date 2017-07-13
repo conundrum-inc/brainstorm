@@ -3,8 +3,7 @@ import _ from 'lodash';
 function comments(state = [], action) {
   switch(action.type){
     case 'ADD_COMMENT':
-    console.log("Comment Added", action.comment.body);
-    console.log("action", JSON.stringify(action.comment.body));
+    console.log("Updating state Comment Added");
       return [...state, action.comment]; // comment is an object with all comment properties
 
     case 'EDIT_COMMENT':
@@ -21,18 +20,5 @@ function comments(state = [], action) {
   }
   return state;
 }
-
-// function comments(state = [], action) {
-//   if(typeof action.postId !== 'undefined') {
-//     return {
-//       // ...state,
-//       // [action.postId]: postComments(state[action.postId], action)
-//
-//     }
-//   }
-//   return state;
-// }
-
-// ^^ Above commented-out code is from the Redux example
 
 export default comments;
