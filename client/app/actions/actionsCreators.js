@@ -104,7 +104,8 @@ export function thunkDownVote(userId, commentId) {
 
 export function thunkAddComment(userId, parentId, sessionId, title, text) {
   return function(dispatch) {
-    return fetchAddComment(userId, parentId, sessionId, title, text).then(
+    console.log('In thunkAddComment!')
+    return fetchCalls.fetchAddComment(userId, parentId, sessionId, title, text).then(
       comment => dispatch(addComment(comment)) // comment will be an object
     )
   }

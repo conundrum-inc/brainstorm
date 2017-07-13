@@ -21,16 +21,19 @@ export function fetchDownVote(userId, commentId) {
 }
 
 export function fetchAddComment(userId, parentId, sessionId, title, text) {
-  fetch({
-    type: 'POST',
-    url: '/comment',
-    body: {
+  console.log('In fetchAddComment!')
+  return fetch('/comment', {
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json',
+    },
+    body: JSON.stringify({
       user_id: userId,
       parent_id: parentId,
       session_id: sessionId,
       title: title,
       text: text
-    }
+    })
   })
 }
 
