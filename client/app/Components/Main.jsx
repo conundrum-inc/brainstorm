@@ -4,12 +4,13 @@ import Session from './Session.jsx'
 
 
 const Main = (props) => {
+  // console.log(props);
   return (
     <div>
       <h2>I am the Main component!</h2>
       <Menu />
-      <button>Start a new Session</button>
-      <Session /> 
+      <button className="add-comment" onClick={() => props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</button>
+      <Session />
     </div>
   )
 }
