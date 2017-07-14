@@ -24,6 +24,7 @@ const MainPage = (props) => {
             comments={props.comments}
             nodes={props.nodes}
             links={props.links}
+            thunkAddUser={props.thunkAddUser}
           />
     </div>
   )

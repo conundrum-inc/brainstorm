@@ -1,7 +1,7 @@
-function user(state = {id: null, name:null}, action) {
+function user(state = {userId: null, name:null}, action) {
   switch (action.type) {
     case 'ADD_USER':
-      console.log("Added User");
+      console.log("Added User reducer");
       return {
         userId: action.userId,
         name: action.name
