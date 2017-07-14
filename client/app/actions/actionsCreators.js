@@ -74,6 +74,21 @@ export function hideDetail() {
   }
 }
 
+//test action for d3-redux integration 
+export function addNode() {
+  return {
+    type: 'ADD_NODE',
+    node
+  }
+}
+
+export function addLink() {
+  return {
+    type: 'ADD_LINK',
+    link
+  }
+}
+
 
 ////////////// thunk actionCreators ////////////////
 

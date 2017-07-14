@@ -10,7 +10,13 @@ const Main = (props) => {
       <h2>I am the Main component!</h2>
       <Menu className="menu-button" menuVisible={props.menuVisible} onClick={() => props.menuVisible ? props.hideMenu() : props.showMenu()}/>
       <button className="add-comment" onClick={() => props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</button>
-      <Session showDetail={props.showDetail} hideDetail={props.hideDetail} detailViewVisible={props.detailViewVisible} comments={props.comments}/>
+      <Session showDetail={props.showDetail} 
+               hideDetail={props.hideDetail}
+               detailViewVisible={props.detailViewVisible}
+               comments={props.comments}
+               nodes={props.nodes}
+               links={props.links}
+      />
     </div>
   )
 }

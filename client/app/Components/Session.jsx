@@ -6,19 +6,7 @@ import ReactModal from 'react-modal'
 import { click, forceDiagram} from '../../d3/d3helpers.js'
 
 import Graph from './Graph.jsx'
-
-
-
-
-
-  var nodes = [
-    {key: 2, size: 40}
-  ]
-
-  //define links
-  var links = [
-    {source: 0, target: 0, key: 1, size: 2},
-  ]
+ 
 
 class Session extends React.Component {
 
@@ -29,8 +17,8 @@ class Session extends React.Component {
     super(props)
 
     this.state = {
-      nodes: nodes,
-      links: links
+      nodes: this.props.nodes,
+      links: this.props.links
     }
   }
 
