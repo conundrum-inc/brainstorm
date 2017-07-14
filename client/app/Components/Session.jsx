@@ -1,5 +1,6 @@
 import React from 'react';
 import Menu from './Menu.jsx';
+import NodeModal from './NodeDetail.jsx';
 import * as d3 from 'd3'
 import ReactDOM from 'react-dom'
 import ReactModal from 'react-modal'
@@ -36,7 +37,7 @@ class Session extends React.Component {
   }
 
   render() {
-
+    // console.log('this.props: ', this.props);
     return (
       <div>
         <button onClick={this.addNode.bind(this)}>Add Node</button>
@@ -46,7 +47,7 @@ class Session extends React.Component {
           shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
           <button onClick={this.props.hideDetail}>Close Modal</button>
-          <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</button>
+          <NodeModal addComment={this.props.addComment}/>
         </ReactModal>
         <Graph nodes={this.state.nodes} links={this.state.links} showDetail={this.props.showDetail} />
       </div>
