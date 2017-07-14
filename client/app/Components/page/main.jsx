@@ -15,6 +15,8 @@ const MainPage = (props) => {
     <div>
       <Main history={props.history}
             addComment={props.thunkAddComment}
+            addNode={props.addNode}
+            addLink={props.addLink}
             showMenu={props.showMenu}
             hideMenu={props.hideMenu}
             menuVisible={props.menuVisible}

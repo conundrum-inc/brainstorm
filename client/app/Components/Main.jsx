@@ -15,6 +15,8 @@ const Main = (props) => {
                comments={props.comments}
                nodes={props.nodes}
                links={props.links}
+               addNode={props.addNode}
+               addLink={props.addLink}
       />
     </div>
   )

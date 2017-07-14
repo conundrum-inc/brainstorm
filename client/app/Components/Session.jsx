@@ -10,29 +10,32 @@ import Graph from './Graph.jsx'
 
 class Session extends React.Component {
 
-  constructor(props) {
 
-    super(props)
-
-    this.state = {
-      nodes: this.props.nodes,
-      links: this.props.links
-    }
-  }
-
-  componentDidMount() {
-    
+  componentDidUpdate() {
+    console.log('Session updated')
+    console.log('new links: ', this.props.links)
+    console.log('new nodes: ', this.props.nodes)
   }
 
   addNode() {
+
+    const nodes = this.props.nodes;
+    const links = this.props.links;
+
+
+
     const lastKey = nodes[nodes.length - 1].key;
-    const lastLinkKey = links[links.length - 1].key
-    nodes.push({key: lastKey+1, size: 10, x: 20, y: 20})
-    links.push({source: nodes.length-1, target: 0, key: lastLinkKey+1, size: 2})
-    this.setState({
-      nodes,
-      links
-    })
+    const lastLinkKey = links[links.length-1] ? links[links.length - 1].key : 0
+
+    console.log('lastKey: ', lastKey)
+    console.log('lastLinkKey: ', lastLinkKey)
+
+    const newNode = {key: lastKey+1, size:10, x: 20, y: 20}
+    const newLink = {source: nodes.length, target: 0, key: lastLinkKey+1, size: 2}
+    
+    this.props.addNode(newNode)
+    this.props.addLink(newLink)
+
   }
 
   render() {
@@ -47,7 +50,7 @@ class Session extends React.Component {
         >
           <button onClick={this.props.hideDetail}>Close Modal</button>
         </ReactModal>
-        <Graph nodes={this.state.nodes} links={this.state.links} showDetail={this.props.showDetail} /> 
+        <Graph nodes={this.props.nodes} links={this.props.links} showDetail={this.props.showDetail} /> 
       </div>
     )
   }
