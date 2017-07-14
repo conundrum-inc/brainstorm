@@ -1,6 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3'
-import { withFauxDOM } from 'react-faux-dom'
+import ReactDOM from 'react-dom'
 import { click, forceDiagram} from '../../d3/d3helpers.js'
 
 import Graph from './Graph.jsx'
@@ -17,15 +17,9 @@ import Graph from './Graph.jsx'
 
 class Session extends React.Component {
 
-  // componentDidMount() {
-  //   const board = this.props.connectFauxDOM('div','board')
-  //   d3.select(board)
-  //     .append('svg')
-  //     .attr("height", "100%")
-  //     .attr("width", "100%")
-  //   const parentEl = d3.select(board).selectAll("svg")
-  //   forceDiagram(parentEl)
-  // }
+  componentDidMount() {
+    
+  }
 
   constructor(props) {
     
@@ -53,10 +47,10 @@ class Session extends React.Component {
     return (
       <div>
         <button onClick={this.addNode.bind(this)}>Add Node</button>
-        <Graph nodes={this.state.nodes} links={this.state.links} /> 
+        <Graph nodes={this.state.nodes} links={this.state.links} showDetail={this.props.showDetail} /> 
       </div>
     )
   }
 }
 
-export default withFauxDOM(Session);
+export default Session;
