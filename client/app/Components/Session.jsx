@@ -40,6 +40,10 @@ class Session extends React.Component {
     // console.log('this.props: ', this.props);
     return (
       <div>
+        <Menu className="menu-button"
+              menuVisible={this.props.menuVisible}
+              toggleClick={() => {this.props.menuVisible ? this.props.hideMenu() : this.props.showMenu()}}
+        />
         <button onClick={this.addNode.bind(this)}>Add Node</button>
         <ReactModal
           isOpen={this.props.detailViewVisible}
