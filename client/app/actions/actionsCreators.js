@@ -43,7 +43,6 @@ export function updateSession(comments) {
 }
 
 export function addUser(userId, name) {
-  console.log("User Added");
   return {
     type: 'ADD_USER',
     userId,
@@ -52,7 +51,6 @@ export function addUser(userId, name) {
 }
 
 export function removeUser() {
-  console.log("User Removed");
   return {
     type: 'REMOVE_USER'
   }
@@ -82,6 +80,7 @@ export function hideDetail() {
     type: 'HIDE_DETAIL'
   }
 }
+
 
 //test action for d3-redux integration 
 export function addNode(node) {
@@ -122,8 +121,8 @@ export function thunkAddUser() {
     console.log('hey in the thunk!')
     return axiosCall.login().then(
       (user) => {
-        console.log('user', user)
-        dispatch(addUser(user.data.id, user.data.name)) // CHECK THESE USER VALUES!!!!!!
+        console.log('user data', user.data)
+        dispatch(addUser(user.data[0]._id, user.data[0].displayName)) // CHECK THESE USER VALUES!!!!!!
       }
     )
   }
