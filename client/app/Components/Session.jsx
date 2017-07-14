@@ -1,4 +1,5 @@
 import React from 'react';
+import Menu from './Menu.jsx';
 import * as d3 from 'd3'
 import { withFauxDOM } from 'react-faux-dom'
 import { click, forceDiagram} from '../../d3/d3helpers.js'
@@ -33,7 +34,7 @@ class Session extends React.Component {
   // }
 
   constructor(props) {
-    
+
     super(props)
 
     this.state = {
@@ -58,11 +59,25 @@ class Session extends React.Component {
 
     return (
       <div>
-        <button onClick={this.addNode.bind(this)}>Add Node</button>
-        <Graph nodes={this.state.nodes} links={this.state.links} /> 
+        <div>
+          <Menu className="menu-button"
+                menuVisible={this.props.menuVisible}
+                toggleClick={() => this.props.menuVisible ? this.props.hideMenu() : this.props.showMenu()}
+          />
+          <button onClick={this.addNode.bind(this)}>Add Node</button>
+          <Graph nodes={this.state.nodes} links={this.state.links} />
+        </div>
       </div>
     )
   }
 }
+
+// Session.propTypes = {
+//   menuVisible: PropTypes.boolean.isRequired,
+//   hideMenu: PropTypes.function.isRequired,
+//   showMenu: PropTypes.function.isRequired
+// };
+
+//
 
 export default withFauxDOM(Session);
