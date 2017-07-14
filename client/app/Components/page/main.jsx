@@ -34,7 +34,8 @@ function mapStateToProps(state) {
     comments: state.comments,
     detailViewVisible: state.detailViewVisible,
     menuVisible: state.menuVisible,
-    nodes: state.nodes
+    nodes: state.nodes,
+    links: state.links
   }
 }
 

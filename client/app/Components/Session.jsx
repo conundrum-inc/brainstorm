@@ -51,14 +51,6 @@ class Session extends React.Component {
           <button onClick={this.props.hideDetail}>Close Modal</button>
         </ReactModal>
         <Graph nodes={this.state.nodes} links={this.state.links} showDetail={this.props.showDetail} /> 
-        <div>
-          <Menu className="menu-button"
-                menuVisible={this.props.menuVisible}
-                toggleClick={() => this.props.menuVisible ? this.props.hideMenu() : this.props.showMenu()}
-          />
-          <button onClick={this.addNode.bind(this)}>Add Node</button>
-          <Graph nodes={this.state.nodes} links={this.state.links} />
-        </div>
       </div>
     )
   }

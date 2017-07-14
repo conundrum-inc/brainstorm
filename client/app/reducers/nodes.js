@@ -1,4 +1,4 @@
-function nodes(state=[{key: 2, size: 40}], action) {
+function nodes(state=[{key: 0, size: 40}], action) {
   switch(action.type) {
     case 'ADD_NODE':
     console.log('Updating state, node added');
