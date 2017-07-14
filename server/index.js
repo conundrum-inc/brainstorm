@@ -3,6 +3,7 @@ const path = require('path');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
+var request = require('request')
 var mongoose = require('mongoose');
 var router = require('./router');
 var User = require('../db/userSchema');
@@ -13,6 +14,14 @@ var GOOGLE_CLIENT_SECRET = require('../auth-config.js').GOOGLE_CLIENT_SECRET;
 const app = express();
 
 app.use(bodyParser());
+
+// set headers to allow cross-origin requests
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next()
+})
 
 //initialize express-session and passport
 
@@ -41,11 +50,11 @@ passport.use(new GoogleStrategy({
   callbackURL: '/auth/google/callback'
 },
 function(token, tokenSecret, profile, done) {
-  console.log('profile', profile.id);
+  console.log('profile', profile);
   User.find({ google_id: profile.id }, (err, user) => {
     console.log('user from google strategy', user);
     if (user.length === 0) {
-      User.create({google_id: profile.id, displayName: profile.displayName, created_sessions: [], accessible_sessions: [], comments: []}, (err, user) => {
+      User.create({google_id: profile.id, displayName: profile.displayName, image: profile._json.image.url, created_sessions: [], accessible_sessions: [], comments: []}, (err, user) => {
         if (err) {
           console.log('error in insert user', err);
         } else {
@@ -62,6 +71,7 @@ function(token, tokenSecret, profile, done) {
 ));
 
 // GET /auth/google
+
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile'] }));
 
@@ -70,8 +80,23 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('req.user in google auth callback function', req.user);
+    console.log('SESSION', req.session.passport.user);
     res.redirect('/', 200, req.user);
   });
+
+// send user to front end based on session
+
+app.get ('/getUser', function(req, res) {
+  console.log(req.session);
+  User.find({ _id: req.session.passport.user }, (err, user) => {
+    if (err) {
+      console.log('error in getUser route', err);
+    } else {
+      console.log('get user success!', user)
+      res.json(user);
+    }
+  })
+});
 
 // logout route
 app.get('/logout', function(req, res){

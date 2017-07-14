@@ -24,6 +24,14 @@ window.store = store;
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    // function requireAuth(nextState, replace) { // BE SURE TO ALTER THIS BASED ON USER STATE
+    //   if (!loggedIn()) {
+    //     replace({
+    //       pathname: '/login'
+    //     })
+    //   }  onEnter={requireAuth} // put this line in Route below
+    // }
   }
 
   render () {
@@ -32,7 +40,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Switch>
             <Route exact path={ LOGIN_PAGE_ROUTE } render={() => <LoginPage />} />
-            <Route exact path={ MAIN_PAGE_ROUTE } render={() => <MainPage />} />
+            <Route exact path={ MAIN_PAGE_ROUTE }render={() => <MainPage />} />
             <Route exact path={ PROFILE_PAGE_ROUTE } render={() => <ProfilePage />} />
             <Route exact path={ LOGOUT_PAGE_ROUTE } render={() => <LoginPage />} />
           </Switch>

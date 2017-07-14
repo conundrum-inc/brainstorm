@@ -1,5 +1,6 @@
 import React from 'react';
 import Menu from './Menu.jsx';
+import NodeDetail from './NodeDetail.jsx';
 import * as d3 from 'd3'
 import ReactDOM from 'react-dom'
 import ReactModal from 'react-modal'
@@ -9,6 +10,7 @@ import { click, forceDiagram} from '../../d3/d3helpers.js'
 import Graph from './Graph.jsx'
 
 class Session extends React.Component {
+
 
 
   componentDidUpdate() {
@@ -39,18 +41,25 @@ class Session extends React.Component {
   }
 
   render() {
-
+    // console.log('this.props: ', this.props);
     return (
       <div>
+        <Menu className="menu-button"
+              menuVisible={this.props.menuVisible}
+              toggleClick={() => {this.props.menuVisible ? this.props.hideMenu() : this.props.showMenu()}}
+        />
         <button onClick={this.addNode.bind(this)}>Add Node</button>
+        <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Idea!</button>
         <ReactModal
           isOpen={this.props.detailViewVisible}
           contentLabel="Detail Modal"
           shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
           <button onClick={this.props.hideDetail}>Close Modal</button>
+          <NodeDetail addComment={this.props.addComment}/>
         </ReactModal>
         <Graph nodes={this.props.nodes} links={this.props.links} showDetail={this.props.showDetail} /> 
+
       </div>
     )
   }
