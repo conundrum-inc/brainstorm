@@ -7,6 +7,7 @@ class Main extends React.Component {
     super(props);
   }
 
+
   componentDidMount() {
     this.props.thunkAddUser();
   }
@@ -26,6 +27,7 @@ class Main extends React.Component {
       </div>
     )
   }
+
 }
 
 export default Main;
