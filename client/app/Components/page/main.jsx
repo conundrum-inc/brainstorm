@@ -21,6 +21,7 @@ const MainPage = (props) => {
             showDetail={props.showDetail}
             hideDetail={props.hideDetail}
             detailViewVisible={props.detailViewVisible}
+            comments={props.comments}
           />
     </div>
   )

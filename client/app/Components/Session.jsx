@@ -57,6 +57,7 @@ class Session extends React.Component {
         <ReactModal
           isOpen={this.props.detailViewVisible}
           contentLabel="Detail Modal"
+          shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
           <button onClick={this.props.hideDetail}>Close Modal</button>
         </ReactModal>
