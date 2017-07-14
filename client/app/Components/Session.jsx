@@ -21,7 +21,7 @@ class Session extends React.Component {
   }
 
   componentDidMount() {
-    
+
   }
 
   addNode() {
@@ -46,8 +46,9 @@ class Session extends React.Component {
           shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
           <button onClick={this.props.hideDetail}>Close Modal</button>
+          <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</button>
         </ReactModal>
-        <Graph nodes={this.state.nodes} links={this.state.links} showDetail={this.props.showDetail} /> 
+        <Graph nodes={this.state.nodes} links={this.state.links} showDetail={this.props.showDetail} />
       </div>
     )
   }

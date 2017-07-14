@@ -8,7 +8,7 @@ const Main = (props) => {
   return (
     <div>
       <h2>I am the Main component!</h2>
-      <button className="add-comment" onClick={() => props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</button>
+      {/* <button className="add-comment" onClick={() => props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</button> */}
       <Session showDetail={props.showDetail}
                hideDetail={props.hideDetail}
                detailViewVisible={props.detailViewVisible}
@@ -18,6 +18,7 @@ const Main = (props) => {
                showMenu={props.showMenu}
                hideMenu={props.hideMenu}
                menuVisible={props.menuVisible}
+               addComment={props.addComment}
       />
     </div>
   )
