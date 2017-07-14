@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from './Menu.jsx';
-import NodeModal from './NodeDetail.jsx';
+import NodeDetail from './NodeDetail.jsx';
 import * as d3 from 'd3'
 import ReactDOM from 'react-dom'
 import ReactModal from 'react-modal'
@@ -52,7 +52,7 @@ class Session extends React.Component {
           shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
           <button onClick={this.props.hideDetail}>Close Modal</button>
-          <NodeModal addComment={this.props.addComment}/>
+          <NodeDetail addComment={this.props.addComment}/>
         </ReactModal>
         <Graph nodes={this.state.nodes} links={this.state.links} showDetail={this.props.showDetail} />
       </div>

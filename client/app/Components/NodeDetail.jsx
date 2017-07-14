@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NodeModal = (props) => {
+const NodeDetail = (props) => {
   return (
     <div>
       <h2>Idea Title</h2>
@@ -15,4 +15,4 @@ const NodeModal = (props) => {
   )
 }
 
-export default NodeModal;
+export default NodeDetail;
