@@ -1,4 +1,5 @@
 import * as d3 from 'd3'
+import { showDetail } from '../app/actions/actionsCreators.js'
 
 const data = ["hello world"]
 
@@ -130,7 +131,7 @@ export const blackCircle = function(parentEl) {
 export const width = 960;
 export const height = 500;
 export const force = d3.layout.force()
-            .charge(-150)
+            .charge(-500)
             .linkDistance(100)
             .size([width, height]);
 
@@ -143,7 +144,8 @@ export const enterNode = (selection) => {
     .attr("r", (d) => d.size)
     .attr("fill", "white")
     .attr("stroke", "black")
-    .call(force.drag);
+    .call(force.drag)
+
 }
 
 export const updateNode = (selection) => {

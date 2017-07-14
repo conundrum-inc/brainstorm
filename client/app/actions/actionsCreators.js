@@ -63,6 +63,7 @@ export function hideMenu() {
 }
 
 export function showDetail() {
+  console.log('clicked!')
   return {
     type: 'SHOW_DETAIL'
   }
