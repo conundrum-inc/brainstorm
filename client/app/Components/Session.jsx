@@ -7,11 +7,8 @@ import ReactModal from 'react-modal'
 import { click, forceDiagram} from '../../d3/d3helpers.js'
 
 import Graph from './Graph.jsx'
- 
 
 class Session extends React.Component {
-
-
 
   constructor(props) {
 
@@ -55,6 +52,4 @@ class Session extends React.Component {
     )
   }
 }
-
-export default Session 
-
+export default Session;
