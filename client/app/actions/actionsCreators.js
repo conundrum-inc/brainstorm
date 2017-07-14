@@ -84,14 +84,14 @@ export function hideDetail() {
 }
 
 //test action for d3-redux integration 
-export function addNode() {
+export function addNode(node) {
   return {
     type: 'ADD_NODE',
     node
   }
 }
 
-export function addLink() {
+export function addLink(link) {
   return {
     type: 'ADD_LINK',
     link

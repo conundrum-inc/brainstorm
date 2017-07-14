@@ -14,10 +14,13 @@ const Main = (props) => {
                comments={props.comments}
                nodes={props.nodes}
                links={props.links}
+               addNode={props.addNode}
+               addLink={props.addLink}
                showMenu={props.showMenu}
                hideMenu={props.hideMenu}
                menuVisible={props.menuVisible}
                addComment={props.addComment}
+
       />
     </div>
   )

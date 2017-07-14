@@ -2,6 +2,8 @@ import React from 'react'
 import * as d3 from 'd3'
 import * as ReactDOM from 'react-dom'
 
+import { connect } from 'react-redux'
+
 import { width,
          height,
          force,
@@ -15,6 +17,7 @@ import { width,
 class Graph extends React.Component {
 
   componentDidMount() {
+
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
     force.on('tick', () => {
       // after force calculation starts, call updateGraph
@@ -40,8 +43,8 @@ class Graph extends React.Component {
     force.start();
   }
 
-  shouldComponentUpdate(nextProps) {
-    
+  componentDidUpdate() {
+   
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
   
     const d3Links = this.d3Graph.selectAll('.link')
@@ -54,7 +57,7 @@ class Graph extends React.Component {
       .data(this.props.nodes, (node) => node.key);
     d3Nodes.enter().append('g').call(enterNode);
     //d3Nodes.exit().remove()
-    //d3Nodes.call(updateNode);
+    d3Nodes.call(updateNode);
     this.d3Graph.selectAll("circle")
       .on("click", this.props.showDetail)
 
@@ -62,7 +65,7 @@ class Graph extends React.Component {
     //since d3 mutates them. We'll do this later
     force.nodes(this.props.nodes).links(this.props.links);
     force.start();
-    return false;
+    
   }
 
   render() {
@@ -74,4 +77,4 @@ class Graph extends React.Component {
   }
 }
 
-export default Graph
+export default connect()(Graph)
