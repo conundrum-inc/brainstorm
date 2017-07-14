@@ -43,7 +43,6 @@ export function updateSession(comments) {
 }
 
 export function addUser(userId, name) {
-  console.log("User Added Action");
   return {
     type: 'ADD_USER',
     userId,
@@ -52,7 +51,6 @@ export function addUser(userId, name) {
 }
 
 export function removeUser() {
-  console.log("User Removed");
   return {
     type: 'REMOVE_USER'
   }

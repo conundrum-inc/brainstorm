@@ -8,6 +8,7 @@ class Login extends React.Component {
   }
   componentDidMount() {
     logout();
+    this.props.removeUser();
   }
   render() {
    return (
