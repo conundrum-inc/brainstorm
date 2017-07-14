@@ -19,7 +19,7 @@ import LoginPage from './Components/page/login.jsx';
 import MainPage from './Components/page/main.jsx';
 import ProfilePage from './Components/page/profile.jsx';
 
-
+window.store = store;
 
 class App extends React.Component {
   constructor(props) {
