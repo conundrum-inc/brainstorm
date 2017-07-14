@@ -57,7 +57,7 @@ export const blackCircle = function(parentEl) {
 // }
 
 // export const forceDiagram = function(parentEl) {
-  
+
 
 //   //defined nodes
 //   var nodes = [
@@ -80,7 +80,7 @@ export const blackCircle = function(parentEl) {
 
 //   //add the links (ORDER IS IMPORTANT. ADD LINKS FIRST SO NODES WILL APPEAR ON TOP)
 //   //links are added to the svg as a simple line. The force layout will take care of
-//   //positioning them appropriately 
+//   //positioning them appropriately
 
 //   var link = parentEl.selectAll('.link')
 //     .data(links)
@@ -102,12 +102,12 @@ export const blackCircle = function(parentEl) {
 
 //   force.on('end', function() {
 //     console.log('force calc ended')
-    
-//     //when the calcs are complete, the force layout will have set various properties 
+
+//     //when the calcs are complete, the force layout will have set various properties
 //     //on our nodes and links that we can use to position them
 
 //     //reposition the nodes. We re-set the nodes' svg attributes for x, y, and radis
-//     //to the results of the calculations 
+//     //to the results of the calculations
 
 //     node.attr('r', 40)
 //         .attr('cx', function(d) { return d.x })
@@ -136,22 +136,23 @@ export const force = d3.layout.force()
 
 
 export const enterNode = (selection) => {
-  
+
   selection.classed('node', true);
 
   selection.append('circle')
     .attr("r", (d) => d.size)
     .call(force.drag);
+
 }
 
 export const updateNode = (selection) => {
   console.log('inside updateNode')
   selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
-           
+
 }
 
 export const enterLink = (selection) => {
-  
+
   selection.classed('link', true)
     .attr("stroke", "#cccccc")
     .attr("stroke-opacity", ".6;")
@@ -159,53 +160,18 @@ export const enterLink = (selection) => {
 }
 
 export const updateLink = (selection) => {
-  
+
   selection.attr("x1", (d) => d.source.x)
     .attr("y1", (d) => d.source.y)
     .attr("x2", (d) => d.target.x)
     .attr("y2", (d) => d.target.y)
-    
+
 };
 
 export const updateGraph = (selection) => {
-  
+
   selection.selectAll('.node')
     .call(updateNode);
   selection.selectAll('.link')
     .call(updateLink);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
