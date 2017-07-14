@@ -15,12 +15,12 @@ const app = express();
 
 app.use(bodyParser());
 
-// allow cross origin requests
+// set headers to allow cross-origin requests
 
 app.use(function(req, res, next) {
- res.header('Access-Control-Allow-Origin', '*')
- res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
- next()
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next()
 })
 
 //initialize express-session and passport
@@ -71,6 +71,7 @@ function(token, tokenSecret, profile, done) {
 ));
 
 // GET /auth/google
+
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile'] }));
 

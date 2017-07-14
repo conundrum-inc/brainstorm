@@ -42,11 +42,19 @@ export function updateSession(comments) {
   }
 }
 
-export function assignUser(userId) {
-  console.log("User Assigned");
+export function addUser(userId, name) {
+  console.log("User Added");
   return {
-    type: 'ASSIGN_USER',
-    userId
+    type: 'ADD_USER',
+    userId,
+    name
+  }
+}
+
+export function removeUser() {
+  console.log("User Removed");
+  return {
+    type: 'REMOVE_USER'
   }
 }
 
@@ -63,6 +71,7 @@ export function hideMenu() {
 }
 
 export function showDetail() {
+  console.log('clicked!')
   return {
     type: 'SHOW_DETAIL'
   }
@@ -71,6 +80,21 @@ export function showDetail() {
 export function hideDetail() {
   return {
     type: 'HIDE_DETAIL'
+  }
+}
+
+//test action for d3-redux integration 
+export function addNode() {
+  return {
+    type: 'ADD_NODE',
+    node
+  }
+}
+
+export function addLink() {
+  return {
+    type: 'ADD_LINK',
+    link
   }
 }
 
@@ -89,6 +113,28 @@ export function thunkDownVote(userId, commentId) {
   return function(dispatch) {
     return axiosCall.DownVote(userId, commentId).then(
       score => dispatch(downVote(score, commentId))
+    )
+  }
+}
+
+export function thunkAddUser() {
+  return function(dispatch) {
+    console.log('hey in the thunk!')
+    return axiosCall.login().then(
+      (user) => {
+        console.log('user', user)
+        dispatch(addUser(user.data.id, user.data.name)) // CHECK THESE USER VALUES!!!!!!
+      }
+    )
+  }
+}
+
+export function thunkRemoveUser() {
+  return function(dispatch) {
+    return axiosCall.logout().then(
+      () => {
+        dispatch(removeUser())
+      }
     )
   }
 }

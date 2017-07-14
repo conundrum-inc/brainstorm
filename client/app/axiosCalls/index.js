@@ -52,6 +52,10 @@ export function fetchSession(sessionId) {
   });
 }
 
+export function login() {
+  return axios.get('/getUser');
+}
+
 export function logout() {
   return axios.get('/logout');
 }

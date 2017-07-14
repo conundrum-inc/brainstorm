@@ -33,12 +33,15 @@ class Graph extends React.Component {
 
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
+    this.d3Graph.selectAll("circle")
+      .on("click", this.props.showDetail)
+
     force.nodes(this.props.nodes).links(this.props.links);
     force.start();
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log("links: ", this.props.links)
+    
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
   
     const d3Links = this.d3Graph.selectAll('.link')
@@ -52,7 +55,8 @@ class Graph extends React.Component {
     d3Nodes.enter().append('g').call(enterNode);
     //d3Nodes.exit().remove()
     //d3Nodes.call(updateNode);
-
+    this.d3Graph.selectAll("circle")
+      .on("click", this.props.showDetail)
 
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
