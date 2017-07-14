@@ -69,14 +69,15 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/');
+    console.log('req.user in google auth callback function', req.user);
+    res.redirect('/', 200, req.user);
   });
 
 // logout route
 app.get('/logout', function(req, res){
   console.log('LOGOUT')
   req.logout();
-  res.redirect('/login');
+  res.sendStatus(200);
 });
 
 // implement express router

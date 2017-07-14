@@ -1,4 +1,5 @@
 import React from 'react';
+import Menu from './Menu.jsx';
 import * as d3 from 'd3'
 import ReactDOM from 'react-dom'
 import { click, forceDiagram} from '../../d3/d3helpers.js'
@@ -22,7 +23,7 @@ class Session extends React.Component {
   }
 
   constructor(props) {
-    
+
     super(props)
 
     this.state = {
@@ -48,9 +49,17 @@ class Session extends React.Component {
       <div>
         <button onClick={this.addNode.bind(this)}>Add Node</button>
         <Graph nodes={this.state.nodes} links={this.state.links} showDetail={this.props.showDetail} /> 
+        <div>
+          <Menu className="menu-button"
+                menuVisible={this.props.menuVisible}
+                toggleClick={() => this.props.menuVisible ? this.props.hideMenu() : this.props.showMenu()}
+          />
+          <button onClick={this.addNode.bind(this)}>Add Node</button>
+          <Graph nodes={this.state.nodes} links={this.state.links} />
+        </div>
       </div>
     )
   }
 }
-
 export default Session;
+
