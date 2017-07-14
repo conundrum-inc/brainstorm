@@ -11,7 +11,8 @@ import {
   LOGIN_PAGE_ROUTE,
   MAIN_PAGE_ROUTE,
   PROFILE_PAGE_ROUTE,
-  SESSIONS_PAGE_ROUTE
+  SESSIONS_PAGE_ROUTE,
+  LOGOUT_PAGE_ROUTE
 } from './routes';
 
 import LoginPage from './Components/page/login.jsx';
@@ -33,6 +34,7 @@ class App extends React.Component {
             <Route exact path={ LOGIN_PAGE_ROUTE } render={() => <LoginPage />} />
             <Route exact path={ MAIN_PAGE_ROUTE } render={() => <MainPage />} />
             <Route exact path={ PROFILE_PAGE_ROUTE } render={() => <ProfilePage />} />
+            <Route exact path={ LOGOUT_PAGE_ROUTE } render={() => <LoginPage />} />
           </Switch>
         </BrowserRouter>
       </Provider>

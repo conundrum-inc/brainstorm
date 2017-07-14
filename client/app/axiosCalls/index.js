@@ -51,3 +51,7 @@ export function fetchSession(sessionId) {
     }
   });
 }
+
+export function logout() {
+  return axios.get('/logout');
+}
