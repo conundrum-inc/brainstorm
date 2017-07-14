@@ -18,18 +18,32 @@ var User = require('./userSchema.js');
     }
   });
 
-  // {
-  //   username: 'Molly',
-  //   sessions: [], // referes to Session ids
-  //   comments: [] // refers to Comment ids
-  // },
-  // {
-  //   username: 'Hank',
-  //   sessions: [], // referes to Session ids
-  //   comments: [] // refers to Comment ids
-  // },
-  // {
-  //   username: 'Jordan',
-  //   sessions: [], // referes to Session ids
-  //   comments: [] // refers to Comment ids
-  // }
+// var Comment = mongoose.Schema({
+//   // unique id syntax: _id
+//   parent_id: {type: String, required: true},
+//   children: [],
+//   creator_id: {type: String, required: true}, // references User
+//   session_id: {type: String, required: true}, // references Session
+//   title: {type: String, required: true},
+//   text: {type: String},
+//   upvotes: [], // references User (ids)
+//   downvotes: [], // references User (ids)
+//   score: {type: Number, required: true}
+// });
+
+export const seedComments = [
+  { parent_id: 'root',
+    children: [1, 2, 3, 4],
+    creator_id: '1234',
+    session_id: '1',
+    title: 'Lunch?',
+    text: 'Where should we go to lunch?',
+    upvotes: [],
+    downvotes: [],
+    score: 0
+  },
+  { parent_id: 2},
+  {},
+  {},
+  {},
+]
