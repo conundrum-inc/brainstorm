@@ -1,9 +1,14 @@
 import React from 'react';
 import * as d3 from 'd3'
 import ReactDOM from 'react-dom'
+import ReactModal from 'react-modal'
+
 import { click, forceDiagram} from '../../d3/d3helpers.js'
 
 import Graph from './Graph.jsx'
+
+
+
 
 
   var nodes = [
@@ -17,9 +22,7 @@ import Graph from './Graph.jsx'
 
 class Session extends React.Component {
 
-  componentDidMount() {
-    
-  }
+
 
   constructor(props) {
     
@@ -29,6 +32,10 @@ class Session extends React.Component {
       nodes: nodes,
       links: links
     }
+  }
+
+  componentDidMount() {
+    
   }
 
   addNode() {
@@ -47,10 +54,16 @@ class Session extends React.Component {
     return (
       <div>
         <button onClick={this.addNode.bind(this)}>Add Node</button>
+        <ReactModal
+          isOpen={this.props.detailViewVisible}
+          contentLabel="Detail Modal"
+        >
+          <button onClick={this.props.hideDetail}>Close Modal</button>
+        </ReactModal>
         <Graph nodes={this.state.nodes} links={this.state.links} showDetail={this.props.showDetail} /> 
       </div>
     )
   }
 }
 
-export default Session;
+export default Session 
