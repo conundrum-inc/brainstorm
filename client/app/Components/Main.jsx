@@ -17,3 +17,4 @@ const Main = (props) => {
 export default Main;
 
 // {/* <Menu className="menu-button" menuVisible={props.menuVisible} onClick={() => props.menuVisible ? props.hideMenu() : props.showMenu()}/> */}
+//

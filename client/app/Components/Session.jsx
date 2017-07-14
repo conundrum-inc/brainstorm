@@ -60,7 +60,10 @@ class Session extends React.Component {
     return (
       <div>
         <div>
-          <Menu className="menu-button" menuVisible={props.menuVisible} onClick={() => props.menuVisible ? props.hideMenu() : props.showMenu()}/>
+          <Menu className="menu-button"
+                menuVisible={this.props.menuVisible}
+                toggleClick={() => this.props.menuVisible ? this.props.hideMenu() : this.props.showMenu()}
+          />
           <button onClick={this.addNode.bind(this)}>Add Node</button>
           <Graph nodes={this.state.nodes} links={this.state.links} />
         </div>
@@ -69,10 +72,12 @@ class Session extends React.Component {
   }
 }
 
-Session.propTypes = {
-  menuVisible: PropTypes.boolean.isRequired,
-  hideMenu: PropTypes.function.isRequired,
-  showMenu: PropTypes.function.isRequired
-};
+// Session.propTypes = {
+//   menuVisible: PropTypes.boolean.isRequired,
+//   hideMenu: PropTypes.function.isRequired,
+//   showMenu: PropTypes.function.isRequired
+// };
+
+//
 
 export default withFauxDOM(Session);

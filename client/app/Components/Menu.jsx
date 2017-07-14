@@ -10,7 +10,7 @@ import { PROFILE_PAGE_ROUTE,
 const Menu = (props) => {
   if (props.menuVisible) {
     return (
-      <div onClick={() => props.onClick()}>
+      <div onClick={() => props.toggleClick()}>
         {[
           {route: MAIN_PAGE_ROUTE, label: 'Home' },
           {route: PROFILE_PAGE_ROUTE, label: 'My Profile'},
@@ -32,7 +32,7 @@ const Menu = (props) => {
     )
   } else {
     return (
-      <button className="menu-burger" onClick={() => props.onClick()}>Menu Burger</button>
+      <button className="menu-burger" onClick={() => props.toggleClick()}>Menu Burger</button>
     )
   }
 }
