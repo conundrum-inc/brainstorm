@@ -44,7 +44,7 @@ class Session extends React.Component {
           shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
           <button onClick={this.props.hideDetail}>Close Modal</button>
-          <NodeDetail addComment={this.props.addComment}/>
+          <NodeDetail addComment={this.props.addComment} currentNode={this.props.currentNode}/>
         </ReactModal>
         <Graph nodes={this.props.nodes}
                links={this.props.links}
