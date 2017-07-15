@@ -22,8 +22,7 @@ const ProfilePage = (props) => {
 function mapStateToProps(state) {
   return {
     comments: state.comments,
-    detailViewVisible: state.detailViewVisible,
-    menuVisible: state.menuVisible
+    detailViewVisible: state.detailViewVisibles
   }
 }
 
