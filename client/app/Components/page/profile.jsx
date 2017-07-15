@@ -6,13 +6,15 @@ import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionsCreators';
-
 import Profile from '../Profile.jsx';
 import MySessions from '../MySessions.jsx';
+import Menu from '../Menu.jsx';
 
 const ProfilePage = (props) => {
   return (
     <div>
+      <h1>Welcome, you genius you!</h1>
+      <Menu />
       <Profile history={props.history} />
       <MySessions />
     </div>
