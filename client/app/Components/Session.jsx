@@ -4,6 +4,7 @@ import NodeDetail from './NodeDetail.jsx';
 import * as d3 from 'd3';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
+import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 
 import { click, forceDiagram} from '../../d3/d3helpers.js'
 
@@ -29,17 +30,15 @@ class Session extends React.Component {
   }
 
   render() {
-    // console.log('this.props: ', this.props);
     return (
       <div>
         <button onClick={this.addNode.bind(this)}>Add Node</button>
         <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Session!</button>
-        <ReactModal
-          isOpen={this.props.detailViewVisible}
-          contentLabel="Detail Modal"
-          shouldCloseOnOverlayClick={this.props.detailViewVisible}
+        <ReactModal isOpen={this.props.detailViewVisible}
+                    contentLabel="Detail Modal"
+                    shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
-          <button onClick={this.props.hideDetail}>Close Modal</button>
+          <Button bsStyle="danger" onClick={this.props.hideDetail}>x</Button>
           <NodeDetail addComment={this.props.addComment}
                       currentNode={this.props.currentNode}
                       nodes={this.props.nodes}
