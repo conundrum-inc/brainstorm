@@ -22,7 +22,7 @@ class Session extends React.Component {
 
     const newNode = {key: lastKey+1, size:10, x: 20, y: 20}
     const newLink = {source: nodes.length, target: 0, key: lastLinkKey+1, size: 2}
-    
+
     this.props.addNode(newNode)
     this.props.addLink(newLink)
 
@@ -37,7 +37,7 @@ class Session extends React.Component {
               toggleClick={() => {this.props.menuVisible ? this.props.hideMenu() : this.props.showMenu()}}
         />
         <button onClick={this.addNode.bind(this)}>Add Node</button>
-        <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Idea!</button>
+        <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Session!</button>
         <ReactModal
           isOpen={this.props.detailViewVisible}
           contentLabel="Detail Modal"
