@@ -23,6 +23,8 @@ class Main extends React.Component {
                  comments={this.props.comments}
                  nodes={this.props.nodes}
                  links={this.props.links}
+                 addNode={this.props.addNode}
+                 addLink={this.props.addLink}
         />
       </div>
     )
