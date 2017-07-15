@@ -59,3 +59,16 @@ export function login() {
 export function logout() {
   return axios.get('/logout');
 }
+
+
+// axios call to server to check for session
+
+export function authenticate() {
+  console.log('inside authenticate!')
+  return axios.get('/authenticate').then(
+    (data) => {
+      console.log('DATA FROM AUTH FUNCTION', data.status);
+      return data.status;
+    }
+  );
+}

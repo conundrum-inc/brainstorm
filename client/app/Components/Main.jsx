@@ -2,16 +2,21 @@ import React from 'react';
 import Session from './Session.jsx';
 import Menu from './Menu.jsx';
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
-
+import { connect } from 'react-redux';
+import Menu from './Menu.jsx';
+import Session from './Session.jsx';
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentWillMount() {
+    this.props.thunkAddUser();
+  }
 
   componentDidMount() {
-    this.props.thunkAddUser();
+    console.log('props test', this.props)
   }
 
   render() {
@@ -37,7 +42,7 @@ class Main extends React.Component {
 
 }
 
-export default Main;
+export default connect()(Main);
 
 // {/* <Menu className="menu-button" menuVisible={props.menuVisible} onClick={() => props.menuVisible ? props.hideMenu() : props.showMenu()}/> */}
 //

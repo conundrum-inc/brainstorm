@@ -1,9 +1,12 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { createStore } from 'redux';
-import { Switch, Route, BrowserRouter} from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { Provider } from 'react-redux';
+import axios from 'axios';
 import store from './store'
+import { authenticate } from './axiosCalls'
 
 // import Main from './Components/Main';
 
@@ -12,7 +15,8 @@ import {
   MAIN_PAGE_ROUTE,
   PROFILE_PAGE_ROUTE,
   SESSIONS_PAGE_ROUTE,
-  LOGOUT_PAGE_ROUTE
+  LOGOUT_PAGE_ROUTE,
+  AUTH_PAGE_ROUTE
 } from './routes';
 
 import LoginPage from './Components/page/login.jsx';
@@ -24,14 +28,17 @@ window.store = store;
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLoggedIn: false
+    }
+  }
 
-    // function requireAuth(nextState, replace) { // BE SURE TO ALTER THIS BASED ON USER STATE
-    //   if (!loggedIn()) {
-    //     replace({
-    //       pathname: '/login'
-    //     })
-    //   }  onEnter={requireAuth} // put this line in Route below
-    // }
+  componentDidMount() {
+    authenticate().then((status) => {
+      this.setState({
+        isLoggedIn: status === 200 ? true : false
+      })
+    })
   }
 
   render () {
@@ -40,7 +47,9 @@ class App extends React.Component {
         <BrowserRouter>
           <Switch>
             <Route exact path={ LOGIN_PAGE_ROUTE } render={() => <LoginPage />} />
-            <Route exact path={ MAIN_PAGE_ROUTE }render={() => <MainPage />} />
+            <Route exact path={ AUTH_PAGE_ROUTE }  render={() => {
+              return this.state.isLoggedIn ? <MainPage /> : <div>Loading ...</div>
+            }} />
             <Route exact path={ PROFILE_PAGE_ROUTE } render={() => <ProfilePage />} />
             <Route exact path={ LOGOUT_PAGE_ROUTE } render={() => <LoginPage />} />
           </Switch>
