@@ -19,9 +19,6 @@ const MainPage = (props) => {
             addLink={props.addLink}
             currentNode={props.currentNode}
             setNode={props.setNode}
-            showMenu={props.showMenu}
-            hideMenu={props.hideMenu}
-            menuVisible={props.menuVisible}
             showDetail={props.showDetail}
             hideDetail={props.hideDetail}
             detailViewVisible={props.detailViewVisible}
@@ -38,7 +35,6 @@ function mapStateToProps(state) {
   return {
     comments: state.comments,
     detailViewVisible: state.detailViewVisible,
-    menuVisible: state.menuVisible,
     nodes: state.nodes,
     links: state.links,
     currentNode: state.currentNode

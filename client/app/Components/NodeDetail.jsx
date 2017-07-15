@@ -12,7 +12,7 @@ class NodeDetail extends React.Component {
 
     const newNode = {key: lastKey+1, size:10, x: 20, y: 20}
     const newLink = {source: nodes.length, target: this.props.currentNode.index, key: lastLinkKey+1, size: 2}
-    
+
     this.props.addNode(newNode)
     this.props.addLink(newLink)
 

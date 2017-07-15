@@ -1,9 +1,9 @@
 import React from 'react';
 import Menu from './Menu.jsx';
 import NodeDetail from './NodeDetail.jsx';
-import * as d3 from 'd3'
-import ReactDOM from 'react-dom'
-import ReactModal from 'react-modal'
+import * as d3 from 'd3';
+import ReactDOM from 'react-dom';
+import ReactModal from 'react-modal';
 
 import { click, forceDiagram} from '../../d3/d3helpers.js'
 
@@ -32,10 +32,6 @@ class Session extends React.Component {
     // console.log('this.props: ', this.props);
     return (
       <div>
-        <Menu className="menu-button"
-              menuVisible={this.props.menuVisible}
-              toggleClick={() => {this.props.menuVisible ? this.props.hideMenu() : this.props.showMenu()}}
-        />
         <button onClick={this.addNode.bind(this)}>Add Node</button>
         <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Session!</button>
         <ReactModal
@@ -57,7 +53,7 @@ class Session extends React.Component {
                currentNode={this.props.currentNode}
                setNode={this.props.setNode}
                showDetail={this.props.showDetail}
-        /> 
+        />
 
       </div>
     )
