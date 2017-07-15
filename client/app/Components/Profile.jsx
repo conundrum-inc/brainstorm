@@ -1,12 +1,13 @@
 import React from 'react';
-import Menu from './Menu.jsx'
-
 
 const Profile = (props) => {
   return (
     <div>
-      <h1>My Profile</h1>
-      <Menu />
+      <h3>Profile content here, such as:</h3>
+      <ul>
+        <li>Name</li>
+        <li>Username</li>
+      </ul>
     </div>
   )
 }
