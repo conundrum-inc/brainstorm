@@ -23,8 +23,10 @@ class Main extends React.Component {
                  comments={this.props.comments}
                  nodes={this.props.nodes}
                  links={this.props.links}
+                 currentNode={this.props.currentNode}
                  addNode={this.props.addNode}
                  addLink={this.props.addLink}
+                 setNode={this.props.setNode}
                  showMenu={this.props.showMenu}
                  hideMenu={this.props.hideMenu}
                  menuVisible={this.props.menuVisible}

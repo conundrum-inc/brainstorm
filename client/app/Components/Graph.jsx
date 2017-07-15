@@ -37,7 +37,9 @@ class Graph extends React.Component {
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
     this.d3Graph.selectAll("circle")
-      .on("click", this.props.showDetail)
+      .on("click", node => {
+        this.handleClick.bind(this, node)()
+      })
 
     force.nodes(this.props.nodes).links(this.props.links);
     force.start();
@@ -59,13 +61,21 @@ class Graph extends React.Component {
     //d3Nodes.exit().remove()
     d3Nodes.call(updateNode);
     this.d3Graph.selectAll("circle")
-      .on("click", this.props.showDetail)
+      .on("click", node => {
+        this.handleClick.bind(this, node)()
+      })
+      
 
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
     force.nodes(this.props.nodes).links(this.props.links);
     force.start();
     
+  }
+
+  handleClick(node) {
+    this.props.setNode(node)
+    this.props.showDetail()
   }
 
   render() {

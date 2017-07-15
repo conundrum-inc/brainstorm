@@ -12,25 +12,13 @@ import Graph from './Graph.jsx'
 class Session extends React.Component {
 
 
-
-  componentDidUpdate() {
-    console.log('Session updated')
-    console.log('new links: ', this.props.links)
-    console.log('new nodes: ', this.props.nodes)
-  }
-
   addNode() {
 
     const nodes = this.props.nodes;
     const links = this.props.links;
 
-
-
     const lastKey = nodes[nodes.length - 1].key;
     const lastLinkKey = links[links.length-1] ? links[links.length - 1].key : 0
-
-    console.log('lastKey: ', lastKey)
-    console.log('lastLinkKey: ', lastLinkKey)
 
     const newNode = {key: lastKey+1, size:10, x: 20, y: 20}
     const newLink = {source: nodes.length, target: 0, key: lastLinkKey+1, size: 2}
@@ -56,9 +44,20 @@ class Session extends React.Component {
           shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
           <button onClick={this.props.hideDetail}>Close Modal</button>
-          <NodeDetail addComment={this.props.addComment}/>
+          <NodeDetail addComment={this.props.addComment}
+                      currentNode={this.props.currentNode}
+                      nodes={this.props.nodes}
+                      links={this.props.links}
+                      addLink={this.props.addLink}
+                      addNode={this.props.addNode}
+          />
         </ReactModal>
-        <Graph nodes={this.props.nodes} links={this.props.links} showDetail={this.props.showDetail} />
+        <Graph nodes={this.props.nodes}
+               links={this.props.links}
+               currentNode={this.props.currentNode}
+               setNode={this.props.setNode}
+               showDetail={this.props.showDetail}
+        /> 
 
       </div>
     )
