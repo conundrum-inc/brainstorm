@@ -24,8 +24,8 @@ class NodeDetail extends React.Component {
         <h2>Hi! I am node {this.props.currentNode.key}</h2>
         <p>This idea is literally the best idea ever. We should totally do this idea. You know what's awesome? This idea. Why? Because! Vote for Pedro!</p>
         <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</button>
-        <button className="upvote" onClick="blahblahblah"></button>
-        <button className="downvote" onClick="blahblahblah"></button>
+        <button className="upvote" onClick={()=>console.log("blahblahblah")}></button>
+        <button className="downvote" onClick={()=>console.log("blahblahblah")}></button>
         <button onClick={this.addNode.bind(this)}>add node test</button>
         <h4>Node Child 1</h4>
         <h4>Node Child 2</h4>
