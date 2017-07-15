@@ -25,6 +25,9 @@ class Main extends React.Component {
                  links={this.props.links}
                  addNode={this.props.addNode}
                  addLink={this.props.addLink}
+                 showMenu={this.props.showMenu}
+                 hideMenu={this.props.hideMenu}
+                 menuVisible={this.props.menuVisible}
         />
       </div>
     )
