@@ -1,6 +1,4 @@
 import React from 'react';
-import Session from './Session.jsx';
-import Menu from './Menu.jsx';
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Menu from './Menu.jsx';

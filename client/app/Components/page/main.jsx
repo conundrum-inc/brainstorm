@@ -38,7 +38,7 @@ function mapStateToProps(state) {
     detailViewVisible: state.detailViewVisible,
     nodes: state.nodes,
     links: state.links,
-    currentNode: state.currentNode
+    currentNode: state.currentNode,
     user: state.user
   }
 }
