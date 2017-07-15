@@ -98,11 +98,22 @@ app.get ('/getUser', function(req, res) {
   })
 });
 
+// check for session for react router
+
+app.get('/authenticate', function(req, res) {
+  console.log('in authenticate route', req.session.passport.user);
+  if(req.session.passport.user) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(400);
+  }
+})
+
 // logout route
 app.get('/logout', function(req, res){
   console.log('LOGOUT')
   req.logout();
-  res.sendStatus(200);
+  res.redirect('/login');
 });
 
 // implement express router

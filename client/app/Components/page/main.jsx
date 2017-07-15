@@ -26,6 +26,7 @@ const MainPage = (props) => {
             nodes={props.nodes}
             links={props.links}
             thunkAddUser={props.thunkAddUser}
+            user={props.user}
           />
     </div>
   )
@@ -38,6 +39,7 @@ function mapStateToProps(state) {
     nodes: state.nodes,
     links: state.links,
     currentNode: state.currentNode
+    user: state.user
   }
 }
 
