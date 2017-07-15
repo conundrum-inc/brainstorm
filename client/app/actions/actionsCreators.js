@@ -69,7 +69,6 @@ export function hideMenu() {
 }
 
 export function showDetail() {
-  console.log('clicked!')
   return {
     type: 'SHOW_DETAIL'
   }
@@ -94,6 +93,13 @@ export function addLink(link) {
   return {
     type: 'ADD_LINK',
     link
+  }
+}
+
+export function setNode(node) {
+  return {
+    type: 'SET_NODE',
+    node
   }
 }
 

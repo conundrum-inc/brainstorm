@@ -17,6 +17,8 @@ const MainPage = (props) => {
             addComment={props.thunkAddComment}
             addNode={props.addNode}
             addLink={props.addLink}
+            currentNode={props.currentNode}
+            setNode={props.setNode}
             showMenu={props.showMenu}
             hideMenu={props.hideMenu}
             menuVisible={props.menuVisible}
@@ -38,7 +40,8 @@ function mapStateToProps(state) {
     detailViewVisible: state.detailViewVisible,
     menuVisible: state.menuVisible,
     nodes: state.nodes,
-    links: state.links
+    links: state.links,
+    currentNode: state.currentNode
   }
 }
 
