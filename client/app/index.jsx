@@ -50,7 +50,12 @@ class App extends React.Component {
             <Route exact path={ AUTH_PAGE_ROUTE }  render={() => {
               return this.state.isLoggedIn ? <MainPage /> : <div>Loading ...</div>
             }} />
-            <Route exact path={ PROFILE_PAGE_ROUTE } render={() => <ProfilePage />} />
+            <Route exact path={ MAIN_PAGE_ROUTE }  render={() => {
+              return this.state.isLoggedIn ? <MainPage /> : <div>Loading ...</div>
+            }} />
+            <Route exact path={ PROFILE_PAGE_ROUTE } render={ () => {
+              return this.state.isLoggedIn ? <ProfilePage /> : <div>Loading ...</div>
+            }} />
             <Route exact path={ LOGOUT_PAGE_ROUTE } render={() => <LoginPage />} />
           </Switch>
         </BrowserRouter>
