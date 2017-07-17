@@ -32,8 +32,6 @@ class Session extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.addChild.bind(this)}>Add Node</button>
-        <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Session!</button>
         <ReactModal isOpen={this.props.detailViewVisible}
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={this.props.detailViewVisible}
@@ -43,7 +41,6 @@ class Session extends React.Component {
                       currentNode={this.props.currentNode}
                       setNode={this.props.setNode}
                       updateNode={this.props.updateNode}
-                      user={this.props.user}
           />
         </ReactModal>
         <Graph comments={this.props.comments}
