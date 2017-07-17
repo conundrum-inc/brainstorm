@@ -41,10 +41,6 @@ class Session extends React.Component {
           <Button bsStyle="danger" onClick={this.props.hideDetail}>X</Button>
           <NodeDetail addComment={this.props.addComment}
                       currentNode={this.props.currentNode}
-                      nodes={this.props.nodes}
-                      links={this.props.links}
-                      addLink={this.props.addLink}
-                      addNode={this.props.addNode}
                       setNode={this.props.setNode}
                       updateNode={this.props.updateNode}
           />

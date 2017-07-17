@@ -17,15 +17,16 @@ export function commentsToNodes(comments) {
                    x: 20,
                    y: 20
                  }
+      
       nodes.nodes.push(node);
 
       //find the index of the node in nodes.nodes whose
       //key matches the parent_id of the current comment
-      var index = findIndex(nodes.nodes, 'key', comment.parent_id)
-
-      var link = { source: nodes.nodes.length,
+      var index = findIndex(nodes.nodes, 'key', comments[i].parent_id)
+      
+      var link = { source: nodes.nodes.length-1,
                    target: index,
-                   key: comment._id,
+                   key: comments[i]._id,
                    size: 2
                  }
       nodes.links.push(link);
