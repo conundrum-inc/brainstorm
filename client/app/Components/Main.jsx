@@ -20,7 +20,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <h1>BrainStorm</h1>
+        <h1><a href='/main'>BrainStorm</a></h1>
         <Menu />
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}
