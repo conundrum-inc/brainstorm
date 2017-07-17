@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from './Menu.jsx';
 import NodeDetail from './NodeDetail.jsx';
+import CreateSessionDetail from './CreateSessionDetail.jsx';
 import * as d3 from 'd3';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
@@ -33,7 +34,7 @@ class Session extends React.Component {
     return (
       <div>
         <button onClick={this.addChild.bind(this)}>Add Node</button>
-        <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Session!</button>
+        <button className="add-comment" onClick={() => this.props.showCreateSession()}>New Session!</button>
         <ReactModal isOpen={this.props.detailViewVisible}
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={this.props.detailViewVisible}
@@ -43,6 +44,17 @@ class Session extends React.Component {
                       currentNode={this.props.currentNode}
                       setNode={this.props.setNode}
                       updateNode={this.props.updateNode}
+          />
+        </ReactModal>
+        <ReactModal isOpen={this.props.createSessionVisible}
+                    contentLabel="Detail Modal"
+                    shouldCloseOnOverlayClick={this.props.createSessionVisible}
+        >
+          <Button bsStyle="danger" onClick={this.props.hideCreateSession}>X</Button>
+          <CreateSessionDetail addComment={this.props.addComment}
+                               currentNode={this.props.currentNode}
+                               setNode={this.props.setNode}
+                               updateNode={this.props.updateNode}
           />
         </ReactModal>
         <Graph comments={this.props.comments}

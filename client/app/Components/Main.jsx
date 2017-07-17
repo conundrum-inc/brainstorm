@@ -14,7 +14,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    console.log('props test', this.props)
+    console.log('props test in Main: ', this.props)
   }
 
   render() {
@@ -33,9 +33,10 @@ class Main extends React.Component {
                  addLink={this.props.addLink}
                  setNode={this.props.setNode}
                  updateNode={this.props.updateNode}
-                 showMenu={this.props.showMenu}
-                 hideMenu={this.props.hideMenu}
-                 menuVisible={this.props.menuVisible}
+                 detailViewVisible={this.props.detailViewVisible}
+                 showCreateSession={this.props.showCreateSession}
+                 hideCreateSession={this.props.hideCreateSession}
+                 createSessionVisible={this.props.createSessionVisible}
         />
       </div>
     )
