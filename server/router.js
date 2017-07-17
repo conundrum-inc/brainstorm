@@ -10,8 +10,19 @@ var GOOGLE_CLIENT_SECRET = require('../auth-config.js').GOOGLE_CLIENT_SECRET;
 
 var router = express.Router();
 
-// authentication -- login, logout
-
+// find a specific user
+router.route('/findUser')
+  .get(function(req, res){
+    var id = req.query.id;
+    User.findOne({ _id: id}, (err, user) => {
+      if (err) {
+        console.log('error in findUser', err)
+      } else {
+        console.log('user', user)
+        res.json(user);
+      }
+    })
+  })
 
 // create new session
 
@@ -51,6 +62,15 @@ router.route('/comment')
         } else {
           //saved!
           console.log('comment saved in db!');
+          User.findOne({ _id: userId}, (err, user) => {
+            if (err) {
+              console.log('error in addSessionToUser', err)
+            } else {
+              user.comments.push(comment._id);
+              user.save();
+              console.log('comment id saved in user array!!')
+            }
+          })
           helpers.findOne({ _id: comment._id }, (err, comment) => {
             if (err) {
               console.log('err in comment find one');
