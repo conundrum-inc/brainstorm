@@ -23,6 +23,9 @@ const MainPage = (props) => {
             showDetail={props.showDetail}
             hideDetail={props.hideDetail}
             detailViewVisible={props.detailViewVisible}
+            showCreateSession={props.showCreateSession}
+            hideCreateSession={props.hideCreateSession}
+            createSessionVisible={props.createSessionVisible}
             comments={props.comments}
             nodes={props.nodes}
             links={props.links}
@@ -36,11 +39,13 @@ const MainPage = (props) => {
 function mapStateToProps(state) {
   return {
     comments: state.comments,
+    createSessionVisible: state.createSessionVisible,
     detailViewVisible: state.detailViewVisible,
     nodes: state.nodes,
     links: state.links,
     currentNode: state.currentNode,
-    user: state.user
+    user: state.user,
+    session: state.session
   }
 }
 
