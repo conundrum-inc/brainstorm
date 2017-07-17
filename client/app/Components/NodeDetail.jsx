@@ -21,7 +21,7 @@ class NodeDetail extends React.Component {
 
 
   onSubmit(e, props) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log('title: ', e.target.title.value);
     console.log('detail: ', e.target.text.value);
     //userId, parentId, sessionId, title, text
@@ -58,8 +58,7 @@ class NodeDetail extends React.Component {
     return (
       <div>
         <h2>{this.props.currentNode.title}</h2>
-        <p>{this.props.currentNode.text}</p>xs
-        <Button bsStyle="info" className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</Button>
+        <p>{this.props.currentNode.text}</p>
         <Button bsStyle="info" className="upvote" onClick={()=>console.log("blahblahblah")}>-</Button>
         <Button bsStyle="info" className="downvote" onClick={()=>console.log("blahblahblah")}>+</Button>
         <h3>Children</h3>
