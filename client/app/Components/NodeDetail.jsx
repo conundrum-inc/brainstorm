@@ -21,9 +21,14 @@ class NodeDetail extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log('this: ', this);
-    // var obj1[e.target.name] = e.target.value;
-    // var obj2
+    console.log('title: ', e.target.title.value);
+    console.log('detail: ', e.target.text.value);
+    console.log('state: ', this.state);
+    console.log('parent node: ', this.props.currentNode.key);
+    //userId, parentId, sessionId, title, text
+    this.props.addComment(this.state.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
+
+
   }
 
   render() {
