@@ -20,7 +20,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <h2>BrainStorm</h2>
+        <h1>BrainStorm</h1>
         <Menu />
         <Button className="add-comment" bsStyle="info" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Idea</Button>
         <Session showDetail={this.props.showDetail}

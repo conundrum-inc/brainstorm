@@ -19,12 +19,19 @@ class NodeDetail extends React.Component {
 
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+    console.log('this: ', this);
+    // var obj1[e.target.name] = e.target.value;
+    // var obj2
+  }
+
   render() {
     return (
       <div>
         <h2>Hi! I am node {this.props.currentNode.key}</h2>
         <p>This idea is literally the best idea ever. We should totally do this idea. You know what's awesome? This idea. Why? Because! Vote for Pedro!</p>
-        <Button bsStyle="info" className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</Button>
+        <Button bsStyle="info" className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Test Comment</Button>
         <Button bsStyle="info" className="upvote" onClick={()=>console.log("blahblahblah")}>-</Button>
         <Button bsStyle="info" className="downvote" onClick={()=>console.log("blahblahblah")}>+</Button>
         <Button bsStyle="info" onClick={this.addNode.bind(this)}>add node test</Button>
@@ -32,13 +39,13 @@ class NodeDetail extends React.Component {
         <h4>Node Child 2</h4>
         <h4>Node Child 3</h4>
         <h2>Add a comment:</h2>
-        <Form horizontal>
+        <Form horizontal onSubmit={this.onSubmit}>
           <FormGroup controlId="commentTitle">
             <Col componentClass={ControlLabel} sm={2}>
               Title:
             </Col>
             <Col sm={10}>
-              <FormControl type="title" placeholder="Title" />
+              <FormControl type="title" name="title" placeholder="Title" />
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
@@ -46,7 +53,7 @@ class NodeDetail extends React.Component {
               Details:
             </Col>
             <Col sm={10}>
-              <FormControl type="details" placeholder="Elaborate here!" />
+              <FormControl type="details" name="text" placeholder="Elaborate here!" />
             </Col>
           </FormGroup>
           <FormGroup>
