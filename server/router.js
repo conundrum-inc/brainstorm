@@ -51,11 +51,11 @@ router.route('/session')
 router.route('/comment')
   .post(function(req, res) {
     console.log('req.body', req.body)
-    var userId = req.body[0].user_id;
-    var parentId = req.body[0].parent_id;
-    var sessionId = req.body[0].session_id;
-    var title = req.body[0].title;
-    var text = req.body[0].text;
+    var userId = req.body.user_id;
+    var parentId = req.body.parent_id;
+    var sessionId = req.body.session_id;
+    var title = req.body.title;
+    var text = req.body.text;
 
     helpers.addComment({ creator_id: userId, parent_id: parentId, session_id: sessionId, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 }, (err, comment) => {
         if (err) {
