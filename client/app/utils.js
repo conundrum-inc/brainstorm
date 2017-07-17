@@ -18,7 +18,7 @@ export function commentsToNodes(comments) {
                    y: 20,
                    title: comments[i]._title
                  }
-      
+
       nodes.nodes.push(node);
 
       //find the index of the node in nodes.nodes whose

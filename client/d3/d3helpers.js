@@ -10,7 +10,7 @@ export const force = d3.layout.force()
 
 
 export const enterNode = (selection) => {
-  
+
   selection.classed('node', true);
 
   selection.append('circle')
@@ -22,13 +22,13 @@ export const enterNode = (selection) => {
 }
 
 export const updateNode = (selection) => {
-  
+
   selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
 
 }
 
 export const enterLink = (selection) => {
-  
+
   selection.classed('link', true)
     .attr("stroke", "#cccccc")
     .attr("stroke-opacity", ".6;")
@@ -36,7 +36,7 @@ export const enterLink = (selection) => {
 }
 
 export const updateLink = (selection) => {
-  
+
   selection.attr("x1", (d) => d.source.x)
     .attr("y1", (d) => d.source.y)
     .attr("x2", (d) => d.target.x)
@@ -45,7 +45,7 @@ export const updateLink = (selection) => {
 };
 
 export const updateGraph = (selection) => {
-  
+
   selection.selectAll('.node')
     .call(updateNode);
   selection.selectAll('.link')
