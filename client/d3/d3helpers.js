@@ -19,6 +19,12 @@ export const enterNode = (selection) => {
     .attr("stroke", "black")
     .call(force.drag)
 
+  selection.append('text')
+    .attr("x", (d) => d.cx)
+    .attr("text-anchor", "middle")
+    .attr("dy", ".35em")
+    .text((d) => d.title)
+
 }
 
 export const updateNode = (selection) => {
