@@ -13,7 +13,7 @@ import Menu from '../Menu.jsx';
 const ProfilePage = (props) => {
   return (
     <div>
-      <h1>BrainStorm</h1>
+      <h1><a href='/main'>BrainStorm</a></h1>
       <Menu />
       <h2>Welcome, you genius you!</h2>
       <Profile history={props.history} />
