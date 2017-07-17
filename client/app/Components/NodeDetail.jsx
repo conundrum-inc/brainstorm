@@ -19,8 +19,23 @@ class NodeDetail extends React.Component {
 
   }
 
+
+  onSubmit(e, props) {
+    e.preventDefault();
+    console.log('title: ', e.target.title.value);
+    console.log('detail: ', e.target.text.value);
+    //userId, parentId, sessionId, title, text
+    console.log('this: ', this);
+    console.log('this.props.user', this.props.user.userId);
+    console.log('parent node: ', this.props.currentNode.key);
+
+    this.props.addComment(this.props.user.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
+
+
+  }
+
   upvote() {
-    
+
     // let currentNode = this.props.currentNode
     // let newNode = { ...currentNode }
     // console.log("newNode size before: ", newNode.size)
@@ -52,13 +67,13 @@ class NodeDetail extends React.Component {
           return <h4 key={child}>{child}</h4>
         })}
         <h2>Add a comment:</h2>
-        <Form horizontal>
+        <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle">
             <Col componentClass={ControlLabel} sm={2}>
               Title:
             </Col>
             <Col sm={10}>
-              <FormControl type="title" placeholder="Title" />
+              <FormControl type="title" name="title" placeholder="Title" />
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
@@ -66,7 +81,7 @@ class NodeDetail extends React.Component {
               Details:
             </Col>
             <Col sm={10}>
-              <FormControl type="details" placeholder="Elaborate here!" />
+              <FormControl type="details" name="text" placeholder="Elaborate here!" />
             </Col>
           </FormGroup>
           <FormGroup>

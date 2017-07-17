@@ -5,13 +5,25 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var config = require('../db/config'); // run mongod
 var helpers = require('../db/helpers.js');
 var User = require('../db/userSchema');
+var Comment = require('../db/commentSchema');
 var GOOGLE_CLIENT_ID = require('../auth-config.js').GOOGLE_CLIENT_ID;
 var GOOGLE_CLIENT_SECRET = require('../auth-config.js').GOOGLE_CLIENT_SECRET;
 
 var router = express.Router();
 
-// authentication -- login, logout
-
+// find a specific user
+router.route('/findUser')
+  .get(function(req, res){
+    var id = req.query.id;
+    User.findOne({ _id: id}, (err, user) => {
+      if (err) {
+        console.log('error in findUser', err)
+      } else {
+        console.log('user', user)
+        res.json(user);
+      }
+    })
+  })
 
 // create new session
 
@@ -39,11 +51,11 @@ router.route('/session')
 router.route('/comment')
   .post(function(req, res) {
     console.log('req.body', req.body)
-    var userId = req.body.user_id;
-    var parentId = req.body.parent_id;
-    var sessionId = req.body.session_id;
-    var title = req.body.title;
-    var text = req.body.text;
+    var userId = req.body[0].user_id;
+    var parentId = req.body[0].parent_id;
+    var sessionId = req.body[0].session_id;
+    var title = req.body[0].title;
+    var text = req.body[0].text;
 
     helpers.addComment({ creator_id: userId, parent_id: parentId, session_id: sessionId, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 }, (err, comment) => {
         if (err) {
@@ -51,6 +63,25 @@ router.route('/comment')
         } else {
           //saved!
           console.log('comment saved in db!');
+          User.findOne({ _id: userId}, (err, user) => {
+            if (err) {
+              console.log('error in addSessionToUser', err)
+            } else {
+              user.comments.push(comment._id);
+              user.save();
+              console.log('comment id saved in user array!!')
+            }
+          })
+          Comment.findOne({ _id: parentId}, (err, parentComment) => {
+            console.log('parentId', parentId, 'parentComment', parentComment)
+            if (err) {
+              console.log('error in addComment to children', err)
+            } else {
+              parentComment.children.push(comment._id);
+              parentComment.save();
+              console.log('new comment id saved in children array!!')
+            }
+          })
           helpers.findOne({ _id: comment._id }, (err, comment) => {
             if (err) {
               console.log('err in comment find one');
