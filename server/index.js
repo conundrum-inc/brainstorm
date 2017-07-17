@@ -51,10 +51,11 @@ passport.use(new GoogleStrategy({
 },
 function(token, tokenSecret, profile, done) {
   console.log('profile', profile);
+  console.log('email', profile.emails[0].value);
   User.find({ google_id: profile.id }, (err, user) => {
     console.log('user from google strategy', user);
     if (user.length === 0) {
-      User.create({google_id: profile.id, displayName: profile.displayName, image: profile._json.image.url, created_sessions: [], accessible_sessions: [], comments: []}, (err, user) => {
+      User.create({google_id: profile.id, displayName: profile.displayName, image: profile._json.image.url, email: profile.emails[0].value, created_sessions: [], accessible_sessions: [], comments: []}, (err, user) => {
         if (err) {
           console.log('error in insert user', err);
         } else {
@@ -73,7 +74,7 @@ function(token, tokenSecret, profile, done) {
 // GET /auth/google
 
 app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile'] }));
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 // GET /auth/google/callback
 app.get('/auth/google/callback',
