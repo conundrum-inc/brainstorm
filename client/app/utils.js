@@ -3,7 +3,7 @@ export function commentsToNodes(comments) {
     nodes: [],
     links: []
   }
-  for(var i = 0; i < comments.length-1; i++) {
+  for(var i = 0; i < comments.length; i++) {
     if (comments[i].parent_id === 'root') {
       var node = { key: comments[i]._id,
                    size: 60,
