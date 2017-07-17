@@ -36,6 +36,8 @@ class NodeDetail extends React.Component {
 
   }
 
+  // LINK TO EMOJI CHEAT SHEET: https://www.webpagefx.com/tools/emoji-cheat-sheet/
+
   upvote() {
 
     // let currentNode = this.props.currentNode
