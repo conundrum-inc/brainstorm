@@ -32,10 +32,6 @@ class Session extends React.Component {
   render() {
     return (
       <div>
-        <Menu className="menu-button"
-              menuVisible={this.props.menuVisible}
-              toggleClick={() => {this.props.menuVisible ? this.props.hideMenu() : this.props.showMenu()}}
-        />
         <button onClick={this.addChild.bind(this)}>Add Node</button>
         <button className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Session!</button>
         <ReactModal isOpen={this.props.detailViewVisible}
