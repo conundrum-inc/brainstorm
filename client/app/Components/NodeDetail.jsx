@@ -21,15 +21,16 @@ class NodeDetail extends React.Component {
 
 
   onSubmit(e, props) {
-    // e.preventDefault();
+    e.preventDefault();
     console.log('title: ', e.target.title.value);
     console.log('detail: ', e.target.text.value);
     //userId, parentId, sessionId, title, text
     console.log('this: ', this);
-    console.log('this.props.user', this.props.user.userId);
+    console.log('this.props.user', this.props.user);
     console.log('parent node: ', this.props.currentNode.key);
 
     this.props.addComment(this.props.user.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
+    this.props.hideDetail();
 
 
   }
