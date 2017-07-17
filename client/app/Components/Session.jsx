@@ -46,7 +46,6 @@ class Session extends React.Component {
           />
         </ReactModal>
         <Graph comments={this.props.comments}
-               currentNode={this.props.currentNode}
                setNode={this.props.setNode}
                showDetail={this.props.showDetail}
         />
