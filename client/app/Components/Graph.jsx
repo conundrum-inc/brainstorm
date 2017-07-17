@@ -47,6 +47,8 @@ class Graph extends React.Component {
 
   componentDidUpdate() {
    
+
+    console.log('new Nodes:', this.props.nodes)
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
   
     const d3Links = this.d3Graph.selectAll('.link')
@@ -80,7 +82,7 @@ class Graph extends React.Component {
 
   render() {
     return (
-        <svg width={width} height={height}>
+        <svg width="100%" height="100%">
           <g ref='graph' />
         </svg>
       );
