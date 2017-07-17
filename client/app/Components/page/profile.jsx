@@ -11,12 +11,13 @@ import MySessions from '../MySessions.jsx';
 import Menu from '../Menu.jsx';
 
 const ProfilePage = (props) => {
+  console.log('ProfilePage props: ', props);
   return (
     <div>
       <h1><a href='/main'>BrainStorm</a></h1>
       <Menu />
       <h2>Welcome, you genius you!</h2>
-      <Profile history={props.history} />
+      <Profile history={props.history} user={props.user}/>
       <MySessions />
     </div>
   )
@@ -25,7 +26,8 @@ const ProfilePage = (props) => {
 function mapStateToProps(state) {
   return {
     comments: state.comments,
-    detailViewVisible: state.detailViewVisibles
+    detailViewVisible: state.detailViewVisibles,
+    user: state.user
   }
 }
 
