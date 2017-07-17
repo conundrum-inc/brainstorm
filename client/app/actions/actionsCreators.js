@@ -103,6 +103,13 @@ export function setNode(node) {
   }
 }
 
+export function updateNode(node) {
+  return {
+    type: 'UPDATE_NODE',
+    node
+  }
+}
+
 
 ////////////// thunk actionCreators ////////////////
 
