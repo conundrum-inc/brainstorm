@@ -33,6 +33,10 @@ class Main extends React.Component {
                  addNode={this.props.addNode}
                  addLink={this.props.addLink}
                  setNode={this.props.setNode}
+                 updateNode={this.props.updateNode}
+                 showMenu={this.props.showMenu}
+                 hideMenu={this.props.hideMenu}
+                 menuVisible={this.props.menuVisible}
         />
       </div>
     )

@@ -17,6 +17,7 @@ const MainPage = (props) => {
             addComment={props.thunkAddComment}
             addNode={props.addNode}
             addLink={props.addLink}
+            updateNode={props.updateNode}
             currentNode={props.currentNode}
             setNode={props.setNode}
             showDetail={props.showDetail}
