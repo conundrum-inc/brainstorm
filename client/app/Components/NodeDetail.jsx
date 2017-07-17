@@ -43,7 +43,7 @@ class NodeDetail extends React.Component {
     return (
       <div>
         <h2>Hi! I am node {this.props.currentNode.key}</h2>
-        <p>This idea is literally the best idea ever. We should totally do this idea. You know what's awesome? This idea. Why? Because! Vote for Pedro!</p>
+        <p>This idea is literally the best idea ever. We should totally do this idea. You know what's awesome? This idea. Why? Because! Vote for Pedro!</p>xs
         <Button bsStyle="info" className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</Button>
         <Button bsStyle="info" className="upvote" onClick={()=>console.log("blahblahblah")}>-</Button>
         <Button bsStyle="info" className="downvote" onClick={()=>console.log("blahblahblah")}>+</Button>
