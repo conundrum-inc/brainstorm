@@ -51,6 +51,7 @@ class Graph extends React.Component {
 
   componentDidUpdate() {
    
+
     var nodes = commentsToNodes(this.props.comments)
     console.log('new Nodes:', nodes.nodes)
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
