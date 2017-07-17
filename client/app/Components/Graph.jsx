@@ -44,6 +44,11 @@ class Graph extends React.Component {
         this.handleClick.bind(this, node)()
       })
 
+    this.d3Graph.selectAll("text")
+      .on("click", node => {
+        this.handleClick.bind(this, node)()
+      })
+
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
   }
@@ -52,6 +57,8 @@ class Graph extends React.Component {
    
     var nodes = commentsToNodes(this.props.comments)
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
+
+    this.d3Graph.selectAll("*").remove();
   
     const d3Links = this.d3Graph.selectAll('.link')
       .data(nodes.links, (link) => link.key);
@@ -65,6 +72,11 @@ class Graph extends React.Component {
     //d3Nodes.exit().remove()
     d3Nodes.call(updateNode);
     this.d3Graph.selectAll("circle")
+      .on("click", node => {
+        this.handleClick.bind(this, node)()
+      })
+
+    this.d3Graph.selectAll("text")
       .on("click", node => {
         this.handleClick.bind(this, node)()
       })

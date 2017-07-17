@@ -5,6 +5,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var config = require('../db/config'); // run mongod
 var helpers = require('../db/helpers.js');
 var User = require('../db/userSchema');
+var Comment = require('../db/commentSchema');
 var GOOGLE_CLIENT_ID = require('../auth-config.js').GOOGLE_CLIENT_ID;
 var GOOGLE_CLIENT_SECRET = require('../auth-config.js').GOOGLE_CLIENT_SECRET;
 
@@ -69,6 +70,16 @@ router.route('/comment')
               user.comments.push(comment._id);
               user.save();
               console.log('comment id saved in user array!!')
+            }
+          })
+          Comment.findOne({ _id: parentId}, (err, parentComment) => {
+            console.log('parentId', parentId, 'parentComment', parentComment)
+            if (err) {
+              console.log('error in addComment to children', err)
+            } else {
+              parentComment.children.push(comment._id);
+              parentComment.save();
+              console.log('new comment id saved in children array!!')
             }
           })
           helpers.findOne({ _id: comment._id }, (err, comment) => {

@@ -20,7 +20,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <h2>BrainStorm</h2>
+        <h1><a href='/main'>BrainStorm</a></h1>
         <Menu />
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}
@@ -37,6 +37,8 @@ class Main extends React.Component {
                  showCreateSession={this.props.showCreateSession}
                  hideCreateSession={this.props.hideCreateSession}
                  createSessionVisible={this.props.createSessionVisible}
+                 user={this.props.user}
+                 addComment={this.props.addComment}
         />
       </div>
     )

@@ -13,23 +13,6 @@ import Graph from './Graph.jsx'
 
 class Session extends React.Component {
 
-
-  addChild() {
-
-    const nodes = this.props.nodes;
-    const links = this.props.links;
-
-    const lastKey = nodes[nodes.length - 1].key;
-    const lastLinkKey = links[links.length-1] ? links[links.length - 1].key : 0
-
-    const newNode = {key: lastKey+1, size:10, x: 20, y: 20}
-    const newLink = {source: nodes.length, target: 0, key: lastLinkKey+1, size: 2}
-
-    this.props.addNode(newNode)
-    this.props.addLink(newLink)
-
-  }
-
   render() {
     return (
       <div>
@@ -44,6 +27,8 @@ class Session extends React.Component {
                       currentNode={this.props.currentNode}
                       setNode={this.props.setNode}
                       updateNode={this.props.updateNode}
+                      user={this.props.user}
+                      hideDetail={this.props.hideDetail}
           />
         </ReactModal>
         <ReactModal isOpen={this.props.createSessionVisible}
