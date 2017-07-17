@@ -21,7 +21,10 @@ class Main extends React.Component {
     return (
       <div>
         <h1><a href='/main'>BrainStorm</a></h1>
-        <Menu />
+        <Menu    showCreateSession={this.props.showCreateSession}
+                 hideCreateSession={this.props.hideCreateSession}
+                 createSessionVisible={this.props.createSessionVisible}
+        />
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}
                  detailViewVisible={this.props.detailViewVisible}
@@ -34,9 +37,6 @@ class Main extends React.Component {
                  setNode={this.props.setNode}
                  updateNode={this.props.updateNode}
                  detailViewVisible={this.props.detailViewVisible}
-                 showCreateSession={this.props.showCreateSession}
-                 hideCreateSession={this.props.hideCreateSession}
-                 createSessionVisible={this.props.createSessionVisible}
                  user={this.props.user}
                  addComment={this.props.addComment}
         />
