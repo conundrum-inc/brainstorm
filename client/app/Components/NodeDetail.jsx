@@ -63,8 +63,8 @@ class NodeDetail extends React.Component {
       <div>
         <h2>{this.props.currentNode.title}</h2>
         <p>{this.props.currentNode.text}</p>
-        <Button bsStyle="info" className="upvote" onClick={()=>console.log("upvoted")}>{emoji.emojify(':+1:')}</Button>
-        <Button bsStyle="info" className="downvote" onClick={()=>console.log("downvoted")}>{emoji.emojify(':thumbsdown:')}</Button>
+        <Button className="upvote" onClick={()=>console.log("upvoted")}>{emoji.emojify(':+1:')}</Button>
+        <Button className="downvote" onClick={()=>console.log("downvoted")}>{emoji.emojify(':thumbsdown:')}</Button>
         <h3>Children</h3>
         {(this.props.currentNode.children).map(function(child) {
           return <h4 key={child}>{child}</h4>

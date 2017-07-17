@@ -16,8 +16,6 @@ class Session extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.addChild.bind(this)}>Add Node</button>
-        <button className="add-comment" onClick={() => this.props.showCreateSession()}>New Session!</button>
         <ReactModal isOpen={this.props.detailViewVisible}
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={this.props.detailViewVisible}
