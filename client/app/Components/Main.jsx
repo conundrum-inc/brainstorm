@@ -22,7 +22,6 @@ class Main extends React.Component {
       <div>
         <h1>BrainStorm</h1>
         <Menu />
-        <Button className="add-comment" bsStyle="info" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Idea</Button>
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}
                  detailViewVisible={this.props.detailViewVisible}
@@ -33,6 +32,10 @@ class Main extends React.Component {
                  addNode={this.props.addNode}
                  addLink={this.props.addLink}
                  setNode={this.props.setNode}
+                 updateNode={this.props.updateNode}
+                 showMenu={this.props.showMenu}
+                 hideMenu={this.props.hideMenu}
+                 menuVisible={this.props.menuVisible}
         />
       </div>
     )

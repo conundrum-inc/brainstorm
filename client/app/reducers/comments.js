@@ -1,6 +1,7 @@
 import _ from 'lodash';
+import { commentsDummyData } from '../dummyData.js'
 
-function comments(state = [], action) {
+function comments(state = commentsDummyData, action) {
   switch(action.type){
     case 'ADD_COMMENT':
     console.log("Updating state Comment Added");

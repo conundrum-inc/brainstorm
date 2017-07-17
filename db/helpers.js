@@ -112,6 +112,7 @@ function downVote(req, res) {
   })
 }
 
+
 // create new session
 
 function addSession(req, res) {
@@ -128,47 +129,50 @@ function addSession(req, res) {
     } else {
       //saved!
       console.log('session saved!');
-      // return session_id
-      console.log('SESSION ID', session._id)
+      // add session to user permissions array
+      User.findOne({ _id: creator_id}, (err, user) => {
+        if (err) {
+          console.log('error in addSessionToUser', err)
+        } else {
+          user.created_sessions.push(session._id);
+          user.save();
+          console.log('session id saved in user array!!')
+        }
+      })
+      // create comment using session id that was just created
       Comment.create({ creator_id: session.creator_id, parent_id: 'root', session_id: session._id, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 }, (err, comment) => {
         if (err) {
           console.log('error!', err)
         } else {
           //saved!
           console.log('comment saved!');
-          Comment.find({session_id: session._id}, (err, comments) => {
-            if (err) {
-              console.log('err: ', err)
-              res.sendStatus(400)
-            } else {
-              console.log('comments: ', comments)
-              res.json(comments);
-            }
-          });
+          // send comment to front end
+          res.json(comment);
         }
       })
     }
   })
 };
 
-// add session to user permissions array -- TEST THIS AFTER AUTHENTICATION IS IMPLEMENTED!!!!
 
-function addSessionToUser(session_id, user_id, creator_id) {
-// be sure to add timestamp in the router
-  User.findOne( { _id: user_id }, (err, user) => {
-    if (err) {
-      console.log('error in permissions helper', err)
-    } else {
-      if (user_id === creator_id && !user.created_sessions.includes(session_id)) {
-        user.created_sessions.push(session_id);
-        console.log('session permissions updated!')
-      } else if (!user.accessible_sessions.includes(session_id)) {
-        user.accessible_sessions.push(session_id);
-        console.log('session permissions updated!')
-      }
-    }
-  });
-};
+//REFACTOR THIS!!!!
+
+// function addExistingSessionToUser(session_id, user_id, creator_id) {
+//   User.findOne( { _id: user_id }, (err, user) => {
+//     if (err) {
+//       console.log('error in permissions helper', err)
+//     } else {
+//       if (user_id === creator_id && !user.created_sessions.includes(session_id)) {
+//         user.created_sessions.push(session_id);
+//         console.log('session permissions updated!')
+//       } else if (!user.accessible_sessions.includes(session_id)) {
+//         user.accessible_sessions.push(session_id);
+//         console.log('session permissions updated!')
+//       }
+//     }
+//   });
+// };
+
 
 
 

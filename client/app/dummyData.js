@@ -1,4 +1,4 @@
-export const commentsdummyData = [{
+export const commentsDummyData = [{
     _id: '101',
     parent_id: 'root',
     children: ['202', '303', '404'],

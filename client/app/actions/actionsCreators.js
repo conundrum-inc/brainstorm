@@ -38,7 +38,7 @@ export function updateSession(comments) {
   console.log("Session Changed");
   return {
     type: 'UPDATE_SESSION',
-    comments
+    sessionId
   }
 }
 
@@ -99,6 +99,13 @@ export function addLink(link) {
 export function setNode(node) {
   return {
     type: 'SET_NODE',
+    node
+  }
+}
+
+export function updateNode(node) {
+  return {
+    type: 'UPDATE_NODE',
     node
   }
 }
@@ -170,7 +177,7 @@ export function thunkCreateSession(comment) {
   }
 }
 
-export function thunkSwitchSession(sessionId) {
+export function thunkUpdateSession(sessionId) {
   return function(dispatch) {
     return axiosCall.CreateSession(sessionId).then(
       comments => dispatch(updateSession(comments))
