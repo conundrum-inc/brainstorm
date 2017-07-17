@@ -24,6 +24,10 @@ class Main extends React.Component {
         <Menu    showCreateSession={this.props.showCreateSession}
                  hideCreateSession={this.props.hideCreateSession}
                  createSessionVisible={this.props.createSessionVisible}
+                 currentNode={this.props.currentNode}
+                 setNode={this.props.setNode}
+                 updateNode={this.props.updateNode}
+                 addComment={this.props.addComment}
         />
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}
@@ -31,14 +35,10 @@ class Main extends React.Component {
                  comments={this.props.comments}
                  nodes={this.props.nodes}
                  links={this.props.links}
-                 currentNode={this.props.currentNode}
                  addNode={this.props.addNode}
                  addLink={this.props.addLink}
-                 setNode={this.props.setNode}
-                 updateNode={this.props.updateNode}
                  detailViewVisible={this.props.detailViewVisible}
                  user={this.props.user}
-                 addComment={this.props.addComment}
         />
       </div>
     )
