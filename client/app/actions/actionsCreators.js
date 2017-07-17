@@ -38,7 +38,7 @@ export function updateSession(comments) {
   console.log("Session Changed");
   return {
     type: 'UPDATE_SESSION',
-    comments
+    sessionId
   }
 }
 
@@ -81,7 +81,7 @@ export function hideDetail() {
 }
 
 
-//test action for d3-redux integration 
+//test action for d3-redux integration
 export function addNode(node) {
   return {
     type: 'ADD_NODE',
@@ -170,7 +170,7 @@ export function thunkCreateSession(comment) {
   }
 }
 
-export function thunkSwitchSession(sessionId) {
+export function thunkUpdateSession(sessionId) {
   return function(dispatch) {
     return axiosCall.CreateSession(sessionId).then(
       comments => dispatch(updateSession(comments))

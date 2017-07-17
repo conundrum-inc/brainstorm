@@ -22,7 +22,6 @@ class Main extends React.Component {
       <div>
         <h2>BrainStorm</h2>
         <Menu />
-        <Button className="add-comment" bsStyle="info" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>New Idea</Button>
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}
                  detailViewVisible={this.props.detailViewVisible}
