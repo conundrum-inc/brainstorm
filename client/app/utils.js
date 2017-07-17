@@ -3,12 +3,18 @@ export function commentsToNodes(comments) {
     nodes: [],
     links: []
   }
-  for(var i = 0; i < comments.length; i++) {
+  for(var i = 0; i < comments.length-1; i++) {
     if (comments[i].parent_id === 'root') {
       var node = { key: comments[i]._id,
                    size: 60,
                    x: 20,
-                   y: 20
+                   y: 20,
+                   title: comments[i].title,
+                   text: comments[i].text,
+                   children: comments[i].children,
+                   upvotes: comments[i].upvotes,
+                   downvotes: comments[i].downvotes,
+                   score: comments[i].score
                  }
       nodes.nodes.push(node);
     } else {
@@ -16,7 +22,12 @@ export function commentsToNodes(comments) {
                    size: 20,
                    x: 20,
                    y: 20,
-                   title: comments[i]._title
+                   title: comments[i].title,
+                   text: comments[i].text,
+                   children: comments[i].children,
+                   upvotes: comments[i].upvotes,
+                   downvotes: comments[i].downvotes,
+                   score: comments[i].score
                  }
 
       nodes.nodes.push(node);
