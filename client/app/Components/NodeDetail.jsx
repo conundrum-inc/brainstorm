@@ -57,14 +57,15 @@ class NodeDetail extends React.Component {
   render() {
     return (
       <div>
-        <h2>Hi! I am node {this.props.currentNode.key}</h2>
-        <p>This idea is literally the best idea ever. We should totally do this idea. You know what's awesome? This idea. Why? Because! Vote for Pedro!</p>
-        <Button bsStyle="info" className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Test Comment</Button>
+        <h2>{this.props.currentNode.title}</h2>
+        <p>{this.props.currentNode.text}</p>xs
+        <Button bsStyle="info" className="add-comment" onClick={() => this.props.addComment('123', '345', '678', 'first comment', 'yassssss')}>Add Comment</Button>
         <Button bsStyle="info" className="upvote" onClick={()=>console.log("blahblahblah")}>-</Button>
         <Button bsStyle="info" className="downvote" onClick={()=>console.log("blahblahblah")}>+</Button>
-        <h4>Node Child 1</h4>
-        <h4>Node Child 2</h4>
-        <h4>Node Child 3</h4>
+        <h3>Children</h3>
+        {(this.props.currentNode.children).map(function(child) {
+          return <h4 key={child}>{child}</h4>
+        })}
         <h2>Add a comment:</h2>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle">
