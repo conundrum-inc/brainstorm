@@ -7,9 +7,10 @@ import menuVisible from './menuVisible';
 import nodes from './nodes'
 import links from './links'
 import user from './user'
+import session from './session'
 import currentNode from './currentNode'
 // import user from './user';
 
-const rootReducer = combineReducers({comments, detailViewVisible, menuVisible, nodes, links, user, currentNode, routing: routerReducer });
+const rootReducer = combineReducers({comments, detailViewVisible, menuVisible, nodes, links, user, session, currentNode, routing: routerReducer });
 
 export default rootReducer;
