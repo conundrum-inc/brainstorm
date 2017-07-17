@@ -36,6 +36,8 @@ class Main extends React.Component {
                  showMenu={this.props.showMenu}
                  hideMenu={this.props.hideMenu}
                  menuVisible={this.props.menuVisible}
+                 user={this.props.user}
+                 addComment={this.props.addComment}
         />
       </div>
     )

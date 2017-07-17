@@ -20,20 +20,22 @@ class NodeDetail extends React.Component {
   }
 
 
-  onSubmit(e) {
+  onSubmit(e, props) {
     e.preventDefault();
     console.log('title: ', e.target.title.value);
     console.log('detail: ', e.target.text.value);
-    console.log('state: ', this.state);
-    console.log('parent node: ', this.props.currentNode.key);
     //userId, parentId, sessionId, title, text
-    this.props.addComment(this.state.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
+    console.log('this: ', this);
+    console.log('this.props.user', this.props.user.userId);
+    console.log('parent node: ', this.props.currentNode.key);
+
+    this.props.addComment(this.props.user.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
 
 
   }
 
   upvote() {
-    
+
     // let currentNode = this.props.currentNode
     // let newNode = { ...currentNode }
     // console.log("newNode size before: ", newNode.size)
@@ -64,7 +66,7 @@ class NodeDetail extends React.Component {
         <h4>Node Child 2</h4>
         <h4>Node Child 3</h4>
         <h2>Add a comment:</h2>
-        <Form horizontal onSubmit={this.onSubmit}>
+        <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle">
             <Col componentClass={ControlLabel} sm={2}>
               Title:
