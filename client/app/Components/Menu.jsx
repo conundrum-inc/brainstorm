@@ -11,7 +11,7 @@ const Menu = () => {
   return (
     <DropdownButton id="dropdown-btn-menu" bsStyle="info" title="Menu">
       <MenuItem key="1" href={MAIN_PAGE_ROUTE}>
-        <NavLink to={PROFILE_PAGE_ROUTE}>Home</NavLink>
+        <NavLink to={MAIN_PAGE_ROUTE}>Home</NavLink>
       </MenuItem>
       <MenuItem key="2" href={PROFILE_PAGE_ROUTE}>
         <NavLink to={PROFILE_PAGE_ROUTE}>My Profile</NavLink>
