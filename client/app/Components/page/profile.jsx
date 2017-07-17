@@ -13,8 +13,9 @@ import Menu from '../Menu.jsx';
 const ProfilePage = (props) => {
   return (
     <div>
-      <h1>Welcome, you genius you!</h1>
+      <h1>BrainStorm</h1>
       <Menu />
+      <h2>Welcome, you genius you!</h2>
       <Profile history={props.history} />
       <MySessions />
     </div>

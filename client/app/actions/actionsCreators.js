@@ -55,18 +55,18 @@ export function removeUser() {
     type: 'REMOVE_USER'
   }
 }
-
-export function showMenu() {
-  return {
-    type: 'SHOW_MENU'
-  }
-}
-
-export function hideMenu() {
-  return {
-    type: 'HIDE_MENU'
-  }
-}
+// Note: these two functions no longer necessary with front-end styling implementation
+// export function showMenu() {
+//   return {
+//     type: 'SHOW_MENU'
+//   }
+// }
+//
+// export function hideMenu() {
+//   return {
+//     type: 'HIDE_MENU'
+//   }
+// }
 
 export function showDetail() {
   return {
