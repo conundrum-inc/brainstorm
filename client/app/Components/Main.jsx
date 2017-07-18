@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Menu from './Menu.jsx';
 import Session from './Session.jsx';
+import { LOGOUT_PAGE_ROUTE } from '../routes.js';
 
 class Main extends React.Component {
   constructor(props) {
@@ -21,7 +23,11 @@ class Main extends React.Component {
     return (
       <div>
         <h1><a href='/main'>BrainStorm</a></h1>
-        <button className="menu-button" onClick={() => this.props.showMenu()}>Menu</button>
+        <img src="http://i.imgur.com/NErSVt4.png" className="menu-button" onClick={() => this.props.showMenu()} width="20px" height="20px"/>
+        <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
+          <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
+          Logout
+        </Button>
         <Menu    showCreateSession={this.props.showCreateSession}
                  hideCreateSession={this.props.hideCreateSession}
                  createSessionVisible={this.props.createSessionVisible}
