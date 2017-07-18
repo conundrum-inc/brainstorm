@@ -40,8 +40,12 @@ export function Comments(sessionId) {
   });
 }
 
-export function createSession(comment) { // comment will be an object with keys: userId, title, text
-  return axios.post('/session', { comment });
+export function CreateSession(title, text, userId) { // comment will be an object with keys: userId, title, text
+  return axios.post('/session', {
+    user_id: userId,
+    title: title,
+    text: text
+  });
 }
 
 export function fetchSession(sessionId) {

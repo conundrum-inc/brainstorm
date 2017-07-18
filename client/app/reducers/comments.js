@@ -16,6 +16,11 @@ function comments(state = commentsDummyData, action) {
         action.comment,
         ...state.slice(commentIndex + 1) // after the comment we want to change
       ]
+
+    case 'CLEAR_COMMENTS':
+      console.log("Comments cleared reducer")
+      return [] // clears comments from state
+
     default:
       return state;
   }

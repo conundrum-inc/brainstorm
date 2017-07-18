@@ -37,6 +37,7 @@ const MainPage = (props) => {
             showMenu={props.showMenu}
             hideMenu={props.hideMenu}
             menuVisible={props.menuVisible}
+            clearComments={props.clearComments}
           />
     </div>
   )

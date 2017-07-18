@@ -32,7 +32,9 @@ class Main extends React.Component {
                  showMenu={this.props.showMenu}
                  hideMenu={this.props.hideMenu}
                  menuVisible={this.props.menuVisible}
-
+                 clearComments={this.props.clearComments}
+                 user={this.props.user}
+                 hideDetail={this.props.hideDetail}
         />
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}
