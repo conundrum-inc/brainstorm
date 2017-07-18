@@ -36,7 +36,7 @@ const Menu = (props) => {
             thunkCreateSession={props.thunkCreateSession}
             clearComments={props.clearComments}
             user={props.user}
-            hideDetail={props.hideDetail}
+            hideCreateSession={props.hideCreateSession}
           />
         </ReactModal>
     </div>

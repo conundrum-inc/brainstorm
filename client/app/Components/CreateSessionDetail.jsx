@@ -7,7 +7,7 @@ class NodeDetail extends React.Component {
     e.preventDefault();
     this.props.clearComments();
     this.props.thunkCreateSession(e.target.title.value, e.target.text.value, this.props.user.userId);
-    this.props.hideDetail();
+    this.props.hideCreateSession();
   }
 
   render() {
