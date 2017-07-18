@@ -72,7 +72,7 @@ function upVote(req, res) {
         if (comment.score === 0) {
           comment.score = 0;
         } else {
-          comment.score -= 1; 
+          comment.score -= 1;
         }
       }
       comment.save();
@@ -101,7 +101,7 @@ function downVote(req, res) {
         if (comment.score === 0) {
           comment.score = 0;
         } else {
-          comment.score -= 1; 
+          comment.score -= 1;
         }
         if (comment.upvotes.includes(clickUser)) {
           var i = comment.upvotes.indexOf(clickUser)
@@ -109,7 +109,7 @@ function downVote(req, res) {
           if (comment.score === 0) {
           comment.score = 0;
           } else {
-          comment.score -= 1; 
+          comment.score -= 1;
           }
         }
       } else {
@@ -129,9 +129,9 @@ function downVote(req, res) {
 
 function addSession(req, res) {
 // be sure to add timestamp in the router
-  var creator_id = req.body[0].user_id; // make sure this matches up to fetch method body params
-  var title = req.body[0].title;
-  var text = req.body[0].text;
+  var creator_id = req.body.user_id; // make sure this matches up to fetch method body params
+  var title = req.body.title;
+  var text = req.body.text;
   var timestamp = new Date();
   console.log('addSession params', creator_id, timestamp, title, text)
 

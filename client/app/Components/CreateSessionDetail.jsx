@@ -3,40 +3,10 @@ import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-b
 
 class NodeDetail extends React.Component {
 
-  addChild() {
-    console.log('adding node')
-    const nodes = this.props.nodes;
-    const links = this.props.links;
-
-    const lastKey = nodes[nodes.length - 1].key;
-    const lastLinkKey = links[links.length-1] ? links[links.length - 1].key : 0
-
-    const newNode = {key: lastKey+1, size:20, x: 20, y: 20}
-    const newLink = {source: nodes.length, target: this.props.currentNode.index, key: lastLinkKey+1, size: 2}
-
-    this.props.addNode(newNode)
-    this.props.addLink(newLink)
-
-  }
-
-  upvote() {
-
-    // let currentNode = this.props.currentNode
-    // let newNode = { ...currentNode }
-    // console.log("newNode size before: ", newNode.size)
-    // newNode.size+=20
-    // console.log("newNode size after: ", newNode.size)
-
-    // this.props.updateNode(newNode)
-    // this.props.setNode(newNode)
-
-  }
-
-  downvote() {
-    // var newNode = {...this.props.currentNode };
-    // newNode.size--;
-
-    // this.props.updateNode(newNode);
+  onSubmit(e, props) {
+    e.preventDefault();
+    this.props.thunkCreateSession(e.target.title.value, e.target.text.value, this.props.user.userId);
+    this.props.hideDetail();
   }
 
   render() {
@@ -49,7 +19,7 @@ class NodeDetail extends React.Component {
               Session Title:
             </Col>
             <Col sm={10}>
-              <FormControl type="title" placeholder="What are you brainstorming for?" />
+              <FormControl name="title" type="title" placeholder="What are you brainstorming for?" />
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
@@ -57,7 +27,7 @@ class NodeDetail extends React.Component {
               Description:
             </Col>
             <Col sm={10}>
-              <FormControl type="details" placeholder="This is your brainstorm starting point! Details, criteria, suggestions go here for collaborators to check out. " />
+              <FormControl name="text" type="details" placeholder="This is your brainstorm starting point! Details, criteria, suggestions go here for collaborators to check out. " />
             </Col>
           </FormGroup>
           <FormGroup>
