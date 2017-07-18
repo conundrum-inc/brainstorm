@@ -13,10 +13,6 @@ const Menu = (props) => {
   return (
     <div>
       <ButtonGroup>
-        <Button bsStyle="info" href={MAIN_PAGE_ROUTE}>
-          <NavLink to={MAIN_PAGE_ROUTE}></NavLink>
-          Home
-        </Button>
         <Button bsStyle="info" href={PROFILE_PAGE_ROUTE}>
           <NavLink to={PROFILE_PAGE_ROUTE}></NavLink>
           My Profile
