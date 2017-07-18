@@ -1,25 +1,41 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button, DropdownButton, MenuItem, ButtonGroup } from 'react-bootstrap';
+import CreateSessionDetail from './CreateSessionDetail.jsx';
+import ReactModal from 'react-modal';
 import { PROFILE_PAGE_ROUTE,
          LOGOUT_PAGE_ROUTE,
          SESSIONS_PAGE_ROUTE,
          MAIN_PAGE_ROUTE
        } from '../routes.js'
 
-const Menu = () => {
+const Menu = (props) => {
   return (
-    <DropdownButton id="dropdown-btn-menu" bsStyle="info" title="Menu">
-      <MenuItem key="1" href={MAIN_PAGE_ROUTE}>
-        <NavLink to={MAIN_PAGE_ROUTE}>Home</NavLink>
-      </MenuItem>
-      <MenuItem key="2" href={PROFILE_PAGE_ROUTE}>
-        <NavLink to={PROFILE_PAGE_ROUTE}>My Profile</NavLink>
-      </MenuItem>
-      <MenuItem key="3" href={LOGOUT_PAGE_ROUTE}>
-        <NavLink to={LOGOUT_PAGE_ROUTE}>Logout</NavLink>
-      </MenuItem>
-    </DropdownButton>
+    <div>
+      <ButtonGroup>
+        <Button bsStyle="info" href={PROFILE_PAGE_ROUTE}>
+          <NavLink to={PROFILE_PAGE_ROUTE}></NavLink>
+          My Profile
+        </Button>
+        <Button bsStyle="info" className="add-comment" onClick={() => props.showCreateSession()}>New Session!</Button>
+        <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
+          <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
+          Logout
+        </Button>
+      </ButtonGroup>
+      <ReactModal isOpen={props.createSessionVisible}
+        contentLabel="Detail Modal"
+        shouldCloseOnOverlayClick={props.createSessionVisible}
+        >
+          <Button onClick={props.hideCreateSession}>X</Button>
+          <CreateSessionDetail
+            addComment={props.addComment}
+            currentNode={props.currentNode}
+            setNode={props.setNode}
+            updateNode={props.updateNode}
+          />
+        </ReactModal>
+    </div>
   )
 }
 

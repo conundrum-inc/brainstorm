@@ -14,32 +14,36 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    console.log('props test', this.props)
+    console.log('props test in Main: ', this.props)
   }
 
   render() {
     return (
       <div>
-        <h1>BrainStorm</h1>
-        <Menu />
+        <h1><a href='/main'>BrainStorm</a></h1>
+        <Menu    showCreateSession={this.props.showCreateSession}
+                 hideCreateSession={this.props.hideCreateSession}
+                 createSessionVisible={this.props.createSessionVisible}
+                 currentNode={this.props.currentNode}
+                 setNode={this.props.setNode}
+                 updateNode={this.props.updateNode}
+                 addComment={this.props.addComment}
+        />
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}
                  detailViewVisible={this.props.detailViewVisible}
                  comments={this.props.comments}
                  nodes={this.props.nodes}
                  links={this.props.links}
-                 currentNode={this.props.currentNode}
                  addNode={this.props.addNode}
                  addLink={this.props.addLink}
-                 setNode={this.props.setNode}
-                 updateNode={this.props.updateNode}
-                 showMenu={this.props.showMenu}
-                 hideMenu={this.props.hideMenu}
-                 menuVisible={this.props.menuVisible}
+                 detailViewVisible={this.props.detailViewVisible}
                  user={this.props.user}
                  addComment={this.props.addComment}
                  thunkUpVote={this.props.thunkUpVote}
                  thunkDownVote={this.props.thunkDownVote}
+                 setNode={this.props.setNode}
+                 currentNode={this.props.currentNode}
         />
       </div>
     )

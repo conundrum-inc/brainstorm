@@ -19,7 +19,7 @@ class Session extends React.Component {
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
-          <Button bsStyle="danger" onClick={this.props.hideDetail}>X</Button>
+          <Button onClick={this.props.hideDetail}>X</Button>
           <NodeDetail addComment={this.props.addComment}
                       currentNode={this.props.currentNode}
                       setNode={this.props.setNode}

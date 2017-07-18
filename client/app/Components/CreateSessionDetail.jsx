@@ -1,5 +1,4 @@
 import React from 'react';
-import emoji from 'node-emoji';
 import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
 class NodeDetail extends React.Component {
@@ -20,52 +19,45 @@ class NodeDetail extends React.Component {
 
   }
 
-
-  onSubmit(e, props) {
-    e.preventDefault();
-    this.props.addComment(this.props.user.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
-    this.props.hideDetail();
-  }
-
-  // LINK TO EMOJI CHEAT SHEET: https://www.webpagefx.com/tools/emoji-cheat-sheet/
-
   upvote() {
-    console.log('commentId: ', this.props.currentNode.key)
-    this.props.thunkUpVote(this.props.user.userId, this.props.currentNode.key)
+
+    // let currentNode = this.props.currentNode
+    // let newNode = { ...currentNode }
+    // console.log("newNode size before: ", newNode.size)
+    // newNode.size+=20
+    // console.log("newNode size after: ", newNode.size)
+
+    // this.props.updateNode(newNode)
+    // this.props.setNode(newNode)
 
   }
 
   downvote() {
-    this.props.thunkDownVote(this.props.user.userId, this.props.currentNode.key)
+    // var newNode = {...this.props.currentNode };
+    // newNode.size--;
+
+    // this.props.updateNode(newNode);
   }
 
   render() {
     return (
       <div>
-        <h2>{this.props.currentNode.title}</h2>
-        <p>{this.props.currentNode.text}</p>
-        <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>
-        <Button className="downvote" onClick={this.downvote.bind(this)}>{emoji.emojify(':thumbsdown:')}</Button>
-        <h3>Children</h3>
-        {(this.props.currentNode.children).map(function(child) {
-          return <h4 key={child}>{child}</h4>
-        })}
-        <h2>Add a comment:</h2>
-        <Form horizontal onSubmit={this.onSubmit.bind(this)}>
+        <h2>Start a Sesh</h2>
+        <Form horizontal>
           <FormGroup controlId="commentTitle">
             <Col componentClass={ControlLabel} sm={2}>
-              Title:
+              Session Title:
             </Col>
             <Col sm={10}>
-              <FormControl type="title" name="title" placeholder="Title" />
+              <FormControl type="title" placeholder="What are you brainstorming for?" />
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
             <Col componentClass={ControlLabel} sm={2}>
-              Details:
+              Description:
             </Col>
             <Col sm={10}>
-              <FormControl type="details" name="text" placeholder="Elaborate here!" />
+              <FormControl type="details" placeholder="This is your brainstorm starting point! Details, criteria, suggestions go here for collaborators to check out. " />
             </Col>
           </FormGroup>
           <FormGroup>

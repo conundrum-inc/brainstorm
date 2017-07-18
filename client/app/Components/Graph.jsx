@@ -32,7 +32,7 @@ class Graph extends React.Component {
     const d3Links = this.d3Graph.selectAll('.link')
       .data(nodes.links, (link) => link.key);
     d3Links.enter().insert('line', '.node').call(enterLink);
-    
+
     const d3Nodes = this.d3Graph.selectAll('.node')
       .data(nodes.nodes, (node) => node.key);
     d3Nodes.enter().append('g').call(enterNode);
@@ -54,18 +54,18 @@ class Graph extends React.Component {
   }
 
   componentDidUpdate() {
-   
+
     var nodes = commentsToNodes(this.props.comments)
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
 
     this.d3Graph.selectAll("*").remove();
-  
+
     const d3Links = this.d3Graph.selectAll('.link')
       .data(nodes.links, (link) => link.key);
     d3Links.enter().insert('line', '.node').call(enterLink);
     //d3Links.exit().remove();
     d3Links.call(updateLink);
-    
+
     const d3Nodes = this.d3Graph.selectAll('.node')
       .data(nodes.nodes, (node) => node.key);
     d3Nodes.enter().append('g').call(enterNode);
@@ -73,26 +73,26 @@ class Graph extends React.Component {
     d3Nodes.call(updateNode);
     this.d3Graph.selectAll("circle")
       .on("click", node => {
-        this.handleClick.bind(this, node)()
+        this.handleClick.bind(this, node)();
       })
 
     this.d3Graph.selectAll("text")
       .on("click", node => {
-        this.handleClick.bind(this, node)()
+        this.handleClick.bind(this, node)();
       })
-      
+
 
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
-    
+
   }
 
   handleClick(node) {
     console.log('clicked!')
-    this.props.setNode(node)
-    this.props.showDetail()
+    this.props.setNode(node);
+    this.props.showDetail();
   }
 
   render() {

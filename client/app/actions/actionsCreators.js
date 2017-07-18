@@ -42,11 +42,13 @@ export function updateSession(comments) {
   }
 }
 
-export function addUser(userId, name) {
+export function addUser(userId, name, image, email) {
   return {
     type: 'ADD_USER',
     userId,
-    name
+    name,
+    image,
+    email
   }
 }
 
@@ -55,18 +57,18 @@ export function removeUser() {
     type: 'REMOVE_USER'
   }
 }
-// Note: these two functions no longer necessary with front-end styling implementation
-// export function showMenu() {
-//   return {
-//     type: 'SHOW_MENU'
-//   }
-// }
-//
-// export function hideMenu() {
-//   return {
-//     type: 'HIDE_MENU'
-//   }
-// }
+
+export function showCreateSession() {
+  return {
+    type: 'SHOW_CREATE_SESSION'
+  }
+}
+
+export function hideCreateSession() {
+  return {
+    type: 'HIDE_CREATE_SESSION'
+  }
+}
 
 export function showDetail() {
   return {
@@ -137,7 +139,7 @@ export function thunkAddUser() {
     return axiosCall.login().then(
       (user) => {
         console.log('user data', user.data)
-        dispatch(addUser(user.data[0]._id, user.data[0].displayName)) // CHECK THESE USER VALUES!!!!!!
+        dispatch(addUser(user.data[0]._id, user.data[0].displayName, user.data[0].image, user.data[0].email)) // CHECK THESE USER VALUES!!!!!!
       }
     )
   }
@@ -171,10 +173,10 @@ export function thunkEditComment(commentId, title, text) {
   }
 }
 
-export function thunkCreateSession(comment) {
+export function thunkCreateSession(title, text, userId) {
   return function(dispatch) {
-    return axiosCall.CreateSession(comment).then(
-      comments => dispatch(updateSession(comments))
+    return axiosCall.CreateSession(title, text, userId).then(
+      comment => dispatch(updateSession(comment))
     )
   }
 }
