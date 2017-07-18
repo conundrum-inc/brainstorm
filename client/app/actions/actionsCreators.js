@@ -82,6 +82,19 @@ export function hideDetail() {
   }
 }
 
+export function showMenu() {
+  console.log('showing menu');
+  return {
+    type: 'SHOW_MENU'
+  }
+}
+
+export function hideMenu() {
+  return {
+    type: 'HIDE_MENU'
+  }
+}
+
 
 //test action for d3-redux integration
 export function addNode(node) {
@@ -118,7 +131,7 @@ export function updateNode(node) {
 export function thunkUpVote(userId, commentId) {
   return function(dispatch) {
     return axiosCall.UpVote(userId, commentId).then(
-      (comment) => { 
+      (comment) => {
         dispatch(editComment(comment.data))
       }
     )
