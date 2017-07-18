@@ -1,4 +1,6 @@
 import *  as axiosCall from '../axiosCalls'
+import io from "socket.io-client";
+var socket = io();
 
 export function upVote(score, commentId) {
   console.log("UPVOTE!");
@@ -182,6 +184,7 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
   return function(dispatch) {
     return axiosCall.AddComment(userId, parentId, sessionId, title, text).then(
       (comment) => {
+        socket.emit('new comment', comment.data);
         dispatch(addComment(comment.data))
       }
     )

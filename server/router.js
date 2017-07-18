@@ -87,7 +87,6 @@ router.route('/comment')
               console.log('err in comment find one');
               res.sendStatus(404);
             } else {
-
               res.json(comment);
             }
         })
