@@ -17,7 +17,7 @@ class Session extends React.Component {
     super(props);
 
 
-    socket.on('comment', (data) => {
+    socket.on('socket comment', (data) => {
       console.log('data from socket', data)
     })
   }
