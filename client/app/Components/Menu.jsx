@@ -33,6 +33,7 @@ const Menu = (props) => {
             currentNode={props.currentNode}
             setNode={props.setNode}
             updateNode={props.updateNode}
+            thunkCreateSession={props.thunkCreateSession}
           />
         </ReactModal>
     </div>

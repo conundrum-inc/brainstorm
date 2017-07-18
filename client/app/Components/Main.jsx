@@ -28,6 +28,8 @@ class Main extends React.Component {
                  setNode={this.props.setNode}
                  updateNode={this.props.updateNode}
                  addComment={this.props.addComment}
+                 thunkCreateSession={this.props.thunkCreateSession}
+
         />
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}
