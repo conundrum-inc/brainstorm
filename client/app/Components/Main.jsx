@@ -21,6 +21,7 @@ class Main extends React.Component {
     return (
       <div>
         <h1><a href='/main'>BrainStorm</a></h1>
+        <button className="menu-button" onClick={() => this.props.showMenu()}>Menu</button>
         <Menu    showCreateSession={this.props.showCreateSession}
                  hideCreateSession={this.props.hideCreateSession}
                  createSessionVisible={this.props.createSessionVisible}
