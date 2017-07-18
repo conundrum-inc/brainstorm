@@ -49,13 +49,16 @@ export function updateSession(sessionId) {
   }
 }
 
-export function addUser(userId, name, image, email) {
+export function addUser(userId, name, image, email, created_sessions, accessible_sessions, comments) {
   return {
     type: 'ADD_USER',
     userId,
     name,
     image,
-    email
+    email,
+    created_sessions,
+    accessible_sessions,
+    comments
   }
 }
 
@@ -159,7 +162,7 @@ export function thunkAddUser() {
     return axiosCall.login().then(
       (user) => {
         console.log('user data', user.data)
-        dispatch(addUser(user.data[0]._id, user.data[0].displayName, user.data[0].image, user.data[0].email)) // CHECK THESE USER VALUES!!!!!!
+        dispatch(addUser(user.data[0]._id, user.data[0].displayName, user.data[0].image, user.data[0].email, user.data[0].created_sessions, user.data[0].accessible_sessions, user.data[0].comments)) // CHECK THESE USER VALUES!!!!!!
       }
     )
   }
