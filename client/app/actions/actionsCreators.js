@@ -118,7 +118,9 @@ export function updateNode(node) {
 export function thunkUpVote(userId, commentId) {
   return function(dispatch) {
     return axiosCall.UpVote(userId, commentId).then(
-      score => dispatch(upVote(score, commentId))
+      (comment) => { 
+        dispatch(editComment(comment.data))
+      }
     )
   }
 }
@@ -126,7 +128,7 @@ export function thunkUpVote(userId, commentId) {
 export function thunkDownVote(userId, commentId) {
   return function(dispatch) {
     return axiosCall.DownVote(userId, commentId).then(
-      score => dispatch(downVote(score, commentId))
+      comment => dispatch(editComment(comment.data))
     )
   }
 }

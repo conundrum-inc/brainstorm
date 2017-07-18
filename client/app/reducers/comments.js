@@ -9,7 +9,7 @@ function comments(state = commentsDummyData, action) {
 
     case 'EDIT_COMMENT':
       console.log("Comment Edited");
-      var commentIndex = _.findIndex(state, action.comment._id)
+      var commentIndex = _.findIndex(state, ['_id', action.comment._id])
 
       return [
         ...state.slice(0, commentIndex), // before the comment we want to change

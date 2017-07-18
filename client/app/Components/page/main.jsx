@@ -31,6 +31,8 @@ const MainPage = (props) => {
             links={props.links}
             thunkAddUser={props.thunkAddUser}
             user={props.user}
+            thunkUpVote={props.thunkUpVote}
+            thunkDownVote={props.thunkDownVote}
           />
     </div>
   )
