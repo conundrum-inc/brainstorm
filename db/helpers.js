@@ -157,7 +157,7 @@ function addSession(req, res) {
           console.log('error!', err)
         } else {
           //saved!
-          console.log('comment saved!');
+          console.log('comment saved!', comment);
           // send comment to front end
           res.json(comment);
         }
