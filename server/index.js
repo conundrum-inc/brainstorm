@@ -13,6 +13,10 @@ var GOOGLE_CLIENT_SECRET = require('../auth-config.js').GOOGLE_CLIENT_SECRET;
 
 const app = express();
 
+// initialize socket
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
 app.use(bodyParser());
 
 // set headers to allow cross-origin requests
@@ -129,8 +133,22 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
+//socket test
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('new comment', function(data){
+    console.log('data received by socket', data)
+    socket.broadcast.emit('comment', data);
+  })
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
 
 
-app.listen(3000, function () {
+server.listen(3000, function () {
   console.log('Listening on port 3000');
 })
+
+exports.io = io;

@@ -5,12 +5,23 @@ import * as d3 from 'd3';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import io from "socket.io-client";
+var socket = io();
 
 import { click, forceDiagram} from '../../d3/d3helpers.js'
 
 import Graph from './Graph.jsx'
 
 class Session extends React.Component {
+  constructor(props){
+    super(props);
+
+
+    socket.on('comment', (data) => {
+      console.log('data from socket', data)
+    })
+  }
+
 
   render() {
     return (

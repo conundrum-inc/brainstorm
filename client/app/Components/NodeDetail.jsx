@@ -1,6 +1,8 @@
 import React from 'react';
 import emoji from 'node-emoji';
 import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
+import io from "socket.io-client";
+var socket = io();
 
 class NodeDetail extends React.Component {
 
@@ -38,6 +40,10 @@ class NodeDetail extends React.Component {
   downvote() {
     this.props.thunkDownVote(this.props.user.userId, this.props.currentNode.key)
   }
+
+  // newComment(){
+  //   socket.emit('new comment', ())
+  // }
 
   render() {
     return (
