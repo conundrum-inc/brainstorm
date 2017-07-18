@@ -7,6 +7,7 @@ function nodes(state=[{key: 0, size: 40}], action) {
       return [...state, action.node]
     case 'UPDATE_NODE':
       console.log('updating node with key: ', action.node.key)
+      console.log('current nodes: ', state)
       var nodeIndex = _.findIndex(state, ['key', action.node.key])
       console.log('matches node at position: ', nodeIndex)
       return [

@@ -38,6 +38,8 @@ class Main extends React.Component {
                  menuVisible={this.props.menuVisible}
                  user={this.props.user}
                  addComment={this.props.addComment}
+                 thunkUpVote={this.props.thunkUpVote}
+                 thunkDownVote={this.props.thunkDownVote}
         />
       </div>
     )

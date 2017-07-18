@@ -47,8 +47,8 @@ function editComment(comment_id, title, text, cb) {
 // upvote a comment
 
 function upVote(req, res) {
-  var comment_id = req.body[0].comment_id;
-  var clickUser = req.body[0].user_id;
+  var comment_id = req.body.comment_id;
+  var clickUser = req.body.user_id;
   console.log('upvote variables', comment_id, clickUser)
   //clickUser = the user who clicked the upvote button
   console.log('in upVote!!!')
@@ -69,11 +69,15 @@ function upVote(req, res) {
       } else {
         var i = comment.upvotes.indexOf(clickUser);
         comment.upvotes.splice(i, 1);
-        comment.score -= 1;
+        if (comment.score === 0) {
+          comment.score = 0;
+        } else {
+          comment.score -= 1; 
+        }
       }
       comment.save();
-      console.log('upvote saved!')
-      res.json({score: comment.score});
+      console.log('upvote saved!', comment)
+      res.json(comment);
     }
   })
 }
@@ -82,8 +86,8 @@ function upVote(req, res) {
 // downvote a comment
 
 function downVote(req, res) {
-  var comment_id = req.body[0].comment_id;
-  var clickUser = req.body[0].user_id;
+  var comment_id = req.body.comment_id;
+  var clickUser = req.body.user_id;
   //clickUser = the user who clicked the upvote button
   console.log('in downVote!!!')
 
@@ -94,11 +98,19 @@ function downVote(req, res) {
     } else {
       if (!comment.downvotes.includes(clickUser)) {
         comment.downvotes.push(clickUser)
-        comment.score -= 1;
+        if (comment.score === 0) {
+          comment.score = 0;
+        } else {
+          comment.score -= 1; 
+        }
         if (comment.upvotes.includes(clickUser)) {
           var i = comment.upvotes.indexOf(clickUser)
           comment.upvotes.splice(i, 1)
-          comment.score -= 1
+          if (comment.score === 0) {
+          comment.score = 0;
+          } else {
+          comment.score -= 1; 
+          }
         }
       } else {
         var i = comment.downvotes.indexOf(clickUser);
@@ -107,7 +119,7 @@ function downVote(req, res) {
       }
       comment.save();
       console.log('downvote saved!')
-      res.json({score: comment.score});
+      res.json(comment);
     }
   })
 }

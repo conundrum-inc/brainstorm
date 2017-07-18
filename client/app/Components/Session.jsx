@@ -26,6 +26,9 @@ class Session extends React.Component {
                       updateNode={this.props.updateNode}
                       user={this.props.user}
                       hideDetail={this.props.hideDetail}
+                      thunkUpVote={this.props.thunkUpVote}
+                      thunkDownVote={this.props.thunkDownVote}
+                      downvote={this.props.downvote}
           />
         </ReactModal>
         <Graph comments={this.props.comments}

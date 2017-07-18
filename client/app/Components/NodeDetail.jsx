@@ -22,37 +22,18 @@ class NodeDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
-    console.log('title: ', e.target.title.value);
-    console.log('detail: ', e.target.text.value);
-    //userId, parentId, sessionId, title, text
-    console.log('this: ', this);
-    console.log('this.props.user', this.props.user);
-    console.log('parent node: ', this.props.currentNode.key);
-
     this.props.addComment(this.props.user.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
     this.props.hideDetail();
-
-
   }
 
   upvote() {
-
-    // let currentNode = this.props.currentNode
-    // let newNode = { ...currentNode }
-    // console.log("newNode size before: ", newNode.size)
-    // newNode.size+=20
-    // console.log("newNode size after: ", newNode.size)
-
-    // this.props.updateNode(newNode)
-    // this.props.setNode(newNode)
+    console.log('commentId: ', this.props.currentNode.key)
+    this.props.thunkUpVote(this.props.user.userId, this.props.currentNode.key)
 
   }
 
   downvote() {
-    // var newNode = {...this.props.currentNode };
-    // newNode.size--;
-
-    // this.props.updateNode(newNode);
+    this.props.thunkDownVote(this.props.user.userId, this.props.currentNode.key)
   }
 
   render() {
@@ -60,8 +41,8 @@ class NodeDetail extends React.Component {
       <div>
         <h2>{this.props.currentNode.title}</h2>
         <p>{this.props.currentNode.text}</p>
-        <Button bsStyle="info" className="upvote" onClick={()=>console.log("blahblahblah")}>-</Button>
-        <Button bsStyle="info" className="downvote" onClick={()=>console.log("blahblahblah")}>+</Button>
+        <Button bsStyle="info" className="upvote" onClick={this.upvote.bind(this)}>+</Button>
+        <Button bsStyle="info" className="downvote" onClick={this.downvote.bind(this)}>-</Button>
         <h3>Children</h3>
         {(this.props.currentNode.children).map(function(child) {
           return <h4 key={child}>{child}</h4>
