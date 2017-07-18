@@ -22,17 +22,19 @@ const Menu = (props) => {
         <Button onClick={props.hideMenu}>X</Button>
         <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image} /></a>
         <a href={PROFILE_PAGE_ROUTE}><h3>{props.user.name}</h3></a>
-        <ButtonGroup vertical>
-          <Button bsStyle="info"
-            className="add-comment"
-            onClick={() => { props.showCreateSession(); props.hideMenu(); }}>
-            New Session!
-          </Button>
-          <h2>My Sessions</h2>
-          <p>Session 1</p>
-          <p>Session 2</p>
-          <p>Session 3</p>
-        </ButtonGroup>
+        <h2>My Sessions</h2>
+        <p>Session 1</p>
+        <p>Session 2</p>
+        <p>Session 3</p>
+        <Button bsStyle="info"
+          className="add-comment"
+          onClick={() => { props.showCreateSession(); props.hideMenu(); }}>
+          New Session!
+        </Button>
+        <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
+          <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
+          Logout
+        </Button>
       </ReactModal>
 
       <ReactModal isOpen={props.createSessionVisible}
