@@ -10,18 +10,34 @@ import { PROFILE_PAGE_ROUTE,
        } from '../routes.js'
 
 const Menu = (props) => {
+  console.log('props in menu render', props);
+  // <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image}/></a>
+
   return (
     <div>
-      <button className="menu-button" onClick={() => props.showMenu()}>Menu</button>
       <ReactModal isOpen={props.menuVisible}
                   contentLabel="Menu Modal"
                   shouldCloseOnOverlayClick={props.menuVisible}
       >
         <Button onClick={props.hideMenu}>X</Button>
-        <Button bsStyle="info" className="add-comment" onClick={() => props.showCreateSession()}>New Session!</Button>
-        <ReactModal isOpen={props.createSessionVisible}
-          contentLabel="Detail Modal"
-          shouldCloseOnOverlayClick={props.createSessionVisible}
+        <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image} /></a>
+        <a href={PROFILE_PAGE_ROUTE}><h3>{props.user.name}</h3></a>
+        <ButtonGroup vertical>
+          <Button bsStyle="info"
+            className="add-comment"
+            onClick={() => { props.showCreateSession(); props.hideMenu(); }}>
+            New Session!
+          </Button>
+          <h2>My Sessions</h2>
+          <p>Session 1</p>
+          <p>Session 2</p>
+          <p>Session 3</p>
+        </ButtonGroup>
+      </ReactModal>
+
+      <ReactModal isOpen={props.createSessionVisible}
+        contentLabel="Detail Modal"
+        shouldCloseOnOverlayClick={props.createSessionVisible}
         >
           <Button onClick={props.hideCreateSession}>X</Button>
           <CreateSessionDetail
@@ -35,7 +51,6 @@ const Menu = (props) => {
             hideCreateSession={props.hideCreateSession}
           />
         </ReactModal>
-      </ReactModal>
     </div>
   )
 }

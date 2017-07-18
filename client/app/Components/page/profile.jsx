@@ -15,7 +15,20 @@ const ProfilePage = (props) => {
   return (
     <div>
       <h1><a href='/main'>BrainStorm</a></h1>
-      <Menu />
+      <Menu showCreateSession={props.showCreateSession}
+            hideCreateSession={props.hideCreateSession}
+            createSessionVisible={props.createSessionVisible}
+            currentNode={props.currentNode}
+            setNode={props.setNode}
+            updateNode={props.updateNode}
+            addComment={props.addComment}
+            thunkCreateSession={props.thunkCreateSession}
+            showMenu={props.showMenu}
+            hideMenu={props.hideMenu}
+            menuVisible={props.menuVisible}
+            clearComments={props.clearComments}
+            user={props.user}
+            hideDetail={props.hideDetail}/>
       <h2>Welcome, you genius you!</h2>
       <Profile history={props.history} user={props.user}/>
       <MySessions />
