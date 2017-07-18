@@ -5,6 +5,7 @@ class NodeDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
+    this.props.clearComments();
     this.props.thunkCreateSession(e.target.title.value, e.target.text.value, this.props.user.userId);
     this.props.hideDetail();
   }
@@ -13,7 +14,7 @@ class NodeDetail extends React.Component {
     return (
       <div>
         <h2>Start a Sesh</h2>
-        <Form horizontal>
+        <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle">
             <Col componentClass={ControlLabel} sm={2}>
               Session Title:

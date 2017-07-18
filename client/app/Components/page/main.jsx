@@ -34,6 +34,7 @@ const MainPage = (props) => {
             thunkUpVote={props.thunkUpVote}
             thunkDownVote={props.thunkDownVote}
             thunkCreateSession={props.thunkCreateSession}
+            clearComments={props.clearComments}
           />
     </div>
   )

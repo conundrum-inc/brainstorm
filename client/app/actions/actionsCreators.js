@@ -34,7 +34,14 @@ export function editComment(comment) { //comment will be an object with properti
   }
 }
 
-export function updateSession(comments) {
+export function clearComments() {
+  console.log("Comments Cleared");
+  return {
+    type: 'CLEAR_COMMENTS'
+  }
+}
+
+export function updateSession(sessionId) {
   console.log("Session Changed");
   return {
     type: 'UPDATE_SESSION',
@@ -118,7 +125,7 @@ export function updateNode(node) {
 export function thunkUpVote(userId, commentId) {
   return function(dispatch) {
     return axiosCall.UpVote(userId, commentId).then(
-      (comment) => { 
+      (comment) => {
         dispatch(editComment(comment.data))
       }
     )
@@ -176,7 +183,11 @@ export function thunkEditComment(commentId, title, text) {
 export function thunkCreateSession(title, text, userId) {
   return function(dispatch) {
     return axiosCall.CreateSession(title, text, userId).then(
-      comment => dispatch(updateSession(comment))
+      (comment) => {
+        console.log('comment in thunkCreateSession', comment.data.session_id)
+        dispatch(updateSession(comment.data.session_id))
+        dispatch(addComment(comment.data))
+      }
     )
   }
 }
