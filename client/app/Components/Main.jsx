@@ -29,10 +29,12 @@ class Main extends React.Component {
                  updateNode={this.props.updateNode}
                  addComment={this.props.addComment}
                  thunkCreateSession={this.props.thunkCreateSession}
+                 showMenu={this.props.showMenu}
+                 hideMenu={this.props.hideMenu}
+                 menuVisible={this.props.menuVisible}
                  clearComments={this.props.clearComments}
                  user={this.props.user}
                  hideDetail={this.props.hideDetail}
-
         />
         <Session showDetail={this.props.showDetail}
                  hideDetail={this.props.hideDetail}

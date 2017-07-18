@@ -89,6 +89,19 @@ export function hideDetail() {
   }
 }
 
+export function showMenu() {
+  console.log('showing menu');
+  return {
+    type: 'SHOW_MENU'
+  }
+}
+
+export function hideMenu() {
+  return {
+    type: 'HIDE_MENU'
+  }
+}
+
 
 //test action for d3-redux integration
 export function addNode(node) {

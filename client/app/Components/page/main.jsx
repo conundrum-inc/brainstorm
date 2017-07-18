@@ -34,6 +34,9 @@ const MainPage = (props) => {
             thunkUpVote={props.thunkUpVote}
             thunkDownVote={props.thunkDownVote}
             thunkCreateSession={props.thunkCreateSession}
+            showMenu={props.showMenu}
+            hideMenu={props.hideMenu}
+            menuVisible={props.menuVisible}
             clearComments={props.clearComments}
           />
     </div>
@@ -45,6 +48,7 @@ function mapStateToProps(state) {
     comments: state.comments,
     createSessionVisible: state.createSessionVisible,
     detailViewVisible: state.detailViewVisible,
+    menuVisible: state.menuVisible,
     nodes: state.nodes,
     links: state.links,
     currentNode: state.currentNode,
