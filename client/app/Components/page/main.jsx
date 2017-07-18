@@ -33,6 +33,7 @@ const MainPage = (props) => {
             user={props.user}
             thunkUpVote={props.thunkUpVote}
             thunkDownVote={props.thunkDownVote}
+            thunkCreateSession={props.thunkCreateSession}
           />
     </div>
   )
