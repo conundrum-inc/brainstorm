@@ -12,7 +12,9 @@ export const buildEmailArray = (emailString) => {
       }
     }
   }
-  array.push(address);
+  if (address !== '') {
+    array.push(address); 
+  }
 
   return array;
 }
