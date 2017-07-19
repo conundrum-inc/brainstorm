@@ -24,8 +24,14 @@ class Main extends React.Component {
     return (
       <div>
         <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
-        <img src="http://i.imgur.com/NErSVt4.png" className="menu-button" onClick={() => this.props.showMenu()} width="20px" height="20px"/>
-        <button className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</button>
+        <Button className="menu-button">
+          <img src="http://i.imgur.com/NErSVt4.png"
+               onClick={() => this.props.showMenu()}
+               width="20px"
+               height="20px"
+          />
+        </Button>
+        <Button className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</Button>
 
         <ReactModal isOpen={this.props.inviteDetailVisible}
                     contentLabel="Invite Detail Modal"
