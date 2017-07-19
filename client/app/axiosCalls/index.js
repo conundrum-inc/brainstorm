@@ -56,6 +56,14 @@ export function fetchSession(sessionId) {
   });
 }
 
+export function inviteUsers(emailArray, sessionId) {
+  console.log('inside inviteUsers axios call!')
+  return axios.post('/addUserToSession', {
+    emails: emailArray,
+    session_id: sessionId
+  })
+}
+
 export function login() {
   return axios.get('/getUser');
 }
