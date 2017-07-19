@@ -3,6 +3,8 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { hideInviteDetail } from '../actions/actionsCreators';
+import { buildEmailArray } from '../helpers.js'
+import { inviteUsers } from '../axiosCalls'
 
 import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
@@ -11,6 +13,8 @@ class InviteDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
+    var array = buildEmailArray(e.target.emails.value);
+    inviteUsers(array, this.props.session.sessionId);
     this.props.hideInviteDetail();
   }
 
