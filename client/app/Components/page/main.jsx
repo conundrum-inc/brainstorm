@@ -11,7 +11,6 @@ import Main from '../Main.jsx';
 
 const MainPage = (props) => {
   // props.thunkAddComment('123', '456', '789', 'title', 'this is text');
-  console.log('props in main', props)
   return (
     <div>
       <Main history={props.history}
