@@ -21,7 +21,7 @@ export function downVote(score, commentId) {
 }
 
 export function addComment(comment) { //comment will be an object with properties parent_id, children, creator_id, session_id, title, text, upvotes, downvotes, score
-  // console.log("Comment Added");
+  console.log("Comment Added - SOCKET TEST");
   return {
     type: 'ADD_COMMENT',
     comment

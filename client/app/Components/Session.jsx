@@ -19,6 +19,7 @@ class Session extends React.Component {
 
     socket.on('socket comment', (data) => {
       console.log('data from socket', data)
+      props.addComment(data);
     })
   }
 
@@ -31,7 +32,7 @@ class Session extends React.Component {
                     shouldCloseOnOverlayClick={this.props.detailViewVisible}
         >
           <Button onClick={this.props.hideDetail}>X</Button>
-          <NodeDetail addComment={this.props.addComment}
+          <NodeDetail thunkAddComment={this.props.thunkAddComment}
                       currentNode={this.props.currentNode}
                       setNode={this.props.setNode}
                       updateNode={this.props.updateNode}
@@ -40,6 +41,7 @@ class Session extends React.Component {
                       thunkUpVote={this.props.thunkUpVote}
                       thunkDownVote={this.props.thunkDownVote}
                       downvote={this.props.downvote}
+
           />
         </ReactModal>
         <Graph comments={this.props.comments}
