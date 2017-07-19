@@ -18,5 +18,13 @@
   margin-right: auto;
 }
 
+.invite-button {
+  float: right;
+  margin-right: 50px;
+}
 
+.menu-button {
+  float: left;
+  margin-left: 50px;
+}
 /* JB: just messing around with the css properties for the login page */
