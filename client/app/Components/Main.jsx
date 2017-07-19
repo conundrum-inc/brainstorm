@@ -23,7 +23,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <h1><a href='/main'>BrainStorm</a></h1>
+        <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
         <img src="http://i.imgur.com/NErSVt4.png" className="menu-button" onClick={() => this.props.showMenu()} width="20px" height="20px"/>
         <button className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</button>
 
