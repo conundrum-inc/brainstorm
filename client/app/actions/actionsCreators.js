@@ -144,6 +144,7 @@ export function thunkUpVote(userId, commentId) {
   return function(dispatch) {
     return axiosCall.UpVote(userId, commentId).then(
       (comment) => {
+        socket.emit('upvote', comment.data)
         dispatch(editComment(comment.data))
       }
     )
@@ -153,7 +154,10 @@ export function thunkUpVote(userId, commentId) {
 export function thunkDownVote(userId, commentId) {
   return function(dispatch) {
     return axiosCall.DownVote(userId, commentId).then(
-      comment => dispatch(editComment(comment.data))
+      (comment) => {
+        socket.emit('downvote', comment.data)
+        dispatch(editComment(comment.data))
+      }
     )
   }
 }

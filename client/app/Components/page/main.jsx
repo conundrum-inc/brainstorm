@@ -35,6 +35,7 @@ const MainPage = (props) => {
             user={props.user}
             thunkUpVote={props.thunkUpVote}
             thunkDownVote={props.thunkDownVote}
+            editComment={props.editComment}
             thunkCreateSession={props.thunkCreateSession}
             showMenu={props.showMenu}
             hideMenu={props.hideMenu}
