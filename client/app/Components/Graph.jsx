@@ -91,8 +91,12 @@ class Graph extends React.Component {
 
   handleClick(node) {
     console.log('clicked!')
-    this.props.setNode(node);
-    this.props.showDetail();
+    if (node.key === '101') {
+      this.props.showCreateSession();
+    } else {
+      this.props.setNode(node);
+      this.props.showDetail();
+    }
   }
 
   render() {

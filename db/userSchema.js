@@ -8,7 +8,8 @@ var User = mongoose.Schema({
   email: { type: String },
   created_sessions: [],
   accessible_sessions: [], // referes to Session ids
-  comments: [] // refers to Comment ids
+  comments: [], // refers to Comment ids
+  new_sessions: []
 });
 
 module.exports = mongoose.model('User', User);

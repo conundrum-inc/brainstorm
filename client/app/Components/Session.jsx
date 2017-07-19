@@ -21,6 +21,14 @@ class Session extends React.Component {
       console.log('data from socket', data)
       props.addComment(data);
     })
+    socket.on('upvoted comment', (data) => {
+      console.log('upvoted comment from socket', data)
+      props.editComment(data);
+    })
+    socket.on('downvoted comment', (data) => {
+      console.log('downvoted comment from socket', data)
+      props.editComment(data);
+    })
   }
 
 
@@ -47,6 +55,7 @@ class Session extends React.Component {
         <Graph comments={this.props.comments}
                setNode={this.props.setNode}
                showDetail={this.props.showDetail}
+               showCreateSession={this.props.showCreateSession}
         />
 
       </div>

@@ -2,8 +2,10 @@ import React from 'react';
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ReactModal from 'react-modal';
 import Menu from './Menu.jsx';
 import Session from './Session.jsx';
+import InviteDetail from './InviteDetail.jsx'
 import { LOGOUT_PAGE_ROUTE } from '../routes.js';
 
 class Main extends React.Component {
@@ -16,7 +18,6 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    console.log('props test in Main: ', this.props)
   }
 
   render() {
@@ -24,6 +25,16 @@ class Main extends React.Component {
       <div>
         <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
         <img src="http://i.imgur.com/NErSVt4.png" className="menu-button" onClick={() => this.props.showMenu()} width="20px" height="20px"/>
+        <button className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</button>
+
+        <ReactModal isOpen={this.props.inviteDetailVisible}
+                    contentLabel="Invite Detail Modal"
+                    shouldCloseOnOverlayClick={this.props.inviteDetailVisible}
+        >
+          <Button onClick={ () => this.props.hideInviteDetail() }>X</Button>
+          <InviteDetail />
+        </ReactModal>
+
         <Menu    showCreateSession={this.props.showCreateSession}
                  hideCreateSession={this.props.hideCreateSession}
                  createSessionVisible={this.props.createSessionVisible}
@@ -53,8 +64,10 @@ class Main extends React.Component {
                  addComment={this.props.addComment}
                  thunkUpVote={this.props.thunkUpVote}
                  thunkDownVote={this.props.thunkDownVote}
+                 editComment={this.props.editComment}
                  setNode={this.props.setNode}
                  currentNode={this.props.currentNode}
+                 showCreateSession={this.props.showCreateSession}
         />
       </div>
     )

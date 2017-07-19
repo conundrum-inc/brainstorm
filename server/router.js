@@ -46,7 +46,50 @@ router.route('/session')
     });
   })
 
-// create new comment
+  // modify accessible sessions for an invited user
+
+  router.route('/addUserToSession')
+    .post(function(req, res){
+      console.log('req.body', req.body);
+      var emails = req.body.emails;
+      var sessionId = req.body.session_id;
+      for (var email of emails) {
+        User.find({ email: email }, (err, user) => {
+          if (err) {
+            console.log('error in accessible sessions route', err)
+          } else {
+            if(!user.accessible_sessions.includes(sessionId)) {
+              user.accessible_sessions.push(sessionId);
+              user.new_sessions.push(sessionId);
+              user.save();
+              console.log('session permissions saved!')
+            } else {
+              console.log('user already has permission for this session')
+            }
+            res.sendStatus(201);
+          }
+        })
+      }
+    })
+
+  // change status of new_sessions
+
+  router.route('/newSessionStatus')
+    .post(function(req, res) {
+      var id = req.body.id //userId based on state
+
+      User.find({ _id: id }, (err, user) => {
+        if (err) {
+          console.log('error in changeNewSessionStatus', err);
+        } else {
+          user.new_sessions = [];
+          user.save();
+          console.log('new sessions array reset');
+        }
+      })
+    });
+
+// create new comment & retrieve a specific comment
 
 router.route('/comment')
   .post(function(req, res) {
@@ -95,7 +138,7 @@ router.route('/comment')
   })
   .get(function(req, res) {
     console.log('req.query.id', req.query.id)
-    var commentId = req.query.id; // req.query needs to be should be comment_id ( is it called req.query or req.params? )
+    var commentId = req.query.id; // req.query should be comment id
     helpers.findOne({ _id: commentId }, (err, comment) => {
       if (err) {
         console.log('err in /comment get function')

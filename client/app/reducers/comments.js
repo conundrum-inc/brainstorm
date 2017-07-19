@@ -18,7 +18,7 @@ function comments(state = commentsDummyData, action) {
       ]
 
     case 'CLEAR_COMMENTS':
-      console.log("Comments cleared reducer")
+      console.log("Comments cleared!")
       return [] // clears comments from state
 
     default:

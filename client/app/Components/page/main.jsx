@@ -11,7 +11,6 @@ import Main from '../Main.jsx';
 
 const MainPage = (props) => {
   // props.thunkAddComment('123', '456', '789', 'title', 'this is text');
-
   return (
     <div>
       <Main history={props.history}
@@ -35,11 +34,15 @@ const MainPage = (props) => {
             user={props.user}
             thunkUpVote={props.thunkUpVote}
             thunkDownVote={props.thunkDownVote}
+            editComment={props.editComment}
             thunkCreateSession={props.thunkCreateSession}
             showMenu={props.showMenu}
             hideMenu={props.hideMenu}
             menuVisible={props.menuVisible}
             clearComments={props.clearComments}
+            inviteDetailVisible={props.inviteDetailVisible}
+            showInviteDetail={props.showInviteDetail}
+            hideInviteDetail={props.hideInviteDetail}
           />
     </div>
   )
@@ -50,6 +53,7 @@ function mapStateToProps(state) {
     comments: state.comments,
     createSessionVisible: state.createSessionVisible,
     detailViewVisible: state.detailViewVisible,
+    inviteDetailVisible: state.inviteDetailVisible,
     menuVisible: state.menuVisible,
     nodes: state.nodes,
     links: state.links,
