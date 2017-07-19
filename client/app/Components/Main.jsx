@@ -53,6 +53,7 @@ class Main extends React.Component {
                  addComment={this.props.addComment}
                  thunkUpVote={this.props.thunkUpVote}
                  thunkDownVote={this.props.thunkDownVote}
+                 editComment={this.props.editComment}
                  setNode={this.props.setNode}
                  currentNode={this.props.currentNode}
         />
