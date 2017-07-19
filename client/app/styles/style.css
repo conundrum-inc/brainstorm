@@ -1,11 +1,21 @@
 #login-container {
   margin-top: 50px;
-  width: 20%;
+  width: 40%;
+  padding: 5px;
   border-style: solid;
   border-color: black;
   border-width: 2px;
   background-color: #e0ebfc;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#title {
+  color: Red;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* JB: just messing around with the css properties for the login page */
-

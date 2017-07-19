@@ -14,7 +14,7 @@ const ProfilePage = (props) => {
   console.log('ProfilePage props: ', props);
   return (
     <div>
-      <h1><a href='/main'>BrainStorm</a></h1>
+      <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
       <Menu showCreateSession={props.showCreateSession}
             hideCreateSession={props.hideCreateSession}
             createSessionVisible={props.createSessionVisible}

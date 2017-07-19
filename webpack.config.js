@@ -11,7 +11,11 @@ var config = {
     filename: 'bundle.js'
   },
   module : {
-    loaders : [
+    rules: [
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
       {
         test : /\.js?/,
         include : APP_DIR,

@@ -5,8 +5,10 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { Provider } from 'react-redux';
 import axios from 'axios';
-import store from './store'
-import { authenticate } from './axiosCalls'
+import store from './store';
+import { authenticate } from './axiosCalls';
+import css from './styles/style.css';
+
 
 // import Main from './Components/Main';
 
