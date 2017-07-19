@@ -19,7 +19,6 @@ class InviteDetail extends React.Component {
   }
 
   render() {
-    console.log('props in inviteDetail', this.props)
     return (
       <div>
         <h2>Add a friend to your session!</h2>

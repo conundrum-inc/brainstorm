@@ -18,11 +18,9 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    console.log('props test in Main: ', this.props)
   }
 
   render() {
-    console.log('props in main inviteDetailVisible', this.props.inviteDetailVisible)
     return (
       <div>
         <h1><a href='/main'>BrainStorm</a></h1>

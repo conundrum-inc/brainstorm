@@ -18,8 +18,8 @@ export function commentsToNodes(comments) {
                  }
       nodes.nodes.push(node);
     } else {
-      console.log('comments[i]: ', comments[i])
-      console.log('comments[i].score: ', comments[i].score)
+      // console.log('comments[i]: ', comments[i])
+      // console.log('comments[i].score: ', comments[i].score)
       var node = { key: comments[i]._id,
                    size: 20 + ( 5 * comments[i].score ),
                    x: 20,
