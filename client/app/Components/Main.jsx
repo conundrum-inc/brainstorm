@@ -53,6 +53,7 @@ class Main extends React.Component {
                  addLink={this.props.addLink}
                  detailViewVisible={this.props.detailViewVisible}
                  user={this.props.user}
+                 thunkAddComment={this.props.thunkAddComment}
                  addComment={this.props.addComment}
                  thunkUpVote={this.props.thunkUpVote}
                  thunkDownVote={this.props.thunkDownVote}

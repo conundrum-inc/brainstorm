@@ -139,7 +139,7 @@ io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('new comment', function(data){
     console.log('data received by socket', data)
-    socket.broadcast.emit('socket comment', data);
+    io.sockets.emit('socket comment', data);
   })
   socket.on('disconnect', function(){
     console.log('user disconnected');

@@ -15,7 +15,8 @@ const MainPage = (props) => {
   return (
     <div>
       <Main history={props.history}
-            addComment={props.thunkAddComment}
+            thunkAddComment={props.thunkAddComment}
+            addComment={props.addComment}
             addNode={props.addNode}
             addLink={props.addLink}
             updateNode={props.updateNode}

@@ -25,7 +25,7 @@ class NodeDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
-    this.props.addComment(this.props.user.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
+    this.props.thunkAddComment(this.props.user.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
     this.props.hideDetail();
   }
 
