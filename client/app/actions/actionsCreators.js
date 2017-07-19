@@ -94,6 +94,18 @@ export function hideDetail() {
   }
 }
 
+export function showInviteDetail() {
+  return {
+    type: 'SHOW_INVITE_DETAIL'
+  }
+}
+
+export function hideInviteDetail() {
+  return {
+    type: 'HIDE_INVITE_DETAIL'
+  }
+}
+
 export function showMenu() {
   console.log('showing menu');
   return {
