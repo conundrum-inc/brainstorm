@@ -55,6 +55,7 @@ class Session extends React.Component {
         <Graph comments={this.props.comments}
                setNode={this.props.setNode}
                showDetail={this.props.showDetail}
+               showCreateSession={this.props.showCreateSession}
         />
 
       </div>

@@ -24,6 +24,7 @@ class Main extends React.Component {
       <div>
         <h1><a href='/main'>BrainStorm</a></h1>
         <img src="http://i.imgur.com/NErSVt4.png" className="menu-button" onClick={() => this.props.showMenu()} width="20px" height="20px"/>
+        <button className="invite-button">Invite!</button>
         <Menu    showCreateSession={this.props.showCreateSession}
                  hideCreateSession={this.props.hideCreateSession}
                  createSessionVisible={this.props.createSessionVisible}
@@ -56,6 +57,7 @@ class Main extends React.Component {
                  editComment={this.props.editComment}
                  setNode={this.props.setNode}
                  currentNode={this.props.currentNode}
+                 showCreateSession={this.props.showCreateSession}
         />
       </div>
     )
