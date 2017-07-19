@@ -51,23 +51,25 @@ router.route('/session')
   router.route('/addUserToSession')
     .post(function(req, res){
       console.log('req.body', req.body);
-      var email = req.body.email;
+      var emails = req.body.emails;
       var sessionId = req.body.session_id;
-
-      User.find({email: email}, (err, user) => {
-        if (err) {
-          console.log('error in accessible sessions route', err)
-        } else {
-          if(!user.accessible_sessions.includes(sessionId)) {
-            user.accessible_sessions.push(sessionId);
-            user.new_sessions.push(sessionId);
-            user.save();
-            console.log('session permissions saved!')
+      for (var email of emails) {
+        User.find({ email: email }, (err, user) => {
+          if (err) {
+            console.log('error in accessible sessions route', err)
           } else {
-            console.log('user already has permission for this session')
+            if(!user.accessible_sessions.includes(sessionId)) {
+              user.accessible_sessions.push(sessionId);
+              user.new_sessions.push(sessionId);
+              user.save();
+              console.log('session permissions saved!')
+            } else {
+              console.log('user already has permission for this session')
+            }
+            res.sendStatus(201);
           }
-        }
-      })
+        })
+      }
     })
 
   // change status of new_sessions
@@ -82,6 +84,7 @@ router.route('/session')
         } else {
           user.new_sessions = [];
           user.save();
+          console.log('new sessions array reset');
         }
       })
     });
