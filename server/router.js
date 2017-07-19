@@ -53,8 +53,11 @@ router.route('/session')
       console.log('req.body', req.body);
       var emails = req.body.emails;
       var sessionId = req.body.session_id;
+      console.log('emails', emails)
+      console.log('sessionId', sessionId)
       for (var email of emails) {
-        User.find({ email: email }, (err, user) => {
+        User.findOne({ email: email }, (err, user) => {
+          console.log('USER', user)
           if (err) {
             console.log('error in accessible sessions route', err)
           } else {
@@ -66,7 +69,6 @@ router.route('/session')
             } else {
               console.log('user already has permission for this session')
             }
-            res.sendStatus(201);
           }
         })
       }
@@ -82,7 +84,7 @@ router.route('/session')
         if (err) {
           console.log('error in changeNewSessionStatus', err);
         } else {
-          user.new_sessions = [];
+          user[0].new_sessions = [];
           user.save();
           console.log('new sessions array reset');
         }
