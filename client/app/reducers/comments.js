@@ -21,6 +21,10 @@ function comments(state = commentsDummyData, action) {
       console.log("Comments cleared!")
       return [] // clears comments from state
 
+    case 'UPDATE_COMMENTS':
+      console.log("Comments updated!")
+      return action.comments.data // clears comments from state
+
     default:
       return state;
   }

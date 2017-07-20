@@ -50,6 +50,13 @@ export function updateSession(sessionId) {
   }
 }
 
+export function updateComments(comments) {
+  return {
+    type: 'UPDATE_COMMENTS',
+    comments
+  }
+}
+
 export function updateUserCreatedSessions(sessionId) {
   console.log("User created sessions updated");
   return {
@@ -245,8 +252,12 @@ export function thunkCreateSession(title, text, userId) {
 
 export function thunkUpdateSession(sessionId) {
   return function(dispatch) {
-    return axiosCall.CreateSession(sessionId).then(
-      comments => dispatch(updateSession(comments))
+    return axiosCall.GetSession(sessionId).then(
+      (comments) => {
+        console.log('in thunkUpdateSession')
+        dispatch(updateSession(sessionId))
+        dispatch(updateComments(comments))
+      }
     )
   }
 }
