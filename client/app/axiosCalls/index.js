@@ -48,7 +48,7 @@ export function CreateSession(title, text, userId) { // comment will be an objec
   });
 }
 
-export function fetchSession(sessionId) {
+export function GetSession(sessionId) {
   return axios.get('/session', {
     params: {
       id: sessionId
