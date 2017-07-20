@@ -41,7 +41,7 @@ class Session extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="session">
         <ReactModal isOpen={this.props.detailViewVisible}
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={this.props.detailViewVisible}
@@ -57,6 +57,7 @@ class Session extends React.Component {
                       thunkUpVote={this.props.thunkUpVote}
                       thunkDownVote={this.props.thunkDownVote}
                       downvote={this.props.downvote}
+                      session={this.props.session}
 
           />
         </ReactModal>

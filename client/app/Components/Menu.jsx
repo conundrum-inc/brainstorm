@@ -18,13 +18,15 @@ const Menu = (props) => {
                   className="ReactModal__Content--after-open--menu"
       >
         <Button className="menu-exit-btn" onClick={props.hideMenu}>X</Button>
+        <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image} /></a>
+        <a href={PROFILE_PAGE_ROUTE}><h3>{props.user.name}</h3></a>
         <div className="menu-modal-content">
-          <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image} /></a>
-          <a href={PROFILE_PAGE_ROUTE}><h3>{props.user.name}</h3></a>
           <h2>My Sessions</h2>
-          <p>Session 1</p>
-          <p>Session 2</p>
-          <p>Session 3: a really long session name to test the auto width css property </p>
+          <div>
+            {props.user.created_sessions.map((comment) => {
+              return <p key={comment._id} className="session" >{comment.title}</p>
+            })}
+          </div>
           <Button bsStyle="info"
             className="add-comment"
             onClick={() => { props.showCreateSession(); props.hideMenu(); }}>

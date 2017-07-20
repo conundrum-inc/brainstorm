@@ -1,4 +1,4 @@
-function user(state = {userId: null, name: null, image: null, email: null}, action) {
+function user(state = {userId: null, name: null, image: null, email: null, created_sessions: [], accessible_sessions: [], comments: []}, action) {
   switch (action.type) {
     case 'ADD_USER':
       return {
@@ -16,9 +16,9 @@ function user(state = {userId: null, name: null, image: null, email: null}, acti
         name: null,
         image: null,
         email: null,
-        created_sessions: null,
-        accessible_sessions: null,
-        comments: null
+        created_sessions: [],
+        accessible_sessions: [],
+        comments: []
       };
     default:
       return state;

@@ -36,12 +36,12 @@ app.use(passport.session());
 //serialize & deserialize user
 
 passport.serializeUser(function(user, done) {
-  console.log('SERIALIZE', user)
+  console.log('serialize', user)
   done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  console.log('DESERIALIZE', id)
+  console.log('deserialize', id)
   User.findById(id, function(err, user) {
     done(err, user);
   });
@@ -54,21 +54,18 @@ passport.use(new GoogleStrategy({
   callbackURL: '/auth/google/callback'
 },
 function(token, tokenSecret, profile, done) {
-  console.log('profile', profile);
-  console.log('email', profile.emails[0].value);
   User.find({ google_id: profile.id }, (err, user) => {
-    console.log('user from google strategy', user);
+    
     if (user.length === 0) {
-      User.create({google_id: profile.id, displayName: profile.displayName, image: profile._json.image.url, email: profile.emails[0].value, created_sessions: [], accessible_sessions: [], comments: []}, (err, user) => {
+      User.create({google_id: profile.id, displayName: profile.displayName, image: profile._json.image.url, email: profile.emails[0].value, created_sessions: [], accessible_sessions: [], comments: [], new_sessions: []}, (err, user) => {
         if (err) {
           console.log('error in insert user', err);
         } else {
-          console.log('user saved!');
-          console.log('user from google strategy', user);
+          console.log('user saved from google strategy', user);
           return done(err, user);
         }
       })
-    } else{
+    } else {
       return done(err, user[0]);
     }
   });
@@ -85,19 +82,19 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('req.user in google auth callback function', req.user);
-    console.log('SESSION', req.session.passport.user);
+    console.log('req.session.passport.user', req.session.passport.user);
     res.redirect('/', 200, req.user);
   });
 
 // send user to front end based on session
 
 app.get ('/getUser', function(req, res) {
-  console.log(req.session);
+  
   User.find({ _id: req.session.passport.user }, (err, user) => {
     if (err) {
       console.log('error in getUser route', err);
     } else {
-      console.log('get user success!', user)
+      console.log('get user success', user)
       res.json(user);
     }
   })
@@ -106,7 +103,7 @@ app.get ('/getUser', function(req, res) {
 // check for session for react router
 
 app.get('/authenticate', function(req, res) {
-  console.log('in authenticate route', req.session.passport.user);
+  
   if(req.session.passport.user) {
     res.sendStatus(200);
   } else {
@@ -116,7 +113,7 @@ app.get('/authenticate', function(req, res) {
 
 // logout route
 app.get('/logout', function(req, res){
-  console.log('LOGOUT')
+  
   req.logout();
   res.redirect('/login');
 });

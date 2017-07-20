@@ -43,6 +43,7 @@ const MainPage = (props) => {
             inviteDetailVisible={props.inviteDetailVisible}
             showInviteDetail={props.showInviteDetail}
             hideInviteDetail={props.hideInviteDetail}
+            session={props.session}
           />
     </div>
   )

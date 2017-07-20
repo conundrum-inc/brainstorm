@@ -3,7 +3,7 @@ import io from "socket.io-client";
 var socket = io();
 
 export function upVote(score, commentId) {
-  console.log("UPVOTE!");
+  
   return {
     type: 'UPVOTE',
     score,
@@ -12,13 +12,14 @@ export function upVote(score, commentId) {
 }
 
 export function downVote(score, commentId) {
-  console.log("DOWNVOTE");
+  
   return {
     type: 'DOWNVOTE',
     score,
     commentId
   }
 }
+
 
 export function addComment(comment) {
   console.log("Comment Added - SOCKET TEST");
@@ -43,7 +44,7 @@ export function clearComments() {
 }
 
 export function updateSession(sessionId) {
-  console.log("Session Changed");
+  
   return {
     type: 'UPDATE_SESSION',
     sessionId
