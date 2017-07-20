@@ -42,12 +42,12 @@ class NodeDetail extends React.Component {
         })}
         <h2>Add a comment:</h2>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
-          <FormGroup controlId="commentTitle">
+          <FormGroup controlId="commentTitle" >
             <Col componentClass={ControlLabel} sm={2}>
               Title:
             </Col>
             <Col sm={10}>
-              <FormControl type="title" name="title" placeholder="Title" />
+              <FormControl type="title" name="title" placeholder="Title" maxLength="20"/>
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
