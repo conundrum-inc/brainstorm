@@ -32,25 +32,28 @@ class Menu extends React.Component {
         <ReactModal isOpen={this.props.menuVisible}
                     contentLabel="Menu Modal"
                     shouldCloseOnOverlayClick={this.props.menuVisible}
+                    className="ReactModal__Content--after-open--menu"
         >
-          <Button onClick={this.props.hideMenu}>X</Button>
+          <Button className="menu-exit-btn" onClick={this.props.hideMenu}>X</Button>
           <a href={PROFILE_PAGE_ROUTE}><img src={this.props.user.image} /></a>
           <a href={PROFILE_PAGE_ROUTE}><h3>{this.props.user.name}</h3></a>
-          <h4>Sessions</h4>
-          <div>
-            {this.props.user.created_sessions.map((session) => {
-              return <div key={session._id} data-key={session._id} className="session" onClick={this.handleClick.bind(this)}>{session.title} </div>
-            })}
+          <div className="menu-modal-content">
+            <h4>Sessions</h4>
+            <div>
+              {this.props.user.created_sessions.map((comment) => {
+                return <div key={comment._id} data-key={comment._id} className="session" onClick={this.handleClick.bind(this)}>{comment.title} </div>
+              })}
+            </div>
+            <Button bsStyle="info"
+              className="add-comment"
+              onClick={() => { this.props.showCreateSession(); this.props.hideMenu(); }}>
+              New Session!
+            </Button>
+            <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
+              <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
+              Logout
+            </Button>
           </div>
-          <Button bsStyle="info"
-            className="add-comment"
-            onClick={() => { this.props.showCreateSession(); this.props.hideMenu(); }}>
-            New Session!
-          </Button>
-          <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
-            <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
-            Logout
-          </Button>
         </ReactModal>
 
         <ReactModal isOpen={this.props.createSessionVisible}

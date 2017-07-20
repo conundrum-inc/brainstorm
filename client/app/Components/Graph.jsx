@@ -16,9 +16,13 @@ import { width,
 
 import { commentsToNodes } from '../utils.js'
 
+var coords;
+
 class Graph extends React.Component {
 
   componentDidMount() {
+
+    coords = {};
 
     var nodes = commentsToNodes(this.props.comments);
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
@@ -51,11 +55,21 @@ class Graph extends React.Component {
 
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
+    force.on('end', function() {
+      coords = nodes.nodes.map(function(node) {
+        return {'x': node.x,
+                'y': node.y,
+                'key': node.key }
+      })
+    })
+    console.log('nodes: ', nodes.nodes)
   }
 
   componentDidUpdate() {
 
-    var nodes = commentsToNodes(this.props.comments)
+    console.log('current coords: ', coords)
+
+    var nodes = commentsToNodes(this.props.comments, coords)
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
 
     this.d3Graph.selectAll("*").remove();
@@ -86,7 +100,16 @@ class Graph extends React.Component {
     //since d3 mutates them. We'll do this later
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
-
+    force.on('end', function() {
+      console.log('force ended')
+      //grab the current x and y coords of all nodes
+      coords = nodes.nodes.map(function(node) {
+        return {'x': node.x,
+                'y': node.y,
+                'key': node.key }
+      })
+    })
+    console.log('nodes: ', nodes.nodes)
   }
 
   handleClick(node) {
@@ -102,7 +125,7 @@ class Graph extends React.Component {
   render() {
     return (
         <svg  className="session" width="100%" height="100%">
-          <g ref='graph' />
+          <g ref='graph' width="100%" height="100%"/>
         </svg>
       );
   }

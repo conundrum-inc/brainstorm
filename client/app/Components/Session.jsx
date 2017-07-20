@@ -12,6 +12,13 @@ import { click, forceDiagram} from '../../d3/d3helpers.js'
 
 import Graph from './Graph.jsx'
 
+// const modalStyles = {
+//   overlay : {
+//     width: '200px'
+//   }
+// };
+
+
 class Session extends React.Component {
   constructor(props){
     super(props);
@@ -34,10 +41,11 @@ class Session extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="session">
         <ReactModal isOpen={this.props.detailViewVisible}
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={this.props.detailViewVisible}
+                    className="ReactModal__Content--after-open--new-comment"
         >
           <Button onClick={this.props.hideDetail}>X</Button>
           <NodeDetail thunkAddComment={this.props.thunkAddComment}
@@ -49,6 +57,7 @@ class Session extends React.Component {
                       thunkUpVote={this.props.thunkUpVote}
                       thunkDownVote={this.props.thunkDownVote}
                       downvote={this.props.downvote}
+                      session={this.props.session}
 
           />
         </ReactModal>
