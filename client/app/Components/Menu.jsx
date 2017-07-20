@@ -11,7 +11,6 @@ import { PROFILE_PAGE_ROUTE,
 
 const Menu = (props) => {
   // <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image}/></a>
-
   return (
     <div>
       <ReactModal isOpen={props.menuVisible}
@@ -22,9 +21,11 @@ const Menu = (props) => {
         <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image} /></a>
         <a href={PROFILE_PAGE_ROUTE}><h3>{props.user.name}</h3></a>
         <h2>My Sessions</h2>
-        <p>Session 1</p>
-        <p>Session 2</p>
-        <p>Session 3</p>
+        <div>
+          {props.user.created_sessions.map((comment) => {
+            return <p key={comment._id} className="session" >{comment.title}</p>
+          })}
+        </div>
         <Button bsStyle="info"
           className="add-comment"
           onClick={() => { props.showCreateSession(); props.hideMenu(); }}>
