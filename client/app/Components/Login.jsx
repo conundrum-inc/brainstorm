@@ -13,7 +13,7 @@ class Login extends React.Component {
   render() {
    return (
      <div>
-    <h1><a id="title" href='/login'>Welcome to BrainStorm!</a></h1>
+    <h1><a id="welcome" href='/login'>Welcome to BrainStorm!</a></h1>
      <a href="/auth/google">Sign In with Google</a>
      </div>
     )
