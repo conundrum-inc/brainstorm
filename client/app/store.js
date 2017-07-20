@@ -37,7 +37,8 @@ const store = createStore(
 store.subscribe(() => {
   saveState({
     user: store.getState().user,
-    comments: store.getState().comments
+    comments: store.getState().comments,
+    session: store.getState().session
   });
 });
 

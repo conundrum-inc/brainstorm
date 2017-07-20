@@ -1,11 +1,48 @@
 #login-container {
   margin-top: 50px;
-  width: 20%;
+  width: 40%;
+  padding: 5px;
   border-style: solid;
   border-color: black;
   border-width: 2px;
   background-color: #e0ebfc;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* JB: just messing around with the css properties for the login page */
+#title {
+  color: Blue;
+  margin-left: 20px;
+  float: left;
+}
 
+#welcome {
+  color: Blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invite-button {
+  float: right;
+  margin-right: 50px;
+  margin-top: 25px;
+}
+
+.menu-bar {
+  width: 100%;
+  border-bottom: Grey;
+  border-width: 2px;
+}
+
+.menu-button {
+  margin-top: 25px;
+  float: left;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.session {
+  border-top: 2px;
+  border-color: Grey;
+}

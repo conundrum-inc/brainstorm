@@ -25,7 +25,6 @@ export function commentsToNodes(comments, coords) {
           var temp = findIndex(coords, 'key', comments[i].parent_id);
           console.log('current parent: ', temp)
         }
-
       var node = { key: comments[i]._id,
                    size: 20 + ( 5 * comments[i].score ),
                    x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : 500,

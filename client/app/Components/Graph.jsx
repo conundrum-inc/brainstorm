@@ -114,13 +114,17 @@ class Graph extends React.Component {
 
   handleClick(node) {
     console.log('clicked!')
-    this.props.setNode(node);
-    this.props.showDetail();
+    if (node.key === '101') {
+      this.props.showCreateSession();
+    } else {
+      this.props.setNode(node);
+      this.props.showDetail();
+    }
   }
 
   render() {
     return (
-        <svg width="100%" height="100%">
+        <svg  className="session" width="100%" height="100%">
           <g ref='graph' />
         </svg>
       );

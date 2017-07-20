@@ -20,16 +20,17 @@ export function downVote(score, commentId) {
   }
 }
 
-export function addComment(comment) { //comment will be an object with properties parent_id, children, creator_id, session_id, title, text, upvotes, downvotes, score
-  
+
+export function addComment(comment) {
+  console.log("Comment Added - SOCKET TEST");
   return {
     type: 'ADD_COMMENT',
     comment
   }
 }
 
-export function editComment(comment) { //comment will be an object with properties {userid, sessionId, commentId, title, text}
-  
+export function editComment(comment) {
+  console.log("Comment Edited");
   return {
     type: 'EDIT_COMMENT',
     comment
@@ -37,7 +38,6 @@ export function editComment(comment) { //comment will be an object with properti
 }
 
 export function clearComments() {
-  
   return {
     type: 'CLEAR_COMMENTS'
   }
@@ -47,6 +47,14 @@ export function updateSession(sessionId) {
   
   return {
     type: 'UPDATE_SESSION',
+    sessionId
+  }
+}
+
+export function updateUserCreatedSessions(sessionId) {
+  console.log("User created sessions updated");
+  return {
+    type: 'UPDATE_USER_CREATED_SESSIONS',
     sessionId
   }
 }
@@ -94,8 +102,19 @@ export function hideDetail() {
   }
 }
 
+export function showInviteDetail() {
+  return {
+    type: 'SHOW_INVITE_DETAIL'
+  }
+}
+
+export function hideInviteDetail() {
+  return {
+    type: 'HIDE_INVITE_DETAIL'
+  }
+}
+
 export function showMenu() {
-  
   return {
     type: 'SHOW_MENU'
   }
@@ -166,8 +185,19 @@ export function thunkAddUser() {
   return function(dispatch) {
     return axiosCall.login().then(
       (user) => {
-        console.log('user data', user.data)
+        // console.log('user data in thunkAddUser', user.data)
         dispatch(addUser(user.data[0]._id, user.data[0].displayName, user.data[0].image, user.data[0].email, user.data[0].created_sessions, user.data[0].accessible_sessions, user.data[0].comments)) // CHECK THESE USER VALUES!!!!!!
+      }
+    )
+  }
+}
+
+export function thunkUpdateUser(userId) {
+  return function(dispatch) {
+    return axiosCall.findUser(userId).then(
+      (user) => {
+        // console.log('user data in thunkUpdateUser', user.data)
+        dispatch(addUser(user.data._id, user.data.displayName, user.data.image, user.data.email, user.data.created_sessions, user.data.accessible_sessions, user.data.comments)) // CHECK THESE USER VALUES!!!!!!
       }
     )
   }
@@ -206,9 +236,9 @@ export function thunkCreateSession(title, text, userId) {
   return function(dispatch) {
     return axiosCall.CreateSession(title, text, userId).then(
       (comment) => {
-        console.log('comment in thunkCreateSession', comment.data.session_id)
         dispatch(updateSession(comment.data.session_id))
         dispatch(addComment(comment.data))
+        dispatch(thunkUpdateUser(userId))
       }
     )
   }
