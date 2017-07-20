@@ -3,7 +3,7 @@ import io from "socket.io-client";
 var socket = io();
 
 export function upVote(score, commentId) {
-  console.log("UPVOTE!");
+  
   return {
     type: 'UPVOTE',
     score,
@@ -12,7 +12,7 @@ export function upVote(score, commentId) {
 }
 
 export function downVote(score, commentId) {
-  console.log("DOWNVOTE");
+  
   return {
     type: 'DOWNVOTE',
     score,
@@ -21,7 +21,7 @@ export function downVote(score, commentId) {
 }
 
 export function addComment(comment) { //comment will be an object with properties parent_id, children, creator_id, session_id, title, text, upvotes, downvotes, score
-  console.log("Comment Added - SOCKET TEST");
+  
   return {
     type: 'ADD_COMMENT',
     comment
@@ -29,7 +29,7 @@ export function addComment(comment) { //comment will be an object with propertie
 }
 
 export function editComment(comment) { //comment will be an object with properties {userid, sessionId, commentId, title, text}
-  console.log("Comment Edited");
+  
   return {
     type: 'EDIT_COMMENT',
     comment
@@ -37,14 +37,14 @@ export function editComment(comment) { //comment will be an object with properti
 }
 
 export function clearComments() {
-  console.log("Comments Cleared");
+  
   return {
     type: 'CLEAR_COMMENTS'
   }
 }
 
 export function updateSession(sessionId) {
-  console.log("Session Changed");
+  
   return {
     type: 'UPDATE_SESSION',
     sessionId
@@ -95,7 +95,7 @@ export function hideDetail() {
 }
 
 export function showMenu() {
-  console.log('showing menu');
+  
   return {
     type: 'SHOW_MENU'
   }
@@ -164,7 +164,6 @@ export function thunkDownVote(userId, commentId) {
 
 export function thunkAddUser() {
   return function(dispatch) {
-    console.log('hey in the thunk!')
     return axiosCall.login().then(
       (user) => {
         console.log('user data', user.data)

@@ -6,23 +6,6 @@ var socket = io();
 
 class NodeDetail extends React.Component {
 
-  addChild() {
-    console.log('adding node')
-    const nodes = this.props.nodes;
-    const links = this.props.links;
-
-    const lastKey = nodes[nodes.length - 1].key;
-    const lastLinkKey = links[links.length-1] ? links[links.length - 1].key : 0
-
-    const newNode = {key: lastKey+1, size:20, x: 20, y: 20}
-    const newLink = {source: nodes.length, target: this.props.currentNode.index, key: lastLinkKey+1, size: 2}
-
-    this.props.addNode(newNode)
-    this.props.addLink(newLink)
-
-  }
-
-
   onSubmit(e, props) {
     e.preventDefault();
     this.props.thunkAddComment(this.props.user.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);

@@ -34,7 +34,7 @@ class Session extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="session">
         <ReactModal isOpen={this.props.detailViewVisible}
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={this.props.detailViewVisible}

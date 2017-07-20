@@ -10,7 +10,7 @@ import { PROFILE_PAGE_ROUTE,
        } from '../routes.js'
 
 const Menu = (props) => {
-  console.log('props in menu render', props);
+  
   // <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image}/></a>
 
   return (
