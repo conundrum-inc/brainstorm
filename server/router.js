@@ -6,6 +6,7 @@ var config = require('../db/config'); // run mongod
 var helpers = require('../db/helpers.js');
 var User = require('../db/userSchema');
 var Comment = require('../db/commentSchema');
+var Session = require('../db/sessionSchema');
 var GOOGLE_CLIENT_ID = require('../auth-config.js').GOOGLE_CLIENT_ID;
 var GOOGLE_CLIENT_SECRET = require('../auth-config.js').GOOGLE_CLIENT_SECRET;
 
@@ -29,7 +30,6 @@ router.route('/findUser')
 
 router.route('/session')
   .post(function(req, res) {
-    console.log('REQ.BODY', req.body);
     helpers.addSession(req, res)
   })
   .get(function(req, res) {
@@ -53,17 +53,25 @@ router.route('/session')
       console.log('req.body', req.body);
       var emails = req.body.emails;
       var sessionId = req.body.session_id;
+      var session = {};
       console.log('emails', emails)
       console.log('sessionId', sessionId)
+      Session.findOne({ _id: sessionId}, (err, session) => {
+        if (err) {
+          console.log('error finding session', err)
+        } else {
+          session = session;
+        }
+      })
       for (var email of emails) {
         User.findOne({ email: email }, (err, user) => {
           console.log('USER', user)
           if (err) {
             console.log('error in accessible sessions route', err)
           } else {
-            if(!user.accessible_sessions.includes(sessionId)) {
-              user.accessible_sessions.push(sessionId);
-              user.new_sessions.push(sessionId);
+            if(!user.accessible_sessions.includes(session)) {
+              user.accessible_sessions.push(session);
+              user.new_sessions.push(session);
               user.save();
               console.log('session permissions saved!')
             } else {
