@@ -1,14 +1,16 @@
-export function commentsToNodes(comments) {
+export function commentsToNodes(comments, coords) {
+  
   var nodes = {
     nodes: [],
     links: []
   }
   for(var i = 0; i < comments.length; i++) {
+    console.log('i: ', i)
     if (comments[i].parent_id === 'root') {
       var node = { key: comments[i]._id,
                    size: 60,
-                   x: 20,
-                   y: 20,
+                   x: coords ? coords[0]['x'] : 500,
+                   y: coords ? coords[0]['y']: 500,
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,
@@ -18,12 +20,15 @@ export function commentsToNodes(comments) {
                  }
       nodes.nodes.push(node);
     } else {
-      // console.log('comments[i]: ', comments[i])
-      // console.log('comments[i].score: ', comments[i].score)
+        if (coords) {
+          console.log('comments[i].parent_id: ', comments[i].parent_id)
+          var temp = findIndex(coords, 'key', comments[i].parent_id);
+          console.log('current parent: ', temp)
+        }
       var node = { key: comments[i]._id,
                    size: 20 + ( 5 * comments[i].score ),
-                   x: 20,
-                   y: 20,
+                   x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : 500,
+                   y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : 500,
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,
