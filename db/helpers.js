@@ -3,7 +3,11 @@ var User = require('./userSchema');
 var Session = require('./sessionSchema');
 var Comment = require('./commentSchema');
 
-// authentication -- figure out what's needed here from passport
+// search for user
+
+
+
+// authentication
 
 function insertUser(profile) {
   User.create({google_id: profile.id, displayName: profile.displayName, created_sessions: [], accessible_sessions: [], comments: []}, (err, user) => {
@@ -34,7 +38,7 @@ function findOne(params, cb) {
 
 // fetch all comments for a given session
 
-function findAll(session_id, cb) {
+function findAll(session_id) {
   Comment.find({ session_id: session_id }, cb);
 }
 
@@ -146,7 +150,7 @@ function addSession(req, res) {
         if (err) {
           console.log('error in addSessionToUser', err)
         } else {
-          user.created_sessions.push(session._id);
+          user.created_sessions.push(session);
           user.save();
           console.log('session id saved in user array!!')
         }
