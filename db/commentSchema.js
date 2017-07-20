@@ -10,7 +10,8 @@ var Comment = mongoose.Schema({
   text: {type: String},
   upvotes: [], // references User (ids)
   downvotes: [], // references User (ids)
-  score: {type: Number, required: true}
+  score: {type: Number, required: true},
+  timestamp: {type: String, required: true}
 });
 
 module.exports = mongoose.model('Comment', Comment);

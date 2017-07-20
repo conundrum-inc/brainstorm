@@ -80,11 +80,11 @@ router.route('/session')
     .post(function(req, res) {
       var id = req.body.id //userId based on state
 
-      User.find({ _id: id }, (err, user) => {
+      User.findOne({ _id: id }, (err, user) => {
         if (err) {
           console.log('error in changeNewSessionStatus', err);
         } else {
-          user[0].new_sessions = [];
+          user.new_sessions = [];
           user.save();
           console.log('new sessions array reset');
         }
@@ -101,8 +101,9 @@ router.route('/comment')
     var sessionId = req.body.session_id;
     var title = req.body.title;
     var text = req.body.text;
+    var timestamp = new Date();
 
-    helpers.addComment({ creator_id: userId, parent_id: parentId, session_id: sessionId, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 }, (err, comment) => {
+    helpers.addComment({ creator_id: userId, parent_id: parentId, session_id: sessionId, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0, timestamp: timestamp }, (err, comment) => {
         if (err) {
           console.log('error!', err)
         } else {

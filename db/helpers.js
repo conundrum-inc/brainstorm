@@ -135,12 +135,12 @@ function addSession(req, res) {
   var timestamp = new Date();
   console.log('addSession params', creator_id, timestamp, title, text)
 
-  Session.create({creator_id: creator_id, timestamp: timestamp}, (err, session) => {
+  Session.create({creator_id: creator_id, timestamp: timestamp, title: title}, (err, session) => {
     if (err) {
       console.log('error in add session!', err)
     } else {
       //saved!
-      console.log('session saved!');
+      console.log('session saved!', session);
       // add session to user permissions array
       User.findOne({ _id: creator_id}, (err, user) => {
         if (err) {
@@ -152,7 +152,7 @@ function addSession(req, res) {
         }
       })
       // create comment using session id that was just created
-      Comment.create({ creator_id: session.creator_id, parent_id: 'root', session_id: session._id, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0 }, (err, comment) => {
+      Comment.create({ creator_id: session.creator_id, parent_id: 'root', session_id: session._id, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0, timestamp: timestamp }, (err, comment) => {
         if (err) {
           console.log('error!', err)
         } else {
