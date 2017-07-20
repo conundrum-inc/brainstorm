@@ -64,11 +64,25 @@
   margin-left: 20px;
 }
 
+.user-picture {
+  margin-top: 30px;
+  margin-left: 50%;
+  margin-right: 50%;
+  padding-bottom: 30px;
+  align-content: center;
+  text-align: center;
+}
+
+.user-name {
+  text-align: center;
+}
+
 .menu-modal-content {
   margin-left: 40px;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 40px;
   margin-right: 40px;
+  padding-bottom: 40px;
 }
 
 .ReactModal__Content--after-open--new-comment {
