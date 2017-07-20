@@ -8,7 +8,8 @@ class NodeDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
-    this.props.thunkAddComment(this.props.user.userId, this.props.currentNode.key, 1, e.target.title.value, e.target.text.value);
+    console.log('SESSION', this.props.session.sessionId)
+    this.props.thunkAddComment(this.props.user.userId, this.props.currentNode.key, this.props.session.sessionId, e.target.title.value, e.target.text.value);
     this.props.hideDetail();
   }
 

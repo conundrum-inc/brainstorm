@@ -6,7 +6,7 @@ var Comment = require('./commentSchema');
 // search for user
 function findOneUser(req, res) {
   var id = req.query.id;
-  User.findOne({ _id: id}, (err, user) => {
+  User.findOne({ _id: id }, (err, user) => {
     if (err) {
       console.log('error in findUser', err)
     } else {
@@ -23,7 +23,7 @@ function createSession(req, res) {
   var text = req.body.text;
   var timestamp = new Date();
 
-  Session.create({creator_id: creator_id, timestamp: timestamp, title: title}, (err, session) => {
+  Session.create({creator_id: creator_id, timestamp: timestamp, title: title, modified: timestamp}, (err, session) => {
     if (err) {
       console.log('error in add session', err)
     } else {
@@ -122,6 +122,16 @@ function addComment(req, res) {
   var text = req.body.text;
   var timestamp = new Date();
 
+  Session.findOne({_id: sessionId}, (err, session) => {
+    if (err) {
+      console.log('error in session modified', err)
+    } else {
+      session.modified = timestamp;
+      console.log('session modified', session);
+      session.save();
+    }
+  })
+
   Comment.create({ creator_id: userId, parent_id: parentId, session_id: sessionId, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0, timestamp: timestamp }, (err, comment) => {
       if (err) {
         console.log('error!', err)
@@ -177,7 +187,7 @@ function editComment(req, res) {
   var comment_id = req.body.comment_id;
   var title = req.body.title;
   var text = req.body.text;
-  helpers.editComment(comment_id, title, text, (err, comment) => {
+  Comment.findOne({ _id: comment_id }, (err, comment) => {
     if (err) {
       console.log('error in edit', err);
     } else {

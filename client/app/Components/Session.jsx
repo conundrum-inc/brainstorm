@@ -49,6 +49,7 @@ class Session extends React.Component {
                       thunkUpVote={this.props.thunkUpVote}
                       thunkDownVote={this.props.thunkDownVote}
                       downvote={this.props.downvote}
+                      session={this.props.session}
 
           />
         </ReactModal>

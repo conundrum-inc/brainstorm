@@ -73,6 +73,7 @@ class Main extends React.Component {
             setNode={this.props.setNode}
             currentNode={this.props.currentNode}
             showCreateSession={this.props.showCreateSession}
+            session={this.props.session}
           />
       </div>
     )
