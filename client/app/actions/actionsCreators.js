@@ -50,6 +50,14 @@ export function updateSession(sessionId) {
   }
 }
 
+export function updateUserCreatedSessions(sessionId) {
+  console.log("User created sessions updated");
+  return {
+    type: 'UPDATE_USER_CREATED_SESSIONS',
+    sessionId
+  }
+}
+
 export function addUser(userId, name, image, email, created_sessions, accessible_sessions, comments) {
   return {
     type: 'ADD_USER',
@@ -183,6 +191,17 @@ export function thunkAddUser() {
   }
 }
 
+export function thunkUpdateUser(userId) {
+  return function(dispatch) {
+    return axiosCall.findUser(userId).then(
+      (user) => {
+        // console.log('user data in thunkUpdateUser', user.data)
+        dispatch(addUser(user.data._id, user.data.displayName, user.data.image, user.data.email, user.data.created_sessions, user.data.accessible_sessions, user.data.comments)) // CHECK THESE USER VALUES!!!!!!
+      }
+    )
+  }
+}
+
 export function thunkRemoveUser() {
   return function(dispatch) {
     return axiosCall.logout().then(
@@ -218,6 +237,7 @@ export function thunkCreateSession(title, text, userId) {
       (comment) => {
         dispatch(updateSession(comment.data.session_id))
         dispatch(addComment(comment.data))
+        dispatch(thunkUpdateUser(userId))
       }
     )
   }
