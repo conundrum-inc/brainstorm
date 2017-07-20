@@ -1,4 +1,5 @@
 import React from 'react';
+var ReactDOM = require('react-dom');
 import { NavLink } from 'react-router-dom';
 import { Button, DropdownButton, MenuItem, ButtonGroup } from 'react-bootstrap';
 import CreateSessionDetail from './CreateSessionDetail.jsx';
@@ -9,52 +10,61 @@ import { PROFILE_PAGE_ROUTE,
          MAIN_PAGE_ROUTE
        } from '../routes.js'
 
-const Menu = (props) => {
-  // <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image}/></a>
-  return (
-    <div>
-      <ReactModal isOpen={props.menuVisible}
-                  contentLabel="Menu Modal"
-                  shouldCloseOnOverlayClick={props.menuVisible}
-      >
-        <Button onClick={props.hideMenu}>X</Button>
-        <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image} /></a>
-        <a href={PROFILE_PAGE_ROUTE}><h3>{props.user.name}</h3></a>
-        <h2>My Sessions</h2>
-        <div>
-          {props.user.created_sessions.map((comment) => {
-            return <p key={comment._id} className="session" >{comment.title}</p>
-          })}
-        </div>
-        <Button bsStyle="info"
-          className="add-comment"
-          onClick={() => { props.showCreateSession(); props.hideMenu(); }}>
-          New Session!
-        </Button>
-        <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
-          <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
-          Logout
-        </Button>
-      </ReactModal>
+class Menu extends React.Component {
 
-      <ReactModal isOpen={props.createSessionVisible}
-        contentLabel="Detail Modal"
-        shouldCloseOnOverlayClick={props.createSessionVisible}
+// const Menu = (props) => {
+  // <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image}/></a>
+
+  handleClick(e) {
+    console.log(e.target.getAttribute('data-key'));
+  }
+
+  render() {
+    return (
+      <div>
+        <ReactModal isOpen={this.props.menuVisible}
+                    contentLabel="Menu Modal"
+                    shouldCloseOnOverlayClick={this.props.menuVisible}
         >
-          <Button onClick={props.hideCreateSession}>X</Button>
-          <CreateSessionDetail
-            addComment={props.addComment}
-            currentNode={props.currentNode}
-            setNode={props.setNode}
-            updateNode={props.updateNode}
-            thunkCreateSession={props.thunkCreateSession}
-            clearComments={props.clearComments}
-            user={props.user}
-            hideCreateSession={props.hideCreateSession}
-          />
+          <Button onClick={this.props.hideMenu}>X</Button>
+          <a href={PROFILE_PAGE_ROUTE}><img src={this.props.user.image} /></a>
+          <a href={PROFILE_PAGE_ROUTE}><h3>{this.props.user.name}</h3></a>
+          <h4>Sessions</h4>
+          <div>
+            {this.props.user.created_sessions.map((session) => {
+              return <div key={session._id} data-key={session._id} className="session" onClick={this.handleClick}>{session.title} </div>
+            })}
+          </div>
+          <Button bsStyle="info"
+            className="add-comment"
+            onClick={() => { this.props.showCreateSession(); this.props.hideMenu(); }}>
+            New Session!
+          </Button>
+          <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
+            <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
+            Logout
+          </Button>
         </ReactModal>
-    </div>
-  )
+
+        <ReactModal isOpen={this.props.createSessionVisible}
+          contentLabel="Detail Modal"
+          shouldCloseOnOverlayClick={this.props.createSessionVisible}
+          >
+            <Button onClick={this.props.hideCreateSession}>X</Button>
+            <CreateSessionDetail
+              addComment={this.props.addComment}
+              currentNode={this.props.currentNode}
+              setNode={this.props.setNode}
+              updateNode={this.props.updateNode}
+              thunkCreateSession={this.props.thunkCreateSession}
+              clearComments={this.props.clearComments}
+              user={this.props.user}
+              hideCreateSession={this.props.hideCreateSession}
+            />
+          </ReactModal>
+      </div>
+    )
+  }
 }
 
 export default Menu
