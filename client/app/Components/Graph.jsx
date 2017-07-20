@@ -125,7 +125,7 @@ class Graph extends React.Component {
   render() {
     return (
         <svg  className="session" width="100%" height="100%">
-          <g ref='graph' />
+          <g ref='graph' width="100%" height="100%"/>
         </svg>
       );
   }

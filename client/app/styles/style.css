@@ -9,6 +9,7 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 50px;
 }
 
 #title {
@@ -45,4 +46,44 @@
 .session {
   border-top: 2px;
   border-color: Grey;
+}
+
+.ReactModal__Content--after-open--menu {
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-bottom: auto;
+  width: 33%;
+  height: auto;
+  background-color: White;
+  border-radius: 5px;
+  border-color: Grey;
+}
+
+.menu-exit-btn {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.menu-modal-content {
+  margin-left: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-right: 40px;
+}
+
+.ReactModal__Content--after-open--new-comment {
+  margin: auto;
+  width: 33%;
+  height: 50%;
+  background-color: White;
+
+}
+
+.ReactModal__Content--after-open--new-session {
+  margin: auto;
+  width: 33%;
+  height: 33%;
+  background-color: White;
+  opacity: 100%;
+
 }

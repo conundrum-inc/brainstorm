@@ -10,36 +10,38 @@ import { PROFILE_PAGE_ROUTE,
        } from '../routes.js'
 
 const Menu = (props) => {
-  
-  // <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image}/></a>
   return (
     <div>
       <ReactModal isOpen={props.menuVisible}
                   contentLabel="Menu Modal"
                   shouldCloseOnOverlayClick={props.menuVisible}
+                  className="ReactModal__Content--after-open--menu"
       >
-        <Button onClick={props.hideMenu}>X</Button>
+        <Button className="menu-exit-btn" onClick={props.hideMenu}>X</Button>
         <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image} /></a>
         <a href={PROFILE_PAGE_ROUTE}><h3>{props.user.name}</h3></a>
-        <h2>My Sessions</h2>
-        <div>
-          {props.user.created_sessions.map((comment) => {
-            return <p key={comment._id} className="session" >{comment.title}</p>
-          })}
+        <div className="menu-modal-content">
+          <h2>My Sessions</h2>
+          <div>
+            {props.user.created_sessions.map((comment) => {
+              return <p key={comment._id} className="session" >{comment.title}</p>
+            })}
+          </div>
+          <Button bsStyle="info"
+            className="add-comment"
+            onClick={() => { props.showCreateSession(); props.hideMenu(); }}>
+            New Session!
+          </Button>
+          <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
+            <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
+            Logout
+          </Button>
         </div>
-        <Button bsStyle="info"
-          className="add-comment"
-          onClick={() => { props.showCreateSession(); props.hideMenu(); }}>
-          New Session!
-        </Button>
-        <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
-          <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
-          Logout
-        </Button>
       </ReactModal>
 
       <ReactModal isOpen={props.createSessionVisible}
         contentLabel="Detail Modal"
+        className=".ReactModal__Content--after-open--new-session"
         shouldCloseOnOverlayClick={props.createSessionVisible}
         >
           <Button onClick={props.hideCreateSession}>X</Button>
