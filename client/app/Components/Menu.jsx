@@ -18,10 +18,10 @@ const Menu = (props) => {
                   className="ReactModal__Content--after-open--menu"
       >
         <Button className="menu-exit-btn" onClick={props.hideMenu}>X</Button>
-        <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image} /></a>
-        <a href={PROFILE_PAGE_ROUTE}><h3>{props.user.name}</h3></a>
+        <a  href={PROFILE_PAGE_ROUTE}><img className="user-picture" src={props.user.image} /></a>
+        <a href={PROFILE_PAGE_ROUTE}><h3 className="user-name">{props.user.name}</h3></a>
         <div className="menu-modal-content">
-          <h2>My Sessions</h2>
+          <h4 className="my-sessions-title">My Sessions</h4>
           <div>
             {props.user.created_sessions.map((comment) => {
               return <p key={comment._id} className="session" >{comment.title}</p>
