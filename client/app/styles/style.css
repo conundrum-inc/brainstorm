@@ -12,8 +12,13 @@
 }
 
 #title {
-  color: Red;
-  text-align: center;
+  color: Blue;
+  margin-left: 20px;
+  float: left;
+}
+
+#welcome {
+  color: Blue;
   margin-left: auto;
   margin-right: auto;
 }
@@ -21,10 +26,23 @@
 .invite-button {
   float: right;
   margin-right: 50px;
+  margin-top: 25px;
+}
+
+.menu-bar {
+  width: 100%;
+  border-bottom: Grey;
+  border-width: 2px;
 }
 
 .menu-button {
+  margin-top: 25px;
   float: left;
   margin-left: 50px;
+  cursor: pointer;
 }
-/* JB: just messing around with the css properties for the login page */
+
+.session {
+  border-top: 2px;
+  border-color: Grey;
+}
