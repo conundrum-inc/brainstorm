@@ -12,7 +12,7 @@ class NodeDetail extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ReactModal__Content--after-open--new-session">
         <h2>Start a Sesh</h2>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle">
