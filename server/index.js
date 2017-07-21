@@ -132,24 +132,24 @@ app.get('*', function (req, res) {
 
 //socket test
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('new comment', function(data){
-    console.log('data received by socket', data)
-    io.sockets.emit('socket comment', data);
-  })
-  socket.on('upvote', function(data) {
-    console.log('upvote received by socket', data)
-    io.sockets.emit('upvoted comment', data)
-  })
-  socket.on('downvote', function(data) {
-    console.log('downvote received by socket', data)
-    io.sockets.emit('downvoted comment', data)
-  })
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-});
+// io.on('connection', function(socket){
+//   console.log('a user connected');
+//   socket.on('new comment', function(data){
+//     console.log('data received by socket', data)
+//     socket.broadcast.emit('socket comment', data);
+//   })
+//   socket.on('upvote', function(data) {
+//     console.log('upvote received by socket', data)
+//     io.sockets.emit('upvoted comment', data)
+//   })
+//   socket.on('downvote', function(data) {
+//     console.log('downvote received by socket', data)
+//     io.sockets.emit('downvoted comment', data)
+//   })
+//   socket.on('disconnect', function(){
+//     console.log('user disconnected');
+//   });
+// });
 
 
 server.listen(3000, function () {

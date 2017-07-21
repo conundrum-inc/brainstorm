@@ -1,11 +1,13 @@
 import * as d3 from 'd3'
 import { showDetail } from '../app/actions/actionsCreators.js'
 
+import { wrapText } from '../app/utils.js'
+
 export const width = 960;
 export const height = 500;
 export const force = d3.layout.force()
             .charge(-500)
-            .linkDistance(100)
+            .linkDistance(200)
             .size([width, height]);
 
 
@@ -57,3 +59,5 @@ export const updateGraph = (selection) => {
   selection.selectAll('.link')
     .call(updateLink);
 }
+
+
