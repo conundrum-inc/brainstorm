@@ -35,8 +35,8 @@ class Menu extends React.Component {
                     className="ReactModal__Content--after-open--menu"
         >
           <Button className="menu-exit-btn" onClick={this.props.hideMenu}>X</Button>
-          <a href={PROFILE_PAGE_ROUTE}><img src={this.props.user.image} /></a>
-          <a href={PROFILE_PAGE_ROUTE}><h3>{this.props.user.name}</h3></a>
+          <a className="user-picture-container" href={PROFILE_PAGE_ROUTE}><img className="user-picture" src={this.props.user.image} /></a>
+          <a href={PROFILE_PAGE_ROUTE}><h3 className="user-name">{this.props.user.name}</h3></a>
           <div className="menu-modal-content">
             <h4>Sessions</h4>
             <div>
@@ -45,11 +45,11 @@ class Menu extends React.Component {
               })}
             </div>
             <Button bsStyle="info"
-              className="add-comment"
+              className="menu-btn-new-session"
               onClick={() => { this.props.showCreateSession(); this.props.hideMenu(); }}>
               New Session!
             </Button>
-            <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
+            <Button className="menu-btn-logout" bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
               <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
               Logout
             </Button>

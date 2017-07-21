@@ -60,8 +60,14 @@
 }
 
 .menu-exit-btn {
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.user-picture-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-picture {
@@ -69,8 +75,6 @@
   margin-left: 50%;
   margin-right: 50%;
   padding-bottom: 30px;
-  align-content: center;
-  text-align: center;
 }
 
 .user-name {
@@ -82,7 +86,7 @@
   margin-top: 30px;
   margin-bottom: 40px;
   margin-right: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 100px;
 }
 
 .ReactModal__Content--after-open--new-comment {
@@ -91,6 +95,16 @@
   height: 50%;
   background-color: White;
 
+}
+
+.menu-btn-new-session {
+  float: left;
+  margin-top: 30px;
+}
+
+.menu-btn-logout {
+  float: right;
+  margin-top: 30px;
 }
 
 .ReactModal__Content--after-open--new-session {
