@@ -64,14 +64,7 @@ class Graph extends React.Component {
 
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
-    force.on('end', function() {
-      coords = nodes.nodes.map(function(node) {
-        return {'x': node.x,
-                'y': node.y,
-                'key': node.key }
-      })
-      console.log('new coords: ', coords)
-    })
+
     console.log('nodes: ', nodes.nodes)
   }
 
@@ -110,17 +103,7 @@ class Graph extends React.Component {
     //since d3 mutates them. We'll do this later
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
-    force.on('end', function() {
-      console.log('force ended')
-      //grab the current x and y coords of all nodes
-      coords = nodes.nodes.map(function(node) {
-        return {'x': node.x,
-                'y': node.y,
-                'key': node.key }
-      })
-      console.log('new coords: ', coords)
-    })
-    console.log('nodes: ', nodes.nodes)
+    
   }
 
   handleClick(node) {
