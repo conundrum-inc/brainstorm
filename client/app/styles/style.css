@@ -59,7 +59,7 @@
   border-color: Grey;
 }
 
-.menu-exit-btn {
+.exit-btn {
   margin-top: 40px;
   margin-left: 40px;
 }
@@ -108,10 +108,21 @@
 }
 
 .ReactModal__Content--after-open--new-session {
-  margin: auto;
-  width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
   height: 33%;
   background-color: White;
-  opacity: 100%;
+  margin-top: 200px;
+}
 
+.new-session-modal-content {
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.form-horizontal {
+  margin-left: 0px;
+  margin-right: 0px;
 }

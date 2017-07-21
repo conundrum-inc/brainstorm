@@ -1,11 +1,14 @@
 import React from 'react';
-import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button, FormGroup, Form, Col, FormControl, ControlLabel, DropdownButton, MenuItem } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 import Menu from './Menu.jsx';
 import Session from './Session.jsx';
 import InviteDetail from './InviteDetail.jsx'
+import { hideInviteDetail } from '../actions/actionsCreators';
+import { buildEmailArray } from '../helpers.js'
+import { inviteUsers } from '../axiosCalls'
 import { LOGOUT_PAGE_ROUTE } from '../routes.js';
 
 class Main extends React.Component {
@@ -18,6 +21,13 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
+  }
+
+  onSubmit(e, props) {
+    e.preventDefault();
+    var array = buildEmailArray(e.target.emails.value);
+    inviteUsers(array, this.props.session.sessionId);
+    this.props.hideInviteDetail();
   }
 
   render() {
@@ -37,7 +47,10 @@ class Main extends React.Component {
           shouldCloseOnOverlayClick={this.props.inviteDetailVisible}
           >
             <Button onClick={ () => this.props.hideInviteDetail() }>X</Button>
-            <InviteDetail />
+            <h2>Add a friend to your session!</h2>
+            <Form horizontal onSubmit={this.onSubmit.bind(this)}>
+                <InviteDetail />
+            </Form>
           </ReactModal>
 
           <Menu    showCreateSession={this.props.showCreateSession}
