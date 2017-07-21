@@ -36,7 +36,7 @@ class Graph extends React.Component {
                 'y': node.y,
                 'key': node.key }
       })
-      console.log('new coords: ', coords)
+      // console.log('new coords: ', coords)
 
     })
 
@@ -65,7 +65,7 @@ class Graph extends React.Component {
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
 
-    console.log('nodes: ', nodes.nodes)
+    // console.log('nodes: ', nodes.nodes)
   }
 
   componentDidUpdate() {
@@ -86,7 +86,7 @@ class Graph extends React.Component {
                 'y': node.y,
                 'key': node.key }
       })
-      console.log('new coords: ', coords)
+      // console.log('new coords: ', coords)
 
     })
 
@@ -120,7 +120,7 @@ class Graph extends React.Component {
     //since d3 mutates them. We'll do this later
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
-    
+
   }
 
   handleClick(node) {
