@@ -54,6 +54,8 @@ class Graph extends React.Component {
       .on("click", node => {
         this.handleClick.bind(this, node)()
       })
+      .on("mouseover", () => console.log('mouseover'))
+      .on("mouseout", () => console.log('mouseout'))
 
     this.d3Graph.selectAll("text")
       .on("click", node => {

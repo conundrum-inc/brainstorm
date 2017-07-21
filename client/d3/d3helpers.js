@@ -7,7 +7,7 @@ export const width = 960;
 export const height = 500;
 export const force = d3.layout.force()
             .charge(-500)
-            .linkDistance(200)
+            .linkDistance(85)
             .size([width, height]);
 
 
@@ -59,5 +59,3 @@ export const updateGraph = (selection) => {
   selection.selectAll('.link')
     .call(updateLink);
 }
-
-
