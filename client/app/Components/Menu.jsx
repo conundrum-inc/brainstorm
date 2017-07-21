@@ -40,7 +40,7 @@ class Menu extends React.Component {
           <div className="menu-modal-content">
             <h4>Sessions</h4>
             <div>
-              {this.props.user.created_sessions.map((comment) => {
+              {this.props.user.accessible_sessions.map((comment) => {
                 return <div key={comment._id} data-key={comment._id} className="session" onClick={this.handleClick.bind(this)}>{comment.title} </div>
               })}
             </div>

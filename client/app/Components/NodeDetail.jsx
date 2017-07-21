@@ -25,9 +25,9 @@ class NodeDetail extends React.Component {
     this.props.thunkDownVote(this.props.user.userId, this.props.currentNode.key)
   }
 
-  // newComment(){
-  //   socket.emit('new comment', ())
-  // }
+  newComment() {
+    socket.broadcast.emit('new comment')
+  }
 
   render() {
     return (
