@@ -14,7 +14,7 @@ import { width,
          updateGraph
        } from '../../d3/d3helpers.js'
 
-import { commentsToNodes } from '../utils.js'
+import { commentsToNodes, wrapText } from '../utils.js'
 
 var coords;
 
@@ -31,6 +31,13 @@ class Graph extends React.Component {
       // which uses d3 to manipulate the attributes,
       // and React doesn't have to go through lifecycle on each tick
       this.d3Graph.call(updateGraph);
+      coords = nodes.nodes.map(function(node) {
+        return {'x': node.x,
+                'y': node.y,
+                'key': node.key }
+      })
+      console.log('new coords: ', coords)
+
     })
 
     const d3Links = this.d3Graph.selectAll('.link')
@@ -53,6 +60,8 @@ class Graph extends React.Component {
         this.handleClick.bind(this, node)()
       })
 
+    // this.d3Graph.selectAll("text").each(wrapText)
+
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
     force.on('end', function() {
@@ -61,6 +70,7 @@ class Graph extends React.Component {
                 'y': node.y,
                 'key': node.key }
       })
+      console.log('new coords: ', coords)
     })
     console.log('nodes: ', nodes.nodes)
   }
@@ -108,6 +118,7 @@ class Graph extends React.Component {
                 'y': node.y,
                 'key': node.key }
       })
+      console.log('new coords: ', coords)
     })
     console.log('nodes: ', nodes.nodes)
   }

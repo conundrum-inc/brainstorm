@@ -1,11 +1,11 @@
 export function commentsToNodes(comments, coords) {
-  
+  console.log('input coords: ', coords)
+  console.log('input comments: ', comments)
   var nodes = {
     nodes: [],
     links: []
   }
   for(var i = 0; i < comments.length; i++) {
-    console.log('i: ', i)
     if (comments[i].parent_id === 'root') {
       var node = { key: comments[i]._id,
                    size: 60,
@@ -21,12 +21,10 @@ export function commentsToNodes(comments, coords) {
       nodes.nodes.push(node);
     } else {
         if (coords) {
-          console.log('comments[i].parent_id: ', comments[i].parent_id)
           var temp = findIndex(coords, 'key', comments[i].parent_id);
-          console.log('current parent: ', temp)
         }
       var node = { key: comments[i]._id,
-                   size: 20 + ( 5 * comments[i].score ),
+                   size: 60 + ( 5 * comments[i].score ),
                    x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : 500,
                    y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : 500,
                    title: comments[i].title,
@@ -61,4 +59,12 @@ function findIndex(array, attr, value) {
     }
   }
   return -1
+}
+
+export function wrapText(string) {
+  string = string.split(" ");
+  var mid = Math.floor(string.length / 2)
+  var first = string.slice(0, mid).join(' ');
+  var second = string.slice(mid).join(' ');
+  return first + '\n' + second  
 }
