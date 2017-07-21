@@ -70,9 +70,26 @@ class Graph extends React.Component {
 
   componentDidUpdate() {
 
-    console.log('current coords: ', coords)
+    if (this.props.comments[0]._id === coords[0].key) {
+      var nodes = commentsToNodes(this.props.comments, coords)
+    } else {
+      var nodes = commentsToNodes(this.props.comments)
+    }
 
-    var nodes = commentsToNodes(this.props.comments, coords)
+    force.on('tick', () => {
+      // after force calculation starts, call updateGraph
+      // which uses d3 to manipulate the attributes,
+      // and React doesn't have to go through lifecycle on each tick
+      this.d3Graph.call(updateGraph);
+      coords = nodes.nodes.map(function(node) {
+        return {'x': node.x,
+                'y': node.y,
+                'key': node.key }
+      })
+      console.log('new coords: ', coords)
+
+    })
+
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
 
     this.d3Graph.selectAll("*").remove();
