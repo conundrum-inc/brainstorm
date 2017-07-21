@@ -41,7 +41,7 @@ function createSession(req, res) {
               console.log('error in addSessionToUser', err)
             } else {
               user.created_sessions.push(session);
-              user.comments.push(comment);
+              user.comments.push(comment._id);
               user.save();
               console.log('session id saved in user array')
             }
@@ -158,6 +158,7 @@ function addComment(req, res) {
               }
               if (parentComment) {
                 parentComment.children.push(comment._id);
+                console.log('parentComment children', parentComment.children);
                 parentComment.save();
                 console.log('new comment id saved in children array');
               }
