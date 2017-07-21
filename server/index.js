@@ -55,7 +55,7 @@ passport.use(new GoogleStrategy({
 },
 function(token, tokenSecret, profile, done) {
   User.find({ google_id: profile.id }, (err, user) => {
-    
+
     if (user.length === 0) {
       User.create({google_id: profile.id, displayName: profile.displayName, image: profile._json.image.url, email: profile.emails[0].value, created_sessions: [], accessible_sessions: [], comments: [], new_sessions: []}, (err, user) => {
         if (err) {
@@ -89,7 +89,7 @@ app.get('/auth/google/callback',
 // send user to front end based on session
 
 app.get ('/getUser', function(req, res) {
-  
+
   User.find({ _id: req.session.passport.user }, (err, user) => {
     if (err) {
       console.log('error in getUser route', err);
@@ -103,7 +103,7 @@ app.get ('/getUser', function(req, res) {
 // check for session for react router
 
 app.get('/authenticate', function(req, res) {
-  
+
   if(req.session.passport.user) {
     res.sendStatus(200);
   } else {
@@ -113,7 +113,7 @@ app.get('/authenticate', function(req, res) {
 
 // logout route
 app.get('/logout', function(req, res){
-  
+
   req.logout();
   res.redirect('/login');
 });
@@ -132,24 +132,24 @@ app.get('*', function (req, res) {
 
 //socket test
 
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-//   socket.on('new comment', function(data){
-//     console.log('data received by socket', data)
-//     socket.broadcast.emit('socket comment', data);
-//   })
-//   socket.on('upvote', function(data) {
-//     console.log('upvote received by socket', data)
-//     io.sockets.emit('upvoted comment', data)
-//   })
-//   socket.on('downvote', function(data) {
-//     console.log('downvote received by socket', data)
-//     io.sockets.emit('downvoted comment', data)
-//   })
-//   socket.on('disconnect', function(){
-//     console.log('user disconnected');
-//   });
-// });
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('new comment', function(data){
+    console.log('data received by socket', data)
+    socket.broadcast.emit('socket comment', data);
+  })
+  socket.on('upvote', function(data) {
+    console.log('upvote received by socket', data)
+    socket.broadcast.emit('upvoted comment', data)
+  })
+  socket.on('downvote', function(data) {
+    console.log('downvote received by socket', data)
+    socket.broadcast.emit('downvoted comment', data)
+  })
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
 
 
 server.listen(3000, function () {
