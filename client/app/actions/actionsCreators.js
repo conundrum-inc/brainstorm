@@ -233,7 +233,7 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
         dispatch(addComment(comment.data))
         setTimeout(function(){
           socket.emit('new comment', comment.data);
-        }, 2000);
+        }, 2000)
       }
     )
   }

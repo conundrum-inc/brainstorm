@@ -69,8 +69,11 @@
 }
 
 .exit-btn {
-  margin-top: 40px;
-  margin-left: 40px;
+  margin-top: 15px;
+  margin-right: 15px;
+  float: right;
+  padding: 4px, 8px;
+  font-size: 10px;
 }
 
 .user-picture-container {
@@ -108,9 +111,8 @@
 }
 
 .new-comment-modal-content {
-  padding-bottom: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 40px;
+  background: white;
 }
 
 .upvote {
@@ -119,6 +121,13 @@
 
 .downvote {
   margin-left: 5px;
+}
+
+.submit {
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .menu-btn-new-session {
@@ -149,6 +158,61 @@
 .form-horizontal .form-group {
   margin-left: 0px;
   margin-right: 0px;
+  padding-right: 0px;
+}
+
+.form-group {
+  padding-right: 0;
+  margin-right: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.node-detail-form {
+  margin-left: none;
+  margin-right: none;
+}
+
+.form-horizontal {
+  padding: 0;
+}
+
+.branches-headings {
+  margin-top: 15px;
+}
+
+.downvote, .upvote{
+  border: none;
+  outline: none;
+  /*background-color: #f2f0ea;*/
+}
+
+.col-sm-10 {
+  padding: 0;
+}
+
+.new-comment-modal-content {
+  width: 350px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #b6efef;
+}
+
+.new-comment-modal-content {
+  outline: none;
+}
+
+.glowing-border {
+  border-width: 0;
+}
+
+.ReactModal__Content, .ReactModal__Content--after-open, .ReactModal__Content--after-open--new-comment {
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  /*height: 33%;*/
+  background-color: White;
+  margin-top: 200px;
 }
 
 .ReactModal__Content--after-open--invite {

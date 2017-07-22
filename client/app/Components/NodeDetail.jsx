@@ -36,30 +36,30 @@ class NodeDetail extends React.Component {
         <p className="node-text">{this.props.currentNode.text}</p>
         <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>
         <Button className="downvote" onClick={this.downvote.bind(this)}>{emoji.emojify(':thumbsdown:')}</Button>
-        <h4>Branches</h4>
+        <h4 className="branches-headings" >Branches</h4>
         {(this.props.currentNode.children).map(function(child) {
-          return <div classname="child-title" key={child}>{child}</div>
+          return <div className="child-title" key={child}>{child}</div>
         })}
-        <h4>Add a branch to "{this.props.currentNode.title}":</h4>
+        <h4 className="branches-headings" >Add a branch to "{this.props.currentNode.title}":</h4>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle" >
-            <Col componentClass={ControlLabel} sm={2}>
+            {/* <Col componentClass={ControlLabel} sm={2}>
               Title:
-            </Col>
+            </Col> */}
             <Col sm={10}>
-              <FormControl type="title" name="title" placeholder="Title" maxLength="15"/>
+              <FormControl className="node-detail-form" autoFocus="autofocus" type="title" name="title" placeholder="Title" maxLength="15"/>
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
-            <Col componentClass={ControlLabel} sm={2}>
+            {/* <Col componentClass={ControlLabel} sm={2}>
               Details:
-            </Col>
+            </Col> */}
             <Col sm={10}>
-              <FormControl type="details" name="text" placeholder="Elaborate here!" />
+              <FormControl className="node-detail-form" type="details" name="text" placeholder="Elaborate here!" />
             </Col>
           </FormGroup>
           <FormGroup>
-            <Col smOffset={2} sm={10}>
+            <Col sm={10}>
               <Button type="submit">
                 Submit
               </Button>
