@@ -64,6 +64,9 @@ class Graph extends React.Component {
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
 
+
+
+
   }
 
   componentDidUpdate() {
@@ -117,6 +120,7 @@ class Graph extends React.Component {
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
 
+
   }
 
   handleClick(node) {
@@ -131,8 +135,8 @@ class Graph extends React.Component {
 
   render() {
     return (
-        <svg  className="session-container" width="100%" height="100%">
-          <g ref='graph' transform="translate(0,100)" width="100%" height="100%" />
+        <svg ref='graph' className="session-container" width="100%" height="100%">
+          
         </svg>
       );
   }

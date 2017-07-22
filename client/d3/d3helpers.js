@@ -3,12 +3,14 @@ import { showDetail } from '../app/actions/actionsCreators.js'
 
 
 
-export const width = 960;
+export const width = 1200;
 export const height = 500;
 export const force = d3.layout.force()
             .charge(-500)
             .linkDistance(85)
-            .size([width, height]);
+            .size([width, height])
+            
+
 
 
 export const enterNode = (selection) => {

@@ -1,6 +1,10 @@
 export function commentsToNodes(comments, coords) {
-  // console.log('input coords: ', coords)
-  // console.log('input comments: ', comments)
+  
+  if (!coords) {
+    var initCoords;
+    //iterate through comments to give
+  }
+
   var nodes = {
     nodes: [],
     links: []
@@ -9,8 +13,8 @@ export function commentsToNodes(comments, coords) {
     if (comments[i].parent_id === 'root') {
       var node = { key: comments[i]._id,
                    size: 45,
-                   x: coords ? coords[0]['x'] : 500,
-                   y: coords ? coords[0]['y']: 500,
+                   x: coords ? coords[0]['x'] : 600,
+                   y: coords ? coords[0]['y']: 250,
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,
@@ -25,8 +29,8 @@ export function commentsToNodes(comments, coords) {
         }
       var node = { key: comments[i]._id,
                    size: 30 + ( 5 * comments[i].score ),
-                   x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : 500,
-                   y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : 500,
+                   x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : 600,
+                   y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : 250,
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,
