@@ -13,9 +13,11 @@
 }
 
 #title {
-  color: Blue;
+  color: #fcfcfc;
   margin-left: 20px;
   float: left;
+  letter-spacing: 7px;
+  font-weight: bold;
 }
 
 #welcome {
@@ -24,16 +26,24 @@
   margin-right: auto;
 }
 
+/*#session {
+  padding-top: 85px;
+}*/
+
 .invite-button {
   float: right;
   margin-right: 50px;
   margin-top: 25px;
+  background-color: #fcfcfc;
 }
 
 .menu-bar {
   width: 100%;
+  height: 75px;
+  background-color: #f7dd36;
   border-bottom: Grey;
   border-width: 2px;
+  border-right-color: pink;
 }
 
 .menu-button {
@@ -43,9 +53,11 @@
   cursor: pointer;
 }
 
-.session {
-  border-top: 2px;
-  border-color: Grey;
+.session-container {
+  padding-top: 85px;
+  background-color: #f9f9f7;
+  /*border-top: 2px;
+  border-color: Grey;*/
 }
 
 .ReactModal__Content--after-open--menu {
@@ -113,5 +125,4 @@
   height: 33%;
   background-color: White;
   opacity: 100%;
-
 }

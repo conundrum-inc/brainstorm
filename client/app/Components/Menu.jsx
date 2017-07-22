@@ -41,7 +41,7 @@ class Menu extends React.Component {
             <h4>Sessions</h4>
             <div>
               {this.props.user.accessible_sessions.map((comment) => {
-                return <div key={comment._id} data-key={comment._id} className="session" onClick={this.handleClick.bind(this)}>{comment.title} </div>
+                return <div key={comment._id} data-key={comment._id} className="session-title" onClick={this.handleClick.bind(this)}>{comment.title} </div>
               })}
             </div>
             <Button bsStyle="info"

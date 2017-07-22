@@ -17,13 +17,16 @@ export const enterNode = (selection) => {
 
   selection.append('circle')
     .attr("r", (d) => d.size)
-    .attr("fill", "white")
-    .attr("stroke", "black")
+    .attr("fill", "#ace2e2")
+    // .attr("stroke", "black")
     .call(force.drag)
 
   selection.append('text')
     .attr("x", (d) => d.cx)
+    .style("fill", "#373a3a")
     .attr("text-anchor", "middle")
+    .style("font-weight", "bold")
+    .style("font-size", (d) => (d.size + 50) / 6 + "px")
     .attr("dy", ".35em")
     .text((d) => d.title)
 
