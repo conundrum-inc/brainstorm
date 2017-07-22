@@ -61,10 +61,11 @@ function findIndex(array, attr, value) {
   return -1
 }
 
-export function wrapText(string) {
+export function splitText(string) {
   string = string.split(" ");
   var mid = Math.floor(string.length / 2)
   var first = string.slice(0, mid).join(' ');
   var second = string.slice(mid).join(' ');
-  return first + '\n' + second
+  return [first, second]  
+
 }

@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { showDetail } from '../app/actions/actionsCreators.js'
 
-import { wrapText } from '../app/utils.js'
+
 
 export const width = 960;
 export const height = 500;
@@ -21,14 +21,27 @@ export const enterNode = (selection) => {
     // .attr("stroke", "black")
     .call(force.drag)
 
-  selection.append('text')
-    .attr("x", (d) => d.cx)
-    .style("fill", "#373a3a")
-    .attr("text-anchor", "middle")
-    .style("font-weight", "bold")
-    .style("font-size", (d) => (d.size + 50) / 6 + "px")
-    .attr("dy", ".35em")
-    .text((d) => d.title)
+
+  // selection.append('text')
+  //   .attr("x", (d) => d.cx)
+  //   .style("fill", "#373a3a")
+  //   .attr("text-anchor", "middle")
+  //   .style("font-weight", "bold")
+  //   .style("font-size", (d) => (d.size + 50) / 6 + "px")
+  //   .attr("dy", ".35em")
+  //   .text((d) => d.title)
+
+
+  selection.append("foreignObject")
+    .attr("width", (d) => {
+      return 2 * d.size * Math.cos(Math.PI / 4)
+    })
+    .attr("height", (d) => {
+      return 2 * d.size * Math.cos(Math.PI / 4)
+    })
+    .attr("transform", (d) => "translate(" + d.cx + "," + d.cy + ")")
+    .html((d) => d.title)
+
 
 }
 
