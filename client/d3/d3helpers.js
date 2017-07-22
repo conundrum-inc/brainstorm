@@ -20,6 +20,7 @@ export const enterNode = (selection) => {
     .attr("fill", "#ace2e2")
     // .attr("stroke", "black")
     .call(force.drag)
+    .attr("class", "circle")
 
 
   selection.append('text')
@@ -30,27 +31,6 @@ export const enterNode = (selection) => {
     .style("font-size", (d) => (d.size + 50) / 6 + "px")
     .attr("dy", ".35em")
     .text((d) => d.title)
-
-
-  // selection.append("foreignObject")
-  //   .attr("width", (d) => {
-  //     return 2 * d.size * Math.cos(Math.PI / 4)
-  //   })
-  //   .attr("height", (d) => {
-  //     return 2 * d.size * Math.cos(Math.PI / 4)
-  //   })
-  //   .attr("x", (d) => {
-  //     return -1 * d.size * Math.cos(Math.PI / 4)
-  //   })
-  //   .attr("y", (d) => {
-  //     return -1 * d.size * Math.cos(Math.PI / 4)
-  //   })
-  //   .html((d) => d.title)
-  //   .style("text-align", "center")
-  //   .style("vertical-align", "middle")
-  //   .style("display", "inline-block")
-
-
 
 }
 
