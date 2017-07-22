@@ -59,10 +59,21 @@ class Graph extends React.Component {
       })
 
 
-    // this.d3Graph.selectAll("text").each(wrapText)
+    d3.select(window).on("resize", resize.bind(this))
 
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
+
+    function resize() {
+      
+      var width = window.innerWidth
+      var forceHeight = window.innerHeight - .3*window.innerHeight;
+      var svgHeight = window.innerHeight
+      this.d3Graph.attr("width", width).attr("height", svgHeight);
+      force.size([width, forceHeight]).resume();
+    }
+
+
 
   }
 
@@ -117,6 +128,7 @@ class Graph extends React.Component {
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
 
+
   }
 
   handleClick(node) {
@@ -131,8 +143,8 @@ class Graph extends React.Component {
 
   render() {
     return (
-        <svg  className="session-container" width="100%" height="100%">
-          <g ref='graph' transform="translate(0,100)" width="100%" height="100%" />
+        <svg ref='graph' className="session-container" width={window.innerWidth} height={window.innerHeight}>
+          
         </svg>
       );
   }
