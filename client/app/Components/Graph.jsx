@@ -67,9 +67,10 @@ class Graph extends React.Component {
     function resize() {
       
       var width = window.innerWidth
-      var height = window.innerHeight;
-      this.d3Graph.attr("width", width).attr("height", height);
-      force.size([width, height]).resume();
+      var forceHeight = window.innerHeight - .3*window.innerHeight;
+      var svgHeight = window.innerHeight
+      this.d3Graph.attr("width", width).attr("height", svgHeight);
+      force.size([width, forceHeight]).resume();
     }
 
 
@@ -142,7 +143,7 @@ class Graph extends React.Component {
 
   render() {
     return (
-        <svg ref='graph' className="session-container" width="100%" height="100%">
+        <svg ref='graph' className="session-container" width={window.innerWidth} height={window.innerHeight}>
           
         </svg>
       );

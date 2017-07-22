@@ -4,7 +4,7 @@ import { showDetail } from '../app/actions/actionsCreators.js'
 
 
 export const width = window.innerWidth;
-export const height = window.innerHeight;
+export const height = window.innerHeight - (.3)*(window.innerHeight);
 export const force = d3.layout.force()
             .charge(-500)
             .linkDistance(85)

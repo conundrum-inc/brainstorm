@@ -26,9 +26,10 @@
   margin-right: auto;
 }
 
-/*#session {
-  padding-top: 85px;
-}*/
+#session {
+  width: window.innerWidth;
+  height: window.innerHeight;
+}
 
 .invite-button {
   float: right;
