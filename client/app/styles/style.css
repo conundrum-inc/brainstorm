@@ -54,10 +54,7 @@
 }
 
 .session-container {
-  padding-top: 85px;
   background-color: #f9f9f7;
-  /*border-top: 2px;
-  border-color: Grey;*/
 }
 
 .ReactModal__Content--after-open--menu {
