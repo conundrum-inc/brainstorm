@@ -38,6 +38,7 @@ export function editComment(comment) {
 }
 
 export function clearComments() {
+  console.log('clearComments is working');
   return {
     type: 'CLEAR_COMMENTS'
   }
@@ -92,6 +93,7 @@ export function showCreateSession() {
 }
 
 export function hideCreateSession() {
+  console.log('hiding session?');
   return {
     type: 'HIDE_CREATE_SESSION'
   }
@@ -249,6 +251,7 @@ export function thunkCreateSession(title, text, userId) {
   return function(dispatch) {
     return axiosCall.CreateSession(title, text, userId).then(
       (comment) => {
+        console.log('inside thunkCreateSession .then');
         dispatch(updateSession(comment.data.session_id))
         dispatch(addComment(comment.data))
         dispatch(thunkUpdateUser(userId))
@@ -257,6 +260,19 @@ export function thunkCreateSession(title, text, userId) {
   }
 }
 
+export function thunkCreateSessionAndInvite(title, text, userId, emailArray) {
+  return function(dispatch) {
+    return axiosCall.CreateSession(title, text, userId).then(
+      (comment) => {
+        console.log('inside thunkCreateSessionAndInvite .then', comment.data.session_id);
+        dispatch(updateSession(comment.data.session_id))
+        dispatch(addComment(comment.data))
+        dispatch(thunkUpdateUser(userId))
+        axiosCall.inviteUsers(emailArray, comment.data.session_id)
+      }
+    )
+  }
+}
 export function thunkUpdateSession(sessionId) {
   return function(dispatch) {
     return axiosCall.GetSession(sessionId).then(

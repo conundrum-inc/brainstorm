@@ -1,7 +1,7 @@
 export const buildEmailArray = (emailString) => {
   var array = [];
   var address = '';
-
+  console.log('inside buildEmailArray');
   for (var char of emailString) {
     if (char !== ' ' && char !== ',') {
       address = address + char;
@@ -13,7 +13,7 @@ export const buildEmailArray = (emailString) => {
     }
   }
   if (address !== '') {
-    array.push(address); 
+    array.push(address);
   }
 
   return array;

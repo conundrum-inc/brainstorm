@@ -54,10 +54,7 @@
 }
 
 .session-container {
-  padding-top: 85px;
   background-color: #f9f9f7;
-  /*border-top: 2px;
-  border-color: Grey;*/
 }
 
 .ReactModal__Content--after-open--menu {
@@ -71,7 +68,7 @@
   border-color: Grey;
 }
 
-.menu-exit-btn {
+.exit-btn {
   margin-top: 40px;
   margin-left: 40px;
 }
@@ -102,11 +99,26 @@
 }
 
 .ReactModal__Content--after-open--new-comment {
-  margin: auto;
-  width: 33%;
-  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: 33%;
   background-color: White;
+  margin-top: 200px;
+}
 
+.new-comment-modal-content {
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.upvote {
+  margin-right: 5px;
+}
+
+.downvote {
+  margin-left: 5px;
 }
 
 .menu-btn-new-session {
@@ -120,9 +132,36 @@
 }
 
 .ReactModal__Content--after-open--new-session {
-  margin: auto;
-  width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
   height: 33%;
   background-color: White;
-  opacity: 100%;
+  margin-top: 200px;
+}
+
+.new-session-modal-content {
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.form-horizontal .form-group {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.ReactModal__Content--after-open--invite {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: 33%;
+  background-color: White;
+  margin-top: 200px;
+}
+
+.invite-user-content {
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
 }

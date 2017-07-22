@@ -35,7 +35,7 @@ class Menu extends React.Component {
                     onRequestClose={() => this.props.hideMenu()}
                     className="ReactModal__Content--after-open--menu"
         >
-          <Button className="menu-exit-btn" onClick={this.props.hideMenu}>X</Button>
+          <Button className="exit-btn" onClick={this.props.hideMenu}>X</Button>
           <a className="user-picture-container" href={PROFILE_PAGE_ROUTE}><img className="user-picture" src={this.props.user.image} /></a>
           <a href={PROFILE_PAGE_ROUTE}><h3 className="user-name">{this.props.user.name}</h3></a>
           <div className="menu-modal-content">
@@ -60,8 +60,9 @@ class Menu extends React.Component {
         <ReactModal isOpen={this.props.createSessionVisible}
           contentLabel="Detail Modal"
           shouldCloseOnOverlayClick={this.props.createSessionVisible}
+          className="ReactModal__Content--after-open--new-session"
           >
-            <Button onClick={this.props.hideCreateSession}>X</Button>
+            <Button className="exit-btn" onClick={this.props.hideCreateSession}>X</Button>
             <CreateSessionDetail
               addComment={this.props.addComment}
               currentNode={this.props.currentNode}
@@ -71,6 +72,7 @@ class Menu extends React.Component {
               clearComments={this.props.clearComments}
               user={this.props.user}
               hideCreateSession={this.props.hideCreateSession}
+              thunkCreateSessionAndInvite={this.props.thunkCreateSessionAndInvite}
             />
           </ReactModal>
       </div>
