@@ -1,11 +1,14 @@
 import React from 'react';
-import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button, FormGroup, Form, Col, FormControl, ControlLabel, DropdownButton, MenuItem } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 import Menu from './Menu.jsx';
 import Session from './Session.jsx';
 import InviteDetail from './InviteDetail.jsx'
+import { hideInviteDetail } from '../actions/actionsCreators';
+import { buildEmailArray } from '../helpers.js'
+import { inviteUsers } from '../axiosCalls'
 import { LOGOUT_PAGE_ROUTE } from '../routes.js';
 
 class Main extends React.Component {
@@ -18,6 +21,13 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
+  }
+
+  onSubmit(e, props) {
+    e.preventDefault();
+    var array = buildEmailArray(e.target.emails.value);
+    inviteUsers(array, this.props.session.sessionId);
+    this.props.hideInviteDetail();
   }
 
   render() {
@@ -35,9 +45,15 @@ class Main extends React.Component {
         <ReactModal isOpen={this.props.inviteDetailVisible}
           contentLabel="Invite Detail Modal"
           shouldCloseOnOverlayClick={this.props.inviteDetailVisible}
+          className="ReactModal__Content--after-open--invite"
           >
-            <Button onClick={ () => this.props.hideInviteDetail() }>X</Button>
-            <InviteDetail />
+            <Button className="exit-btn" onClick={ () => this.props.hideInviteDetail() }>X</Button>
+            <div className="invite-user-content">
+              <h2>Add a friend to your session!</h2>
+              <Form horizontal onSubmit={this.onSubmit.bind(this)}>
+                  <InviteDetail />
+              </Form>
+            </div>
           </ReactModal>
 
           <Menu    showCreateSession={this.props.showCreateSession}
@@ -54,6 +70,7 @@ class Main extends React.Component {
             clearComments={this.props.clearComments}
             user={this.props.user}
             hideDetail={this.props.hideDetail}
+            thunkCreateSessionAndInvite={this.props.thunkCreateSessionAndInvite}
           />
           <Session showDetail={this.props.showDetail}
             hideDetail={this.props.hideDetail}

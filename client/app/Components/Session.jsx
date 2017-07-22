@@ -58,7 +58,7 @@ class Session extends React.Component {
                     shouldCloseOnOverlayClick={this.props.detailViewVisible}
                     className="ReactModal__Content--after-open--new-comment"
         >
-          <Button onClick={this.props.hideDetail}>X</Button>
+          <Button className="exit-btn" onClick={this.props.hideDetail}>X</Button>
           <NodeDetail thunkAddComment={this.props.thunkAddComment}
                       currentNode={this.props.currentNode}
                       setNode={this.props.setNode}
@@ -69,7 +69,6 @@ class Session extends React.Component {
                       thunkDownVote={this.props.thunkDownVote}
                       downvote={this.props.downvote}
                       session={this.props.session}
-
           />
         </ReactModal>
         <Graph comments={this.props.comments}

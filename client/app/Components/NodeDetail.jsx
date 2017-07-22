@@ -31,7 +31,7 @@ class NodeDetail extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="new-comment-modal-content">
         <h2>{this.props.currentNode.title}</h2>
         <p>{this.props.currentNode.text}</p>
         <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>

@@ -44,6 +44,7 @@ const MainPage = (props) => {
             showInviteDetail={props.showInviteDetail}
             hideInviteDetail={props.hideInviteDetail}
             session={props.session}
+            thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
           />
     </div>
   )
