@@ -198,34 +198,32 @@
   background-color: #b6efef;
 }
 
-.new-comment-modal-content {
-  outline: none;
-}
 
 .glowing-border {
   border-width: 0;
 }
 
-.ReactModal__Content, .ReactModal__Content--after-open, .ReactModal__Content--after-open--new-comment {
+.ReactModal__Content--after-open--new-comment {
   margin-left: auto;
   margin-right: auto;
   width: 350px;
   /*height: 33%;*/
   background-color: White;
   margin-top: 200px;
+  border-radius: 20px;
 }
 
 .ReactModal__Content--after-open--invite {
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-  height: 33%;
+  float: right;
+  width: 350px;
   background-color: White;
-  margin-top: 200px;
+  margin-top: 100px;
+  margin-right: 75px;
+  border-radius: 20px;
 }
 
 .invite-user-content {
-  padding-bottom: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #b6efef;
 }
