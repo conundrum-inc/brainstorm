@@ -13,6 +13,8 @@ class NodeDetail extends React.Component {
     this.props.clearComments();
     this.props.thunkCreateSession(e.target.title.value, e.target.text.value, this.props.user.userId);
     var array = buildEmailArray(e.target.emails.value);
+    console.log('emails array: ', array);
+    console.log('sessionId: ', this.props.session.sessionId);
     inviteUsers(array, this.props.session.sessionId);
     this.props.hideCreateSession();
   }

@@ -45,12 +45,15 @@ class Main extends React.Component {
         <ReactModal isOpen={this.props.inviteDetailVisible}
           contentLabel="Invite Detail Modal"
           shouldCloseOnOverlayClick={this.props.inviteDetailVisible}
+          className="ReactModal__Content--after-open--invite"
           >
-            <Button onClick={ () => this.props.hideInviteDetail() }>X</Button>
-            <h2>Add a friend to your session!</h2>
-            <Form horizontal onSubmit={this.onSubmit.bind(this)}>
-                <InviteDetail />
-            </Form>
+            <Button className="exit-btn" onClick={ () => this.props.hideInviteDetail() }>X</Button>
+            <div className="invite-user-content">
+              <h2>Add a friend to your session!</h2>
+              <Form horizontal onSubmit={this.onSubmit.bind(this)}>
+                  <InviteDetail />
+              </Form>
+            </div>
           </ReactModal>
 
           <Menu    showCreateSession={this.props.showCreateSession}

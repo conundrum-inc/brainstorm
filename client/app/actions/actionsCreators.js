@@ -3,7 +3,7 @@ import io from "socket.io-client";
 var socket = io();
 
 export function upVote(score, commentId) {
-  
+
   return {
     type: 'UPVOTE',
     score,
@@ -12,7 +12,7 @@ export function upVote(score, commentId) {
 }
 
 export function downVote(score, commentId) {
-  
+
   return {
     type: 'DOWNVOTE',
     score,
@@ -38,13 +38,14 @@ export function editComment(comment) {
 }
 
 export function clearComments() {
+  console.log('clearComments is working');
   return {
     type: 'CLEAR_COMMENTS'
   }
 }
 
 export function updateSession(sessionId) {
-  
+
   return {
     type: 'UPDATE_SESSION',
     sessionId
@@ -92,6 +93,7 @@ export function showCreateSession() {
 }
 
 export function hideCreateSession() {
+  console.log('hiding session?');
   return {
     type: 'HIDE_CREATE_SESSION'
   }
@@ -243,6 +245,7 @@ export function thunkCreateSession(title, text, userId) {
   return function(dispatch) {
     return axiosCall.CreateSession(title, text, userId).then(
       (comment) => {
+        console.log('inside thunkCreateSession .then');
         dispatch(updateSession(comment.data.session_id))
         dispatch(addComment(comment.data))
         dispatch(thunkUpdateUser(userId))

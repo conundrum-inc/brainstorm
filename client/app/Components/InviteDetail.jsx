@@ -14,7 +14,7 @@ class InviteDetail extends React.Component {
   render() {
     return (
       <div>
-        <FormGroup controlId="inviteEmails">
+        <FormGroup className="form-horizontal form-group" controlId="inviteEmails">
           <Col componentClass={ControlLabel} sm={2}>
             Email(s):
           </Col>
@@ -23,7 +23,7 @@ class InviteDetail extends React.Component {
           </Col>
         </FormGroup>
 
-        <FormGroup>
+        <FormGroup className="form-horizontal form-group">
           <Col smOffset={2} sm={10}>
             <Button type="submit">
               Submit

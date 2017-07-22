@@ -90,11 +90,26 @@
 }
 
 .ReactModal__Content--after-open--new-comment {
-  margin: auto;
-  width: 33%;
-  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: 33%;
   background-color: White;
+  margin-top: 200px;
+}
 
+.new-comment-modal-content {
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.upvote {
+  margin-right: 5px;
+}
+
+.downvote {
+  margin-left: 5px;
 }
 
 .menu-btn-new-session {
@@ -122,7 +137,22 @@
   padding-right: 40px;
 }
 
-.form-horizontal {
+.form-horizontal .form-group {
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.ReactModal__Content--after-open--invite {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: 33%;
+  background-color: White;
+  margin-top: 200px;
+}
+
+.invite-user-content {
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
