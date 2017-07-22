@@ -54,8 +54,6 @@ class Graph extends React.Component {
       .on("click", node => {
         this.handleClick.bind(this, node)()
       })
-      .on("mouseover", () => console.log('mouseover'))
-      .on("mouseout", () => console.log('mouseout'))
 
     this.d3Graph.selectAll("text")
       .on("click", node => {
@@ -137,8 +135,8 @@ class Graph extends React.Component {
 
   render() {
     return (
-        <svg  className="session" width="100%" height="100%">
-          <g ref='graph' width="100%" height="100%"/>
+        <svg  className="session-container" width="100%" height="100%">
+          <g ref='graph' width="100%" height="100%" />
         </svg>
       );
   }
