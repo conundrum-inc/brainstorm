@@ -59,11 +59,18 @@ class Graph extends React.Component {
       })
 
 
-    // this.d3Graph.selectAll("text").each(wrapText)
+    d3.select(window).on("resize", resize.bind(this))
 
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
 
+    function resize() {
+      
+      var width = window.innerWidth
+      var height = window.innerHeight;
+      this.d3Graph.attr("width", width).attr("height", height);
+      force.size([width, height]).resume();
+    }
 
 
 
