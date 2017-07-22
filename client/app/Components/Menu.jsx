@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 var ReactDOM = require('react-dom');

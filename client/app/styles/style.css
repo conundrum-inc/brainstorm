@@ -102,6 +102,10 @@ body {
   text-align: center;
 }
 
+:focus {
+  outline: none;
+}
+
 .menu-modal-content {
   margin-left: 40px;
   margin-top: 30px;
@@ -237,4 +241,8 @@ body {
   padding-bottom: 40px;
   padding-left: 40px;
   padding-right: 40px;
+}
+
+.profile-text {
+  text-align: center;
 }
