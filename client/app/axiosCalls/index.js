@@ -32,10 +32,10 @@ export function EditComment(commentId, title, text) {
   });
 }
 
-export function Comments(sessionId) {
+export function GetComment(commentId) {
   return axios.get('/comment', {
     params: {
-      id: sessionId
+      id: commentId
     }
   });
 }

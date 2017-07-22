@@ -22,7 +22,7 @@ export function downVote(score, commentId) {
 
 
 export function addComment(comment) {
-  console.log("Comment Added - SOCKET TEST");
+  console.log("Comment Added");
   return {
     type: 'ADD_COMMENT',
     comment
@@ -230,10 +230,15 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
   return function(dispatch) {
     return axiosCall.AddComment(userId, parentId, sessionId, title, text).then(
       (comment) => {
-        dispatch(addComment(comment.data))
-        setTimeout(function(){
-          socket.emit('new comment', comment.data);
-        }, 2000);
+        axiosCall.GetSession(comment.data.session_id).then(
+          (comments) => {
+            dispatch(updateComments(comments.data))
+            console.log('comments.data in thunk', comments.data)
+            setTimeout(function(){
+              socket.emit('new comment', comments.data);
+            }, 2000);
+          }
+        )
       }
     )
   }
@@ -279,7 +284,7 @@ export function thunkUpdateSession(sessionId) {
       (comments) => {
         console.log('in thunkUpdateSession')
         dispatch(updateSession(sessionId))
-        dispatch(updateComments(comments))
+        dispatch(updateComments(comments.data))
       }
     )
   }
