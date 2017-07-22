@@ -1,15 +1,5 @@
-#login-container {
-  margin-top: 50px;
-  width: 40%;
-  padding: 5px;
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
-  background-color: #e0ebfc;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
+body {
+  background-color: #f9f9f7;
 }
 
 #title {
@@ -21,14 +11,32 @@
 }
 
 #welcome {
-  color: Blue;
-  margin-left: auto;
-  margin-right: auto;
+  fill: rgb(55, 58, 58);
+  text-align: center;
+  padding-top: 50px;
 }
 
 #session {
   width: window.innerWidth;
   height: window.innerHeight;
+}
+
+.intro {
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 20px;
+  font-size: 16px;
+}
+
+.google-auth-picture {
+  padding-top: 50px;
+  text-align: center;
+}
+
+
+.profile-info {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .invite-button {
@@ -92,6 +100,10 @@
 
 .user-name {
   text-align: center;
+}
+
+:focus {
+  outline: none;
 }
 
 .menu-modal-content {
@@ -229,4 +241,8 @@
   padding-bottom: 40px;
   padding-left: 40px;
   padding-right: 40px;
+}
+
+.profile-text {
+  text-align: center;
 }

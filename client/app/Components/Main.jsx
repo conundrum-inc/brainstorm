@@ -45,7 +45,6 @@ class Main extends React.Component {
         </div>
         <ReactModal isOpen={this.props.inviteDetailVisible}
           contentLabel="Invite Detail Modal"
-
           shouldCloseOnOverlayClick={true}
           onRequestClose={() => this.props.hideInviteDetail()}
           className="ReactModal__Content--after-open--invite"
