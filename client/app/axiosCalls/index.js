@@ -66,7 +66,7 @@ export function findUser(userId) {
 }
 
 export function inviteUsers(emailArray, sessionId) {
-  console.log('inside inviteUsers axios call!')
+  console.log('inside inviteUsers axios call!', emailArray, sessionId)
   return axios.post('/addUserToSession', {
     emails: emailArray,
     session_id: sessionId

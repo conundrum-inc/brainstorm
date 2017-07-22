@@ -254,6 +254,19 @@ export function thunkCreateSession(title, text, userId) {
   }
 }
 
+export function thunkCreateSessionAndInvite(title, text, userId, emailArray) {
+  return function(dispatch) {
+    return axiosCall.CreateSession(title, text, userId).then(
+      (comment) => {
+        console.log('inside thunkCreateSessionAndInvite .then', comment.data.session_id);
+        dispatch(updateSession(comment.data.session_id))
+        dispatch(addComment(comment.data))
+        dispatch(thunkUpdateUser(userId))
+        axiosCall.inviteUsers(emailArray, comment.data.session_id)
+      }
+    )
+  }
+}
 export function thunkUpdateSession(sessionId) {
   return function(dispatch) {
     return axiosCall.GetSession(sessionId).then(

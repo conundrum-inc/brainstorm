@@ -70,6 +70,7 @@ class Main extends React.Component {
             clearComments={this.props.clearComments}
             user={this.props.user}
             hideDetail={this.props.hideDetail}
+            thunkCreateSessionAndInvite={this.props.thunkCreateSessionAndInvite}
           />
           <Session showDetail={this.props.showDetail}
             hideDetail={this.props.hideDetail}

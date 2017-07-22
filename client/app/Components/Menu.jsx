@@ -71,6 +71,7 @@ class Menu extends React.Component {
               clearComments={this.props.clearComments}
               user={this.props.user}
               hideCreateSession={this.props.hideCreateSession}
+              thunkCreateSessionAndInvite={this.props.thunkCreateSessionAndInvite}
             />
           </ReactModal>
       </div>
