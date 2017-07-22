@@ -14,7 +14,7 @@ import { width,
          updateGraph
        } from '../../d3/d3helpers.js'
 
-import { commentsToNodes, wrapText } from '../utils.js'
+import { commentsToNodes } from '../utils.js'
 
 var coords;
 
@@ -36,8 +36,6 @@ class Graph extends React.Component {
                 'y': node.y,
                 'key': node.key }
       })
-      // console.log('new coords: ', coords)
-
     })
 
     const d3Links = this.d3Graph.selectAll('.link')
@@ -60,12 +58,12 @@ class Graph extends React.Component {
         this.handleClick.bind(this, node)()
       })
 
+
     // this.d3Graph.selectAll("text").each(wrapText)
 
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
 
-    // console.log('nodes: ', nodes.nodes)
   }
 
   componentDidUpdate() {
@@ -86,8 +84,6 @@ class Graph extends React.Component {
                 'y': node.y,
                 'key': node.key }
       })
-      // console.log('new coords: ', coords)
-
     })
 
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));

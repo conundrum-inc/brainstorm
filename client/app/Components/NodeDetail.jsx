@@ -47,7 +47,7 @@ class NodeDetail extends React.Component {
               Title:
             </Col>
             <Col sm={10}>
-              <FormControl type="title" name="title" placeholder="Title" maxLength="20"/>
+              <FormControl type="title" name="title" placeholder="Title" maxLength="15"/>
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">

@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { showDetail } from '../app/actions/actionsCreators.js'
 
-import { wrapText } from '../app/utils.js'
+
 
 export const width = 960;
 export const height = 500;
@@ -20,6 +20,8 @@ export const enterNode = (selection) => {
     .attr("fill", "#ace2e2")
     // .attr("stroke", "black")
     .call(force.drag)
+    .attr("class", "circle")
+
 
   selection.append('text')
     .attr("x", (d) => d.cx)
