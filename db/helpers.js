@@ -226,11 +226,7 @@ function upVote(req, res) {
       } else {
         var i = comment.upvotes.indexOf(clickUser);
         comment.upvotes.splice(i, 1);
-        if (comment.score === 0) {
-          comment.score = 0;
-        } else {
-          comment.score -= 1;
-        }
+        comment.score -= 1;
       }
       comment.save();
       console.log('upvote saved', comment)
@@ -252,19 +248,11 @@ function downVote(req, res) {
     } else {
       if (!comment.downvotes.includes(clickUser)) {
         comment.downvotes.push(clickUser)
-        if (comment.score === 0) {
-          comment.score = 0;
-        } else {
-          comment.score -= 1;
-        }
+        comment.score -= 1;
         if (comment.upvotes.includes(clickUser)) {
           var i = comment.upvotes.indexOf(clickUser)
           comment.upvotes.splice(i, 1)
-          if (comment.score === 0) {
-          comment.score = 0;
-          } else {
           comment.score -= 1;
-          }
         }
       } else {
         var i = comment.downvotes.indexOf(clickUser);
