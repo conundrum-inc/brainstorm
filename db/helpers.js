@@ -151,22 +151,22 @@ function addComment(req, res) {
             console.log('comment id saved in user array')
           }
         })
+        Comment.findOne({ _id: parentId}, (err, parentComment) => {
+          if (err) {
+            console.log('error in parent comment', err);
+          }
+          if (parentComment) {
+            parentComment.children.push(comment._id);
+            console.log('parentComment children', parentComment.children);
+            parentComment.save();
+            console.log('new comment id saved in children array');
+          }
+        })
         Comment.findOne({ _id: comment._id }, (err, comment) => {
           if (err) {
             console.log('err in comment find one');
             res.sendStatus(404);
           } else {
-            Comment.findOne({ _id: parentId}, (err, parentComment) => {
-              if (err) {
-                console.log('error in parent comment', err);
-              }
-              if (parentComment) {
-                parentComment.children.push(comment._id);
-                console.log('parentComment children', parentComment.children);
-                parentComment.save();
-                console.log('new comment id saved in children array');
-              }
-            })
             res.json(comment);
           }
       })

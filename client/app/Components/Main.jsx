@@ -21,6 +21,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
+    console.log('props in Main', this.props)
   }
 
   onSubmit(e, props) {
@@ -93,6 +94,7 @@ class Main extends React.Component {
             currentNode={this.props.currentNode}
             showCreateSession={this.props.showCreateSession}
             session={this.props.session}
+            updateComments={this.props.updateComments}
           />
       </div>
     )
