@@ -3,7 +3,7 @@ import io from "socket.io-client";
 var socket = io();
 
 export function upVote(score, commentId) {
-  
+
   return {
     type: 'UPVOTE',
     score,
@@ -12,7 +12,7 @@ export function upVote(score, commentId) {
 }
 
 export function downVote(score, commentId) {
-  
+
   return {
     type: 'DOWNVOTE',
     score,
@@ -44,7 +44,7 @@ export function clearComments() {
 }
 
 export function updateSession(sessionId) {
-  
+
   return {
     type: 'UPDATE_SESSION',
     sessionId
@@ -170,8 +170,10 @@ export function thunkUpVote(userId, commentId) {
   return function(dispatch) {
     return axiosCall.UpVote(userId, commentId).then(
       (comment) => {
-        socket.emit('upvote', comment.data)
         dispatch(editComment(comment.data))
+        setTimeout(function(){
+          socket.emit('upvote', comment.data);
+        }, 2000);
       }
     )
   }
@@ -181,8 +183,10 @@ export function thunkDownVote(userId, commentId) {
   return function(dispatch) {
     return axiosCall.DownVote(userId, commentId).then(
       (comment) => {
-        socket.emit('downvote', comment.data)
         dispatch(editComment(comment.data))
+        setTimeout(function(){
+          socket.emit('downvote', comment.data);
+        }, 2000);
       }
     )
   }
@@ -224,8 +228,10 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
   return function(dispatch) {
     return axiosCall.AddComment(userId, parentId, sessionId, title, text).then(
       (comment) => {
-        socket.emit('new comment', comment.data);
         dispatch(addComment(comment.data))
+        setTimeout(function(){
+          socket.emit('new comment', comment.data);
+        }, 2000);
       }
     )
   }
