@@ -31,7 +31,8 @@ class Menu extends React.Component {
       <div>
         <ReactModal isOpen={this.props.menuVisible}
                     contentLabel="Menu Modal"
-                    shouldCloseOnOverlayClick={this.props.menuVisible}
+                    shouldCloseOnOverlayClick={true}
+                    onRequestClose={() => this.props.hideMenu()}
                     className="ReactModal__Content--after-open--menu"
         >
           <Button className="menu-exit-btn" onClick={this.props.hideMenu}>X</Button>
