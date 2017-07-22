@@ -26,7 +26,17 @@ class Session extends React.Component {
 
     socket.on('socket comment', (data) => {
       console.log('data from socket', data)
-      props.addComment(data);
+      var copy = false;
+      for (var comment of this.props.comments) {
+        console.log('COMMENT ID IN LOOP', comment._id)
+        if (comment._id === data._id) {
+          copy = true;
+          console.log('comment already saved on state', copy);
+        }
+      }
+      if (copy === false) {
+        props.addComment(data);
+      }
     })
     socket.on('upvoted comment', (data) => {
       console.log('upvoted comment from socket', data)
@@ -35,6 +45,7 @@ class Session extends React.Component {
     socket.on('downvoted comment', (data) => {
       console.log('downvoted comment from socket', data)
       props.editComment(data);
+
     })
   }
 

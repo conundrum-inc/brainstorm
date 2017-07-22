@@ -36,7 +36,7 @@ class Graph extends React.Component {
                 'y': node.y,
                 'key': node.key }
       })
-      console.log('new coords: ', coords)
+      // console.log('new coords: ', coords)
 
     })
 
@@ -65,7 +65,7 @@ class Graph extends React.Component {
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
 
-    console.log('nodes: ', nodes.nodes)
+    // console.log('nodes: ', nodes.nodes)
   }
 
   componentDidUpdate() {
@@ -135,8 +135,8 @@ class Graph extends React.Component {
 
   render() {
     return (
-        <svg  className="session" width="100%" height="100%">
-          <g ref='graph' width="100%" height="100%"/>
+        <svg  className="session-container" width="100%" height="100%">
+          <g ref='graph' width="100%" height="100%" />
         </svg>
       );
   }

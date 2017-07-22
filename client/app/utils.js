@@ -1,6 +1,6 @@
 export function commentsToNodes(comments, coords) {
-  console.log('input coords: ', coords)
-  console.log('input comments: ', comments)
+  // console.log('input coords: ', coords)
+  // console.log('input comments: ', comments)
   var nodes = {
     nodes: [],
     links: []
@@ -8,7 +8,7 @@ export function commentsToNodes(comments, coords) {
   for(var i = 0; i < comments.length; i++) {
     if (comments[i].parent_id === 'root') {
       var node = { key: comments[i]._id,
-                   size: 60,
+                   size: 45,
                    x: coords ? coords[0]['x'] : 500,
                    y: coords ? coords[0]['y']: 500,
                    title: comments[i].title,
@@ -24,7 +24,7 @@ export function commentsToNodes(comments, coords) {
           var temp = findIndex(coords, 'key', comments[i].parent_id);
         }
       var node = { key: comments[i]._id,
-                   size: 20 + ( 5 * comments[i].score ),
+                   size: 30 + ( 5 * comments[i].score ),
                    x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : 500,
                    y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : 500,
                    title: comments[i].title,
@@ -66,5 +66,5 @@ export function wrapText(string) {
   var mid = Math.floor(string.length / 2)
   var first = string.slice(0, mid).join(' ');
   var second = string.slice(mid).join(' ');
-  return first + '\n' + second  
+  return first + '\n' + second
 }
