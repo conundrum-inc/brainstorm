@@ -16,7 +16,7 @@ const ProfilePage = (props) => {
     <div>
       <div className="menu-bar">
         <img className="menu-button"src="http://i.imgur.com/NErSVt4.png"
-          onClick={() => this.props.showMenu()}
+          onClick={() => props.showMenu()}
           width="30px"
           height="30px"
         />
@@ -48,8 +48,15 @@ const ProfilePage = (props) => {
 function mapStateToProps(state) {
   return {
     comments: state.comments,
-    detailViewVisible: state.detailViewVisibles,
-    user: state.user
+    createSessionVisible: state.createSessionVisible,
+    detailViewVisible: state.detailViewVisible,
+    inviteDetailVisible: state.inviteDetailVisible,
+    menuVisible: state.menuVisible,
+    nodes: state.nodes,
+    links: state.links,
+    currentNode: state.currentNode,
+    user: state.user,
+    session: state.session
   }
 }
 

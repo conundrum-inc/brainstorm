@@ -9,8 +9,8 @@ const Profile = (props) => {
     <div className="profile-text">
       <h3>Your profile:</h3>
       <img src={props.user.image}></img>
-      <p>Name: {props.user.name}</p>
-      <p>Username: {username}</p>
+      <p className="account-name">{props.user.name}</p>
+      <p className="email">{username}</p>
     </div>
   )
 }
