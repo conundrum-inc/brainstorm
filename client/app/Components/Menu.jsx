@@ -35,15 +35,16 @@ class Menu extends React.Component {
                     className="ReactModal__Content--after-open--menu"
         >
           <Button className="exit-btn" onClick={this.props.hideMenu}>X</Button>
-          <a className="user-picture-container" href={PROFILE_PAGE_ROUTE}><img className="user-picture" src={this.props.user.image} /></a>
+          <a className="user-picture-container" href={PROFILE_PAGE_ROUTE}>
+            <img className="user-picture" src={this.props.user.image} />
+          </a>
           <a href={PROFILE_PAGE_ROUTE}><h3 className="user-name">{this.props.user.name}</h3></a>
           <div className="menu-modal-content">
             <h4>Sessions</h4>
-            <div>
-              {this.props.user.accessible_sessions.map((comment) => {
-                return <div key={comment._id} data-key={comment._id} className="session-title" onClick={this.handleClick.bind(this)}>{comment.title} </div>
-              })}
-            </div>
+
+            {this.props.user.accessible_sessions.map((comment) => {
+              return <div key={comment._id} data-key={comment._id} className="session-title" onClick={this.handleClick.bind(this)}>{comment.title} </div>
+            })}
             <Button bsStyle="info"
               className="menu-btn-new-session"
               onClick={() => { this.props.showCreateSession(); this.props.hideMenu(); }}>
@@ -53,7 +54,9 @@ class Menu extends React.Component {
               <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
               Logout
             </Button>
+
           </div>
+
         </ReactModal>
 
         <ReactModal isOpen={this.props.createSessionVisible}
