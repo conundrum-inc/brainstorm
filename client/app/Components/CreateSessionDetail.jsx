@@ -26,7 +26,7 @@ class NodeDetail extends React.Component {
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle">
             <Col sm={10}>
-              <FormControl name="title" type="title" placeholder="Session Title" />
+              <FormControl autoFocus="autofocus" name="title" type="title" placeholder="Session Title" />
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
@@ -35,7 +35,18 @@ class NodeDetail extends React.Component {
             </Col>
           </FormGroup>
           <h5>Invite Session Users</h5>
-          <InviteDetail />
+          <FormGroup className="form-horizontal form-group" controlId="inviteEmails">
+            <Col sm={10}>
+              <FormControl name="emails" type="emails" placeholder="same@gmail, pete@gmail, etc." />
+            </Col>
+          </FormGroup>
+          <FormGroup className="form-horizontal form-group">
+            <Col sm={10}>
+              <Button className="submit-btn" type="submit">
+                Submit
+              </Button>
+            </Col>
+          </FormGroup>
         </Form>
       </div>
     )
