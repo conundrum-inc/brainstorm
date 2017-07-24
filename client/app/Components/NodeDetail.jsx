@@ -38,7 +38,7 @@ class NodeDetail extends React.Component {
         <Button className="downvote" onClick={this.downvote.bind(this)}>{emoji.emojify(':thumbsdown:')}</Button>
         <h5 className="branches-headings" >Branches</h5>
         {(this.props.currentNode.children).map(function(child) {
-          return <div className="child-title" key={child}>{child}</div>
+          return <div className="child-title" key={child._id}>{child.title}</div>
         })}
         <h5 className="branches-headings" >Add a branch to "{this.props.currentNode.title}":</h5>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>

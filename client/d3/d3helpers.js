@@ -31,7 +31,7 @@ export const enterNode = (selection) => {
     .attr("text-anchor", "middle")
     .style("font-weight", "bold")
     // .style("text-transform", "uppercase")
-    .style("font-size", (d) => (d.size + 50) / 7 + "px")
+    .style("font-size", (d) => (d.size + 50) / 6 + "px")
     .attr("dy", ".35em")
     .text((d) => d.title)
 

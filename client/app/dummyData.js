@@ -4,7 +4,7 @@ export const commentsDummyData = [{
     children: [],
     creator_id: '',
     session_id: '',
-    title: 'New Session',
+    title: '+ Session',
     text: 'testing the root',
     upvotes: [],
     downvotes:[],
