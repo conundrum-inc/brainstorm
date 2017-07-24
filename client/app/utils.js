@@ -73,3 +73,9 @@ export function splitText(string) {
   return [first, second]
 
 }
+
+export function randomBlue() {
+  var blues = ['#aedee0', '#afd9dd', '#cae9ea', '#c7e2e1'];
+  var random = Math.floor(Math.random() * 4);
+  return blues[random];
+}

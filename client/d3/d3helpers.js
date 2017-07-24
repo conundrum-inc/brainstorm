@@ -1,12 +1,13 @@
 import * as d3 from 'd3'
 import { showDetail } from '../app/actions/actionsCreators.js'
+import { randomBlue } from '../app/utils.js'
 
 
 
 export const width = window.innerWidth;
 export const height = window.innerHeight - (.3)*(window.innerHeight);
 export const force = d3.layout.force()
-            .charge(-500)
+            .charge(-1000)
             .linkDistance(110)
             .size([width, height])
 
@@ -19,7 +20,7 @@ export const enterNode = (selection) => {
 
   selection.append('circle')
     .attr("r", (d) => d.size)
-    .attr("fill", "#ace2e2")
+    .attr("fill", randomBlue)
     // .attr("stroke", "black")
     .call(force.drag)
     .attr("class", "circle")
