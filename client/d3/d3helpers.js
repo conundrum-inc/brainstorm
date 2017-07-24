@@ -28,7 +28,7 @@ export const enterNode = (selection) => {
 
   selection.append('text')
     .attr("x", (d) => d.cx)
-    .style("fill", "#4b4f4f")
+    .style("fill", "#373a3a")
     .attr("text-anchor", "middle")
     .style("font-weight", "bold")
     // .style("text-transform", "uppercase")
