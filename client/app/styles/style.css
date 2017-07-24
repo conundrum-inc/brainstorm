@@ -242,6 +242,10 @@ body {
   margin-top: 0;
 }
 
+.thought-detail {
+  margin-bottom: 0;
+}
+
 .ReactModal__Content--after-open--menu {
   float: left;
   width: 200px;

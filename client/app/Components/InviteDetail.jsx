@@ -16,7 +16,7 @@ class InviteDetail extends React.Component {
       <div>
         <FormGroup className="form-horizontal form-group" controlId="inviteEmails">
           <Col sm={10}>
-            <FormControl autoFocus="autofocus" name="emails" type="emails" placeholder="same@gmail, pete@gmail, etc." />
+            <FormControl autoFocus="autofocus" name="emails" type="emails" placeholder="sam@gmail, pete@gmail, etc." />
           </Col>
         </FormGroup>
 
