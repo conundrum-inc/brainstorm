@@ -13,8 +13,8 @@ export function commentsToNodes(comments, coords) {
     if (comments[i].parent_id === 'root') {
       var node = { key: comments[i]._id,
                    size: 45,
-                   x: coords ? coords[0]['x'] : 600,
-                   y: coords ? coords[0]['y']: 250,
+                   x: coords ? coords[0]['x'] : window.innerWidth / 2,
+                   y: coords ? coords[0]['y']: window.innerHeight / 2,
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,
@@ -29,8 +29,8 @@ export function commentsToNodes(comments, coords) {
         }
       var node = { key: comments[i]._id,
                    size: 30 + ( 5 * comments[i].score ),
-                   x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : 600,
-                   y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : 250,
+                   x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : window.innerWidth / 2,
+                   y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : window.innerHeight / 2,
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,

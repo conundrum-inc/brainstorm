@@ -6,7 +6,7 @@ import { showDetail } from '../app/actions/actionsCreators.js'
 export const width = window.innerWidth;
 export const height = window.innerHeight - (.3)*(window.innerHeight);
 export const force = d3.layout.force()
-            .charge(-500)
+            .charge(-300)
             .linkDistance(85)
             .size([width, height])
             
@@ -21,7 +21,7 @@ export const enterNode = (selection) => {
     .attr("r", (d) => d.size)
     .attr("fill", "#ace2e2")
     // .attr("stroke", "black")
-    .call(force.drag)
+
     .attr("class", "circle")
 
 
@@ -38,7 +38,7 @@ export const enterNode = (selection) => {
 
 export const updateNode = (selection) => {
 
-  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
+  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")").call(force.drag)
 
 }
 
