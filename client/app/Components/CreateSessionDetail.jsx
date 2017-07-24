@@ -37,7 +37,7 @@ class NodeDetail extends React.Component {
           <h5>Invite Session Users</h5>
           <FormGroup className="form-horizontal form-group" controlId="inviteEmails">
             <Col sm={10}>
-              <FormControl name="emails" type="emails" placeholder="same@gmail, pete@gmail, etc." />
+              <FormControl name="emails" type="emails" placeholder="sam@gmail, pete@gmail, etc." />
             </Col>
           </FormGroup>
           <FormGroup className="form-horizontal form-group">
