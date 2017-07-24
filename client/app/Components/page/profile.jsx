@@ -16,7 +16,7 @@ const ProfilePage = (props) => {
     <div>
       <div className="menu-bar">
         <img className="menu-button"src="http://i.imgur.com/NErSVt4.png"
-          onClick={() => this.props.showMenu()}
+          onClick={() => props.showMenu()}
           width="30px"
           height="30px"
         />
