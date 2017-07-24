@@ -22,7 +22,7 @@ class InviteDetail extends React.Component {
 
         <FormGroup className="form-horizontal form-group">
           <Col sm={10}>
-            <Button type="submit">
+            <Button className="submit-btn" type="submit">
               Submit
             </Button>
           </Col>
