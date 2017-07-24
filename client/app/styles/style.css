@@ -40,7 +40,8 @@ body {
 }
 
 .invite-button {
-  float: right;
+  position: absolute;
+  right: 0;
   margin-right: 50px;
   margin-top: 25px;
   background-color: #f7f4f4;

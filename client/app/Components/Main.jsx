@@ -73,6 +73,7 @@ class Main extends React.Component {
             hideDetail={this.props.hideDetail}
             thunkCreateSessionAndInvite={this.props.thunkCreateSessionAndInvite}
           />
+          <Button className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</Button>
           <Session showDetail={this.props.showDetail}
             hideDetail={this.props.hideDetail}
             detailViewVisible={this.props.detailViewVisible}
