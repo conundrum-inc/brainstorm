@@ -43,6 +43,7 @@ class Session extends React.Component {
   render() {
     return (
       <div id="session">
+        <Button className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</Button>
         <ReactModal isOpen={this.props.detailViewVisible}
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={true}

@@ -41,7 +41,6 @@ class Main extends React.Component {
             height="30px"
           />
           <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
-          <Button className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</Button>
         </div>
         <ReactModal isOpen={this.props.inviteDetailVisible}
           contentLabel="Invite Detail Modal"
@@ -94,6 +93,7 @@ class Main extends React.Component {
             showCreateSession={this.props.showCreateSession}
             session={this.props.session}
             updateComments={this.props.updateComments}
+            showInviteDetail={this.props.showInviteDetail}
           />
       </div>
     )
