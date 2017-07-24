@@ -50,7 +50,7 @@ class Main extends React.Component {
           >
             <Button className="exit-btn" onClick={ () => this.props.hideInviteDetail() }>X</Button>
             <div className="invite-user-content">
-              <h4>Add friends to your session!</h4>
+              <h4>Add friends to this session!</h4>
               <Form horizontal onSubmit={this.onSubmit.bind(this)}>
                   <InviteDetail />
               </Form>
