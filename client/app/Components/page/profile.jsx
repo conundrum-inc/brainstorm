@@ -9,26 +9,30 @@ import * as actionCreators from '../../actions/actionsCreators';
 import Profile from '../Profile.jsx';
 import MySessions from '../MySessions.jsx';
 import Menu from '../Menu.jsx';
+import { NavLink } from 'react-router-dom';
+import { LOGOUT_PAGE_ROUTE } from '../../routes.js';
+
 
 const ProfilePage = (props) => {
   console.log('ProfilePage props: ', props);
   return (
     <div>
       <div className="menu-bar">
-        <img className="menu-button"src="http://i.imgur.com/NErSVt4.png"
-          onClick={() => props.showMenu()}
-          width="30px"
-          height="30px"
-        />
         <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
       </div>
       <div className="profile-info">
         <Profile history={props.history} user={props.user}/>
         <MySessions user={props.user}/>
+        <div className="profile-btn-logout">
+          <Button href={LOGOUT_PAGE_ROUTE}>
+            <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
+            Logout
+          </Button>
+        </div>
       </div>
     </div>
-    )
-  }
+  )
+}
 
 function mapStateToProps(state) {
   return {

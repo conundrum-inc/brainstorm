@@ -1,4 +1,7 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+
 
 const Profile = (props) => {
   console.log('Profile props: ', props);
@@ -11,6 +14,11 @@ const Profile = (props) => {
       <img src={props.user.image}></img>
       <p className="account-name">{props.user.name}</p>
       <p className="email">{username}</p>
+      <Button
+        className="profile-btn-new-session"
+        onClick={() => { this.props.showCreateSession(); this.props.hideMenu(); }}>
+        New Session!
+      </Button>
     </div>
   )
 }
