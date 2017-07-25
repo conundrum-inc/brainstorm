@@ -22,21 +22,6 @@ const ProfilePage = (props) => {
         />
         <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
       </div>
-      <Menu showCreateSession={props.showCreateSession}
-            hideCreateSession={props.hideCreateSession}
-            createSessionVisible={props.createSessionVisible}
-            currentNode={props.currentNode}
-            setNode={props.setNode}
-            updateNode={props.updateNode}
-            addComment={props.addComment}
-            thunkCreateSession={props.thunkCreateSession}
-            showMenu={props.showMenu}
-            hideMenu={props.hideMenu}
-            menuVisible={props.menuVisible}
-            clearComments={props.clearComments}
-            user={props.user}
-            hideDetail={props.hideDetail}
-      />
       <div className="profile-info">
         <Profile history={props.history} user={props.user}/>
         <MySessions user={props.user}/>
@@ -56,7 +41,8 @@ function mapStateToProps(state) {
     links: state.links,
     currentNode: state.currentNode,
     user: state.user,
-    session: state.session
+    session: state.session,
+    thunkUpdateSession: state.thunkUpdateSession
   }
 }
 

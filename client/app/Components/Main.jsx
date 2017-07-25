@@ -57,7 +57,8 @@ class Main extends React.Component {
             </div>
           </ReactModal>
 
-          <Menu    showCreateSession={this.props.showCreateSession}
+          <Menu
+            showCreateSession={this.props.showCreateSession}
             hideCreateSession={this.props.hideCreateSession}
             createSessionVisible={this.props.createSessionVisible}
             currentNode={this.props.currentNode}
