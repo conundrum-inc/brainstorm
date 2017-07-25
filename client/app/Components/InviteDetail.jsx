@@ -15,17 +15,14 @@ class InviteDetail extends React.Component {
     return (
       <div>
         <FormGroup className="form-horizontal form-group" controlId="inviteEmails">
-          <Col componentClass={ControlLabel} sm={2}>
-            Email(s):
-          </Col>
           <Col sm={10}>
-            <FormControl name="emails" type="emails" placeholder="Enter emails separated by commas." />
+            <FormControl autoFocus="autofocus" name="emails" type="emails" placeholder="sam@gmail, pete@gmail, etc." />
           </Col>
         </FormGroup>
 
         <FormGroup className="form-horizontal form-group">
-          <Col smOffset={2} sm={10}>
-            <Button type="submit">
+          <Col sm={10}>
+            <Button className="submit-btn" type="submit">
               Submit
             </Button>
           </Col>

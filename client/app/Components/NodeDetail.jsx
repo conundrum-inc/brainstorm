@@ -25,22 +25,19 @@ class NodeDetail extends React.Component {
     this.props.thunkDownVote(this.props.user.userId, this.props.currentNode.key)
   }
 
-  // newComment() {
-  //   socket.broadcast.emit('new comment')
-  // }
-
   render() {
     return (
       <div className="new-comment-modal-content">
-        <h3 className="node-title">{this.props.currentNode.title}</h3>
+        <h4 className="node-title">Idea: "{this.props.currentNode.title}"</h4>
+        <h5 className="thought-detail">Detail:</h5>
         <p className="node-text">{this.props.currentNode.text}</p>
         <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>
         <Button className="downvote" onClick={this.downvote.bind(this)}>{emoji.emojify(':thumbsdown:')}</Button>
-        <h4 className="branches-headings" >Branches</h4>
+        <h5 className="branches-headings" >Branches</h5>
         {(this.props.currentNode.children).map(function(child) {
-          return <div className="child-title" key={child}>{child}</div>
+          return <div className="child-title" key={child._id}>{child.title}</div>
         })}
-        <h4 className="branches-headings" >Add a branch to "{this.props.currentNode.title}":</h4>
+        <h5 className="branches-headings" >Add a branch to "{this.props.currentNode.title}":</h5>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle" >
             {/* <Col componentClass={ControlLabel} sm={2}>
@@ -60,7 +57,7 @@ class NodeDetail extends React.Component {
           </FormGroup>
           <FormGroup>
             <Col sm={10}>
-              <Button type="submit">
+              <Button className="submit-btn" type="submit">
                 Submit
               </Button>
             </Col>

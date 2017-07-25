@@ -65,7 +65,7 @@ class Graph extends React.Component {
     force.start();
 
     function resize() {
-      
+
       var width = window.innerWidth
       var forceHeight = window.innerHeight - .3*window.innerHeight;
       var svgHeight = window.innerHeight

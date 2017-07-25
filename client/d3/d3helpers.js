@@ -1,15 +1,16 @@
 import * as d3 from 'd3'
 import { showDetail } from '../app/actions/actionsCreators.js'
+import { randomBlue } from '../app/utils.js'
 
 
 
 export const width = window.innerWidth;
 export const height = window.innerHeight - (.3)*(window.innerHeight);
 export const force = d3.layout.force()
-            .charge(-300)
-            .linkDistance(85)
+            .charge(-1000)
+            .linkDistance(110)
             .size([width, height])
-            
+
 
 
 
@@ -19,7 +20,7 @@ export const enterNode = (selection) => {
 
   selection.append('circle')
     .attr("r", (d) => d.size)
-    .attr("fill", "#ace2e2")
+    .attr("fill", randomBlue)
     // .attr("stroke", "black")
 
     .attr("class", "circle")
@@ -30,6 +31,7 @@ export const enterNode = (selection) => {
     .style("fill", "#373a3a")
     .attr("text-anchor", "middle")
     .style("font-weight", "bold")
+    // .style("text-transform", "uppercase")
     .style("font-size", (d) => (d.size + 50) / 6 + "px")
     .attr("dy", ".35em")
     .text((d) => d.title)

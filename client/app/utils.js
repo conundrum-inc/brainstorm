@@ -1,5 +1,5 @@
 export function commentsToNodes(comments, coords) {
-  
+
   if (!coords) {
     var initCoords;
     //iterate through comments to give
@@ -12,9 +12,9 @@ export function commentsToNodes(comments, coords) {
   for(var i = 0; i < comments.length; i++) {
     if (comments[i].parent_id === 'root') {
       var node = { key: comments[i]._id,
-                   size: 45,
                    x: coords ? coords[0]['x'] : window.innerWidth / 2,
                    y: coords ? coords[0]['y']: window.innerHeight / 2,
+                   size: 55,
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,
@@ -28,9 +28,9 @@ export function commentsToNodes(comments, coords) {
           var temp = findIndex(coords, 'key', comments[i].parent_id);
         }
       var node = { key: comments[i]._id,
-                   size: 30 + ( 5 * comments[i].score ),
                    x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : window.innerWidth / 2,
                    y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : window.innerHeight / 2,
+                   size: 40 + ( 5 * comments[i].score ),
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,
@@ -70,6 +70,12 @@ export function splitText(string) {
   var mid = Math.floor(string.length / 2)
   var first = string.slice(0, mid).join(' ');
   var second = string.slice(mid).join(' ');
-  return [first, second]  
+  return [first, second]
 
+}
+
+export function randomBlue() {
+  var blues = ['#aedee0', '#afd9dd', '#cae9ea', '#c7e2e1'];
+  var random = Math.floor(Math.random() * 4);
+  return blues[random];
 }

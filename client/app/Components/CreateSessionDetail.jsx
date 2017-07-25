@@ -22,25 +22,31 @@ class NodeDetail extends React.Component {
   render() {
     return (
       <div className="new-session-modal-content">
-        <h2>Start a Sesh</h2>
+        <h4>Start a Session</h4>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle">
-            <Col componentClass={ControlLabel} sm={2}>
-              Session Title:
-            </Col>
             <Col sm={10}>
-              <FormControl name="title" type="title" placeholder="What are you brainstorming for?" />
+              <FormControl autoFocus="autofocus" name="title" type="title" placeholder="Session Title" />
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
-            <Col componentClass={ControlLabel} sm={2}>
-              Description:
-            </Col>
             <Col sm={10}>
-              <FormControl name="text" type="details" placeholder="This is your brainstorm starting point! Details, criteria, suggestions go here for collaborators to check out. " />
+              <FormControl name="text" type="details" placeholder="Session Details" />
             </Col>
           </FormGroup>
-          <InviteDetail />
+          <h5>Invite Session Users</h5>
+          <FormGroup className="form-horizontal form-group" controlId="inviteEmails">
+            <Col sm={10}>
+              <FormControl name="emails" type="emails" placeholder="sam@gmail, pete@gmail, etc." />
+            </Col>
+          </FormGroup>
+          <FormGroup className="form-horizontal form-group">
+            <Col sm={10}>
+              <Button className="submit-btn" type="submit">
+                Submit
+              </Button>
+            </Col>
+          </FormGroup>
         </Form>
       </div>
     )

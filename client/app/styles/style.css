@@ -1,15 +1,5 @@
-#login-container {
-  margin-top: 50px;
-  width: 40%;
-  padding: 5px;
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
-  background-color: #e0ebfc;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
+body {
+  background-color: #f9f9f7;
 }
 
 #title {
@@ -21,9 +11,9 @@
 }
 
 #welcome {
-  color: Blue;
-  margin-left: auto;
-  margin-right: auto;
+  fill: rgb(55, 58, 58);
+  text-align: center;
+  padding-top: 50px;
 }
 
 #session {
@@ -31,11 +21,37 @@
   height: window.innerHeight;
 }
 
+.intro {
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 20px;
+  font-size: 16px;
+}
+
+.google-auth-picture {
+  padding-top: 50px;
+  text-align: center;
+}
+
+
+.profile-info {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 7px;
+  background-color: #b6efef;
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 33%;
+  margin-right: 33%;
+}
+
 .invite-button {
-  float: right;
+  position: absolute;
+  right: 0;
   margin-right: 50px;
   margin-top: 25px;
-  background-color: #fcfcfc;
+  background-color: #f7f4f4;
+  color: #515050;
 }
 
 .menu-bar {
@@ -65,7 +81,7 @@
   width: 33%;
   height: auto;
   background-color: White;
-  border-radius: 5px;
+  border-radius: 6x;
   border-color: Grey;
 }
 
@@ -78,28 +94,34 @@
 }
 
 .user-picture-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 20px;
 }
 
 .user-picture {
-  margin-top: 30px;
-  margin-left: 50%;
-  margin-right: 50%;
-  padding-bottom: 30px;
+  border-radius: 7px;
+  margin-top: 20px;
 }
 
 .user-name {
-  text-align: center;
+  margin-left: 20px;
+  margin-bottom: 0;
+}
+
+.email {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.account-name {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+:focus {
+  outline: none;
 }
 
 .menu-modal-content {
-  margin-left: 40px;
-  margin-top: 30px;
-  margin-bottom: 40px;
-  margin-right: 40px;
-  padding-bottom: 100px;
+  padding: 0px 20px 20px 20px;
 }
 
 .ReactModal__Content--after-open--new-comment {
@@ -109,11 +131,6 @@
   height: 33%;
   background-color: White;
   margin-top: 200px;
-}
-
-.new-comment-modal-content {
-  padding: 40px;
-  background: white;
 }
 
 .upvote {
@@ -144,16 +161,14 @@
 .ReactModal__Content--after-open--new-session {
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
-  height: 33%;
-  background-color: White;
+  width: 300;
+  background-color: #b6efef;
   margin-top: 200px;
+  border-radius: 6px;
 }
 
 .new-session-modal-content {
-  padding-bottom: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 20px;
 }
 
 .form-horizontal .form-group {
@@ -193,40 +208,86 @@
 }
 
 .new-comment-modal-content {
-  width: 350px;
-  padding: 30px;
-  border-radius: 20px;
+  width: 300px;
+  padding: 20px;
+  border-radius: 6px;
   background-color: #b6efef;
 }
 
-.new-comment-modal-content {
-  outline: none;
-}
 
 .glowing-border {
   border-width: 0;
 }
 
-.ReactModal__Content, .ReactModal__Content--after-open, .ReactModal__Content--after-open--new-comment {
+.ReactModal__Content--after-open--new-comment {
   margin-left: auto;
   margin-right: auto;
-  width: 350px;
+  width: 300px;
   /*height: 33%;*/
   background-color: White;
   margin-top: 200px;
+  border-radius: 6px;
 }
 
 .ReactModal__Content--after-open--invite {
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-  height: 33%;
+  float: right;
+  width: 350px;
   background-color: White;
-  margin-top: 200px;
+  margin-top: 100px;
+  margin-right: 75px;
+  border-radius: 6px;
+}
+
+.node-title {
+  margin-top: 0;
+}
+
+.thought-detail {
+  margin-bottom: 0;
+}
+
+.ReactModal__Content--after-open--menu {
+  float: left;
+  width: 200px;
+  background-color: #b6efef;
+  margin-top: 65px;
+  margin-left: 50px;
+  border-radius: 6px;
+}
+
+.menu-btn-new-session, .menu-btn-logout {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  font-size: 11px;
+  padding: 4px 8px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.submit-btn {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
+.exit-btn {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  font-size: 10px;
+  padding: 2px 5px;
+  font-weight: bold;
 }
 
 .invite-user-content {
-  padding-bottom: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 20px;
+  border-radius: 6px;
+  background-color: #b6efef;
+}
+
+.profile-text {
+  text-align: center;
 }

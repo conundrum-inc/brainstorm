@@ -2,19 +2,24 @@ import React from 'react'
 
 import Menu from './Menu.jsx'
 
-const MySessions = () => {
+const MySessions = (props) => {
+  console.log('props: ', props);
+
   return (
       <div>
         <h3>Your Brainstorm sessions:</h3>
         <ul>
-          <li>Hack Reactor Thesis Project</li>
-          <li>Screenplay ideas</li>
+          {props.user.created_sessions.map((session) => {
+            return <li onClick={console.log('created session item click!')}>{session.title}</li>
+          })}
         </ul>
         <h3>Sessions you contribute to:</h3>
         <ul>
-          <li>Lucy's Surprise Party</li>
-          <li>Ultimate Dessert Recipe Competition</li>
-          <li>Startup ideas</li>
+          {props.user.accessible_sessions.map((session) => {
+            if (props.user.created_sessions.includes(session)) {
+              return <li onClick={console.log('accessed session item click!')}>{session.title}</li>
+            }
+          })}
         </ul>
       </div>
     )

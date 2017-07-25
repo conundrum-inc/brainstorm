@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 var ReactDOM = require('react-dom');
@@ -36,15 +35,16 @@ class Menu extends React.Component {
                     className="ReactModal__Content--after-open--menu"
         >
           <Button className="exit-btn" onClick={this.props.hideMenu}>X</Button>
-          <a className="user-picture-container" href={PROFILE_PAGE_ROUTE}><img className="user-picture" src={this.props.user.image} /></a>
+          <a className="user-picture-container" href={PROFILE_PAGE_ROUTE}>
+            <img className="user-picture" src={this.props.user.image} />
+          </a>
           <a href={PROFILE_PAGE_ROUTE}><h3 className="user-name">{this.props.user.name}</h3></a>
           <div className="menu-modal-content">
             <h4>Sessions</h4>
-            <div>
-              {this.props.user.accessible_sessions.map((comment) => {
-                return <div key={comment._id} data-key={comment._id} className="session-title" onClick={this.handleClick.bind(this)}>{comment.title} </div>
-              })}
-            </div>
+
+            {this.props.user.accessible_sessions.map((comment) => {
+              return <div key={comment._id} data-key={comment._id} className="session-title" onClick={this.handleClick.bind(this)}>{comment.title} </div>
+            })}
             <Button bsStyle="info"
               className="menu-btn-new-session"
               onClick={() => { this.props.showCreateSession(); this.props.hideMenu(); }}>
@@ -54,7 +54,9 @@ class Menu extends React.Component {
               <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
               Logout
             </Button>
+
           </div>
+
         </ReactModal>
 
         <ReactModal isOpen={this.props.createSessionVisible}
@@ -85,28 +87,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(Menu)
-
-/* <ButtonGroup>
-  <Button bsStyle="info" href={PROFILE_PAGE_ROUTE}>
-    <NavLink to={PROFILE_PAGE_ROUTE}></NavLink>
-    My Profile
-  </Button>
-  <Button bsStyle="info" className="add-comment" onClick={() => props.showCreateSession()}>New Session!</Button>
-  <Button bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
-    <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
-    Logout
-  </Button>
-</ButtonGroup>
-<ReactModal isOpen={props.createSessionVisible}
-  contentLabel="Detail Modal"
-  shouldCloseOnOverlayClick={props.createSessionVisible}
-  >
-    <Button onClick={props.hideCreateSession}>X</Button>
-    <CreateSessionDetail
-      addComment={props.addComment}
-      currentNode={props.currentNode}
-      setNode={props.setNode}
-      updateNode={props.updateNode}
-      thunkCreateSession={props.thunkCreateSession}
-    />
-  </ReactModal> */
