@@ -22,7 +22,7 @@ export const enterNode = (selection) => {
     .attr("r", (d) => d.size)
     .attr("fill", randomBlue)
     // .attr("stroke", "black")
-    .call(force.drag)
+
     .attr("class", "circle")
 
 
@@ -40,7 +40,7 @@ export const enterNode = (selection) => {
 
 export const updateNode = (selection) => {
 
-  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
+  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")").call(force.drag)
 
 }
 
