@@ -132,14 +132,14 @@ a {
   padding: 0px 20px 20px 20px;
 }
 
-.ReactModal__Content--after-open--new-comment {
+/*.ReactModal__Content--after-open--new-comment, .ReactModal__Content--after-open--edit-comment {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
   height: 33%;
   background-color: White;
   margin-top: 200px;
-}
+}*/
 
 .upvote {
   margin-right: 5px;
@@ -236,7 +236,7 @@ a {
   border-width: 0;
 }
 
-.ReactModal__Content--after-open--new-comment {
+.ReactModal__Content--after-open--new-comment, .ReactModal__Content--after-open--edit-comment {
   margin-left: auto;
   margin-right: auto;
   width: 300px;
@@ -257,6 +257,8 @@ a {
 
 .node-title {
   margin-top: 0;
+  margin-bottom: 0;
+  display: inline-block;
 }
 
 .thought-detail {
@@ -297,6 +299,23 @@ a {
   font-size: 10px;
   padding: 2px 5px;
   font-weight: bold;
+}
+
+.buffer {
+  height: 15px;
+}
+
+.edit-comment-btn {
+  margin-left: 10px;
+  display: inline-block;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  font-size: 8px;
+  padding: 1px 3px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
 }
 
 .invite-user-content {
