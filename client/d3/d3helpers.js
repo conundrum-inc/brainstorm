@@ -7,8 +7,8 @@ import { randomBlue } from '../app/utils.js'
 export const width = window.innerWidth;
 export const height = window.innerHeight - (.3)*(window.innerHeight);
 export const force = d3.layout.force()
-            .charge(-1000)
             .linkDistance(110)
+            .charge(-300)
             .size([width, height])
 
 
@@ -22,7 +22,7 @@ export const enterNode = (selection) => {
     .attr("r", (d) => d.size)
     .attr("fill", randomBlue)
     // .attr("stroke", "black")
-    .call(force.drag)
+
     .attr("class", "circle")
 
 
@@ -40,7 +40,7 @@ export const enterNode = (selection) => {
 
 export const updateNode = (selection) => {
 
-  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
+  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")").call(force.drag)
 
 }
 
