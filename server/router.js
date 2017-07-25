@@ -46,12 +46,6 @@ var router = express.Router();
       helpers.findComment(req, res);
     })
 
-// edit comment
-  router.route('/edit')
-    .post(function(req, res) {
-      helpers.editComment(req, res);
-    })
-
 
 // fetch all comments for a given session
   router.route('/allComments')
