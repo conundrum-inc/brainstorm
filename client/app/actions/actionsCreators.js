@@ -241,7 +241,10 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
 export function thunkEditComment(commentId, title, text) {
   return function(dispatch) {
     return axiosCall.EditComment(commentId, title, text).then(
-      comment => dispatch(editComment(comment.data))
+      comment => {
+        console.log('inside thunkEditComment comment: ', comment.data)
+        dispatch(editComment(comment.data))
+      }
     )
   }
 }
