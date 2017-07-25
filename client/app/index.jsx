@@ -50,13 +50,13 @@ class App extends React.Component {
           <Switch>
             <Route exact path={ LOGIN_PAGE_ROUTE } render={() => <LoginPage />} />
             <Route exact path={ AUTH_PAGE_ROUTE }  render={() => {
-              return this.state.isLoggedIn ? <MainPage /> : <a href='/login'>If page does not refresh, click here</a>
+              return this.state.isLoggedIn ? <MainPage /> : <a href='/'>If page does not refresh, click here</a>
             }} />
             <Route exact path={ MAIN_PAGE_ROUTE }  render={() => {
-              return this.state.isLoggedIn ? <MainPage /> : <a href='/login'>If page does not refresh, click here</a>
+              return this.state.isLoggedIn ? <MainPage /> : <a href='/'>If page does not refresh, click here</a>
             }} />
             <Route exact path={ PROFILE_PAGE_ROUTE } render={ () => {
-              return this.state.isLoggedIn ? <ProfilePage /> : <a href='/login'>If page does not refresh, click here</a>
+              return this.state.isLoggedIn ? <ProfilePage /> : <a href='/'>If page does not refresh, click here</a>
             }} />
             <Route exact path={ LOGOUT_PAGE_ROUTE } render={() => <LoginPage />} />
           </Switch>
