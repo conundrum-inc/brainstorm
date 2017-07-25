@@ -39,6 +39,9 @@ var router = express.Router();
     .post(function(req, res) {
       helpers.addComment(req, res);
     })
+    .put(function(req, res) {
+      helpers.editComment(req, res);
+    })
     .get(function(req, res) {
       helpers.findComment(req, res);
     })
