@@ -48,16 +48,17 @@ class Main extends React.Component {
           onRequestClose={() => this.props.hideInviteDetail()}
           className="ReactModal__Content--after-open--invite"
           >
-            <Button className="exit-btn" onClick={ () => this.props.hideInviteDetail() }>X</Button>
-            <div className="invite-user-content">
-              <h4>Add friends to this session!</h4>
-              <Form horizontal onSubmit={this.onSubmit.bind(this)}>
-                  <InviteDetail />
-              </Form>
-            </div>
-          </ReactModal>
+          <Button className="exit-btn" onClick={ () => this.props.hideInviteDetail() }>X</Button>
+          <div className="invite-user-content">
+            <h4>Add friends to this session!</h4>
+            <Form horizontal onSubmit={this.onSubmit.bind(this)}>
+                <InviteDetail />
+            </Form>
+          </div>
+        </ReactModal>
 
-          <Menu    showCreateSession={this.props.showCreateSession}
+          <Menu
+            showCreateSession={this.props.showCreateSession}
             hideCreateSession={this.props.hideCreateSession}
             createSessionVisible={this.props.createSessionVisible}
             currentNode={this.props.currentNode}
@@ -73,7 +74,7 @@ class Main extends React.Component {
             hideDetail={this.props.hideDetail}
             thunkCreateSessionAndInvite={this.props.thunkCreateSessionAndInvite}
           />
-          <Button className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</Button>
+          <Button title="Invite people to join this session" className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</Button>
           <Session showDetail={this.props.showDetail}
             hideDetail={this.props.hideDetail}
             detailViewVisible={this.props.detailViewVisible}
@@ -104,23 +105,3 @@ class Main extends React.Component {
 }
 
 export default connect()(Main);
-
-// {/* <Menu className="menu-button" menuVisible={props.menuVisible} onClick={() => props.menuVisible ? props.hideMenu() : props.showMenu()}/> */}
-//
-
-// class Login extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   componentDidMount() {
-//     logout();
-//   }
-//   render() {
-//    return (
-//      <div>
-//      <h2>Welcome to Brainstorm!</h2>
-//      <a href="/auth/google">Sign In with Google</a>
-//      </div>
-//     )
-//   }
-// }

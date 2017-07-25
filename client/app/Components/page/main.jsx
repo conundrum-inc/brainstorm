@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionsCreators';
-
 import Main from '../Main.jsx';
 
 const MainPage = (props) => {
