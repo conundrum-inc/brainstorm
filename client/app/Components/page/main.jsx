@@ -47,6 +47,9 @@ const MainPage = (props) => {
             thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
             updateComments={props.updateComments}
             thunkUpdateCurrentNode={props.thunkUpdateCurrentNode}
+            editCommentDetailVisible={props.editCommentDetailVisible}
+            showEditCommentDetail={props.showEditCommentDetail}
+            hideEditCommentDetail={props.hideEditCommentDetail}
           />
     </div>
   )
@@ -59,6 +62,7 @@ function mapStateToProps(state) {
     detailViewVisible: state.detailViewVisible,
     inviteDetailVisible: state.inviteDetailVisible,
     menuVisible: state.menuVisible,
+    editCommentDetailVisible: state.editCommentDetailVisible,
     nodes: state.nodes,
     links: state.links,
     currentNode: state.currentNode,

@@ -1,8 +1,6 @@
 import React from 'react';
 import emoji from 'node-emoji';
 import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
-import io from "socket.io-client";
-var socket = io();
 
 class NodeDetail extends React.Component {
   constructor(props) {
@@ -22,6 +20,12 @@ class NodeDetail extends React.Component {
     this.props.thunkUpdateCurrentNode(e.target.getAttribute('data-key'));
   }
 
+  handleEditClick(e, props) {
+    console.log('in handleEditClick');
+    this.props.hideDetail();
+    this.props.showEditCommentDetail();
+  }
+
   // LINK TO EMOJI CHEAT SHEET: https://www.webpagefx.com/tools/emoji-cheat-sheet/
 
   upvote() {
@@ -38,7 +42,7 @@ class NodeDetail extends React.Component {
     return (
       <div className="new-comment-modal-content">
         <h4 className="node-title">Idea: "{this.props.currentNode.title}"</h4>
-        <Button className="edit-comment-btn">Edit</Button>
+        <Button className="edit-comment-btn" onClick={this.handleEditClick.bind(this)} >Edit</Button>
         <h5 className="thought-detail">Detail:</h5>
         <p className="node-text">{this.props.currentNode.text}</p>
         <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>
@@ -53,7 +57,7 @@ class NodeDetail extends React.Component {
           return <div key={comment._id} data-key={comment._id} className="session-title" onClick={this.handleClick.bind(this)}>{comment.title} </div>
         })} */}
 
-        <h5 className="branches-headings" >Add a branch to "{this.props.currentNode.title}":</h5>
+        <h5 className="branches-headings" >Add a topic to "{this.props.currentNode.title}":</h5>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle" >
             {/* <Col componentClass={ControlLabel} sm={2}>

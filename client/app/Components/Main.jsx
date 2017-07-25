@@ -96,6 +96,9 @@ class Main extends React.Component {
             updateComments={this.props.updateComments}
             showInviteDetail={this.props.showInviteDetail}
             thunkUpdateCurrentNode={this.props.thunkUpdateCurrentNode}
+            editCommentDetailVisible={this.props.editCommentDetailVisible}
+            showEditCommentDetail={this.props.showEditCommentDetail}
+            hideEditCommentDetail={this.props.hideEditCommentDetail}
           />
       </div>
     )

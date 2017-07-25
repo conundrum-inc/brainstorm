@@ -124,14 +124,14 @@ body {
   padding: 0px 20px 20px 20px;
 }
 
-.ReactModal__Content--after-open--new-comment {
+/*.ReactModal__Content--after-open--new-comment, .ReactModal__Content--after-open--edit-comment {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
   height: 33%;
   background-color: White;
   margin-top: 200px;
-}
+}*/
 
 .upvote {
   margin-right: 5px;
@@ -219,7 +219,7 @@ body {
   border-width: 0;
 }
 
-.ReactModal__Content--after-open--new-comment {
+.ReactModal__Content--after-open--new-comment, .ReactModal__Content--after-open--edit-comment {
   margin-left: auto;
   margin-right: auto;
   width: 300px;
@@ -284,6 +284,10 @@ body {
   font-weight: bold;
 }
 
+.buffer {
+  height: 15px;
+}
+
 .edit-comment-btn {
   margin-left: 10px;
   display: inline-block;
@@ -294,6 +298,7 @@ body {
   padding: 1px 3px;
   font-weight: bold;
   letter-spacing: 0.5px;
+  margin-bottom: 2px;
 }
 
 .invite-user-content {

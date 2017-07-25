@@ -135,6 +135,18 @@ export function hideMenu() {
   }
 }
 
+export function showEditCommentDetail() {
+  return {
+    type: 'SHOW_EDIT_COMMENT_DETAIL'
+  }
+}
+
+export function hideEditCommentDetail() {
+  return {
+    type: 'HIDE_EDIT_COMMENT_DETAIL'
+  }
+}
+
 
 //test action for d3-redux integration
 export function addNode(node) {

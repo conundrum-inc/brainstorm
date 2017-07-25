@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from './Menu.jsx';
 import NodeDetail from './NodeDetail.jsx';
+import EditCommentDetail from './EditCommentDetail.jsx';
 import * as d3 from 'd3';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
@@ -43,6 +44,7 @@ class Session extends React.Component {
   render() {
     return (
       <div id="session">
+
         <ReactModal isOpen={this.props.detailViewVisible}
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={true}
@@ -61,8 +63,27 @@ class Session extends React.Component {
                       downvote={this.props.downvote}
                       session={this.props.session}
                       thunkUpdateCurrentNode={this.props.thunkUpdateCurrentNode}
+                      showEditCommentDetail={this.props.showEditCommentDetail}
           />
         </ReactModal>
+
+        <ReactModal isOpen={this.props.editCommentDetailVisible}
+                    contentLabel="Edit Comment Detail Modal"
+                    shouldCloseOnOverlayClick={true}
+                    onRequestClose={() => this.props.hideEditCommentDetail()}
+                    className="ReactModal__Content--after-open--edit-comment"
+        >
+          <Button className="exit-btn" onClick={this.props.hideEditCommentDetail}>X</Button>
+          <EditCommentDetail
+                      currentNode={this.props.currentNode}
+                      user={this.props.user}
+                      hideEditCommentDetail={this.props.hideEditCommentDetail}
+                      session={this.props.session}
+                      thunkEditComment={this.props.thunkEditComment}
+                      hideEditCommentDetail={this.props.hideEditCommentDetail}
+          />
+        </ReactModal>
+
         <Graph comments={this.props.comments}
                setNode={this.props.setNode}
                showDetail={this.props.showDetail}
