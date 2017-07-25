@@ -252,6 +252,17 @@ export function thunkEditComment(commentId, title, text) {
   }
 }
 
+export function thunkUpdateCurrentNode(commentId) {
+  return function(dispatch) {
+    return axiosCall.GetComment(commentId).then(
+      comment => {
+        // console.log('comment in thunkUpdateCurrentNode: ', comment.data)
+        dispatch(setNode(comment.data))
+      }
+    )
+  }
+}
+
 export function thunkCreateSession(title, text, userId) {
   return function(dispatch) {
     return axiosCall.CreateSession(title, text, userId).then(

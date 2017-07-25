@@ -46,6 +46,7 @@ const MainPage = (props) => {
             session={props.session}
             thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
             updateComments={props.updateComments}
+            thunkUpdateCurrentNode={props.thunkUpdateCurrentNode}
           />
     </div>
   )

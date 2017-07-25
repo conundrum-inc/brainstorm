@@ -60,6 +60,7 @@ class Session extends React.Component {
                       thunkDownVote={this.props.thunkDownVote}
                       downvote={this.props.downvote}
                       session={this.props.session}
+                      thunkUpdateCurrentNode={this.props.thunkUpdateCurrentNode}
           />
         </ReactModal>
         <Graph comments={this.props.comments}

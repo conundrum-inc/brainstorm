@@ -95,6 +95,7 @@ class Main extends React.Component {
             session={this.props.session}
             updateComments={this.props.updateComments}
             showInviteDetail={this.props.showInviteDetail}
+            thunkUpdateCurrentNode={this.props.thunkUpdateCurrentNode}
           />
       </div>
     )
