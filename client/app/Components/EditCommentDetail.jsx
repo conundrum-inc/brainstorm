@@ -8,9 +8,9 @@ class EditCommentDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
-    console.log('in EditCommentDetail details: ', this.props.currentNode._id, e.target.title.value, e.target.text.value)
-    // this.props.thunkAddComment(this.props.currentNode._id, e.target.title.value, e.target.text.value);
-    // this.props.hideDetail();
+    // console.log('in EditCommentDetail details: ', this.props.currentNode.key, e.target.title.value, e.target.text.value)
+    this.props.thunkEditComment(this.props.currentNode.key, e.target.title.value, e.target.text.value);
+    this.props.hideEditCommentDetail();
   }
 
   render() {

@@ -25,7 +25,7 @@ export function AddComment(userId, parentId, sessionId, title, text) {
 }
 
 export function EditComment(commentId, title, text) {
-  console.log('indside EditComment')
+  console.log('inside EditComment axios call')
   return axios.post('/comment', {
     comment_id: commentId,
     title: title,

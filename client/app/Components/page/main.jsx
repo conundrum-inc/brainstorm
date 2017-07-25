@@ -47,6 +47,7 @@ const MainPage = (props) => {
             thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
             updateComments={props.updateComments}
             thunkUpdateCurrentNode={props.thunkUpdateCurrentNode}
+            thunkEditComment={props.thunkEditComment}
             editCommentDetailVisible={props.editCommentDetailVisible}
             showEditCommentDetail={props.showEditCommentDetail}
             hideEditCommentDetail={props.hideEditCommentDetail}
