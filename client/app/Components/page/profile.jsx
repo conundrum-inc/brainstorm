@@ -14,7 +14,8 @@ import { LOGOUT_PAGE_ROUTE } from '../../routes.js';
 
 
 const ProfilePage = (props) => {
-  console.log('ProfilePage props: ', props);
+  console.log('ProfilePage props: ', props)
+
   return (
     <div>
       <div className="menu-bar">
@@ -33,6 +34,7 @@ const ProfilePage = (props) => {
           showCreateSession={props.showCreateSession}
           hideCreateSession={props.hideCreateSession}
           thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
+          createSessionVisible={props.createSessionVisible}
         />
         <MySessions user={props.user}/>
         <div className="profile-btn-logout">
