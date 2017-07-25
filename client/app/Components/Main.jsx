@@ -104,23 +104,3 @@ class Main extends React.Component {
 }
 
 export default connect()(Main);
-
-// {/* <Menu className="menu-button" menuVisible={props.menuVisible} onClick={() => props.menuVisible ? props.hideMenu() : props.showMenu()}/> */}
-//
-
-// class Login extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   componentDidMount() {
-//     logout();
-//   }
-//   render() {
-//    return (
-//      <div>
-//      <h2>Welcome to Brainstorm!</h2>
-//      <a href="/auth/google">Sign In with Google</a>
-//      </div>
-//     )
-//   }
-// }
