@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
 var should = chai.should();
 var chaiHttp = require('chai-http');
 
-var Session = require('./sessionSchema');
+var Session = require('../db/sessionSchema');
 
 var db = mongoose.connect('mongodb://localhost/brainstorm');
 
