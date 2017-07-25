@@ -2,6 +2,10 @@ body {
   background-color: #f9f9f7;
 }
 
+a {
+  color: Black;
+}
+
 #title {
   color: #fcfcfc;
   margin-left: 20px;
@@ -72,6 +76,10 @@ body {
 
 .session-container {
   background-color: #f9f9f7;
+}
+
+.session-title {
+  cursor: pointer;
 }
 
 .ReactModal__Content--after-open--menu {
