@@ -5,12 +5,21 @@ import io from "socket.io-client";
 var socket = io();
 
 class NodeDetail extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   onSubmit(e, props) {
     e.preventDefault();
-    console.log('SESSION', this.props.session.sessionId)
+    // console.log('SESSION', this.props.session.sessionId)
     this.props.thunkAddComment(this.props.user.userId, this.props.currentNode.key, this.props.session.sessionId, e.target.title.value, e.target.text.value);
     this.props.hideDetail();
+  }
+
+  handleClick(e, props) {
+    // console.log(e.target.getAttribute('data-key'), this.props);
+    // console.log('in NodeDetail handleClick comment id: ', e.target.getAttribute('data-key'))
+    this.props.thunkUpdateCurrentNode(e.target.getAttribute('data-key'));
   }
 
   // LINK TO EMOJI CHEAT SHEET: https://www.webpagefx.com/tools/emoji-cheat-sheet/
@@ -34,9 +43,15 @@ class NodeDetail extends React.Component {
         <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>
         <Button className="downvote" onClick={this.downvote.bind(this)}>{emoji.emojify(':thumbsdown:')}</Button>
         <h5 className="branches-headings" >Branches</h5>
-        {(this.props.currentNode.children).map(function(child) {
-          return <div className="child-title" key={child._id}>{child.title}</div>
+
+        {this.props.currentNode.children.map((child) => {
+          return <div className="child-title" data-key={child._id} key={child._id} onClick={this.handleClick.bind(this)}>{child.title}</div>
         })}
+
+        {/* {this.props.user.accessible_sessions.map((comment) => {
+          return <div key={comment._id} data-key={comment._id} className="session-title" onClick={this.handleClick.bind(this)}>{comment.title} </div>
+        })} */}
+
         <h5 className="branches-headings" >Add a branch to "{this.props.currentNode.title}":</h5>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle" >
