@@ -21,7 +21,19 @@ const ProfilePage = (props) => {
         <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
       </div>
       <div className="profile-info">
-        <Profile history={props.history} user={props.user}/>
+        <Profile
+          history={props.history}
+          user={props.user}
+          addComment={props.addComment}
+          currentNode={props.currentNode}
+          setNode={props.setNode}
+          updateNode={props.updateNode}
+          thunkCreateSession={props.thunkCreateSession}
+          clearComments={props.clearComments}
+          showCreateSession={props.showCreateSession}
+          hideCreateSession={props.hideCreateSession}
+          thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
+        />
         <MySessions user={props.user}/>
         <div className="profile-btn-logout">
           <Button href={LOGOUT_PAGE_ROUTE}>
@@ -36,6 +48,7 @@ const ProfilePage = (props) => {
 
 function mapStateToProps(state) {
   return {
+    user: state.user,
     comments: state.comments,
     createSessionVisible: state.createSessionVisible,
     detailViewVisible: state.detailViewVisible,
@@ -44,9 +57,15 @@ function mapStateToProps(state) {
     nodes: state.nodes,
     links: state.links,
     currentNode: state.currentNode,
-    user: state.user,
+    setNode: state.setNode,
+    updateNode: state.updateNode,
     session: state.session,
-    thunkUpdateSession: state.thunkUpdateSession
+    thunkCreateSession: state.thunkCreateSession,
+    thunkCreateSessionAndInvite: state.thunkCreateSessionAndInvite,
+    thunkUpdateSession: state.thunkUpdateSession,
+    addComment: state.addComment,
+    showCreateSession: state.showCreateSession,
+    hideCreateSession: state.hideCreateSession
   }
 }
 

@@ -6,7 +6,7 @@ import { buildEmailArray } from '../helpers.js'
 import { inviteUsers } from '../axiosCalls'
 
 
-class NodeDetail extends React.Component {
+class CreateSessionDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
@@ -52,4 +52,4 @@ class NodeDetail extends React.Component {
     )
   }
 }
-export default NodeDetail;
+export default CreateSessionDetail;

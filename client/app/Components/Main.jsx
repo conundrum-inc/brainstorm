@@ -48,14 +48,14 @@ class Main extends React.Component {
           onRequestClose={() => this.props.hideInviteDetail()}
           className="ReactModal__Content--after-open--invite"
           >
-            <Button className="exit-btn" onClick={ () => this.props.hideInviteDetail() }>X</Button>
-            <div className="invite-user-content">
-              <h4>Add friends to this session!</h4>
-              <Form horizontal onSubmit={this.onSubmit.bind(this)}>
-                  <InviteDetail />
-              </Form>
-            </div>
-          </ReactModal>
+          <Button className="exit-btn" onClick={ () => this.props.hideInviteDetail() }>X</Button>
+          <div className="invite-user-content">
+            <h4>Add friends to this session!</h4>
+            <Form horizontal onSubmit={this.onSubmit.bind(this)}>
+                <InviteDetail />
+            </Form>
+          </div>
+        </ReactModal>
 
           <Menu
             showCreateSession={this.props.showCreateSession}
