@@ -83,7 +83,7 @@ app.get('/auth/google/callback',
   function(req, res) {
     console.log('req.user in google auth callback function', req.user);
     console.log('req.session.passport.user', req.session.passport.user);
-    res.redirect('/', 200, req.user);
+    res.redirect('/home', 200, req.user);
   });
 
 // send user to front end based on session
@@ -115,7 +115,7 @@ app.get('/authenticate', function(req, res) {
 app.get('/logout', function(req, res){
 
   req.logout();
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 // implement express router

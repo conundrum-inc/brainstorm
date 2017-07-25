@@ -173,9 +173,7 @@ export function thunkUpVote(userId, commentId) {
     return axiosCall.UpVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        setTimeout(function(){
-          socket.emit('upvote', comment.data);
-        }, 2000);
+        socket.emit('upvote', comment.data);
       }
     )
   }
@@ -186,9 +184,7 @@ export function thunkDownVote(userId, commentId) {
     return axiosCall.DownVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        setTimeout(function(){
-          socket.emit('downvote', comment.data);
-        }, 2000);
+        socket.emit('downvote', comment.data);
       }
     )
   }
@@ -234,9 +230,7 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
           (comments) => {
             dispatch(updateComments(comments.data))
             console.log('comments.data in thunk', comments.data)
-            setTimeout(function(){
-              socket.emit('new comment', comments.data);
-            }, 2000);
+            socket.emit('new comment', comments.data);
           }
         )
       }
