@@ -49,12 +49,12 @@ class Graph extends React.Component {
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
     this.d3Graph.selectAll("circle")
-      .on("click", node => {
+      .on("dblclick", node => {
         this.handleClick.bind(this, node)()
       })
 
     this.d3Graph.selectAll("text")
-      .on("click", node => {
+      .on("dblclick", node => {
         this.handleClick.bind(this, node)()
       })
 
@@ -113,12 +113,12 @@ class Graph extends React.Component {
     //d3Nodes.exit().remove()
     d3Nodes.call(updateNode);
     this.d3Graph.selectAll("circle")
-      .on("click", node => {
+      .on("dblclick", node => {
         this.handleClick.bind(this, node)();
       })
 
     this.d3Graph.selectAll("text")
-      .on("click", node => {
+      .on("dblclick", node => {
         this.handleClick.bind(this, node)();
       })
 
@@ -144,7 +144,7 @@ class Graph extends React.Component {
   render() {
     return (
         <svg ref='graph' className="session-container" width={window.innerWidth} height={window.innerHeight}>
-          
+
         </svg>
       );
   }

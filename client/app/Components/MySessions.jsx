@@ -14,7 +14,7 @@ const MySessions = (props) => {
         <h3>Your Brainstorm sessions:</h3>
         <ul>
           {props.user.created_sessions.map((session) => {
-            return <li onClick={handleClick()}>{session.title}</li>
+            return <li key={session._id} onClick={handleClick()}>{session.title}</li>
           })}
         </ul>
         <h3>Sessions you contribute to:</h3>
