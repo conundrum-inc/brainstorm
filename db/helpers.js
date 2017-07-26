@@ -277,6 +277,23 @@ function insertUser(profile) {
   })
 }
 
+// delete session
+
+// function deleteSession(req, res){
+//   var id = req.query.id;
+//   console.log('id in delete session', id)
+//   Session.findOne({ _id: id }, (err, session) => {
+//     if (err) {
+//       console.log('error in delete session', err)
+//     } else {
+//       session.remove();
+//       // this also needs to delete the session from the user's accessible_sessions
+//       // and remove all comments with that session id
+//     }
+//   })
+//   res.sendStatus(200)
+// }
+
 
 
 
@@ -291,3 +308,4 @@ exports.editComment = editComment;
 exports.upVote = upVote;
 exports.downVote = downVote;
 exports.insertUser = insertUser;
+// exports.deleteSession = deleteSession;

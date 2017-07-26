@@ -57,6 +57,14 @@ export function GetSession(sessionId) {
   });
 }
 
+// export function DeleteSession(sessionId) {
+//   return axios.delete('/session', {
+//     params: {
+//       id: sessionId
+//     }
+//   })
+// }
+
 export function findUser(userId) {
   console.log('inside findUser axios call!')
   return axios.get('/findUser', {

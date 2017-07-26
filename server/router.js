@@ -21,6 +21,9 @@ var router = express.Router();
       // this is to get all comments for a selected session when a user clicks on an existing session
       helpers.findAllComments(req, res);
     })
+    // .delete(function(req, res) {
+    //   helpers.deleteSession(req, res);
+    // })
 
 // modify accessible sessions for an invited user
   router.route('/addUserToSession')

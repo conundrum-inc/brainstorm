@@ -256,6 +256,7 @@ export function thunkEditComment(commentId, title, text) {
       comment => {
         console.log('inside thunkEditComment comment: ', comment.data)
         dispatch(editComment(comment.data))
+        socket.emit('update', comment.data);
       }
     )
   }
@@ -310,6 +311,12 @@ export function thunkUpdateSession(sessionId) {
   }
 }
 
-// not sure where the dispatch() function is coming from or what it's doing in these thunk functions (thunky!)
-
-// deal with assign user once passport/google auth infrastucture is implemented
+// export function thunkDeleteSession(sessionId) {
+//   return function(dispatch) {
+//     return axiosCall.DeleteSession(sessionId).then(
+//       () => {
+//         // figure out what will be returned from delete and what will go here...
+//       }
+//     )
+//   }
+// }
