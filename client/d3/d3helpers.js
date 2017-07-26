@@ -88,3 +88,17 @@ export const resize = (selection) => {
   selection.attr("width", width).attr("height", svgHeight);
   force.size([width, forceHeight]).resume();
 }
+
+export const startForce = (nodes, selection, restart) => {
+
+    if (restart) {
+      selection.selectAll("*").remove();
+    }
+
+    createNodesAndLinks(nodes, selection)
+
+    force.nodes(nodes.nodes).links(nodes.links);
+    force.start();
+
+}
+

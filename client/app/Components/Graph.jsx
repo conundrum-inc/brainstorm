@@ -4,16 +4,10 @@ import * as ReactDOM from 'react-dom'
 
 import { connect } from 'react-redux'
 
-import { width,
-         height,
+import { updateGraph,
          force,
-         enterNode,
-         enterLink,
-         updateNode,
-         updateLink,
-         updateGraph,
-         createNodesAndLinks,
-         resize
+         resize,
+         startForce
        } from '../../d3/d3helpers.js'
 
 import { commentsToNodes } from '../utils.js'
@@ -28,9 +22,10 @@ class Graph extends React.Component {
 
     var nodes = commentsToNodes(this.props.comments);
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
+    
+    startForce(nodes, this.d3Graph, false)
     force.on('tick', () => this.tick(nodes, this.d3Graph))
-
-    createNodesAndLinks(nodes, this.d3Graph);
+    
 
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
@@ -46,10 +41,6 @@ class Graph extends React.Component {
 
 
     d3.select(window).on("resize", () => resize(this.d3Graph))
-
-    force.nodes(nodes.nodes).links(nodes.links);
-    force.start();
-
   }
 
   componentDidUpdate() {
@@ -60,13 +51,10 @@ class Graph extends React.Component {
       var nodes = commentsToNodes(this.props.comments)
     }
 
+    startForce(nodes, this.d3Graph, true)
     force.on('tick', () => this.tick(nodes, this.d3Graph))
 
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
-
-    this.d3Graph.selectAll("*").remove();
-
-    createNodesAndLinks(nodes, this.d3Graph)
 
     this.d3Graph.selectAll("circle")
       .on("dblclick", node => {
@@ -77,14 +65,6 @@ class Graph extends React.Component {
       .on("dblclick", node => {
         this.handleClick.bind(this, node)();
       })
-
-
-    //NOTE: we should clone the links and nodes that are passed down as props
-    //since d3 mutates them. We'll do this later
-    force.nodes(nodes.nodes).links(nodes.links);
-    force.start();
-
-
   }
 
   handleClick(node) {
