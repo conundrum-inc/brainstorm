@@ -23,22 +23,7 @@ class Graph extends React.Component {
     var nodes = commentsToNodes(this.props.comments);
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
     
-    startForce(nodes, this.d3Graph, false)
-    force.on('tick', () => this.tick(nodes, this.d3Graph))
-    
-
-    //NOTE: we should clone the links and nodes that are passed down as props
-    //since d3 mutates them. We'll do this later
-    this.d3Graph.selectAll("circle")
-      .on("dblclick", node => {
-        this.handleClick.bind(this, node)()
-      })
-
-    this.d3Graph.selectAll("text")
-      .on("dblclick", node => {
-        this.handleClick.bind(this, node)()
-      })
-
+    this.forceLayout(this.d3Graph, nodes, false)
 
     d3.select(window).on("resize", () => resize(this.d3Graph))
   }
@@ -51,24 +36,10 @@ class Graph extends React.Component {
       var nodes = commentsToNodes(this.props.comments)
     }
 
-    startForce(nodes, this.d3Graph, true)
-    force.on('tick', () => this.tick(nodes, this.d3Graph))
-
-    this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
-
-    this.d3Graph.selectAll("circle")
-      .on("dblclick", node => {
-        this.handleClick.bind(this, node)();
-      })
-
-    this.d3Graph.selectAll("text")
-      .on("dblclick", node => {
-        this.handleClick.bind(this, node)();
-      })
+    this.forceLayout(this.d3Graph, nodes, true)
   }
 
   handleClick(node) {
-    console.log('clicked!')
     if (node.key === '101') {
       this.props.showCreateSession();
     } else {
@@ -86,10 +57,30 @@ class Graph extends React.Component {
     })
   }
 
+  giveClicks(selection) {
+    selection.selectAll("circle")
+      .on("dblclick", node => {
+        this.handleClick.bind(this, node)()
+      })
+
+    selection.selectAll("text")
+      .on("dblclick", node => {
+        this.handleClick.bind(this, node)()
+      })
+  }
+
+  forceLayout(selection, nodes, isUpdate) {
+    startForce(nodes, selection, isUpdate)
+    force.on('tick', () => this.tick(nodes, selection))
+    this.giveClicks(selection)
+  }
+
   render() {
     return (
-        <svg ref='graph' className="session-container" width={window.innerWidth} height={window.innerHeight}>
-
+        <svg ref='graph' 
+             className="session-container"
+             width={window.innerWidth}
+             height={window.innerHeight}>
         </svg>
       );
   }
