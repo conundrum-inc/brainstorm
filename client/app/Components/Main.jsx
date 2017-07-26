@@ -26,10 +26,6 @@ class Main extends React.Component {
     this.props.thunkAddUser();
   }
 
-  componentDidMount() {
-    console.log('props in Main', this.props)
-  }
-
   onSubmit(e, props) {
     e.preventDefault();
     var array = buildEmailArray(e.target.emails.value);
