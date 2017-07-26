@@ -7,8 +7,8 @@ import { randomBlue } from '../app/utils.js'
 export const width = window.innerWidth;
 export const height = window.innerHeight - (.3)*(window.innerHeight);
 export const force = d3.layout.force()
-            .charge(-1000)
             .linkDistance(110)
+            .charge(-300)
             .size([width, height])
 
 

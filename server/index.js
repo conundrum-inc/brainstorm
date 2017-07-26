@@ -157,3 +157,5 @@ server.listen(3000, function () {
 })
 
 exports.io = io;
+
+module.exports = app
