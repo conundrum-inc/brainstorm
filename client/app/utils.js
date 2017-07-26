@@ -20,7 +20,9 @@ export function commentsToNodes(comments, coords) {
                    children: comments[i].children,
                    upvotes: comments[i].upvotes,
                    downvotes: comments[i].downvotes,
-                   score: comments[i].score
+                   score: comments[i].score,
+                   creatorId: comments[i].creator_id,
+                   parentId: comments[i].parent_id
                  }
       nodes.nodes.push(node);
     } else {
@@ -36,7 +38,9 @@ export function commentsToNodes(comments, coords) {
                    children: comments[i].children,
                    upvotes: comments[i].upvotes,
                    downvotes: comments[i].downvotes,
-                   score: comments[i].score
+                   score: comments[i].score,
+                   creatorId: comments[i].creator_id,
+                   parentId: comments[i].parent_id
                  }
 
       nodes.nodes.push(node);
