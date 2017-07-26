@@ -68,11 +68,13 @@ class Menu extends React.Component {
 
         </ReactModal>
 
-        <ReactModal isOpen={this.props.createSessionVisible}
+        <ReactModal
+          isOpen={this.props.createSessionVisible}
           contentLabel="Detail Modal"
-          shouldCloseOnOverlayClick={this.props.createSessionVisible}
+          shouldCloseOnOverlayClick={true}
+          onRequestClose={this.props.hideCreateSession}
           className="ReactModal__Content--after-open--new-session"
-          >
+        >
             <Button className="exit-btn" onClick={this.props.hideCreateSession}>X</Button>
 
             <CreateSessionDetail />

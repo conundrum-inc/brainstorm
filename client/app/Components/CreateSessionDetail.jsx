@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 
 import { clearComments, hideCreateSession, thunkCreateSessionAndInvite } from '../actions/actionsCreators';
 import InviteDetail from './InviteDetail.jsx';
-import { buildEmailArray } from '../helpers.js'
-import { inviteUsers } from '../axiosCalls'
+import { hideInviteDetail } from '../actions/actionsCreators';
+import { buildEmailArray } from '../helpers.js';
+import { inviteUsers } from '../axiosCalls';
+import { MAIN_PAGE_ROUTE } from '../routes.js';
 
 import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
@@ -46,7 +48,7 @@ class CreateSessionDetail extends React.Component {
           </FormGroup>
           <FormGroup className="form-horizontal form-group">
             <Col sm={10}>
-              <Button className="submit-btn" type="submit">
+              <Button className="submit-btn" type="submit" href={MAIN_PAGE_ROUTE}>
                 Submit
               </Button>
             </Col>
