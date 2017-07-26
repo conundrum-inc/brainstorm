@@ -1,8 +1,8 @@
 import React from 'react';
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { MAIN_PAGE_ROUTE } from '../routes.js';
+import CreateSessionDetail from './CreateSessionDetail.jsx';
 
 const Profile = (props) => {
   console.log('Profile props: ', props)
@@ -14,10 +14,30 @@ const Profile = (props) => {
       <p className="email">{props.user.email}</p>
       <Button
         className="profile-btn-new-session"
-        href={MAIN_PAGE_ROUTE}
-        onClick={() => { console.log('making session modal visible'); props.showCreateSession(); }}>
+        onClick={() => { console.log('making session modal visible'); props.showCreateSession(); }}
+      >
         New Session!
       </Button>
+      <ReactModal
+        isOpen={props.createSessionVisible}
+        contentLabel="Detail Modal"
+        shouldCloseOnOverlayClick={true}
+        onRequestClose={props.hideCreateSession}
+        className="ReactModal__Content--after-open--new-session"
+      >
+        <Button className="exit-btn" onClick={() => {props.hideCreateSession()}}>X</Button>
+        <CreateSessionDetail
+          addComment={props.addComment}
+          currentNode={props.currentNode}
+          setNode={props.setNode}
+          updateNode={props.updateNode}
+          thunkCreateSession={props.thunkCreateSession}
+          clearComments={props.clearComments}
+          user={props.user}
+          hideCreateSession={props.hideCreateSession}
+          thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
+        />
+      </ReactModal>
     </div>
   )
 }
