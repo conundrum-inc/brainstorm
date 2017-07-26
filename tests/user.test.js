@@ -1,14 +1,31 @@
-import mocha from 'mocha'
-import chai from 'chai'
-import mongoose from 'mongoose'
+var mocha = require('mocha')
+var chai = require('chai')
+var mongoose = require('mongoose')
 
-var should = chai.should();
 var chaiHttp = require('chai-http');
+var app = require('../server/index.js')
 
 var User = require('../db/userSchema');
 
-var db = mongoose.connect('mongodb://localhost/brainstorm');
-
-process.env.NODE_ENV = 'test'
-
 chai.use(chaiHttp);
+
+describe('Users', function() {
+
+  beforeEach(function(done)) {
+
+    var newUser = new User({
+      google_id: '1',
+      displayName: 'testUser',
+      image: 'n/a',
+      email: '@example.com',
+      created_sessions: [],
+      accessible_sessions: [], 
+      comments: [], 
+      new_sessions: []
+    })
+
+    newUser.save()
+  
+  }
+  
+})

@@ -1,42 +1,50 @@
-import mocha from 'mocha'
-import chai from 'chai'
-import mongoose from 'mongoose'
+var mocha = require('mocha')
+var chai = require('chai')
+var mongoose = require('mongoose')
 
-var should = chai.should();
 var chaiHttp = require('chai-http');
+var app = require('../server/index.js')
+chai.use(chaiHttp);
 
 var Session = require('../db/sessionSchema');
+var User = require('../db/userSchema');
+var Comment = require('../db/commentSchema')
 
-var db = mongoose.connect('mongodb://localhost/brainstorm');
-
-process.env.NODE_ENV = 'test'
-
-chai.use(chaiHttp);
 
 describe('Sessions', function() {
 
-  Sessions.collection.drop();
 
   beforeEach(function(done) {
 
-    var newSession = new Session({
-      creator_id: '1', // references User
-      timestamp: 'test timestamp',
-      title: 'Test Session',
-      modified: new Date()
+    var newUser = new User({
+      google_id: '1',
+      displayName: 'testUser',
+      image: 'n/a',
+      email: '@example.com',
+      created_sessions: [],
+      accessible_sessions: [], 
+      comments: [], 
+      new_sessions: []
     })
 
-    newSession.save(function(err) {
-      done()
+    newUser.save(function(err) {
+      done();
     })
+
   })
 
   afterEach(function(done) {
     Session.collection.drop()
+    User.collection.drop()
+    Comment.collection.drop()
     done()
   })
 
   //test POST to /session
+  it('should create a new session', function(done) {
+    chai.request(app)
+      .post()
+  })
   //test GET to /session
 
   //test POST to /newSessionStatus

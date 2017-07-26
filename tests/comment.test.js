@@ -1,26 +1,24 @@
 var mocha = require('mocha')
 var chai = require('chai')
 var mongoose = require('mongoose')
+var bluebird = require('bluebird')
 
-var should = chai.should();
 var chaiHttp = require('chai-http');
 var app = require('../server/index.js')
+chai.use(chaiHttp);
 
 var Comment = require('../db/commentSchema');
-
-process.env.NODE_ENV = 'test'
-
-chai.use(chaiHttp);
+var expect = require('chai').expect
 
 describe('Comments', function() {
 
-  //drop the current collection
-  Comment.collection.drop();
+  
+  
 
   beforeEach(function(done) {
     //before each test, create and save a test comment to the database
 
-    var newComment = new Comment({
+    var newComment1 = new Comment({
       parent_id: '1111',
       children: [],
       creator_id: '1',
@@ -32,10 +30,30 @@ describe('Comments', function() {
       score: 0,
       timestamp: new Date()
     })
+    var newComment2 = new Comment({
+      parent_id: '1111',
+      children: [],
+      creator_id: '1',
+      session_id: '1',
+      title: 'test comment 2',
+      text: 'this is a test comment, 2',
+      upvotes: [],
+      downvotes: [],
+      score: 0,
+      timestamp: new Date()
+    })
 
-    newComment.save(function(err) {
-      done();
+    newComment1.save(function(err) {
+      if (err) {
+        console.log('error in test comment 2 save')
+      }
     });
+    newComment2.save(function(err) {
+      if (err) {
+        console.log('error in test comment 2 save')
+      }
+      done();
+    })
   });
 
   afterEach(function(done) {
@@ -52,24 +70,50 @@ describe('Comments', function() {
   // })
 
   //test POST to /comment
-
-  //test GET to /allComments
-  it('should return all comments matching the session id', function(done) {
+  it('should post a comment to the database', function(done) {
     chai.request(app)
-      .get('/allComment')
-      .query({session_id: '1'})
+      .post('/comment')
+      .send({
+              parent_id: '1111',
+              children: [],
+              user_id: '1',
+              session_id: '1',
+              title: 'test comment 3',
+              text: 'this is a test comment, 3'
+            })
       .end(function(err, res){
         if (err) {
           console.log('error in test')
         }
-        res.should.have.status(200);
-        res.should.be.json;
-        res.body.should.be.a('array');
+        
+        expect(res.status).to.equal(200)
+        expect(res).to.be.a('object')
+        expect(res.body.title).to.equal('test comment 3')
+        done()
       })
   })
+
+  //test GET to /allComments
+  it('should return all comments matching the session id', function(done) {
+    chai.request(app)
+      .get('/allComments')
+      .query({'id': '1'})
+      .end(function(err, res){
+        if (err) {
+          console.log('error in test')
+        }
+        expect(res.status).to.equal(200)
+        expect(res.body).to.be.a('array')
+        expect(res.body.length).to.equal(2)
+        done()
+      })
+      
+  })
+
   //test POST to /edit
 
   //test POST to /upvote
+
   //test POST to /downvote
 
 
