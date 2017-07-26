@@ -1,12 +1,16 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 var ReactDOM = require('react-dom');
 import { NavLink } from 'react-router-dom';
-import { Button, DropdownButton, MenuItem, ButtonGroup } from 'react-bootstrap';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import CreateSessionDetail from './CreateSessionDetail.jsx';
-import { thunkUpdateSession } from '../actions/actionsCreators';
+import * as actionCreators from '../actions/actionsCreators';
+
+import { Button, DropdownButton, MenuItem, ButtonGroup } from 'react-bootstrap';
 import ReactModal from 'react-modal';
+
 import { PROFILE_PAGE_ROUTE,
          LOGOUT_PAGE_ROUTE,
          SESSIONS_PAGE_ROUTE,
@@ -78,8 +82,16 @@ class Menu extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ thunkUpdateSession }, dispatch);
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+    menuVisible: state.menuVisible,
+    createSessionVisible: state.createSessionVisible
+  }
 }
 
-export default connect(null, mapDispatchToProps)(Menu)
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)

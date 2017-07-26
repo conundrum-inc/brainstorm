@@ -57,25 +57,10 @@ class Main extends React.Component {
           </div>
         </ReactModal>
 
-          <Menu
-            showCreateSession={this.props.showCreateSession}
-            hideCreateSession={this.props.hideCreateSession}
-            createSessionVisible={this.props.createSessionVisible}
-            currentNode={this.props.currentNode}
-            setNode={this.props.setNode}
-            updateNode={this.props.updateNode}
-            addComment={this.props.addComment}
-            thunkCreateSession={this.props.thunkCreateSession}
-            showMenu={this.props.showMenu}
-            hideMenu={this.props.hideMenu}
-            menuVisible={this.props.menuVisible}
-            clearComments={this.props.clearComments}
-            user={this.props.user}
-            hideDetail={this.props.hideDetail}
-            thunkCreateSessionAndInvite={this.props.thunkCreateSessionAndInvite}
-          />
-          <Button title="Invite people to join this session" className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</Button>
-          <Session />
+        <Menu/>
+        <Button title="Invite people to join this session" className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</Button>
+
+        <Session />
       </div>
     )
   }
