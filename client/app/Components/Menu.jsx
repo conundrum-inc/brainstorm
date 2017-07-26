@@ -15,73 +15,66 @@ import { PROFILE_PAGE_ROUTE,
          LOGOUT_PAGE_ROUTE,
          SESSIONS_PAGE_ROUTE,
          MAIN_PAGE_ROUTE
-       } from '../routes.js'
+       } from '../routes.js';
 
-class Menu extends React.Component {
+const Menu = (props) => {
 
-// const Menu = (props) => {
-  // <a href={PROFILE_PAGE_ROUTE}><img src={props.user.image}/></a>
-
-  handleClick(e) {
-    // console.log(e.target.getAttribute('data-key'), this.props);
-    this.props.thunkUpdateSession(e.target.getAttribute('data-key'));
-    this.props.hideMenu();
+  const handleClick = (e) => {
+    props.thunkUpdateSession(e.target.getAttribute('data-key'));
+    props.hideMenu();
   }
 
-  render() {
-    // console.log('props in Menu', this.props);
-    return (
-      <div>
-        <ReactModal isOpen={this.props.menuVisible}
-                    contentLabel="Menu Modal"
-                    shouldCloseOnOverlayClick={true}
-                    onRequestClose={() => this.props.hideMenu()}
-                    className="ReactModal__Content--after-open--menu"
-        >
-          <Button className="exit-btn" onClick={this.props.hideMenu}>X</Button>
-          <a className="user-picture-container" href={PROFILE_PAGE_ROUTE}>
-            <img className="user-picture" src={this.props.user.image} />
-          </a>
-          <a href={PROFILE_PAGE_ROUTE}><h3 className="user-name">{this.props.user.name}</h3></a>
-          <div className="menu-modal-content">
-            <h4>Sessions</h4>
+  return (
+    <div>
+      <ReactModal isOpen={props.menuVisible}
+                  contentLabel="Menu Modal"
+                  shouldCloseOnOverlayClick={true}
+                  onRequestClose={() => props.hideMenu()}
+                  className="ReactModal__Content--after-open--menu"
+      >
+        <Button className="exit-btn" onClick={props.hideMenu}>X</Button>
+        <a className="user-picture-container" href={PROFILE_PAGE_ROUTE}>
+          <img className="user-picture" src={props.user.image} />
+        </a>
+        <a href={PROFILE_PAGE_ROUTE}><h3 className="user-name">{props.user.name}</h3></a>
+        <div className="menu-modal-content">
+          <h4>Sessions</h4>
 
-            {this.props.user.accessible_sessions.map((session) => {
-              return <div key={session._id}
-                            data-key={session._id}
-                            className="session-title"
-                            onClick={this.handleClick.bind(this)}>
-                       {session.title}
-                     </div>
-            })}
-            <Button bsStyle="info"
-              className="menu-btn-new-session"
-              onClick={() => { this.props.showCreateSession(); this.props.hideMenu(); }}>
-              New Session!
-            </Button>
-            <Button className="menu-btn-logout" bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
-              <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
-              Logout
-            </Button>
+          {props.user.accessible_sessions.map((session) => {
+            return <div key={session._id}
+                          data-key={session._id}
+                          className="session-title"
+                          onClick={handleClick}>
+                     {session.title}
+                   </div>
+          })}
+          <Button bsStyle="info"
+            className="menu-btn-new-session"
+            onClick={() => { props.showCreateSession(); props.hideMenu(); }}>
+            New Session!
+          </Button>
+          <Button className="menu-btn-logout" bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
+            <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
+            Logout
+          </Button>
 
-          </div>
+        </div>
 
+      </ReactModal>
+
+      <ReactModal
+        isOpen={props.createSessionVisible}
+        contentLabel="Detail Modal"
+        shouldCloseOnOverlayClick={true}
+        onRequestClose={props.hideCreateSession}
+        className="ReactModal__Content--after-open--new-session"
+      >
+          <Button className="exit-btn" onClick={props.hideCreateSession}>X</Button>
+
+          <CreateSessionDetail />
         </ReactModal>
-
-        <ReactModal
-          isOpen={this.props.createSessionVisible}
-          contentLabel="Detail Modal"
-          shouldCloseOnOverlayClick={true}
-          onRequestClose={this.props.hideCreateSession}
-          className="ReactModal__Content--after-open--new-session"
-        >
-            <Button className="exit-btn" onClick={this.props.hideCreateSession}>X</Button>
-
-            <CreateSessionDetail />
-          </ReactModal>
-      </div>
-    )
-  }
+    </div>
+  )
 }
 
 function mapStateToProps(state) {
