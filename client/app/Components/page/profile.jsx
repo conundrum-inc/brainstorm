@@ -9,44 +9,48 @@ import * as actionCreators from '../../actions/actionsCreators';
 import Profile from '../Profile.jsx';
 import MySessions from '../MySessions.jsx';
 import Menu from '../Menu.jsx';
+import { NavLink } from 'react-router-dom';
+import { LOGOUT_PAGE_ROUTE } from '../../routes.js';
+
 
 const ProfilePage = (props) => {
-  console.log('ProfilePage props: ', props);
+  console.log('ProfilePage props: ', props)
+
   return (
     <div>
       <div className="menu-bar">
-        <img className="menu-button"src="http://i.imgur.com/NErSVt4.png"
-          onClick={() => props.showMenu()}
-          width="30px"
-          height="30px"
-        />
         <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
       </div>
-      <Menu showCreateSession={props.showCreateSession}
-            hideCreateSession={props.hideCreateSession}
-            createSessionVisible={props.createSessionVisible}
-            currentNode={props.currentNode}
-            setNode={props.setNode}
-            updateNode={props.updateNode}
-            addComment={props.addComment}
-            thunkCreateSession={props.thunkCreateSession}
-            showMenu={props.showMenu}
-            hideMenu={props.hideMenu}
-            menuVisible={props.menuVisible}
-            clearComments={props.clearComments}
-            user={props.user}
-            hideDetail={props.hideDetail}
-      />
       <div className="profile-info">
-        <Profile history={props.history} user={props.user}/>
+        <Profile
+          history={props.history}
+          user={props.user}
+          addComment={props.addComment}
+          currentNode={props.currentNode}
+          setNode={props.setNode}
+          updateNode={props.updateNode}
+          thunkCreateSession={props.thunkCreateSession}
+          clearComments={props.clearComments}
+          showCreateSession={props.showCreateSession}
+          hideCreateSession={props.hideCreateSession}
+          thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
+          createSessionVisible={props.createSessionVisible}
+        />
         <MySessions user={props.user}/>
+        <div className="profile-btn-logout">
+          <Button href={LOGOUT_PAGE_ROUTE}>
+            <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
+            Logout
+          </Button>
+        </div>
       </div>
     </div>
-    )
-  }
+  )
+}
 
 function mapStateToProps(state) {
   return {
+    user: state.user,
     comments: state.comments,
     createSessionVisible: state.createSessionVisible,
     detailViewVisible: state.detailViewVisible,
@@ -55,8 +59,15 @@ function mapStateToProps(state) {
     nodes: state.nodes,
     links: state.links,
     currentNode: state.currentNode,
-    user: state.user,
-    session: state.session
+    setNode: state.setNode,
+    updateNode: state.updateNode,
+    session: state.session,
+    thunkCreateSession: state.thunkCreateSession,
+    thunkCreateSessionAndInvite: state.thunkCreateSessionAndInvite,
+    thunkUpdateSession: state.thunkUpdateSession,
+    addComment: state.addComment,
+    showCreateSession: state.showCreateSession,
+    hideCreateSession: state.hideCreateSession
   }
 }
 

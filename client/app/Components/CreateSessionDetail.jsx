@@ -1,12 +1,16 @@
 import React from 'react';
-import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { clearComments, hideCreateSession, thunkCreateSessionAndInvite } from '../actions/actionsCreators';
 import InviteDetail from './InviteDetail.jsx';
-import { hideInviteDetail } from '../actions/actionsCreators';
 import { buildEmailArray } from '../helpers.js'
 import { inviteUsers } from '../axiosCalls'
 
+import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
-class NodeDetail extends React.Component {
+
+class CreateSessionDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
@@ -52,4 +56,21 @@ class NodeDetail extends React.Component {
     )
   }
 }
-export default NodeDetail;
+
+function mapStateToProps(state) {
+  return {
+    currentNode: state.currentNode,
+    user: state.user
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ clearComments,
+                              hideCreateSession,
+                              thunkCreateSessionAndInvite }, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateSessionDetail);

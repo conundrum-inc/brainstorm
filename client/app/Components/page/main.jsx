@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionsCreators';
-
 import Main from '../Main.jsx';
 
 const MainPage = (props) => {
@@ -46,6 +44,11 @@ const MainPage = (props) => {
             session={props.session}
             thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
             updateComments={props.updateComments}
+            thunkUpdateCurrentNode={props.thunkUpdateCurrentNode}
+            thunkEditComment={props.thunkEditComment}
+            editCommentDetailVisible={props.editCommentDetailVisible}
+            showEditCommentDetail={props.showEditCommentDetail}
+            hideEditCommentDetail={props.hideEditCommentDetail}
           />
     </div>
   )
@@ -58,6 +61,7 @@ function mapStateToProps(state) {
     detailViewVisible: state.detailViewVisible,
     inviteDetailVisible: state.inviteDetailVisible,
     menuVisible: state.menuVisible,
+    editCommentDetailVisible: state.editCommentDetailVisible,
     nodes: state.nodes,
     links: state.links,
     currentNode: state.currentNode,

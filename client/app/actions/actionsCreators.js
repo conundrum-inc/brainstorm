@@ -135,6 +135,18 @@ export function hideMenu() {
   }
 }
 
+export function showEditCommentDetail() {
+  return {
+    type: 'SHOW_EDIT_COMMENT_DETAIL'
+  }
+}
+
+export function hideEditCommentDetail() {
+  return {
+    type: 'HIDE_EDIT_COMMENT_DETAIL'
+  }
+}
+
 
 //test action for d3-redux integration
 export function addNode(node) {
@@ -241,7 +253,21 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
 export function thunkEditComment(commentId, title, text) {
   return function(dispatch) {
     return axiosCall.EditComment(commentId, title, text).then(
-      comment => dispatch(editComment(comment.data))
+      comment => {
+        console.log('inside thunkEditComment comment: ', comment.data)
+        dispatch(editComment(comment.data))
+      }
+    )
+  }
+}
+
+export function thunkUpdateCurrentNode(commentId) {
+  return function(dispatch) {
+    return axiosCall.GetComment(commentId).then(
+      comment => {
+        // console.log('comment in thunkUpdateCurrentNode: ', comment.data)
+        dispatch(setNode(comment.data))
+      }
     )
   }
 }

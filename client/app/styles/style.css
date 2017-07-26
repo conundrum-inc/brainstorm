@@ -2,6 +2,10 @@ body {
   background-color: #f9f9f7;
 }
 
+a {
+  color: Black;
+}
+
 #title {
   color: #fcfcfc;
   margin-left: 20px;
@@ -74,6 +78,10 @@ body {
   background-color: #f9f9f7;
 }
 
+.session-title {
+  cursor: pointer;
+}
+
 .ReactModal__Content--after-open--menu {
   margin-top: 40px;
   margin-left: 40px;
@@ -124,14 +132,14 @@ body {
   padding: 0px 20px 20px 20px;
 }
 
-.ReactModal__Content--after-open--new-comment {
+/*.ReactModal__Content--after-open--new-comment, .ReactModal__Content--after-open--edit-comment {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
   height: 33%;
   background-color: White;
   margin-top: 200px;
-}
+}*/
 
 .upvote {
   margin-right: 5px;
@@ -156,6 +164,15 @@ body {
 .menu-btn-logout {
   float: right;
   margin-top: 30px;
+}
+
+.profile-btn-new-session {
+  margin-top: 20px;
+}
+
+.profile-btn-logout {
+  margin-top: 20px;
+  text-align: right;
 }
 
 .ReactModal__Content--after-open--new-session {
@@ -219,7 +236,7 @@ body {
   border-width: 0;
 }
 
-.ReactModal__Content--after-open--new-comment {
+.ReactModal__Content--after-open--new-comment, .ReactModal__Content--after-open--edit-comment {
   margin-left: auto;
   margin-right: auto;
   width: 300px;
@@ -240,6 +257,8 @@ body {
 
 .node-title {
   margin-top: 0;
+  margin-bottom: 0;
+  display: inline-block;
 }
 
 .thought-detail {
@@ -280,6 +299,23 @@ body {
   font-size: 10px;
   padding: 2px 5px;
   font-weight: bold;
+}
+
+.buffer {
+  height: 15px;
+}
+
+.edit-comment-btn {
+  margin-left: 10px;
+  display: inline-block;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  font-size: 8px;
+  padding: 1px 3px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
 }
 
 .invite-user-content {

@@ -1,16 +1,24 @@
 import React from 'react';
-import Menu from './Menu.jsx';
-import NodeDetail from './NodeDetail.jsx';
 import * as d3 from 'd3';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
-import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
-import io from "socket.io-client";
-var socket = io();
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/actionsCreators';
+
+import Graph from './Graph.jsx'
+import NodeDetail from './NodeDetail.jsx';
+import EditCommentDetail from './EditCommentDetail.jsx';
 
 import { click, forceDiagram} from '../../d3/d3helpers.js'
 
-import Graph from './Graph.jsx'
+import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+
+import io from "socket.io-client";
+var socket = io();
+
+
 
 // const modalStyles = {
 //   overlay : {
@@ -43,6 +51,7 @@ class Session extends React.Component {
   render() {
     return (
       <div id="session">
+
         <ReactModal isOpen={this.props.detailViewVisible}
                     contentLabel="Detail Modal"
                     shouldCloseOnOverlayClick={true}
@@ -50,18 +59,21 @@ class Session extends React.Component {
                     className="ReactModal__Content--after-open--new-comment"
         >
           <Button className="exit-btn" onClick={this.props.hideDetail}>X</Button>
-          <NodeDetail thunkAddComment={this.props.thunkAddComment}
-                      currentNode={this.props.currentNode}
-                      setNode={this.props.setNode}
-                      updateNode={this.props.updateNode}
-                      user={this.props.user}
-                      hideDetail={this.props.hideDetail}
-                      thunkUpVote={this.props.thunkUpVote}
-                      thunkDownVote={this.props.thunkDownVote}
-                      downvote={this.props.downvote}
-                      session={this.props.session}
-          />
+
+          <NodeDetail />
         </ReactModal>
+
+        <ReactModal isOpen={this.props.editCommentDetailVisible}
+                    contentLabel="Edit Comment Detail Modal"
+                    shouldCloseOnOverlayClick={true}
+                    onRequestClose={() => this.props.hideEditCommentDetail()}
+                    className="ReactModal__Content--after-open--edit-comment"
+        >
+          <Button className="exit-btn" onClick={this.props.hideEditCommentDetail}>X</Button>
+
+          <EditCommentDetail/>
+        </ReactModal>
+
         <Graph comments={this.props.comments}
                setNode={this.props.setNode}
                showDetail={this.props.showDetail}
@@ -72,4 +84,19 @@ class Session extends React.Component {
     )
   }
 }
-export default Session;
+function mapStateToProps(state) {
+  return {
+    comments: state.comments,
+    detailViewVisible: state.detailViewVisible,
+    editCommentDetailVisible: state.editCommentDetailVisible
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Session);

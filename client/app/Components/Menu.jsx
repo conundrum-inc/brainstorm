@@ -42,8 +42,13 @@ class Menu extends React.Component {
           <div className="menu-modal-content">
             <h4>Sessions</h4>
 
-            {this.props.user.accessible_sessions.map((comment) => {
-              return <div key={comment._id} data-key={comment._id} className="session-title" onClick={this.handleClick.bind(this)}>{comment.title} </div>
+            {this.props.user.accessible_sessions.map((session) => {
+              return <div key={session._id}
+                            data-key={session._id}
+                            className="session-title"
+                            onClick={this.handleClick.bind(this)}>
+                       {session.title}
+                     </div>
             })}
             <Button bsStyle="info"
               className="menu-btn-new-session"
@@ -65,17 +70,8 @@ class Menu extends React.Component {
           className="ReactModal__Content--after-open--new-session"
           >
             <Button className="exit-btn" onClick={this.props.hideCreateSession}>X</Button>
-            <CreateSessionDetail
-              addComment={this.props.addComment}
-              currentNode={this.props.currentNode}
-              setNode={this.props.setNode}
-              updateNode={this.props.updateNode}
-              thunkCreateSession={this.props.thunkCreateSession}
-              clearComments={this.props.clearComments}
-              user={this.props.user}
-              hideCreateSession={this.props.hideCreateSession}
-              thunkCreateSessionAndInvite={this.props.thunkCreateSessionAndInvite}
-            />
+
+            <CreateSessionDetail />
           </ReactModal>
       </div>
     )
