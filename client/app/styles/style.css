@@ -49,6 +49,16 @@ a {
   margin-right: 33%;
 }
 
+.profile-created-session {
+  cursor: pointer;
+  color: Black;
+}
+
+.profile-accessed-session {
+  cursor: pointer;
+  color: Black;
+}
+
 .invite-button {
   position: absolute;
   right: 0;

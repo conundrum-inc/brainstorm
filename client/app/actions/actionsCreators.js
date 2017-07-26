@@ -93,7 +93,7 @@ export function showCreateSession() {
 }
 
 export function hideCreateSession() {
-  console.log('hiding session?');
+  console.log('hiding session');
   return {
     type: 'HIDE_CREATE_SESSION'
   }

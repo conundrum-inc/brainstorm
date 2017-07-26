@@ -36,7 +36,10 @@ const ProfilePage = (props) => {
           thunkCreateSessionAndInvite={props.thunkCreateSessionAndInvite}
           createSessionVisible={props.createSessionVisible}
         />
-        <MySessions user={props.user}/>
+        <MySessions
+          user={props.user}
+          thunkUpdateSession={props.thunkUpdateSession}
+        />
         <div className="profile-btn-logout">
           <Button href={LOGOUT_PAGE_ROUTE}>
             <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>

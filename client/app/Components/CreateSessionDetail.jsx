@@ -15,6 +15,8 @@ import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-b
 class CreateSessionDetail extends React.Component {
 
   onSubmit(e, props) {
+    console.log('e: ', e);
+    console.log('props: ', props);
     e.preventDefault();
     this.props.clearComments();
     var array = buildEmailArray(e.target.emails.value);
@@ -48,7 +50,7 @@ class CreateSessionDetail extends React.Component {
           </FormGroup>
           <FormGroup className="form-horizontal form-group">
             <Col sm={10}>
-              <Button className="submit-btn" type="submit" href={MAIN_PAGE_ROUTE}>
+              <Button className="submit-btn" type="submit" >
                 Submit
               </Button>
             </Col>
