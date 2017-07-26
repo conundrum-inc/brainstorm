@@ -52,19 +52,8 @@ class Session extends React.Component {
                     className="ReactModal__Content--after-open--new-comment"
         >
           <Button className="exit-btn" onClick={this.props.hideDetail}>X</Button>
-          <NodeDetail thunkAddComment={this.props.thunkAddComment}
-                      currentNode={this.props.currentNode}
-                      setNode={this.props.setNode}
-                      updateNode={this.props.updateNode}
-                      user={this.props.user}
-                      hideDetail={this.props.hideDetail}
-                      thunkUpVote={this.props.thunkUpVote}
-                      thunkDownVote={this.props.thunkDownVote}
-                      downvote={this.props.downvote}
-                      session={this.props.session}
-                      thunkUpdateCurrentNode={this.props.thunkUpdateCurrentNode}
-                      showEditCommentDetail={this.props.showEditCommentDetail}
-          />
+
+          <NodeDetail />
         </ReactModal>
 
         <ReactModal isOpen={this.props.editCommentDetailVisible}
@@ -74,14 +63,8 @@ class Session extends React.Component {
                     className="ReactModal__Content--after-open--edit-comment"
         >
           <Button className="exit-btn" onClick={this.props.hideEditCommentDetail}>X</Button>
-          <EditCommentDetail
-                      currentNode={this.props.currentNode}
-                      user={this.props.user}
-                      hideEditCommentDetail={this.props.hideEditCommentDetail}
-                      session={this.props.session}
-                      thunkEditComment={this.props.thunkEditComment}
-                      hideEditCommentDetail={this.props.hideEditCommentDetail}
-          />
+
+          <EditCommentDetail/>
         </ReactModal>
 
         <Graph comments={this.props.comments}
