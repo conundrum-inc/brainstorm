@@ -75,33 +75,7 @@ class Main extends React.Component {
             thunkCreateSessionAndInvite={this.props.thunkCreateSessionAndInvite}
           />
           <Button title="Invite people to join this session" className="invite-button" onClick={ () => this.props.showInviteDetail() }>Invite!</Button>
-          <Session showDetail={this.props.showDetail}
-            hideDetail={this.props.hideDetail}
-            detailViewVisible={this.props.detailViewVisible}
-            comments={this.props.comments}
-            nodes={this.props.nodes}
-            links={this.props.links}
-            addNode={this.props.addNode}
-            addLink={this.props.addLink}
-            detailViewVisible={this.props.detailViewVisible}
-            user={this.props.user}
-            thunkAddComment={this.props.thunkAddComment}
-            addComment={this.props.addComment}
-            thunkUpVote={this.props.thunkUpVote}
-            thunkDownVote={this.props.thunkDownVote}
-            editComment={this.props.editComment}
-            setNode={this.props.setNode}
-            currentNode={this.props.currentNode}
-            showCreateSession={this.props.showCreateSession}
-            session={this.props.session}
-            updateComments={this.props.updateComments}
-            showInviteDetail={this.props.showInviteDetail}
-            thunkUpdateCurrentNode={this.props.thunkUpdateCurrentNode}
-            thunkEditComment={this.props.thunkEditComment}
-            editCommentDetailVisible={this.props.editCommentDetailVisible}
-            showEditCommentDetail={this.props.showEditCommentDetail}
-            hideEditCommentDetail={this.props.hideEditCommentDetail}
-          />
+          <Session />
       </div>
     )
   }

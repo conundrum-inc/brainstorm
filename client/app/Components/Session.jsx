@@ -1,17 +1,24 @@
 import React from 'react';
-import Menu from './Menu.jsx';
-import NodeDetail from './NodeDetail.jsx';
-import EditCommentDetail from './EditCommentDetail.jsx';
 import * as d3 from 'd3';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
-import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
-import io from "socket.io-client";
-var socket = io();
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/actionsCreators';
+
+import Graph from './Graph.jsx'
+import NodeDetail from './NodeDetail.jsx';
+import EditCommentDetail from './EditCommentDetail.jsx';
 
 import { click, forceDiagram} from '../../d3/d3helpers.js'
 
-import Graph from './Graph.jsx'
+import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+
+import io from "socket.io-client";
+var socket = io();
+
+
 
 // const modalStyles = {
 //   overlay : {
@@ -77,4 +84,19 @@ class Session extends React.Component {
     )
   }
 }
-export default Session;
+function mapStateToProps(state) {
+  return {
+    comments: state.comments,
+    detailViewVisible: state.detailViewVisible,
+    editCommentDetailVisible: state.editCommentDetailVisible
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Session);
