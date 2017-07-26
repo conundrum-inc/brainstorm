@@ -12,7 +12,8 @@ import { width,
          updateNode,
          updateLink,
          updateGraph,
-         createNodesAndLinks
+         createNodesAndLinks,
+         resize
        } from '../../d3/d3helpers.js'
 
 import { commentsToNodes } from '../utils.js'
@@ -44,21 +45,10 @@ class Graph extends React.Component {
       })
 
 
-    d3.select(window).on("resize", resize.bind(this))
+    d3.select(window).on("resize", () => resize(this.d3Graph))
 
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
-
-    function resize() {
-
-      var width = window.innerWidth
-      var forceHeight = window.innerHeight - .3*window.innerHeight;
-      var svgHeight = window.innerHeight
-      this.d3Graph.attr("width", width).attr("height", svgHeight);
-      force.size([width, forceHeight]).resume();
-    }
-
-
 
   }
 

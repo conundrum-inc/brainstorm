@@ -80,3 +80,11 @@ export const createNodesAndLinks = (nodes, selection) => {
     d3Nodes.enter().append('g').call(enterNode);
     d3Nodes.call(updateNode);
 }
+
+export const resize = (selection) => {
+  var width = window.innerWidth
+  var forceHeight = window.innerHeight - .3*window.innerHeight;
+  var svgHeight = window.innerHeight
+  selection.attr("width", width).attr("height", svgHeight);
+  force.size([width, forceHeight]).resume();
+}
