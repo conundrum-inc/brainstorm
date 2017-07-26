@@ -14,9 +14,6 @@ const MySessions = (props) => {
         <h3>Your Brainstorm sessions:</h3>
         <ul>
           {props.user.created_sessions.map((session) => {
-<<<<<<< HEAD
-            return <li key={session._id} onClick={handleClick()}>{session.title}</li>
-=======
             return <li
                       className="profile-created-session"
                       onClick={(session) => {props.thunkUpdateSession(session._id)}}
@@ -25,7 +22,6 @@ const MySessions = (props) => {
                         {session.title}
                       </a>
                   </li>
->>>>>>> Allow session creation from profile page
           })}
         </ul>
         <h3>Sessions you contribute to:</h3>
