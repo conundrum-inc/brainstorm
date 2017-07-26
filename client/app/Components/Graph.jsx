@@ -113,12 +113,12 @@ class Graph extends React.Component {
     //d3Nodes.exit().remove()
     d3Nodes.call(updateNode);
     this.d3Graph.selectAll("circle")
-      .on("click", node => {
+      .on("dblclick", node => {
         this.handleClick.bind(this, node)();
       })
 
     this.d3Graph.selectAll("text")
-      .on("click", node => {
+      .on("dblclick", node => {
         this.handleClick.bind(this, node)();
       })
 
