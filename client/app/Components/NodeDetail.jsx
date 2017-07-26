@@ -1,4 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/actionsCreators';
+
 import emoji from 'node-emoji';
 import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
@@ -87,4 +92,20 @@ class NodeDetail extends React.Component {
     )
   }
 }
-export default NodeDetail;
+
+function mapStateToProps(state) {
+  return {
+    currentNode: state.currentNode,
+    user: state.user,
+    session: state.session
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NodeDetail);
