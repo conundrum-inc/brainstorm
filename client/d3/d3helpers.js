@@ -4,8 +4,8 @@ import { randomBlue } from '../app/utils.js'
 
 
 
-export const width = window.innerWidth;
-export const height = window.innerHeight - (.3)*(window.innerHeight);
+const width = window.innerWidth;
+const height = window.innerHeight - (.3)*(window.innerHeight);
 export const force = d3.layout.force()
             .linkDistance(110)
             .charge(-1000)
@@ -14,7 +14,7 @@ export const force = d3.layout.force()
 
 
 
-export const enterNode = (selection) => {
+const enterNode = (selection) => {
 
   selection.classed('node', true);
 
@@ -38,13 +38,13 @@ export const enterNode = (selection) => {
 
 }
 
-export const updateNode = (selection) => {
+const updateNode = (selection) => {
 
   selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")").call(force.drag)
 
 }
 
-export const enterLink = (selection) => {
+const enterLink = (selection) => {
 
   selection.classed('link', true)
     .attr("stroke", "#cccccc")
@@ -52,7 +52,7 @@ export const enterLink = (selection) => {
     .attr("stroke-width", (d) => d.size );
 }
 
-export const updateLink = (selection) => {
+const updateLink = (selection) => {
 
   selection.attr("x1", (d) => d.source.x)
     .attr("y1", (d) => d.source.y)
@@ -69,7 +69,7 @@ export const updateGraph = (selection) => {
     .call(updateLink);
 }
 
-export const createNodesAndLinks = (nodes, selection) => {
+const createNodesAndLinks = (nodes, selection) => {
   const d3Links = selection.selectAll('.link')
       .data(nodes.links, (link) => link.key);
     d3Links.enter().insert('line', '.node').call(enterLink);

@@ -17,25 +17,19 @@ var coords;
 class Graph extends React.Component {
 
   componentDidMount() {
-
     coords = {};
-
     var nodes = commentsToNodes(this.props.comments);
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
-    
     this.forceLayout(this.d3Graph, nodes, false)
-
     d3.select(window).on("resize", () => resize(this.d3Graph))
   }
 
   componentDidUpdate() {
-
     if (this.props.comments[0]._id === coords[0].key) {
       var nodes = commentsToNodes(this.props.comments, coords)
     } else {
       var nodes = commentsToNodes(this.props.comments)
     }
-
     this.forceLayout(this.d3Graph, nodes, true)
   }
 
@@ -62,7 +56,6 @@ class Graph extends React.Component {
       .on("dblclick", node => {
         this.handleClick.bind(this, node)()
       })
-
     selection.selectAll("text")
       .on("dblclick", node => {
         this.handleClick.bind(this, node)()
