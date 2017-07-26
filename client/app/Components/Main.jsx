@@ -71,6 +71,7 @@ class Main extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    session: state.session,
     inviteDetailVisible: state.inviteDetailVisible
   }
 }
