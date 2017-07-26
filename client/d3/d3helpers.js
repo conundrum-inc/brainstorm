@@ -68,3 +68,15 @@ export const updateGraph = (selection) => {
   selection.selectAll('.link')
     .call(updateLink);
 }
+
+export const createNodesAndLinks = (nodes, selection) => {
+  const d3Links = selection.selectAll('.link')
+      .data(nodes.links, (link) => link.key);
+    d3Links.enter().insert('line', '.node').call(enterLink);
+    d3Links.call(updateLink);
+
+    const d3Nodes = selection.selectAll('.node')
+      .data(nodes.nodes, (node) => node.key);
+    d3Nodes.enter().append('g').call(enterNode);
+    d3Nodes.call(updateNode);
+}

@@ -11,7 +11,8 @@ import { width,
          enterLink,
          updateNode,
          updateLink,
-         updateGraph
+         updateGraph,
+         createNodesAndLinks
        } from '../../d3/d3helpers.js'
 
 import { commentsToNodes } from '../utils.js'
@@ -26,25 +27,9 @@ class Graph extends React.Component {
 
     var nodes = commentsToNodes(this.props.comments);
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
-    force.on('tick', () => {
-      // after force calculation starts, call updateGraph
-      // which uses d3 to manipulate the attributes,
-      // and React doesn't have to go through lifecycle on each tick
-      this.d3Graph.call(updateGraph);
-      coords = nodes.nodes.map(function(node) {
-        return {'x': node.x,
-                'y': node.y,
-                'key': node.key }
-      })
-    })
+    force.on('tick', () => this.tick(nodes, this.d3Graph))
 
-    const d3Links = this.d3Graph.selectAll('.link')
-      .data(nodes.links, (link) => link.key);
-    d3Links.enter().insert('line', '.node').call(enterLink);
-
-    const d3Nodes = this.d3Graph.selectAll('.node')
-      .data(nodes.nodes, (node) => node.key);
-    d3Nodes.enter().append('g').call(enterNode);
+    createNodesAndLinks(nodes, this.d3Graph);
 
     //NOTE: we should clone the links and nodes that are passed down as props
     //since d3 mutates them. We'll do this later
@@ -85,33 +70,14 @@ class Graph extends React.Component {
       var nodes = commentsToNodes(this.props.comments)
     }
 
-    force.on('tick', () => {
-      // after force calculation starts, call updateGraph
-      // which uses d3 to manipulate the attributes,
-      // and React doesn't have to go through lifecycle on each tick
-      this.d3Graph.call(updateGraph);
-      coords = nodes.nodes.map(function(node) {
-        return {'x': node.x,
-                'y': node.y,
-                'key': node.key }
-      })
-    })
+    force.on('tick', () => this.tick(nodes, this.d3Graph))
 
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
 
     this.d3Graph.selectAll("*").remove();
 
-    const d3Links = this.d3Graph.selectAll('.link')
-      .data(nodes.links, (link) => link.key);
-    d3Links.enter().insert('line', '.node').call(enterLink);
-    //d3Links.exit().remove();
-    d3Links.call(updateLink);
+    createNodesAndLinks(nodes, this.d3Graph)
 
-    const d3Nodes = this.d3Graph.selectAll('.node')
-      .data(nodes.nodes, (node) => node.key);
-    d3Nodes.enter().append('g').call(enterNode);
-    //d3Nodes.exit().remove()
-    d3Nodes.call(updateNode);
     this.d3Graph.selectAll("circle")
       .on("dblclick", node => {
         this.handleClick.bind(this, node)();
@@ -139,6 +105,15 @@ class Graph extends React.Component {
       this.props.setNode(node);
       this.props.showDetail();
     }
+  }
+
+  tick(nodes, selection) {
+    selection.call(updateGraph);
+    coords = nodes.nodes.map(function(node) {
+      return {'x': node.x,
+              'y': node.y,
+              'key': node.key }
+    })
   }
 
   render() {
