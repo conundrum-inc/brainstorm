@@ -1,15 +1,21 @@
 import React from 'react';
+import ReactModal from 'react-modal';
 import { Button, FormGroup, Form, Col, FormControl, ControlLabel, DropdownButton, MenuItem } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ReactModal from 'react-modal';
+
 import Menu from './Menu.jsx';
 import Session from './Session.jsx';
 import InviteDetail from './InviteDetail.jsx'
-import { hideInviteDetail } from '../actions/actionsCreators';
+
+import * as actionCreators from '../actions/actionsCreators';
 import { buildEmailArray } from '../helpers.js'
 import { inviteUsers } from '../axiosCalls'
+
 import { LOGOUT_PAGE_ROUTE } from '../routes.js';
+
 
 class Main extends React.Component {
   constructor(props) {
@@ -67,4 +73,14 @@ class Main extends React.Component {
 
 }
 
-export default connect()(Main);
+function mapStateToProps(state) {
+  return {
+    inviteDetailVisible: state.inviteDetailVisible
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
