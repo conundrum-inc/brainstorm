@@ -1,4 +1,9 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { thunkEditComment, hideEditCommentDetail } from '../actions/actionsCreators';
+
 import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
 class EditCommentDetail extends React.Component {
@@ -39,4 +44,20 @@ class EditCommentDetail extends React.Component {
     )
   }
 }
-export default EditCommentDetail;
+
+function mapStateToProps(state) {
+  return {
+    currentNode: state.currentNode,
+    user: state.user,
+    session: state.session
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ thunkEditComment, hideEditCommentDetail }, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditCommentDetail);

@@ -74,14 +74,9 @@ class Session extends React.Component {
                     className="ReactModal__Content--after-open--edit-comment"
         >
           <Button className="exit-btn" onClick={this.props.hideEditCommentDetail}>X</Button>
-          <EditCommentDetail
-                      currentNode={this.props.currentNode}
-                      user={this.props.user}
-                      hideEditCommentDetail={this.props.hideEditCommentDetail}
-                      session={this.props.session}
-                      thunkEditComment={this.props.thunkEditComment}
-                      hideEditCommentDetail={this.props.hideEditCommentDetail}
-          />
+
+          <EditCommentDetail /> // This is the component the modal is rendering
+
         </ReactModal>
 
         <Graph comments={this.props.comments}
