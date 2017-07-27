@@ -25,6 +25,52 @@ a {
   height: window.innerHeight;
 }
 
+.footer {
+  width: 100%;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  position: fixed;
+  bottom: 0pt;
+  left: 0pt;
+  height: 100px;
+  background-color: #d1d0cf;
+}
+
+.footer-text {
+  float: right;
+  color: #595858;
+  margin-top: 50px;
+  margin-right: 17px;
+  display: inline-block;
+}
+
+/*.git-hub-image {
+  float: right;
+  margin-top: 40px;
+  margin-right: 45px;
+  height: 50px;
+  display: inline-block;
+}*/
+.git-hub-image {
+  height: 30px;
+  width: 30px;
+  background-image: url("./images/octocat.png");
+  float: right;
+  margin-top: 40px;
+  margin-right: 45px;
+  display: inline-block;
+}
+
+.git-hub-image:hover {
+  height: 30px;
+  width: 30px;
+  background-image: url("./images/octocat-hover.png");
+  float: right;
+  margin-top: 40px;
+  margin-right: 45px;
+  display: inline-block;
+}
+
 .intro {
   padding-left: 25%;
   padding-right: 25%;
@@ -85,7 +131,11 @@ a {
 }
 
 .session-container {
-  background-color: #f9f9f7;
+  /*background-color: #f9f9f7;*/
+  background-image: url("./images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /*background-repeat: repeat-y;*/
 }
 
 .session-title {

@@ -10,7 +10,8 @@ var config = {
   entry: APP_DIR + '/index.jsx',
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module : {
     rules: [
@@ -22,6 +23,10 @@ var config = {
         test : /\.js?/,
         include : APP_DIR,
         loader : 'babel-loader'
+      },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'url-loader',
       }
     ]
   },
