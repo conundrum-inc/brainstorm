@@ -60,7 +60,7 @@ export function commentsToNodes(comments, coords) {
   return nodes;
 }
 
-function findIndex(array, attr, value) {
+export function findIndex(array, attr, value) {
   for (var i = 0; i < array.length; i++) {
     if (array[i][attr]===value) {
       return i
@@ -82,4 +82,13 @@ export function randomBlue() {
   var blues = ['#aedee0', '#afd9dd', '#cae9ea', '#c7e2e1'];
   var random = Math.floor(Math.random() * 4);
   return blues[random];
+}
+
+export function oneCommentToNode(comment) {
+  return {
+    key: comment._id,
+    title: comment.title,
+    text: comment.text,
+    children: comment.children,
+  }
 }

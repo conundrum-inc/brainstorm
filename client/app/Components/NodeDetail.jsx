@@ -6,6 +6,7 @@ import * as actionCreators from '../actions/actionsCreators';
 
 import emoji from 'node-emoji';
 import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-bootstrap';
+import { oneCommentToNode, findIndex } from '../utils.js'
 
 class NodeDetail extends React.Component {
   constructor(props) {
@@ -19,7 +20,14 @@ class NodeDetail extends React.Component {
   }
 
   handleClick(e, props) {
-    this.props.thunkUpdateCurrentNode(e.target.getAttribute('data-key'));
+    console.log(findIndex)
+    //look up comment on state that matches what we clicked
+    var index = findIndex(this.props.comments, "_id", e.target.getAttribute('data-key'));
+    //make a new node from this comment
+    var node = oneCommentToNode(this.props.comments[index])
+    //call setNode action creator
+    this.props.setNode(node);
+    // this.props.thunkUpdateCurrentNode(e.target.getAttribute('data-key'));
   }
 
   handleEditClick(e, props) {
@@ -89,7 +97,8 @@ function mapStateToProps(state) {
   return {
     currentNode: state.currentNode,
     user: state.user,
-    session: state.session
+    session: state.session,
+    comments: state.comments
   }
 }
 
