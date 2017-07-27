@@ -13,8 +13,11 @@ class EditCommentDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
+    var text = !!e.target.text.value ? e.target.text.value : this.props.currentNode.text;
+    var title = !!e.target.title.value ? e.target.title.value : this.props.currentNode.title;
+
     // console.log('in EditCommentDetail details: ', this.props.currentNode.key, e.target.title.value, e.target.text.value)
-    this.props.thunkEditComment(this.props.currentNode.key, e.target.title.value, e.target.text.value);
+    this.props.thunkEditComment(this.props.currentNode.key, title, text);
     this.props.hideEditCommentDetail();
   }
 
@@ -36,7 +39,7 @@ class EditCommentDetail extends React.Component {
           </FormGroup>
           <FormGroup>
             <Col sm={10}>
-              <Button className="submit-btn" type="submit">Edit</Button>
+              <Button className="submit-btn" type="submit">Save</Button>
             </Col>
           </FormGroup>
         </Form>
