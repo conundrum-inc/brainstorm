@@ -36,9 +36,18 @@ const MySessions = (props) => {
         <h3>Sessions you contribute to:</h3>
         <ul>
           {props.user.accessible_sessions.map((session) => {
-            if (props.user.created_sessions.includes(session)) {
-              return <li className="profile-accessed-session" onClick={() => {console.log('accessible clicked!')}}>{session.title}</li>
-            }
+            if (session.creator_id !== props.user.userId) {
+              return <div
+                key={session._id}
+                className="profile-accessed-session session-title"
+                onClick={(e) => {props.thunkUpdateSession(e.target.getAttribute('data-key'))}}
+                >
+                <a href={AUTH_PAGE_ROUTE}>
+                  <li data-key={session._id}>
+                    {session.title}
+                  </li>
+                </a>
+              </div>            }
           })}
         </ul>
       </div>
