@@ -16,36 +16,36 @@ export const force = d3.layout.force()
 const enterNode = (selection) => {
 
   selection.classed('node', true);
+
   const tooltip = d3.select("body").append("div")
     .attr("class", "mytooltip")
-    .style("position", "absolute")
-    .style("z-index", "10")
-    .style("opacity", "0")
-    .style("width", "60")
-    .style("height", "100")
-
-
 
   selection.append('circle')
     .attr("r", (d) => d.size)
     .attr("fill", randomBlue)
     .attr("class", "circle")
     .on("mouseover", function(d) {
+      if (d.text === "") {
+        return
+      }
       tooltip.text(d.text)
             .transition()
             .duration(500)
             .style("opacity","1")     
     })
     .on("mousemove", function(d){
-      tooltip.text("Details:" + "\n" + d.text)
+      if (d.text === "") {
+        return
+      }
+      tooltip.text(d.text)
              .style("top", (event.pageY-10)+"px")
              .style("left",(event.pageX+20)+"px")            
     })
-    .on("mouseout", function(){
-      tooltip.transition()
-             .duration(500)
-             .style("opacity", "0");
-    })
+    // .on("mouseout", function(){
+    //   tooltip.transition()
+    //          .duration(500)
+    //          .style("opacity", "0");
+    // })
 
 
   selection.append('text')
@@ -58,13 +58,19 @@ const enterNode = (selection) => {
     .attr("dy", ".35em")
     .text((d) => d.title)
     .on("mouseover", function(d) {
+      if (d.text === "") {
+        return
+      }
       tooltip.text(d.text)
             .transition()
             .duration(500)
             .style("opacity","1")     
     })
     .on("mousemove", function(d){
-      tooltip.text("Details:" + "\n" + d.text)
+      if (d.text === "") {
+        return
+      }
+      tooltip.text(d.text)
              .style("top", (event.pageY-10)+"px")
              .style("left",(event.pageX+20)+"px")            
     })
