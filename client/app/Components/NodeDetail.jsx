@@ -14,6 +14,10 @@ class NodeDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
+    if (!e.target.title.value) {
+      alert('Error! Idea title is required.');
+      return;
+    }
     this.props.thunkAddComment(this.props.user.userId, this.props.currentNode.key, this.props.session.sessionId, e.target.title.value, e.target.text.value);
     this.props.hideDetail();
   }
