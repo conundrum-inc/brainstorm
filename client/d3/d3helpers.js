@@ -13,28 +13,32 @@ export const force = d3.layout.force()
 
 
 
-
 const enterNode = (selection) => {
 
   selection.classed('node', true);
-
   const tooltip = d3.select("body").append("div")
+    .attr("border", "solid")
     .style("position", "absolute")
     .style("z-index", "10")
     .style("visibility", "hidden")
-    .text("double click for detail")
+    .style("width", "60")
+    .style("height", "100")
+
+
 
   selection.append('circle')
     .attr("r", (d) => d.size)
     .attr("fill", randomBlue)
     .attr("class", "circle")
-    .on("mouseover", function() {
-      return tooltip.style("visibility","visible")
+    .on("mouseover", function(d) {
+      tooltip.text(d.text)
+            .attr("fill", "blue")
+      return tooltip.style("visibility","visible")     
     })
-    .on("mousemove", function(){
-      console.log(tooltip)
+    .on("mousemove", function(d){
+      tooltip.text("Details:" + "\n" + d.text)
       return tooltip.style("top", (event.pageY-10)+"px")
-                    .style("left",(event.pageX+10)+"px");
+                    .style("left",(event.pageX+20)+"px")            
     })
     .on("mouseout", function(){
       return tooltip.style("visibility", "hidden");

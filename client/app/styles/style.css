@@ -337,3 +337,7 @@ a {
 .profile-text {
   text-align: center;
 }
+
+.tooltip {
+  border: solid;
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import * as d3 from 'd3'
+import {event as currentEvent} from 'd3'
 import * as ReactDOM from 'react-dom'
 
 import { connect } from 'react-redux'
@@ -53,12 +54,14 @@ class Graph extends React.Component {
 
   giveClicks(selection) {
     selection.selectAll("circle")
-      .on("dblclick", node => {
+      .on("click", node => {
+        if (currentEvent.defaultPrevented) { return }
         this.handleClick.bind(this, node)()
       })
     
     selection.selectAll("text")
-      .on("dblclick", node => {
+      .on("click", node => {
+        if (currentEvent.defaultPrevented) { return }
         this.handleClick.bind(this, node)()
       })
   }
