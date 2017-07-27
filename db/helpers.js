@@ -71,36 +71,34 @@ function findAllComments(req, res) {
 }
 
 // add user permissions when they're invited to a session
-function addUserPermission(req, res){
+function addUserPermission(req, res) {
   var emails = req.body.emails;
   var sessionId = req.body.session_id;
-  var newSession = {};
   Session.findOne({ _id: sessionId}, (err, session) => {
     if (err) {
       console.log('error finding session', err)
     } else {
-      newSession = session;
+      console.log('SESSION', session)
+      for (var email of emails) {
+        User.findOne({ email: email }, (err, user) => {
+          if (err) {
+            console.log('error in accessible sessions route', err)
+          } else {
+            if (user) {
+              if(!user.accessible_sessions.includes(session)) {
+                user.accessible_sessions.push(session);
+                user.new_sessions.push(session);
+                user.save();
+                console.log('session permissions saved')
+              } else {
+                console.log('user already has permission for this session')
+              }
+            }
+          }
+        })
+      }
     }
   })
-  console.log('NEW SESSION', newSession)
-  for (var email of emails) {
-    User.findOne({ email: email }, (err, user) => {
-      if (err) {
-        console.log('error in accessible sessions route', err)
-      } else {
-        if (user) {
-          if(!user.accessible_sessions.includes(newSession)) {
-            user.accessible_sessions.push(newSession);
-            user.new_sessions.push(newSession);
-            user.save();
-            console.log('session permissions saved')
-          } else {
-            console.log('user already has permission for this session')
-          }
-        }
-      }
-    })
-  }
 }
 
 // update new sessions array
