@@ -32,6 +32,41 @@ body {
   background-color: #d1d0cf;
 }
 
+.footer-text {
+  float: right;
+  color: #595858;
+  margin-top: 50px;
+  margin-right: 17px;
+  display: inline-block;
+}
+
+/*.git-hub-image {
+  float: right;
+  margin-top: 40px;
+  margin-right: 45px;
+  height: 50px;
+  display: inline-block;
+}*/
+.git-hub-image {
+  height: 30px;
+  width: 30px;
+  background-image: url("./images/octocat.png");
+  float: right;
+  margin-top: 40px;
+  margin-right: 45px;
+  display: inline-block;
+}
+
+.git-hub-image:hover {
+  height: 30px;
+  width: 30px;
+  background-image: url("./images/octocat-hover.png");
+  float: right;
+  margin-top: 40px;
+  margin-right: 45px;
+  display: inline-block;
+}
+
 .intro {
   padding-left: 25%;
   padding-right: 25%;

@@ -62,11 +62,8 @@
     "mocha": "^2.4.5",
     "react-test-renderer": "^15.6.1",
     "redux-devtools": "^3.4.0",
-<<<<<<< refs/remotes/origin/styling
-=======
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
->>>>>>> local
     "webpack": "^3.0.0"
   }
 }
