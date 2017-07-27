@@ -31,7 +31,6 @@ class Session extends React.Component {
   constructor(props){
     super(props);
 
-
     socket.on('socket comment', (data) => {
       console.log('data from socket', data)
       props.updateComments(data);
@@ -43,11 +42,13 @@ class Session extends React.Component {
     socket.on('downvoted comment', (data) => {
       console.log('downvoted comment from socket', data)
       props.editComment(data);
-
+    })
+    socket.on('update comment', (data) => {
+      console.log('updated comment from socket', data)
+      props.editComment(data);
     })
   }
-
-
+  
   render() {
     return (
       <div id="session">

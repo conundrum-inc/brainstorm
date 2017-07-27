@@ -26,10 +26,6 @@ class Main extends React.Component {
     this.props.thunkAddUser();
   }
 
-  componentDidMount() {
-    console.log('props in Main', this.props)
-  }
-
   onSubmit(e, props) {
     e.preventDefault();
     var array = buildEmailArray(e.target.emails.value);
@@ -75,6 +71,7 @@ class Main extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    session: state.session,
     inviteDetailVisible: state.inviteDetailVisible
   }
 }

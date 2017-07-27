@@ -8,7 +8,7 @@ export const width = window.innerWidth;
 export const height = window.innerHeight - (.3)*(window.innerHeight);
 export const force = d3.layout.force()
             .linkDistance(110)
-            .charge(-300)
+            .charge(-1000)
             .size([width, height])
 
 

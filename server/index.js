@@ -146,6 +146,10 @@ io.on('connection', function(socket){
     console.log('downvote received by socket', data)
     socket.broadcast.emit('downvoted comment', data)
   })
+  socket.on('update', function(data) {
+    console.log('update received by socket')
+    socket.broadcast.emit('update comment', data)
+  })
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
