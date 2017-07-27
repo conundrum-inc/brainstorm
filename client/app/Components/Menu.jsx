@@ -50,7 +50,8 @@ class Menu extends React.Component {
               return <div key={session._id}
                             data-key={session._id}
                             className="session-title"
-                            onClick={this.handleClick.bind(this)}>
+                            onClick={this.handleClick.bind(this)}
+                     >
                        {session.title}
                      </div>
             })}

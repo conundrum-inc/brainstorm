@@ -92,6 +92,10 @@ a {
   cursor: pointer;
 }
 
+.session-title:hover {
+  text-decoration: underline;
+}
+
 .ReactModal__Content--after-open--menu {
   margin-top: 40px;
   margin-left: 40px;
