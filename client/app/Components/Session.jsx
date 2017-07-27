@@ -48,7 +48,7 @@ class Session extends React.Component {
       props.editComment(data);
     })
   }
-  
+
   render() {
     return (
       <div id="session">
@@ -59,7 +59,7 @@ class Session extends React.Component {
                     onRequestClose={() => this.props.hideDetail()}
                     className="ReactModal__Content--after-open--new-comment"
         >
-          <Button className="exit-btn" onClick={this.props.hideDetail}>X</Button>
+          <Button className="exit-btn" onClick={() => {this.props.hideDetail()}}>X</Button>
 
           <NodeDetail />
         </ReactModal>

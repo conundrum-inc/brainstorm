@@ -14,7 +14,7 @@ class Login extends React.Component {
    return (
      <div>
        <div className="menu-bar">
-         <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
+         <h1 id="title"><a id="title" href='/main'>brainstorm</a></h1>
        </div>
        <h3 id="welcome">Welcome to BrainStorm!</h3>
        <p className="intro">BrainStorm is a collaborative coworking tool designed to let teams develop ideas in a visually iterative process. Get started by sigining in with you Google email, and invite friends to your brainstorming sessions by adding their email address to the session.</p>
