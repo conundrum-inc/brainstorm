@@ -42,7 +42,7 @@ class Main extends React.Component {
             width="30px"
             height="30px"
           />
-          <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
+          <h1 id="title"><a id="title" href='/main'>brainstorm</a></h1>
         </div>
         <ReactModal isOpen={this.props.inviteDetailVisible}
           contentLabel="Invite Detail Modal"

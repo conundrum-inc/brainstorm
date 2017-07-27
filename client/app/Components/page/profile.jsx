@@ -19,7 +19,7 @@ const ProfilePage = (props) => {
   return (
     <div>
       <div className="menu-bar">
-        <h1 id="title"><a id="title" href='/main'>BrainStorm</a></h1>
+        <h1 id="title"><a id="title" href='/main'>brainstorm</a></h1>
       </div>
       <div className="profile-info">
         <Profile
