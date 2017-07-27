@@ -25,7 +25,8 @@ export function AddComment(userId, parentId, sessionId, title, text) {
 }
 
 export function EditComment(commentId, title, text) {
-  return axios.post('/comment', {
+  console.log('inside EditComment axios call')
+  return axios.put('/comment', {
     comment_id: commentId,
     title: title,
     text: text
@@ -55,6 +56,14 @@ export function GetSession(sessionId) {
     }
   });
 }
+
+// export function DeleteSession(sessionId) {
+//   return axios.delete('/session', {
+//     params: {
+//       id: sessionId
+//     }
+//   })
+// }
 
 export function findUser(userId) {
   console.log('inside findUser axios call!')

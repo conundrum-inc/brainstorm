@@ -83,7 +83,7 @@ app.get('/auth/google/callback',
   function(req, res) {
     console.log('req.user in google auth callback function', req.user);
     console.log('req.session.passport.user', req.session.passport.user);
-    res.redirect('/', 200, req.user);
+    res.redirect('/home', 200, req.user);
   });
 
 // send user to front end based on session
@@ -115,7 +115,7 @@ app.get('/authenticate', function(req, res) {
 app.get('/logout', function(req, res){
 
   req.logout();
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 // implement express router
@@ -146,6 +146,10 @@ io.on('connection', function(socket){
     console.log('downvote received by socket', data)
     socket.broadcast.emit('downvoted comment', data)
   })
+  socket.on('update', function(data) {
+    console.log('update received by socket')
+    socket.broadcast.emit('update comment', data)
+  })
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
@@ -157,3 +161,5 @@ server.listen(3000, function () {
 })
 
 exports.io = io;
+
+module.exports = app

@@ -93,7 +93,7 @@ export function showCreateSession() {
 }
 
 export function hideCreateSession() {
-  console.log('hiding session?');
+  console.log('hiding session');
   return {
     type: 'HIDE_CREATE_SESSION'
   }
@@ -135,6 +135,18 @@ export function hideMenu() {
   }
 }
 
+export function showEditCommentDetail() {
+  return {
+    type: 'SHOW_EDIT_COMMENT_DETAIL'
+  }
+}
+
+export function hideEditCommentDetail() {
+  return {
+    type: 'HIDE_EDIT_COMMENT_DETAIL'
+  }
+}
+
 
 //test action for d3-redux integration
 export function addNode(node) {
@@ -173,9 +185,7 @@ export function thunkUpVote(userId, commentId) {
     return axiosCall.UpVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        setTimeout(function(){
-          socket.emit('upvote', comment.data);
-        }, 2000);
+        socket.emit('upvote', comment.data);
       }
     )
   }
@@ -186,9 +196,7 @@ export function thunkDownVote(userId, commentId) {
     return axiosCall.DownVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        setTimeout(function(){
-          socket.emit('downvote', comment.data);
-        }, 2000);
+        socket.emit('downvote', comment.data);
       }
     )
   }
@@ -234,9 +242,7 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
           (comments) => {
             dispatch(updateComments(comments.data))
             console.log('comments.data in thunk', comments.data)
-            setTimeout(function(){
-              socket.emit('new comment', comments.data);
-            }, 2000);
+            socket.emit('new comment', comments.data);
           }
         )
       }
@@ -247,7 +253,22 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
 export function thunkEditComment(commentId, title, text) {
   return function(dispatch) {
     return axiosCall.EditComment(commentId, title, text).then(
-      comment => dispatch(editComment(comment.data))
+      comment => {
+        console.log('inside thunkEditComment comment: ', comment.data)
+        dispatch(editComment(comment.data))
+        socket.emit('update', comment.data);
+      }
+    )
+  }
+}
+
+export function thunkUpdateCurrentNode(commentId) {
+  return function(dispatch) {
+    return axiosCall.GetComment(commentId).then(
+      comment => {
+        // console.log('comment in thunkUpdateCurrentNode: ', comment.data)
+        dispatch(setNode(comment.data))
+      }
     )
   }
 }
@@ -290,6 +311,12 @@ export function thunkUpdateSession(sessionId) {
   }
 }
 
-// not sure where the dispatch() function is coming from or what it's doing in these thunk functions (thunky!)
-
-// deal with assign user once passport/google auth infrastucture is implemented
+// export function thunkDeleteSession(sessionId) {
+//   return function(dispatch) {
+//     return axiosCall.DeleteSession(sessionId).then(
+//       () => {
+//         // figure out what will be returned from delete and what will go here...
+//       }
+//     )
+//   }
+// }

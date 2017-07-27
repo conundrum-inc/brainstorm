@@ -1,17 +1,14 @@
 import React from 'react'
 import * as d3 from 'd3'
+import {event as currentEvent} from 'd3'
 import * as ReactDOM from 'react-dom'
 
 import { connect } from 'react-redux'
 
-import { width,
-         height,
+import { updateGraph,
          force,
-         enterNode,
-         enterLink,
-         updateNode,
-         updateLink,
-         updateGraph
+         resize,
+         startForce,
        } from '../../d3/d3helpers.js'
 
 import { commentsToNodes } from '../utils.js'
@@ -21,118 +18,23 @@ var coords;
 class Graph extends React.Component {
 
   componentDidMount() {
-
     coords = {};
-
     var nodes = commentsToNodes(this.props.comments);
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
-    force.on('tick', () => {
-      // after force calculation starts, call updateGraph
-      // which uses d3 to manipulate the attributes,
-      // and React doesn't have to go through lifecycle on each tick
-      this.d3Graph.call(updateGraph);
-      coords = nodes.nodes.map(function(node) {
-        return {'x': node.x,
-                'y': node.y,
-                'key': node.key }
-      })
-    })
-
-    const d3Links = this.d3Graph.selectAll('.link')
-      .data(nodes.links, (link) => link.key);
-    d3Links.enter().insert('line', '.node').call(enterLink);
-
-    const d3Nodes = this.d3Graph.selectAll('.node')
-      .data(nodes.nodes, (node) => node.key);
-    d3Nodes.enter().append('g').call(enterNode);
-
-    //NOTE: we should clone the links and nodes that are passed down as props
-    //since d3 mutates them. We'll do this later
-    this.d3Graph.selectAll("circle")
-      .on("click", node => {
-        this.handleClick.bind(this, node)()
-      })
-
-    this.d3Graph.selectAll("text")
-      .on("click", node => {
-        this.handleClick.bind(this, node)()
-      })
-
-
-    d3.select(window).on("resize", resize.bind(this))
-
-    force.nodes(nodes.nodes).links(nodes.links);
-    force.start();
-
-    function resize() {
-
-      var width = window.innerWidth
-      var forceHeight = window.innerHeight - .3*window.innerHeight;
-      var svgHeight = window.innerHeight
-      this.d3Graph.attr("width", width).attr("height", svgHeight);
-      force.size([width, forceHeight]).resume();
-    }
-
-
-
+    this.forceLayout(this.d3Graph, nodes, false)
+    d3.select(window).on("resize", () => resize(this.d3Graph))
   }
 
   componentDidUpdate() {
-
     if (this.props.comments[0]._id === coords[0].key) {
       var nodes = commentsToNodes(this.props.comments, coords)
     } else {
       var nodes = commentsToNodes(this.props.comments)
     }
-
-    force.on('tick', () => {
-      // after force calculation starts, call updateGraph
-      // which uses d3 to manipulate the attributes,
-      // and React doesn't have to go through lifecycle on each tick
-      this.d3Graph.call(updateGraph);
-      coords = nodes.nodes.map(function(node) {
-        return {'x': node.x,
-                'y': node.y,
-                'key': node.key }
-      })
-    })
-
-    this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
-
-    this.d3Graph.selectAll("*").remove();
-
-    const d3Links = this.d3Graph.selectAll('.link')
-      .data(nodes.links, (link) => link.key);
-    d3Links.enter().insert('line', '.node').call(enterLink);
-    //d3Links.exit().remove();
-    d3Links.call(updateLink);
-
-    const d3Nodes = this.d3Graph.selectAll('.node')
-      .data(nodes.nodes, (node) => node.key);
-    d3Nodes.enter().append('g').call(enterNode);
-    //d3Nodes.exit().remove()
-    d3Nodes.call(updateNode);
-    this.d3Graph.selectAll("circle")
-      .on("click", node => {
-        this.handleClick.bind(this, node)();
-      })
-
-    this.d3Graph.selectAll("text")
-      .on("click", node => {
-        this.handleClick.bind(this, node)();
-      })
-
-
-    //NOTE: we should clone the links and nodes that are passed down as props
-    //since d3 mutates them. We'll do this later
-    force.nodes(nodes.nodes).links(nodes.links);
-    force.start();
-
-
+    this.forceLayout(this.d3Graph, nodes, true)
   }
 
   handleClick(node) {
-    console.log('clicked!')
     if (node.key === '101') {
       this.props.showCreateSession();
     } else {
@@ -141,10 +43,41 @@ class Graph extends React.Component {
     }
   }
 
+  tick(nodes, selection) {
+    selection.call(updateGraph);
+    coords = nodes.nodes.map(function(node) {
+      return {'x': node.x,
+              'y': node.y,
+              'key': node.key }
+    })
+  }
+
+  giveClicks(selection) {
+    selection.selectAll("circle")
+      .on("click", node => {
+        if (currentEvent.defaultPrevented) { return }
+        this.handleClick.bind(this, node)()
+      })
+    
+    selection.selectAll("text")
+      .on("click", node => {
+        if (currentEvent.defaultPrevented) { return }
+        this.handleClick.bind(this, node)()
+      })
+  }
+
+  forceLayout(selection, nodes, isUpdate) {
+    startForce(nodes, selection, isUpdate)
+    force.on('tick', () => this.tick(nodes, selection))
+    this.giveClicks(selection)
+  }
+
   render() {
     return (
-        <svg ref='graph' className="session-container" width={window.innerWidth} height={window.innerHeight}>
-          
+        <svg ref='graph' 
+             className="session-container"
+             width={window.innerWidth}
+             height={window.innerHeight}>
         </svg>
       );
   }

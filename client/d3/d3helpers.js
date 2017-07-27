@@ -4,26 +4,48 @@ import { randomBlue } from '../app/utils.js'
 
 
 
-export const width = window.innerWidth;
-export const height = window.innerHeight - (.3)*(window.innerHeight);
+const width = window.innerWidth;
+const height = window.innerHeight - (.3)*(window.innerHeight);
 export const force = d3.layout.force()
-            .charge(-1000)
             .linkDistance(110)
+            .charge(-1000)
             .size([width, height])
 
 
 
-
-export const enterNode = (selection) => {
+const enterNode = (selection) => {
 
   selection.classed('node', true);
+
+  const tooltip = d3.select("body").append("div")
+    .attr("class", "mytooltip")
 
   selection.append('circle')
     .attr("r", (d) => d.size)
     .attr("fill", randomBlue)
-    // .attr("stroke", "black")
-    .call(force.drag)
     .attr("class", "circle")
+    .on("mouseover", function(d) {
+      if (d.text === "") {
+        return
+      }
+      tooltip.text(d.text)
+            .transition()
+            .duration(500)
+            .style("opacity","1")     
+    })
+    .on("mousemove", function(d){
+      if (d.text === "") {
+        return
+      }
+      tooltip.text(d.text)
+             .style("top", (event.pageY-10)+"px")
+             .style("left",(event.pageX+20)+"px")            
+    })
+    .on("mouseout", function(){
+      tooltip.transition()
+             .duration(500)
+             .style("opacity", "0");
+    })
 
 
   selection.append('text')
@@ -35,16 +57,38 @@ export const enterNode = (selection) => {
     .style("font-size", (d) => (d.size + 50) / 6 + "px")
     .attr("dy", ".35em")
     .text((d) => d.title)
+    .on("mouseover", function(d) {
+      if (d.text === "") {
+        return
+      }
+      tooltip.text(d.text)
+            .transition()
+            .duration(500)
+            .style("opacity","1")     
+    })
+    .on("mousemove", function(d){
+      if (d.text === "") {
+        return
+      }
+      tooltip.text(d.text)
+             .style("top", (event.pageY-10)+"px")
+             .style("left",(event.pageX+20)+"px")            
+    })
+    .on("mouseout", function(){
+      tooltip.transition()
+             .duration(500)
+             .style("opacity", "0");
+    })
 
 }
 
-export const updateNode = (selection) => {
+const updateNode = (selection) => {
 
-  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
+  selection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")").call(force.drag)
 
 }
 
-export const enterLink = (selection) => {
+const enterLink = (selection) => {
 
   selection.classed('link', true)
     .attr("stroke", "#cccccc")
@@ -52,7 +96,7 @@ export const enterLink = (selection) => {
     .attr("stroke-width", (d) => d.size );
 }
 
-export const updateLink = (selection) => {
+const updateLink = (selection) => {
 
   selection.attr("x1", (d) => d.source.x)
     .attr("y1", (d) => d.source.y)
@@ -68,3 +112,38 @@ export const updateGraph = (selection) => {
   selection.selectAll('.link')
     .call(updateLink);
 }
+
+const createNodesAndLinks = (nodes, selection) => {
+  const d3Links = selection.selectAll('.link')
+      .data(nodes.links, (link) => link.key);
+    d3Links.enter().insert('line', '.node').call(enterLink);
+    d3Links.call(updateLink);
+
+    const d3Nodes = selection.selectAll('.node')
+      .data(nodes.nodes, (node) => node.key);
+    d3Nodes.enter().append('g').call(enterNode);
+    d3Nodes.call(updateNode);
+}
+
+export const resize = (selection) => {
+  var width = window.innerWidth
+  var forceHeight = window.innerHeight - .3*window.innerHeight;
+  var svgHeight = window.innerHeight
+  selection.attr("width", width).attr("height", svgHeight);
+  force.size([width, forceHeight]).resume();
+}
+
+export const startForce = (nodes, selection, restart) => {
+
+    if (restart) {
+      selection.selectAll("*").remove();
+    }
+
+    createNodesAndLinks(nodes, selection)
+    force.nodes(nodes.nodes).links(nodes.links);
+    force.start();
+
+}
+
+
+

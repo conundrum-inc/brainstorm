@@ -13,14 +13,16 @@ export function commentsToNodes(comments, coords) {
     if (comments[i].parent_id === 'root') {
       var node = { key: comments[i]._id,
                    size: 55,
-                   x: coords ? coords[0]['x'] : 600,
-                   y: coords ? coords[0]['y']: 250,
+                   x: coords ? coords[0]['x'] : window.innerWidth / 2,
+                   y: coords ? coords[0]['y']: window.innerHeight / 2,
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,
                    upvotes: comments[i].upvotes,
                    downvotes: comments[i].downvotes,
-                   score: comments[i].score
+                   score: comments[i].score,
+                   creatorId: comments[i].creator_id,
+                   parentId: comments[i].parent_id
                  }
       nodes.nodes.push(node);
     } else {
@@ -28,15 +30,17 @@ export function commentsToNodes(comments, coords) {
           var temp = findIndex(coords, 'key', comments[i].parent_id);
         }
       var node = { key: comments[i]._id,
+                   x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : window.innerWidth / 2,
+                   y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : window.innerHeight / 2,
                    size: 40 + ( 5 * comments[i].score ),
-                   x: coords ? (coords[i] ? coords[i]['x'] : coords[temp]['x'] ) : 600,
-                   y: coords ? (coords[i] ? coords[i]['y'] : coords[temp]['y'] ) : 250,
                    title: comments[i].title,
                    text: comments[i].text,
                    children: comments[i].children,
                    upvotes: comments[i].upvotes,
                    downvotes: comments[i].downvotes,
-                   score: comments[i].score
+                   score: comments[i].score,
+                   creatorId: comments[i].creator_id,
+                   parentId: comments[i].parent_id
                  }
 
       nodes.nodes.push(node);

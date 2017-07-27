@@ -21,6 +21,9 @@ var router = express.Router();
       // this is to get all comments for a selected session when a user clicks on an existing session
       helpers.findAllComments(req, res);
     })
+    // .delete(function(req, res) {
+    //   helpers.deleteSession(req, res);
+    // })
 
 // modify accessible sessions for an invited user
   router.route('/addUserToSession')
@@ -39,14 +42,11 @@ var router = express.Router();
     .post(function(req, res) {
       helpers.addComment(req, res);
     })
+    .put(function(req, res) {
+      helpers.editComment(req, res);
+    })
     .get(function(req, res) {
       helpers.findComment(req, res);
-    })
-
-// edit comment
-  router.route('/edit')
-    .post(function(req, res) {
-      helpers.editComment(req, res);
     })
 
 
