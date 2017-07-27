@@ -17,10 +17,10 @@ const enterNode = (selection) => {
 
   selection.classed('node', true);
   const tooltip = d3.select("body").append("div")
-    .attr("border", "solid")
+    .attr("class", "mytooltip")
     .style("position", "absolute")
     .style("z-index", "10")
-    .style("visibility", "hidden")
+    .style("opacity", "0")
     .style("width", "60")
     .style("height", "100")
 
@@ -32,16 +32,19 @@ const enterNode = (selection) => {
     .attr("class", "circle")
     .on("mouseover", function(d) {
       tooltip.text(d.text)
-            .attr("fill", "blue")
-      return tooltip.style("visibility","visible")     
+            .transition()
+            .duration(500)
+            .style("opacity","1")     
     })
     .on("mousemove", function(d){
       tooltip.text("Details:" + "\n" + d.text)
-      return tooltip.style("top", (event.pageY-10)+"px")
-                    .style("left",(event.pageX+20)+"px")            
+             .style("top", (event.pageY-10)+"px")
+             .style("left",(event.pageX+20)+"px")            
     })
     .on("mouseout", function(){
-      return tooltip.style("visibility", "hidden");
+      tooltip.transition()
+             .duration(500)
+             .style("opacity", "0");
     })
 
 
@@ -54,6 +57,22 @@ const enterNode = (selection) => {
     .style("font-size", (d) => (d.size + 50) / 6 + "px")
     .attr("dy", ".35em")
     .text((d) => d.title)
+    .on("mouseover", function(d) {
+      tooltip.text(d.text)
+            .transition()
+            .duration(500)
+            .style("opacity","1")     
+    })
+    .on("mousemove", function(d){
+      tooltip.text("Details:" + "\n" + d.text)
+             .style("top", (event.pageY-10)+"px")
+             .style("left",(event.pageX+20)+"px")            
+    })
+    .on("mouseout", function(){
+      tooltip.transition()
+             .duration(500)
+             .style("opacity", "0");
+    })
 
 }
 
