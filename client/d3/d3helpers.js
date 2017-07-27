@@ -18,12 +18,27 @@ const enterNode = (selection) => {
 
   selection.classed('node', true);
 
+  const tooltip = d3.select("body").append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("double click for detail")
+
   selection.append('circle')
     .attr("r", (d) => d.size)
     .attr("fill", randomBlue)
-    // .attr("stroke", "black")
-
     .attr("class", "circle")
+    .on("mouseover", function() {
+      return tooltip.style("visibility","visible")
+    })
+    .on("mousemove", function(){
+      console.log(tooltip)
+      return tooltip.style("top", (event.pageY-10)+"px")
+                    .style("left",(event.pageX+10)+"px");
+    })
+    .on("mouseout", function(){
+      return tooltip.style("visibility", "hidden");
+    })
 
 
   selection.append('text')
@@ -96,9 +111,10 @@ export const startForce = (nodes, selection, restart) => {
     }
 
     createNodesAndLinks(nodes, selection)
-
     force.nodes(nodes.nodes).links(nodes.links);
     force.start();
 
 }
+
+
 

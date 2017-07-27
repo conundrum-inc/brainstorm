@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { updateGraph,
          force,
          resize,
-         startForce
+         startForce,
        } from '../../d3/d3helpers.js'
 
 import { commentsToNodes } from '../utils.js'
@@ -56,6 +56,7 @@ class Graph extends React.Component {
       .on("dblclick", node => {
         this.handleClick.bind(this, node)()
       })
+    
     selection.selectAll("text")
       .on("dblclick", node => {
         this.handleClick.bind(this, node)()
