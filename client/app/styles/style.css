@@ -21,6 +21,17 @@ body {
   height: window.innerHeight;
 }
 
+.footer {
+  width: 100%;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  position: fixed;
+  bottom: 0pt;
+  left: 0pt;
+  height: 100px;
+  background-color: #d1d0cf;
+}
+
 .intro {
   padding-left: 25%;
   padding-right: 25%;
@@ -71,7 +82,11 @@ body {
 }
 
 .session-container {
-  background-color: #f9f9f7;
+  /*background-color: #f9f9f7;*/
+  background-image: url("./images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /*background-repeat: repeat-y;*/
 }
 
 .ReactModal__Content--after-open--menu {
