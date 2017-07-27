@@ -41,11 +41,11 @@ const enterNode = (selection) => {
              .style("top", (event.pageY-10)+"px")
              .style("left",(event.pageX+20)+"px")            
     })
-    // .on("mouseout", function(){
-    //   tooltip.transition()
-    //          .duration(500)
-    //          .style("opacity", "0");
-    // })
+    .on("mouseout", function(){
+      tooltip.transition()
+             .duration(500)
+             .style("opacity", "0");
+    })
 
 
   selection.append('text')
