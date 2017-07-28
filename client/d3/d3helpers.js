@@ -29,8 +29,8 @@ const enterNode = (selection) => {
         return
       }
       tooltip.text(d.text)
-            .transition()
-            .duration(500)
+            .transition(100)
+            .duration(200)
             .style("opacity","1")
     })
     .on("mousemove", function(d){
@@ -42,8 +42,8 @@ const enterNode = (selection) => {
              .style("left",(event.pageX+20)+"px")
     })
     .on("mouseout", function(){
-      tooltip.transition()
-             .duration(500)
+      tooltip.transition(100)
+             .duration(200)
              .style("opacity", "0");
     })
 
@@ -63,8 +63,8 @@ const enterNode = (selection) => {
         return
       }
       tooltip.text(d.text)
-            .transition()
-            .duration(500)
+            .transition(100)
+            .duration(200)
             .style("opacity","1")
     })
     .on("mousemove", function(d){
@@ -76,8 +76,8 @@ const enterNode = (selection) => {
              .style("left",(event.pageX+20)+"px")
     })
     .on("mouseout", function(){
-      tooltip.transition()
-             .duration(500)
+      tooltip.transition(100)
+             .duration(200)
              .style("opacity", "0");
     })
 
