@@ -138,6 +138,7 @@ export const startForce = (nodes, selection, restart) => {
 
     if (restart) {
       selection.selectAll("*").remove();
+      d3.select("body").selectAll(".mytooltip").remove();
     }
 
     createNodesAndLinks(nodes, selection)
