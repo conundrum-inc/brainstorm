@@ -24,7 +24,7 @@ const Menu = (props) => {
 
   const handleClick = (e) => {
     if (props.session !== null) {
-      socket.emit('leave session', props.session.sessionId);
+      socket.emit('leave session', props.session.sessionId, function() {});
     }
     props.thunkUpdateSession(e.target.getAttribute('data-key'));
     props.hideMenu();
