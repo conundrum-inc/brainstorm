@@ -25,7 +25,11 @@ const Menu = (props) => {
   const handleClick = (e) => {
     
     console.log('client heading to session: ', e.target.getAttribute('data-key'))
-    props.thunkUpdateSession(e.target.getAttribute('data-key'), props.session.sessionId);
+    if (props.session.sessionId !== null) {
+      props.thunkUpdateSession(e.target.getAttribute('data-key'), props.session.sessionId);
+    } else {
+      props.thunkUpdateSession(e.target.getAttribute('data-key'));
+    }
     props.hideMenu();
   }
 
