@@ -82,7 +82,7 @@ class NodeDetail extends React.Component {
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
             <Col sm={10}>
-              <FormControl className="node-detail-form" type="details" name="text" placeholder="Elaborate here!" />
+              <FormControl className="node-detail-form" type="details" name="text" placeholder="Elaborate here!" componentClass="textarea" rows="3"/>
             </Col>
           </FormGroup>
           <FormGroup>
