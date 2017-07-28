@@ -218,18 +218,15 @@ ul {
   margin-top: 200px;
 }*/
 
-.like-dislike {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-}
+
 
 .upvote {
+  margin-top: 10px;
   margin-right: 5px;
 }
 
 .downvote {
+  margin-top: 10px;
   margin-left: 5px;
 }
 

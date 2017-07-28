@@ -63,10 +63,8 @@ class NodeDetail extends React.Component {
         {editButton}
 
         <p className="node-text thought-detail">{this.props.currentNode.text}</p>
-        <div className="like-dislike">
-          <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>
-          <Button className="downvote" onClick={this.downvote.bind(this)}>{emoji.emojify(':thumbsdown:')}</Button>
-        </div>
+        <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>
+        <Button className="downvote" onClick={this.downvote.bind(this)}>{emoji.emojify(':thumbsdown:')}</Button>
         <h5 className="branches-headings" >Branches:</h5>
         <ul>
           {this.props.currentNode.children.map((child) => {
