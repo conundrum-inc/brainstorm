@@ -147,7 +147,9 @@ io.on('connection', function(socket){
   })
   socket.on('leave session', function(session_id) {
     console.log('leaving session: ', session_id)
-    socket.leave(session_id);
+    socket.leave(session_id, function(session_id) {
+      console.log('exiting session: ', session_id)
+    });
   })
   socket.on('new comment', function(data){
     console.log('comment data received by socket')
