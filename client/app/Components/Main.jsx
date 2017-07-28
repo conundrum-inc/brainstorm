@@ -37,7 +37,7 @@ class Main extends React.Component {
     return (
       <div>
         <div className="menu-bar">
-          <img className="menu-button"src="http://i.imgur.com/NErSVt4.png"
+          <img className="menu-button" src="http://i.imgur.com/NErSVt4.png"
             onClick={() => this.props.showMenu()}
             width="30px"
             height="30px"

@@ -25,6 +25,20 @@ a {
   height: window.innerHeight;
 }
 
+.login-page {
+  background-image: url("./images/landing-background.jpg");
+  height: 100%;
+}
+
+.welcome-box {
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 15px;
+  background: rgba(247, 247, 247, .75);
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
 .footer {
   width: 100%;
   background-attachment: scroll;
@@ -73,6 +87,7 @@ a {
 
 .google-auth-picture {
   padding-top: 50px;
+  padding-bottom: 50px;
   text-align: center;
 }
 
