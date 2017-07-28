@@ -24,17 +24,17 @@ class EditCommentDetail extends React.Component {
   render() {
     return (
       <div className="new-comment-modal-content">
-        <h4 className="node-title">Idea: "{this.props.currentNode.title}"</h4>
+        <h4 className="node-title">Edit this comment:</h4>
         <div className="buffer"></div>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle" >
             <Col sm={10}>
-              <FormControl className="node-detail-form" autoFocus="autofocus" type="title" name="title" placeholder={this.props.currentNode.title} maxLength="15"/>
+              <FormControl className="node-detail-form" autoFocus="autofocus" type="title" name="title" defaultValue={this.props.currentNode.title} maxLength="15"/>
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
             <Col sm={10}>
-              <FormControl className="node-detail-form edit-node-form" type="details" name="text" placeholder={this.props.currentNode.text} />
+              <FormControl className="node-detail-form edit-node-form" componentClass="textarea" type="details" name="text" defaultValue={this.props.currentNode.text} rows="8"/>
             </Col>
           </FormGroup>
           <FormGroup>
