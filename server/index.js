@@ -135,8 +135,10 @@ app.get('*', function (req, res) {
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('new comment', function(data){
+    socket.join(data[0].session_id)
     console.log('data received by socket', data)
-    socket.broadcast.emit('socket comment', data);
+    console.log('session id in socket?', data[0].session_id)
+    socket.broadcast.to(data[0].session_id).emit('socket comment', data);
   })
   socket.on('upvote', function(data) {
     console.log('upvote received by socket', data)
