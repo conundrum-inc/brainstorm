@@ -147,11 +147,12 @@ io.on('connection', function(socket){
   })
   socket.on('leave session', function(session_id) {
     console.log('leaving session: ', session_id)
-    socket.leave(session_id, function(err) {
-      if (err) {
-        console.log('error leaving room: ', err)
-      }
-    });
+    console.log('socket.rooms: ', socket.rooms)
+    // socket.leave(session_id, function(err) {
+    //   if (err) {
+    //     console.log('error leaving room: ', err)
+    //   }
+    // });
   })
   socket.on('new comment', function(data){
     console.log('comment data received by socket')
