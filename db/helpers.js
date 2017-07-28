@@ -64,7 +64,7 @@ function findAllComments(req, res) {
       console.log('err: ', err)
       res.sendStatus(400)
     } else {
-      console.log('comments', comments)
+      // console.log('comments', comments)
       res.json(comments);
     }
   });
@@ -155,7 +155,7 @@ function addComment(req, res) {
           }
           if (parentComment) {
             parentComment.children.push(comment);
-            console.log('parentComment children', parentComment.children);
+            // console.log('parentComment children', parentComment.children);
             parentComment.save();
             console.log('new comment id saved in children array');
           }

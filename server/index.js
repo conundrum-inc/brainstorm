@@ -131,26 +131,40 @@ app.get('*', function (req, res) {
 });
 
 //socket test
+server.listen(3000, function () {
+  console.log('Listening on port 3000');
+})
 
 io.on('connection', function(socket){
   console.log('a user connected');
+  socket.on('join session', function(session_id) {
+    console.log('joining session: ', session_id)
+    socket.join(session_id, () => {
+      let rooms = Object.keys(socket.rooms)
+      console.log('socket.rooms: ', rooms)
+      socket.broadcast.emit('rooms', rooms)
+    });
+  })
+  socket.on('leave session', function(session_id) {
+    console.log('leaving session: ', session_id)
+    socket.leave(session_id);
+  })
   socket.on('new comment', function(data){
-    socket.join(data[0].session_id)
-    console.log('data received by socket', data)
+    console.log('comment data received by socket')
     console.log('session id in socket?', data[0].session_id)
     socket.broadcast.to(data[0].session_id).emit('socket comment', data);
   })
   socket.on('upvote', function(data) {
-    console.log('upvote received by socket', data)
-    socket.broadcast.emit('upvoted comment', data)
+    // console.log('upvote received by socket', data)
+    socket.broadcast.to(data.session_id).emit('upvoted comment', data)
   })
   socket.on('downvote', function(data) {
-    console.log('downvote received by socket', data)
-    socket.broadcast.emit('downvoted comment', data)
+    // console.log('downvote received by socket', data)
+    socket.broadcast.to(data.session_id).emit('downvoted comment', data)
   })
   socket.on('update', function(data) {
     console.log('update received by socket')
-    socket.broadcast.emit('update comment', data)
+    socket.broadcast.to(data.session_id).emit('update comment', data)
   })
   socket.on('disconnect', function(){
     console.log('user disconnected');
@@ -158,9 +172,6 @@ io.on('connection', function(socket){
 });
 
 
-server.listen(3000, function () {
-  console.log('Listening on port 3000');
-})
 
 exports.io = io;
 

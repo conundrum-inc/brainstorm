@@ -31,6 +31,10 @@ class Session extends React.Component {
   constructor(props){
     super(props);
 
+    socket.on('rooms', (data) => {
+      console.log('joined room. Received rooms: ', data);
+    })
+
     socket.on('socket comment', (data) => {
       console.log('data from socket', data)
       props.updateComments(data);
@@ -47,6 +51,14 @@ class Session extends React.Component {
       console.log('updated comment from socket', data)
       props.editComment(data);
     })
+  }
+
+  componentDidUpdate() {
+    if (this.props.session !== null) {
+      socket.emit('join session', this.props.session.sessionId, function() {
+        
+      })
+    }
   }
 
   render() {
@@ -88,6 +100,7 @@ class Session extends React.Component {
 function mapStateToProps(state) {
   return {
     comments: state.comments,
+    session: state.session,
     detailViewVisible: state.detailViewVisible,
     editCommentDetailVisible: state.editCommentDetailVisible
   }
