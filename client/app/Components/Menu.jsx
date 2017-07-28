@@ -45,15 +45,16 @@ const Menu = (props) => {
         <a href={PROFILE_PAGE_ROUTE}><h3 className="user-name">{props.user.name}</h3></a>
         <div className="menu-modal-content">
           <h4>Sessions</h4>
-
-          {props.user.accessible_sessions.map((session) => {
-            return <div key={session._id}
-                          data-key={session._id}
-                          className="session-title"
-                          onClick={handleClick}>
-                     {session.title}
-                   </div>
-          })}
+          <ul>
+            {props.user.accessible_sessions.map((session) => {
+              return <div key={session._id}
+                data-key={session._id}
+                className="session-title"
+                onClick={handleClick}>
+                <li data-key={session._id}>{session.title}</li>
+              </div>
+            })}
+          </ul>
           <Button bsStyle="info"
             className="menu-btn-new-session"
             onClick={() => { props.showCreateSession(); props.hideMenu(); }}>
