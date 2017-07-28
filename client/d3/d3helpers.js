@@ -31,7 +31,7 @@ const enterNode = (selection) => {
       tooltip.text(d.text)
             .transition()
             .duration(500)
-            .style("opacity","1")     
+            .style("opacity","1")
     })
     .on("mousemove", function(d){
       if (d.text === "") {
@@ -39,7 +39,7 @@ const enterNode = (selection) => {
       }
       tooltip.text(d.text)
              .style("top", (event.pageY-10)+"px")
-             .style("left",(event.pageX+20)+"px")            
+             .style("left",(event.pageX+20)+"px")
     })
     .on("mouseout", function(){
       tooltip.transition()
@@ -49,6 +49,7 @@ const enterNode = (selection) => {
 
 
   selection.append('text')
+    .attr("class", "circle-text")
     .attr("x", (d) => d.cx)
     .style("fill", "#373a3a")
     .attr("text-anchor", "middle")
@@ -64,7 +65,7 @@ const enterNode = (selection) => {
       tooltip.text(d.text)
             .transition()
             .duration(500)
-            .style("opacity","1")     
+            .style("opacity","1")
     })
     .on("mousemove", function(d){
       if (d.text === "") {
@@ -72,7 +73,7 @@ const enterNode = (selection) => {
       }
       tooltip.text(d.text)
              .style("top", (event.pageY-10)+"px")
-             .style("left",(event.pageX+20)+"px")            
+             .style("left",(event.pageX+20)+"px")
     })
     .on("mouseout", function(){
       tooltip.transition()
@@ -144,6 +145,3 @@ export const startForce = (nodes, selection, restart) => {
     force.start();
 
 }
-
-
-
