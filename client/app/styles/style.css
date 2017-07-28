@@ -412,3 +412,7 @@ a {
   opacity: 0;
   width: 140px;
 }
+
+.circle-text, .circle {
+  cursor: pointer;
+}
