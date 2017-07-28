@@ -4,6 +4,7 @@ body {
 
 a {
   color: Black;
+  cursor: pointer;
 }
 
 #title {
@@ -213,6 +214,13 @@ a {
   margin-top: 200px;
 }*/
 
+.like-dislike {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
 .upvote {
   margin-right: 5px;
 }
@@ -284,6 +292,14 @@ a {
 
 .branches-headings {
   margin-top: 15px;
+  margin-bottom: 3px;
+  text-decoration: underline;
+}
+
+.new-comment-heading {
+  margin-top: 15px;
+  margin-bottom: 7px;
+  text-decoration: underline;
 }
 
 .downvote, .upvote{
@@ -330,10 +346,13 @@ a {
 .node-title {
   margin-top: 0;
   margin-bottom: 0;
+  text-decoration: underline;
+  font-weight: bold;
   display: inline-block;
 }
 
 .thought-detail {
+  margin-top: 3px;
   margin-bottom: 0;
 }
 
