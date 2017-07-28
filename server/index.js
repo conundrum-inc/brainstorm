@@ -139,7 +139,6 @@ io.on('connection', function(socket){
   console.log('a user connected', 'socket.rooms', socket.rooms, 'socket id', socket.id);
   socket.on('join session', function(session_id) {
     console.log('joining session: ', session_id)
-    console.log('clients in socket.join', io.sockets.clients('room'))
     socket.join(session_id, () => {
       console.log('inside join session --> socket.rooms: ', socket.rooms)
       let rooms = Object.keys(socket.rooms)
@@ -149,7 +148,6 @@ io.on('connection', function(socket){
   })
   socket.on('leave session', function(session_id) {
     console.log('leaving session: ', session_id)
-    console.log('clients in socket.leave', io.sockets.clients('room'))
     console.log('inside leaves session --> socket.rooms: ', socket.rooms)
     // socket.leave(session_id, function(err) {
     //   if (err) {
