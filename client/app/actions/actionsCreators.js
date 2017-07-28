@@ -299,11 +299,16 @@ export function thunkCreateSessionAndInvite(title, text, userId, emailArray) {
     )
   }
 }
-export function thunkUpdateSession(sessionId) {
+export function thunkUpdateSession(sessionId, oldSessionId) {
   return function(dispatch) {
     return axiosCall.GetSession(sessionId).then(
       (comments) => {
         console.log('in thunkUpdateSession')
+        if (oldSessionId !== null) {
+          console.log('client leaving session: ', oldSessionId)
+          socket.emit('leave session', oldSessionId, function() {
+          });
+        }
         dispatch(updateSession(sessionId))
         dispatch(updateComments(comments.data))
       }
