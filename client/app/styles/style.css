@@ -7,6 +7,10 @@ a {
   cursor: pointer;
 }
 
+ul {
+  -webkit-padding-start: 25px;
+}
+
 #title {
   color: #fcfcfc;
   margin-left: 20px;
@@ -293,13 +297,13 @@ a {
 .branches-headings {
   margin-top: 15px;
   margin-bottom: 3px;
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 .new-comment-heading {
   margin-top: 15px;
   margin-bottom: 7px;
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 .downvote, .upvote{
@@ -346,7 +350,6 @@ a {
 .node-title {
   margin-top: 0;
   margin-bottom: 0;
-  text-decoration: underline;
   font-weight: bold;
   display: inline-block;
 }

@@ -67,7 +67,7 @@ class NodeDetail extends React.Component {
           <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>
           <Button className="downvote" onClick={this.downvote.bind(this)}>{emoji.emojify(':thumbsdown:')}</Button>
         </div>
-        <h5 className="branches-headings" >Branches</h5>
+        <h5 className="branches-headings" >Branches:</h5>
         <ul>
           {this.props.currentNode.children.map((child) => {
             return <li className="child-title" key={child._id} onClick={this.handleClick.bind(this)}><a data-key={child._id}>{child.title}</a></li>
