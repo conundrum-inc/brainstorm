@@ -136,7 +136,7 @@ server.listen(3000, function () {
 })
 
 
-io.once('connection', function(socket){
+io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('join session', function(session_id) {
     console.log('joining session: ', session_id)
