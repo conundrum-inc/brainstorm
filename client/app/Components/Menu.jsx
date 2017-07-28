@@ -17,9 +17,15 @@ import { PROFILE_PAGE_ROUTE,
          MAIN_PAGE_ROUTE
        } from '../routes.js';
 
+import io from "socket.io-client";
+var socket = io();
+
 const Menu = (props) => {
 
   const handleClick = (e) => {
+    if (props.session !== null) {
+      socket.emit('leave session', props.session.sessionId);
+    }
     props.thunkUpdateSession(e.target.getAttribute('data-key'));
     props.hideMenu();
   }
@@ -80,6 +86,7 @@ const Menu = (props) => {
 function mapStateToProps(state) {
   return {
     user: state.user,
+    session: state.session,
     menuVisible: state.menuVisible,
     createSessionVisible: state.createSessionVisible
   }
