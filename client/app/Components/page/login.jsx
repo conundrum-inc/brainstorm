@@ -9,7 +9,7 @@ import Login from '../Login.jsx';
 
 const LoginPage = (props) => {
   return (
-    <div id="login-container">
+    <div id="login-container" className="login-page">
       <Login history={props.history} removeUser={props.removeUser}/>
     </div>
   )
