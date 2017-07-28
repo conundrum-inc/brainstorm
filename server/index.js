@@ -135,6 +135,7 @@ server.listen(3000, function () {
   console.log('Listening on port 3000');
 })
 
+
 io.once('connection', function(socket){
   console.log('a user connected');
   socket.on('join session', function(session_id) {

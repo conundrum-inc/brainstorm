@@ -4,6 +4,11 @@ body {
 
 a {
   color: Black;
+  cursor: pointer;
+}
+
+ul {
+  -webkit-padding-start: 25px;
 }
 
 #title {
@@ -213,11 +218,15 @@ a {
   margin-top: 200px;
 }*/
 
+
+
 .upvote {
+  margin-top: 10px;
   margin-right: 5px;
 }
 
 .downvote {
+  margin-top: 10px;
   margin-left: 5px;
 }
 
@@ -284,6 +293,14 @@ a {
 
 .branches-headings {
   margin-top: 15px;
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+
+.new-comment-heading {
+  margin-top: 15px;
+  margin-bottom: 7px;
+  font-weight: bold;
 }
 
 .downvote, .upvote{
@@ -330,10 +347,12 @@ a {
 .node-title {
   margin-top: 0;
   margin-bottom: 0;
+  font-weight: bold;
   display: inline-block;
 }
 
 .thought-detail {
+  margin-top: 3px;
   margin-bottom: 0;
 }
 
@@ -411,4 +430,8 @@ a {
   z-index: 10;
   opacity: 0;
   width: 140px;
+}
+
+.circle-text, .circle {
+  cursor: pointer;
 }

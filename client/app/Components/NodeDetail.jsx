@@ -24,7 +24,6 @@ class NodeDetail extends React.Component {
   }
 
   handleClick(e, props) {
-    console.log(findIndex)
     //look up comment on state that matches what we clicked
     var index = findIndex(this.props.comments, "_id", e.target.getAttribute('data-key'));
     //make a new node from this comment
@@ -60,19 +59,19 @@ class NodeDetail extends React.Component {
     }
     return (
       <div className="new-comment-modal-content">
-        <h4 className="node-title">Idea: "{this.props.currentNode.title}"</h4>
+        <h3 className="node-title">{this.props.currentNode.title}</h3>
         {editButton}
-        <h5 className="thought-detail">Detail:</h5>
-        <p className="node-text">{this.props.currentNode.text}</p>
+
+        <p className="node-text thought-detail">{this.props.currentNode.text}</p>
         <Button className="upvote" onClick={this.upvote.bind(this)}>{emoji.emojify(':+1:')}</Button>
         <Button className="downvote" onClick={this.downvote.bind(this)}>{emoji.emojify(':thumbsdown:')}</Button>
-        <h5 className="branches-headings" >Branches</h5>
-
-        {this.props.currentNode.children.map((child) => {
-          return <div className="child-title" data-key={child._id} key={child._id} onClick={this.handleClick.bind(this)}>{child.title}</div>
-        })}
-
-        <h5 className="branches-headings" >Add a topic to "{this.props.currentNode.title}":</h5>
+        <h5 className="branches-headings" >Branches:</h5>
+        <ul>
+          {this.props.currentNode.children.map((child) => {
+            return <li className="child-title" key={child._id} onClick={this.handleClick.bind(this)}><a data-key={child._id}>{child.title}</a></li>
+          })}
+        </ul>
+        <h5 className="new-comment-heading" >Add an idea branch:</h5>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle" >
             <Col sm={10}>
@@ -81,7 +80,7 @@ class NodeDetail extends React.Component {
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
             <Col sm={10}>
-              <FormControl className="node-detail-form" type="details" name="text" placeholder="Elaborate here!" />
+              <FormControl className="node-detail-form" type="details" name="text" placeholder="Elaborate here!" componentClass="textarea" rows="3"/>
             </Col>
           </FormGroup>
           <FormGroup>

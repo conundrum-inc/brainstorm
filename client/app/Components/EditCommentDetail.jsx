@@ -13,28 +13,25 @@ class EditCommentDetail extends React.Component {
 
   onSubmit(e, props) {
     e.preventDefault();
-    var text = !!e.target.text.value ? e.target.text.value : this.props.currentNode.text;
-    var title = !!e.target.title.value ? e.target.title.value : this.props.currentNode.title;
-
     // console.log('in EditCommentDetail details: ', this.props.currentNode.key, e.target.title.value, e.target.text.value)
-    this.props.thunkEditComment(this.props.currentNode.key, title, text);
+    this.props.thunkEditComment(this.props.currentNode.key, e.target.title.value, e.target.text.value);
     this.props.hideEditCommentDetail();
   }
 
   render() {
     return (
       <div className="new-comment-modal-content">
-        <h4 className="node-title">Idea: "{this.props.currentNode.title}"</h4>
+        <h4 className="node-title">Edit this comment:</h4>
         <div className="buffer"></div>
         <Form horizontal onSubmit={this.onSubmit.bind(this)}>
           <FormGroup controlId="commentTitle" >
             <Col sm={10}>
-              <FormControl className="node-detail-form" autoFocus="autofocus" type="title" name="title" placeholder={this.props.currentNode.title} maxLength="15"/>
+              <FormControl className="node-detail-form" autoFocus="autofocus" type="title" name="title" defaultValue={this.props.currentNode.title} maxLength="15"/>
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalPassword">
             <Col sm={10}>
-              <FormControl className="node-detail-form edit-node-form" type="details" name="text" placeholder={this.props.currentNode.text} />
+              <FormControl className="node-detail-form edit-node-form" componentClass="textarea" type="details" name="text" defaultValue={this.props.currentNode.text} rows="8"/>
             </Col>
           </FormGroup>
           <FormGroup>
