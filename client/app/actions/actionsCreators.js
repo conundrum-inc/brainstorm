@@ -304,7 +304,7 @@ export function thunkUpdateSession(sessionId, oldSessionId) {
     return axiosCall.GetSession(sessionId).then(
       (comments) => {
         console.log('in thunkUpdateSession')
-        if (oldSessionId !== null) {
+        if (oldSessionId !== undefined) {
           console.log('client leaving session: ', oldSessionId)
           socket.emit('leave session', oldSessionId, function() {
           });
