@@ -136,7 +136,7 @@ server.listen(3000, function () {
 })
 
 io.on('connection', function(socket){
-  console.log('a user connected');
+  console.log('a user connected', 'socket.rooms', socket.rooms, 'socket id', id);
   socket.on('join session', function(session_id) {
     console.log('joining session: ', session_id)
     socket.join(session_id, () => {
