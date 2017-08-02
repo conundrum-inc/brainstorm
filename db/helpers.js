@@ -157,7 +157,7 @@ function addComment(req, res) {
             parentComment.children.push(comment);
             // console.log('parentComment children', parentComment.children);
             parentComment.save();
-            console.log('new comment id saved in children array');
+            console.log('new comment saved in children array');
           }
         })
         Comment.findOne({ _id: comment._id }, (err, comment) => {
@@ -194,6 +194,17 @@ function editComment(req, res) {
     if (err) {
       console.log('error in edit', err);
     } else {
+      Comment.findOne({ _id: comment.parent_id}, (err, parentComment) => {
+        if (err) {
+          console.log('error in parent comment', err);
+        }
+        if (parentComment) {
+          parentComment.children.push(comment);
+          // console.log('parentComment children', parentComment.children);
+          parentComment.save();
+          console.log('edited comment saved in parent array');
+        }
+      })
       comment.title = title;
       comment.text = text;
       comment.save();
