@@ -10,7 +10,7 @@ function findOneUser(req, res) {
     if (err) {
       console.log('error in findUser', err)
     } else {
-      console.log('user', user)
+      
       res.json(user);
     }
   })
@@ -28,7 +28,7 @@ function createSession(req, res) {
       console.log('error in add session', err)
     } else {
       //saved!
-      console.log('session saved', session);
+      
       // add session to user permissions array
       // create comment using session id that was just created
       Comment.create({ creator_id: session.creator_id, parent_id: 'root', session_id: session._id, title: title, text: text, children: [], upvotes: [], downvotes: [], score: 0, timestamp: timestamp }, (err, comment) => {
@@ -44,10 +44,10 @@ function createSession(req, res) {
               user.comments.push(comment);
               user.accessible_sessions.push(session);
               user.save();
-              console.log('session id saved in user array')
+              
             }
           })
-          console.log('comment saved', comment);
+          
           // send comment to front end
           res.json(comment);
         }
@@ -78,7 +78,7 @@ function addUserPermission(req, res) {
     if (err) {
       console.log('error finding session', err)
     } else {
-      console.log('SESSION', session)
+      
       for (var email of emails) {
         User.findOne({ email: email }, (err, user) => {
           if (err) {
@@ -110,7 +110,7 @@ function newSession(req, res) {
     } else {
       user.new_sessions = [];
       user.save();
-      console.log('new sessions array reset');
+      
     }
   })
 }
@@ -129,7 +129,7 @@ function addComment(req, res) {
       console.log('error in session modified', err)
     } else {
       session.modified = timestamp;
-      console.log('session modified', session);
+      
       session.save();
     }
   })
@@ -146,7 +146,7 @@ function addComment(req, res) {
           } else {
             user.comments.push(comment);
             user.save();
-            console.log('comment id saved in user array')
+            
           }
         })
         Comment.findOne({ _id: parentId}, (err, parentComment) => {
@@ -157,7 +157,7 @@ function addComment(req, res) {
             parentComment.children.push(comment);
             // console.log('parentComment children', parentComment.children);
             parentComment.save();
-            console.log('new comment saved in children array');
+            
           }
         })
         Comment.findOne({ _id: comment._id }, (err, comment) => {
@@ -202,7 +202,7 @@ function editComment(req, res) {
           parentComment.children.push(comment);
           // console.log('parentComment children', parentComment.children);
           parentComment.save();
-          console.log('edited comment saved in parent array');
+          
         }
       })
       comment.title = title;
@@ -238,7 +238,7 @@ function upVote(req, res) {
         comment.score -= 1;
       }
       comment.save();
-      console.log('upvote saved', comment)
+      
       res.json(comment);
     }
   })
@@ -269,7 +269,7 @@ function downVote(req, res) {
         comment.score += 1;
       }
       comment.save();
-      console.log('downvote saved')
+      
       res.json(comment);
     }
   })
