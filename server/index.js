@@ -36,12 +36,12 @@ app.use(passport.session());
 //serialize & deserialize user
 
 passport.serializeUser(function(user, done) {
-  console.log('serialize', user)
+  
   done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  console.log('deserialize', id)
+  
   User.findById(id, function(err, user) {
     done(err, user);
   });
@@ -61,7 +61,7 @@ function(token, tokenSecret, profile, done) {
         if (err) {
           console.log('error in insert user', err);
         } else {
-          console.log('user saved from google strategy', user);
+          
           return done(err, user);
         }
       })
@@ -94,7 +94,7 @@ app.get ('/getUser', function(req, res) {
     if (err) {
       console.log('error in getUser route', err);
     } else {
-      console.log('get user success', user)
+      
       res.json(user);
     }
   })
