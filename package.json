@@ -9,7 +9,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "start": "webpack -d --watch | node server/index.js",
+    "start": "webpack -d --watch | nodemon server/index.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
     "test": "jest"
