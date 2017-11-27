@@ -1,6 +1,6 @@
 import *  as axiosCall from '../axiosCalls'
 import io from "socket.io-client";
-var socket = io();
+// var socket = io();
 
 export function upVote(score, commentId) {
 
@@ -185,7 +185,7 @@ export function thunkUpVote(userId, commentId) {
     return axiosCall.UpVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        socket.emit('upvote', comment.data);
+        //socket.emit('upvote', comment.data);
       }
     )
   }
@@ -196,7 +196,7 @@ export function thunkDownVote(userId, commentId) {
     return axiosCall.DownVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        socket.emit('downvote', comment.data);
+        // socket.emit('downvote', comment.data);
       }
     )
   }
@@ -242,7 +242,7 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
           (comments) => {
             dispatch(updateComments(comments.data))
             console.log('comments.data in thunk', comments.data)
-            socket.emit('new comment', comments.data);
+            // socket.emit('new comment', comments.data);
           }
         )
       }
@@ -256,7 +256,7 @@ export function thunkEditComment(commentId, title, text) {
       comment => {
         console.log('inside thunkEditComment comment: ', comment.data)
         dispatch(editComment(comment.data))
-        socket.emit('update', comment.data);
+        // socket.emit('update', comment.data);
       }
     )
   }
@@ -306,8 +306,8 @@ export function thunkUpdateSession(sessionId, oldSessionId) {
         console.log('in thunkUpdateSession')
         if (oldSessionId !== undefined) {
           console.log('client leaving session: ', oldSessionId)
-          socket.emit('leave session', oldSessionId, function() {
-          });
+          // socket.emit('leave session', oldSessionId, function() {
+          // });
         }
         dispatch(updateSession(sessionId))
         dispatch(updateComments(comments.data))

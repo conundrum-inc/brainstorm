@@ -16,7 +16,7 @@ import { click, forceDiagram} from '../../d3/d3helpers.js'
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 
 import io from "socket.io-client";
-var socket = io();
+// var socket = io();
 
 
 
@@ -31,34 +31,34 @@ class Session extends React.Component {
   constructor(props){
     super(props);
 
-    socket.on('rooms', (data) => {
-      console.log('joined room. Received rooms: ', data);
-    })
+    // socket.on('rooms', (data) => {
+    //   console.log('joined room. Received rooms: ', data);
+    // })
 
-    socket.on('socket comment', (data) => {
-      console.log('data from socket', data)
-      props.updateComments(data);
-    })
-    socket.on('upvoted comment', (data) => {
-      console.log('upvoted comment from socket', data)
-      props.editComment(data);
-    })
-    socket.on('downvoted comment', (data) => {
-      console.log('downvoted comment from socket', data)
-      props.editComment(data);
-    })
-    socket.on('update comment', (data) => {
-      console.log('updated comment from socket', data)
-      props.editComment(data);
-    })
+    // socket.on('socket comment', (data) => {
+    //   console.log('data from socket', data)
+    //   props.updateComments(data);
+    // })
+    // socket.on('upvoted comment', (data) => {
+    //   console.log('upvoted comment from socket', data)
+    //   props.editComment(data);
+    // })
+    // socket.on('downvoted comment', (data) => {
+    //   console.log('downvoted comment from socket', data)
+    //   props.editComment(data);
+    // })
+    // socket.on('update comment', (data) => {
+    //   console.log('updated comment from socket', data)
+    //   props.editComment(data);
+    // })
   }
 
   componentDidUpdate() {
-    if (this.props.session !== null) {
-      socket.emit('join session', this.props.session.sessionId, function() {
+    // if (this.props.session !== null) {
+    //   socket.emit('join session', this.props.session.sessionId, function() {
         
-      })
-    }
+    //   })
+    // }
   }
 
   render() {
