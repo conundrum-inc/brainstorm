@@ -19,6 +19,8 @@ class Session extends React.Component {
   constructor(props){
     super(props);
 
+
+    //socket listeners
     socket.on('update session', function(message, session) {
       if (session) {
         message += session

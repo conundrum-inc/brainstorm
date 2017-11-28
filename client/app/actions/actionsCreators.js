@@ -301,13 +301,7 @@ export function thunkUpdateSession(sessionId, oldSessionId) {
     return axiosCall.GetSession(sessionId).then(
       (comments) => {
         console.log('in thunkUpdateSession')
-        if (oldSessionId !== undefined) {
-          console.log('client leaving session: ', oldSessionId)
-          console.log('emitting join session')
-          
-          socket.emit('join session', sessionId);
-          
-        }
+        socket.emit('join session', sessionId); 
         dispatch(updateSession(sessionId))
         dispatch(updateComments(comments.data))
       }

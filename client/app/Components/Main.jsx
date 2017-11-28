@@ -20,6 +20,11 @@ import { LOGOUT_PAGE_ROUTE } from '../routes.js';
 class Main extends React.Component {
   constructor(props) {
     super(props);
+
+    //if there is a session on the persisted state, subscribe the client to that room
+    if (this.props.session) {
+      socket.emit('join session', this.props.session.sessionId)
+    }
   }
 
   componentWillMount() {
