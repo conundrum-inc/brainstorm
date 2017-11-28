@@ -206,6 +206,8 @@ export function thunkAddUser() {
       (user) => {
         // console.log('user data in thunkAddUser', user.data)
         dispatch(addUser(user.data[0]._id, user.data[0].displayName, user.data[0].image, user.data[0].email, user.data[0].created_sessions, user.data[0].accessible_sessions, user.data[0].comments)) // CHECK THESE USER VALUES!!!!!!
+        //send the email to the server to identify the socket
+        socket.emit('add email', user.data[0].email)
       }
     )
   }

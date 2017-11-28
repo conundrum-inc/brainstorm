@@ -135,8 +135,18 @@ server.listen(3000, function () {
   console.log('Listening on port 3000');
 })
 
+//object to store emails and socket ids of connected clients
+var connectedClients = {};
+
 io.on('connection', function(socket){
   console.log('a user connected');
+  //when a client emits an add email event
+  socket.on('add email', function(email) {
+    //add the user to the connected object
+    console.log('email received from: ', socket.id, email)
+    connectedClients[email] = socket.id;
+    console.log("connectedClients: ", connectedClients)
+  })
 
   //when the client emits a join session event
   socket.on('join session', function(session_id) {
@@ -181,11 +191,29 @@ io.on('connection', function(socket){
     socket.to(socket.room).emit('update comment', comment)
   })
 
-  //when a user disconnects, remove the room from its socket
+  //when a client invites a particular user
+    //send the session id to that user
+
+  //when a user disconnects
   socket.on('disconnect', function() {
+    console.log('a user disconnected')
+    //remove the room from its socket
     socket.leave(socket.room);
+    //remove socket from list of connected clients
+    deleteByValue(socket.id, connectedClients);
+    console.log('connectedClients: ', connectedClients)
   })
 })
+
+//helper function to delete a key given its value
+function deleteByValue(value, object) {
+  for (var key in object) {
+    if (object[key] === value) {
+      delete object[key]
+      return
+    }
+  }
+}
 
 exports.io = io;
 
