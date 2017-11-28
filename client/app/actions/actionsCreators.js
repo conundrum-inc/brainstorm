@@ -306,8 +306,10 @@ export function thunkUpdateSession(sessionId, oldSessionId) {
         console.log('in thunkUpdateSession')
         if (oldSessionId !== undefined) {
           console.log('client leaving session: ', oldSessionId)
-          // socket.emit('leave session', oldSessionId, function() {
-          // });
+          console.log('emitting join session')
+          
+          socket.emit('join session', sessionId);
+          
         }
         dispatch(updateSession(sessionId))
         dispatch(updateComments(comments.data))
