@@ -137,7 +137,29 @@ server.listen(3000, function () {
 
 io.on('connection', function(socket){
   console.log('a user connected');
-  
+
+  //when the client emits a join session event
+  socket.on('join session', function(session_id) {
+    //leave the current room (session)
+    socket.leave(socket.room);
+    console.log('socket.room is now: ', socket.room)
+    //join the new session
+    socket.join(session_id);
+    //let the old session know the user has left:
+    socket.broadcast.to(socket.room).emit('update session', 'a user left the session');
+    //let the user know they are in a new session
+    socket.emit('update session', 'you have joined session: ', session_id)
+    //update the socket session room title
+    socket.room = session_id;
+    //let other users in the new session know a new user joined
+    socket.broadcast.to(session_id).emit('update session', 'a user joined the session')
+    console.log('socket room udpated to: ', socket.room)
+  })
+
+  //when a user disconnects, remove the room from its socket
+  socket.on('disconnect', function() {
+    socket.leave(socket.room);
+  })
 })
 
 // io.on('connection', function(socket){

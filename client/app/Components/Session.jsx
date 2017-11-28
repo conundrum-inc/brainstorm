@@ -31,6 +31,13 @@ class Session extends React.Component {
   constructor(props){
     super(props);
 
+    socket.on('update session', function(message, session) {
+      if (session) {
+        message += session
+      }
+      console.log('SERVER: ', message);
+    })
+
     // socket.on('rooms', (data) => {
     //   console.log('joined room. Received rooms: ', data);
     // })
@@ -54,11 +61,10 @@ class Session extends React.Component {
   }
 
   componentDidUpdate() {
-    // if (this.props.session !== null) {
-    //   socket.emit('join session', this.props.session.sessionId, function() {
-        
-    //   })
-    // }
+    console.log('emitting join session')
+    if (this.props.session !== null) {
+      socket.emit('join session', this.props.session.sessionId);
+    }
   }
 
   render() {
