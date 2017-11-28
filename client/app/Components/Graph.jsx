@@ -17,17 +17,7 @@ var coords;
 
 class Graph extends React.Component {
 
-  constructor(props) {
-    super(props);
-    socket.on('update session', function(message, session) {
-        console.log('receiving update session event from server')
-        if (session) {
-          message += session
-        }
-        console.log('SERVER: ', message);
-      })
-  }
-
+  
   componentDidMount() {
     coords = {};
     var nodes = commentsToNodes(this.props.comments);
