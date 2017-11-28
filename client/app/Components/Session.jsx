@@ -15,18 +15,6 @@ import { click, forceDiagram} from '../../d3/d3helpers.js'
 
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import io from "socket.io-client";
-// var socket = io();
-
-
-
-// const modalStyles = {
-//   overlay : {
-//     width: '200px'
-//   }
-// };
-
-
 class Session extends React.Component {
   constructor(props){
     super(props);
@@ -38,12 +26,7 @@ class Session extends React.Component {
       console.log('SERVER: ', message);
     })
 
-    // socket.on('rooms', (data) => {
-    //   console.log('joined room. Received rooms: ', data);
-    // })
-
     socket.on('socket comment', (comments) => {
-      // console.log('comments from socket', comments)
       props.updateComments(comments);
     })
     socket.on('upvoted comment', (data) => {
@@ -54,7 +37,6 @@ class Session extends React.Component {
       props.editComment(data);
     })
     socket.on('update comment', (data) => {
-      
       props.editComment(data);
     })
   }

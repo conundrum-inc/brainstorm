@@ -1,6 +1,4 @@
 import *  as axiosCall from '../axiosCalls'
-import io from "socket.io-client";
-// var socket = io();
 
 export function upVote(score, commentId) {
 
@@ -266,7 +264,6 @@ export function thunkUpdateCurrentNode(commentId) {
   return function(dispatch) {
     return axiosCall.GetComment(commentId).then(
       comment => {
-        // console.log('comment in thunkUpdateCurrentNode: ', comment.data)
         dispatch(setNode(comment.data))
       }
     )

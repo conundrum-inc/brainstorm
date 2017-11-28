@@ -17,9 +17,6 @@ import { PROFILE_PAGE_ROUTE,
          MAIN_PAGE_ROUTE
        } from '../routes.js';
 
-import io from "socket.io-client";
-// var socket = io();
-
 const Menu = (props) => {
 
   const handleClick = (e) => {

@@ -187,50 +187,6 @@ io.on('connection', function(socket){
   })
 })
 
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-//   socket.on('join session', function(session_id) {
-//     console.log('joining session: ', session_id)
-//     socket.join(session_id, () => {
-//       console.log('inside join session --> socket.rooms: ', socket.rooms)
-//       let rooms = Object.keys(socket.rooms)
-//       console.log('rooms: ', rooms)
-//       socket.broadcast.emit('rooms', rooms)
-//     });
-//   })
-//   socket.on('leave session', function(session_id) {
-//     console.log('leaving session: ', session_id)
-//     console.log('inside leaves session --> socket.rooms: ', socket.rooms)
-//     socket.leave(session_id, function(err) {
-//       if (err) {
-//         console.log('error leaving room: ', err)
-//       }
-//     });
-//   })
-//   socket.on('new comment', function(data){
-//     console.log('comment data received by socket')
-//     console.log('session id in socket?', data[0].session_id)
-//     socket.broadcast.to(data[0].session_id).emit('socket comment', data);
-//   })
-//   socket.on('upvote', function(data) {
-//     // console.log('upvote received by socket', data)
-//     socket.broadcast.to(data.session_id).emit('upvoted comment', data)
-//   })
-//   socket.on('downvote', function(data) {
-//     // console.log('downvote received by socket', data)
-//     socket.broadcast.to(data.session_id).emit('downvoted comment', data)
-//   })
-//   socket.on('update', function(data) {
-//     console.log('update received by socket')
-//     socket.broadcast.to(data.session_id).emit('update comment', data)
-//   })
-//   socket.on('disconnect', function(){
-//     console.log('user disconnected');
-//   });
-// });
-
-
-
 exports.io = io;
 
 module.exports = app
