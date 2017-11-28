@@ -175,6 +175,12 @@ io.on('connection', function(socket){
     socket.to(socket.room).emit('downvoted comment', comment)
   })
 
+  //when a client emit an "update" event
+  socket.on('update', function(comment) {
+    //broadcast the new comment to connected clients
+    socket.to(socket.room).emit('update comment', comment)
+  })
+
   //when a user disconnects, remove the room from its socket
   socket.on('disconnect', function() {
     socket.leave(socket.room);

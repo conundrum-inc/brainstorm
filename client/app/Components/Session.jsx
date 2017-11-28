@@ -53,10 +53,10 @@ class Session extends React.Component {
     socket.on('downvoted comment', (data) => {
       props.editComment(data);
     })
-    // socket.on('update comment', (data) => {
-    //   console.log('updated comment from socket', data)
-    //   props.editComment(data);
-    // })
+    socket.on('update comment', (data) => {
+      
+      props.editComment(data);
+    })
   }
 
   componentDidUpdate() {

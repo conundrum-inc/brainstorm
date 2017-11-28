@@ -256,7 +256,7 @@ export function thunkEditComment(commentId, title, text) {
       comment => {
         console.log('inside thunkEditComment comment: ', comment.data)
         dispatch(editComment(comment.data))
-        // socket.emit('update', comment.data);
+        socket.emit('update', comment.data);
       }
     )
   }
