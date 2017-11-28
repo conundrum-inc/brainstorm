@@ -196,7 +196,7 @@ export function thunkDownVote(userId, commentId) {
     return axiosCall.DownVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        // socket.emit('downvote', comment.data);
+        socket.emit('downvote', comment.data);
       }
     )
   }

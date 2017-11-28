@@ -158,15 +158,21 @@ io.on('connection', function(socket){
 
   //when a client emits a "new comment" event
   socket.on('new comment', function(comments) {
-    console.log('preparing to emit to room: ', socket.room)
+    
     //broadcast the new set of comments to all clients in same room
     socket.to(socket.room).emit('socket comment', comments)
   })
 
-  //when a client emits am "upvote" event
-  socket.on('upvote', function(data) {
-    console.log('upvote received by socket', data)
-    socket.to(socket.room).emit('upvoted comment', data)
+  //when a client emits an "upvote" event
+  socket.on('upvote', function(comment) {
+    //broadcast the new comment to connected clients
+    socket.to(socket.room).emit('upvoted comment', comment)
+  })
+
+  //when a client emits a "downvote" event
+  socket.on('downvote', function(comment) {
+    //broadcast the new comment to connected clients
+    socket.to(socket.room).emit('downvoted comment', comment)
   })
 
   //when a user disconnects, remove the room from its socket
