@@ -185,7 +185,7 @@ export function thunkUpVote(userId, commentId) {
     return axiosCall.UpVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        //socket.emit('upvote', comment.data);
+        socket.emit('upvote', comment.data);
       }
     )
   }
