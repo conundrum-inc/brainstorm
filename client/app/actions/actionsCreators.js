@@ -275,6 +275,8 @@ export function thunkCreateSession(title, text, userId) {
     return axiosCall.CreateSession(title, text, userId).then(
       (comment) => {
         console.log('inside thunkCreateSession .then');
+        //subscribe the socket to the room
+        socket.emit('join session', comment.data.session_id); 
         dispatch(updateSession(comment.data.session_id))
         dispatch(addComment(comment.data))
         dispatch(thunkUpdateUser(userId))
@@ -288,6 +290,8 @@ export function thunkCreateSessionAndInvite(title, text, userId, emailArray) {
     return axiosCall.CreateSession(title, text, userId).then(
       (comment) => {
         console.log('inside thunkCreateSessionAndInvite .then', comment.data.session_id);
+        //subscribe the socket to the room
+        socket.emit('join session', comment.data.session_id); 
         dispatch(updateSession(comment.data.session_id))
         dispatch(addComment(comment.data))
         dispatch(thunkUpdateUser(userId))
@@ -301,6 +305,7 @@ export function thunkUpdateSession(sessionId, oldSessionId) {
     return axiosCall.GetSession(sessionId).then(
       (comments) => {
         console.log('in thunkUpdateSession')
+        //subscribe the socket to the room
         socket.emit('join session', sessionId); 
         dispatch(updateSession(sessionId))
         dispatch(updateComments(comments.data))
