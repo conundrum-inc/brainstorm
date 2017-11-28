@@ -10,13 +10,7 @@
     <script>
       var socket = io();
 
-      socket.on('update session', function(message, session) {
-        console.log('receiving update session event from server')
-        if (session) {
-          message += session
-        }
-        console.log('SERVER: ', message);
-      })
+      
 
     </script>
     <div id="app" />
