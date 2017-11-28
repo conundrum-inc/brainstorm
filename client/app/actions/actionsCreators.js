@@ -1,5 +1,12 @@
 import *  as axiosCall from '../axiosCalls'
 
+export function addSession(session) {
+  return {
+    type: 'ADD_SESSION',
+    session
+  }
+}
+
 export function upVote(score, commentId) {
 
   return {
@@ -42,11 +49,12 @@ export function clearComments() {
   }
 }
 
-export function updateSession(sessionId) {
+export function updateSession(sessionId, title) {
 
   return {
     type: 'UPDATE_SESSION',
-    sessionId
+    sessionId,
+    title
   }
 }
 
@@ -279,7 +287,7 @@ export function thunkCreateSession(title, text, userId) {
         console.log('inside thunkCreateSession .then');
         //subscribe the socket to the room
         socket.emit('join session', comment.data.session_id); 
-        dispatch(updateSession(comment.data.session_id))
+        dispatch(updateSession(comment.data.session_id, title))
         dispatch(addComment(comment.data))
         dispatch(thunkUpdateUser(userId))
       }
@@ -294,7 +302,7 @@ export function thunkCreateSessionAndInvite(title, text, userId, emailArray) {
         console.log('inside thunkCreateSessionAndInvite .then', comment.data.session_id);
         //subscribe the socket to the room
         socket.emit('join session', comment.data.session_id); 
-        dispatch(updateSession(comment.data.session_id))
+        dispatch(updateSession(comment.data.session_id, title))
         dispatch(addComment(comment.data))
         dispatch(thunkUpdateUser(userId))
         axiosCall.inviteUsers(emailArray, comment.data.session_id)
@@ -302,14 +310,14 @@ export function thunkCreateSessionAndInvite(title, text, userId, emailArray) {
     )
   }
 }
-export function thunkUpdateSession(sessionId, oldSessionId) {
+export function thunkUpdateSession(sessionId, title) {
   return function(dispatch) {
     return axiosCall.GetSession(sessionId).then(
       (comments) => {
         console.log('in thunkUpdateSession')
         //subscribe the socket to the room
         socket.emit('join session', sessionId); 
-        dispatch(updateSession(sessionId))
+        dispatch(updateSession(sessionId, title))
         dispatch(updateComments(comments.data))
       }
     )

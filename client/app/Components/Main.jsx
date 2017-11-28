@@ -25,6 +25,13 @@ class Main extends React.Component {
     if (this.props.session) {
       socket.emit('join session', this.props.session.sessionId)
     }
+
+    //when a session invitation event is detected
+    socket.on('new session', function(session) {
+      //add the new session id to the state
+      console.log('new invite')
+      this.props.addSession(session)
+    }.bind(this))
   }
 
   componentWillMount() {
@@ -35,6 +42,12 @@ class Main extends React.Component {
     e.preventDefault();
     var array = buildEmailArray(e.target.emails.value);
     inviteUsers(array, this.props.session.sessionId);
+    //emit the invite users event to the server
+    var new_session = {
+      _id: this.props.session.sessionId,
+      title: this.props.session.title
+    }
+    socket.emit('invite users', array, new_session)
     this.props.hideInviteDetail();
   }
 

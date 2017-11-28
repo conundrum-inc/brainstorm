@@ -20,6 +20,8 @@ function user(state = {userId: null, name: null, image: null, email: null, creat
         accessible_sessions: [],
         comments: []
       };
+    case 'ADD_SESSION':
+      return Object.assign({}, state, {accessible_sessions: [...state.accessible_sessions, action.session]})
     default:
       return state;
   }

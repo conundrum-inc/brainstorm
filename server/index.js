@@ -192,7 +192,16 @@ io.on('connection', function(socket){
   })
 
   //when a client invites a particular user
+  socket.on('invite users', function(emails, session) {
+    console.log('invite users event detected', emails, session)
     //send the session id to that user
+    emails.forEach(function(email) {
+      if (connectedClients[email]) {
+        console.log('emitting to connected client: ', email)
+        socket.to(connectedClients[email]).emit('new session', session)
+      }
+    })
+  })
 
   //when a user disconnects
   socket.on('disconnect', function() {

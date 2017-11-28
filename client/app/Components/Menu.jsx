@@ -21,11 +21,11 @@ const Menu = (props) => {
 
   const handleClick = (e) => {
     
-    if (props.session !== null) {
-      props.thunkUpdateSession(e.target.getAttribute('data-key'), props.session.sessionId);
-    } else {
-      props.thunkUpdateSession(e.target.getAttribute('data-key'));
-    }
+    var title = e.target.getAttribute('data-title');
+    var sessionId = e.target.getAttribute('data-key');
+    console.log('title clicked: ', title)
+    props.thunkUpdateSession(sessionId, title);
+    
     props.hideMenu();
   }
 
@@ -50,7 +50,7 @@ const Menu = (props) => {
                 data-key={session._id}
                 className="session-title"
                 onClick={handleClick}>
-                <li data-key={session._id}>{session.title}</li>
+                <li data-key={session._id} data-title={session.title}>{session.title}</li>
               </div>
             })}
           </ul>
