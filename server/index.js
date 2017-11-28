@@ -146,7 +146,6 @@ io.on('connection', function(socket){
     //join the new session
     socket.join(session_id);
     //let the old session know the user has left:
-    console.log('emitting to: ', socket.room)
     socket.to(socket.room).emit('update session', 'a user left the session');
     //let the user know they are in a new session
     socket.emit('update session', 'you have joined session: ', session_id)
@@ -155,6 +154,13 @@ io.on('connection', function(socket){
     //let other users in the new session know a new user joined
     socket.to(session_id).emit('update session', 'a user joined the session')
     
+  })
+
+  //when the client emits a "new comment" event
+  socket.on('new comment', function(comments) {
+    console.log('preparing to emit to room: ', socket.room)
+    //broadcast the new set of comments to all clients in same room
+    socket.to(socket.room).emit('socket comment', comments)
   })
 
   //when a user disconnects, remove the room from its socket

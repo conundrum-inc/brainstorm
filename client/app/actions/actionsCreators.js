@@ -242,7 +242,7 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
           (comments) => {
             dispatch(updateComments(comments.data))
             console.log('comments.data in thunk', comments.data)
-            // socket.emit('new comment', comments.data);
+            socket.emit('new comment', comments.data);
           }
         )
       }

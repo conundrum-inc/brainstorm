@@ -42,10 +42,10 @@ class Session extends React.Component {
     //   console.log('joined room. Received rooms: ', data);
     // })
 
-    // socket.on('socket comment', (data) => {
-    //   console.log('data from socket', data)
-    //   props.updateComments(data);
-    // })
+    socket.on('socket comment', (comments) => {
+      console.log('comments from socket', comments)
+      props.updateComments(comments);
+    })
     // socket.on('upvoted comment', (data) => {
     //   console.log('upvoted comment from socket', data)
     //   props.editComment(data);
