@@ -301,7 +301,13 @@ export function thunkCreateSessionAndInvite(title, text, userId, emailArray) {
       (comment) => {
         console.log('inside thunkCreateSessionAndInvite .then', comment.data.session_id);
         //subscribe the socket to the room
-        socket.emit('join session', comment.data.session_id); 
+        socket.emit('join session', comment.data.session_id);
+        //notify invited users
+        var session = {
+          _id: comment.data.session_id,
+          title: title
+        }
+        socket.emit('invite users', emailArray, session); 
         dispatch(updateSession(comment.data.session_id, title))
         dispatch(addComment(comment.data))
         dispatch(thunkUpdateUser(userId))
