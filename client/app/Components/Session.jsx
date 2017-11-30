@@ -15,50 +15,36 @@ import { click, forceDiagram} from '../../d3/d3helpers.js'
 
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import io from "socket.io-client";
-var socket = io();
-
-
-
-// const modalStyles = {
-//   overlay : {
-//     width: '200px'
-//   }
-// };
-
-
 class Session extends React.Component {
   constructor(props){
     super(props);
 
-    socket.on('rooms', (data) => {
-      console.log('joined room. Received rooms: ', data);
+
+    //socket listeners
+    socket.on('update session', function(message, session) {
+      if (session) {
+        message += session
+      }
+      console.log('SERVER: ', message);
     })
 
-    socket.on('socket comment', (data) => {
-      console.log('data from socket', data)
-      props.updateComments(data);
+    socket.on('socket comment', (comments) => {
+      props.updateComments(comments);
     })
     socket.on('upvoted comment', (data) => {
-      console.log('upvoted comment from socket', data)
+      
       props.editComment(data);
     })
     socket.on('downvoted comment', (data) => {
-      console.log('downvoted comment from socket', data)
       props.editComment(data);
     })
     socket.on('update comment', (data) => {
-      console.log('updated comment from socket', data)
       props.editComment(data);
     })
   }
 
   componentDidUpdate() {
-    if (this.props.session !== null) {
-      socket.emit('join session', this.props.session.sessionId, function() {
-        
-      })
-    }
+    
   }
 
   render() {

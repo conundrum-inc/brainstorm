@@ -21,9 +21,6 @@ class CreateSessionDetail extends React.Component {
     this.props.clearComments();
     var array = buildEmailArray(e.target.emails.value);
     this.props.thunkCreateSessionAndInvite(e.target.title.value, e.target.text.value, this.props.user.userId, array);
-    // console.log('emails array: ', array);
-    // console.log('sessionId: ', this.props.session.sessionId);
-    // inviteUsers(array, this.props.session.sessionId);
     this.props.hideCreateSession();
   }
 

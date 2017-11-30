@@ -17,19 +17,15 @@ import { PROFILE_PAGE_ROUTE,
          MAIN_PAGE_ROUTE
        } from '../routes.js';
 
-import io from "socket.io-client";
-var socket = io();
-
 const Menu = (props) => {
 
   const handleClick = (e) => {
     
-    console.log('client heading to session: ', e.target.getAttribute('data-key'))
-    if (props.session !== null) {
-      props.thunkUpdateSession(e.target.getAttribute('data-key'), props.session.sessionId);
-    } else {
-      props.thunkUpdateSession(e.target.getAttribute('data-key'));
-    }
+    var title = e.target.getAttribute('data-title');
+    var sessionId = e.target.getAttribute('data-key');
+    console.log('title clicked: ', title)
+    props.thunkUpdateSession(sessionId, title);
+    
     props.hideMenu();
   }
 
@@ -54,7 +50,7 @@ const Menu = (props) => {
                 data-key={session._id}
                 className="session-title"
                 onClick={handleClick}>
-                <li data-key={session._id}>{session.title}</li>
+                <li data-key={session._id} data-title={session.title}>{session.title}</li>
               </div>
             })}
           </ul>

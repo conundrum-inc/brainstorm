@@ -36,12 +36,12 @@ app.use(passport.session());
 //serialize & deserialize user
 
 passport.serializeUser(function(user, done) {
-  console.log('serialize', user)
+  
   done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  console.log('deserialize', id)
+  
   User.findById(id, function(err, user) {
     done(err, user);
   });
@@ -61,7 +61,7 @@ function(token, tokenSecret, profile, done) {
         if (err) {
           console.log('error in insert user', err);
         } else {
-          console.log('user saved from google strategy', user);
+          
           return done(err, user);
         }
       })
@@ -94,7 +94,7 @@ app.get ('/getUser', function(req, res) {
     if (err) {
       console.log('error in getUser route', err);
     } else {
-      console.log('get user success', user)
+      
       res.json(user);
     }
   })
@@ -135,50 +135,94 @@ server.listen(3000, function () {
   console.log('Listening on port 3000');
 })
 
+//object to store emails and socket ids of connected clients
+var connectedClients = {};
 
 io.on('connection', function(socket){
   console.log('a user connected');
+  //when a client emits an add email event
+  socket.on('add email', function(email) {
+    //add the user to the connected object
+    console.log('email received from: ', socket.id, email)
+    connectedClients[email] = socket.id;
+    console.log("connectedClients: ", connectedClients)
+  })
+
+  //when the client emits a join session event
   socket.on('join session', function(session_id) {
-    console.log('joining session: ', session_id)
-    socket.join(session_id, () => {
-      console.log('inside join session --> socket.rooms: ', socket.rooms)
-      let rooms = Object.keys(socket.rooms)
-      console.log('rooms: ', rooms)
-      socket.broadcast.emit('rooms', rooms)
-    });
+    //leave the current room (session)
+    
+    socket.leave(socket.room);
+    //join the new session
+    socket.join(session_id);
+    //let the old session know the user has left:
+    socket.to(socket.room).emit('update session', 'a user left the session');
+    //let the user know they are in a new session
+    socket.emit('update session', 'you have joined session: ', session_id)
+    //update the socket session room title
+    socket.room = session_id;
+    //let other users in the new session know a new user joined
+    socket.to(session_id).emit('update session', 'a user joined the session')
+    
   })
-  socket.on('leave session', function(session_id) {
-    console.log('leaving session: ', session_id)
-    console.log('inside leaves session --> socket.rooms: ', socket.rooms)
-    // socket.leave(session_id, function(err) {
-    //   if (err) {
-    //     console.log('error leaving room: ', err)
-    //   }
-    // });
-  })
-  socket.on('new comment', function(data){
-    console.log('comment data received by socket')
-    console.log('session id in socket?', data[0].session_id)
-    socket.broadcast.to(data[0].session_id).emit('socket comment', data);
-  })
-  socket.on('upvote', function(data) {
-    // console.log('upvote received by socket', data)
-    socket.broadcast.to(data.session_id).emit('upvoted comment', data)
-  })
-  socket.on('downvote', function(data) {
-    // console.log('downvote received by socket', data)
-    socket.broadcast.to(data.session_id).emit('downvoted comment', data)
-  })
-  socket.on('update', function(data) {
-    console.log('update received by socket')
-    socket.broadcast.to(data.session_id).emit('update comment', data)
-  })
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-});
 
+  //when a client emits a "new comment" event
+  socket.on('new comment', function(comments) {
+    
+    //broadcast the new set of comments to all clients in same room
+    socket.to(socket.room).emit('socket comment', comments)
+  })
 
+  //when a client emits an "upvote" event
+  socket.on('upvote', function(comment) {
+    //broadcast the new comment to connected clients
+    socket.to(socket.room).emit('upvoted comment', comment)
+  })
+
+  //when a client emits a "downvote" event
+  socket.on('downvote', function(comment) {
+    //broadcast the new comment to connected clients
+    socket.to(socket.room).emit('downvoted comment', comment)
+  })
+
+  //when a client emit an "update" event
+  socket.on('update', function(comment) {
+    //broadcast the new comment to connected clients
+    socket.to(socket.room).emit('update comment', comment)
+  })
+
+  //when a client invites a particular user
+  socket.on('invite users', function(emails, session) {
+    console.log('invite users event detected', emails, session)
+    //send the session id to that user
+    emails.forEach(function(email) {
+      if (connectedClients[email]) {
+        console.log('emitting to connected client: ', email)
+        socket.to(connectedClients[email]).emit('new session', session)
+      }
+    })
+  })
+
+  //when a user disconnects
+  socket.on('disconnect', function() {
+    console.log('a user disconnected')
+    //remove the room from its socket
+    socket.leave(socket.room);
+    //remove socket from list of connected clients
+    deleteByValue(socket.id, connectedClients);
+    console.log('connectedClients: ', connectedClients)
+  })
+})
+
+//helper function to delete a key given its value
+function deleteByValue(value, object) {
+  for (var key in object) {
+    if (object[key] === value) {
+      delete object[key]
+      return
+    }
+  }
+}
 
 exports.io = io;
 
