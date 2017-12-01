@@ -21,26 +21,26 @@ class Session extends React.Component {
 
 
     //socket listeners
-    socket.on('update session', function(message, session) {
-      if (session) {
-        message += session
-      }
-      console.log('SERVER: ', message);
-    })
+    // socket.on('update session', function(message, session) {
+    //   if (session) {
+    //     message += session
+    //   }
+    //   console.log('SERVER: ', message);
+    // })
 
-    socket.on('socket comment', (comments) => {
-      props.updateComments(comments);
-    })
-    socket.on('upvoted comment', (data) => {
+    // socket.on('socket comment', (comments) => {
+    //   props.updateComments(comments);
+    // })
+    // socket.on('upvoted comment', (data) => {
       
-      props.editComment(data);
-    })
-    socket.on('downvoted comment', (data) => {
-      props.editComment(data);
-    })
-    socket.on('update comment', (data) => {
-      props.editComment(data);
-    })
+    //   props.editComment(data);
+    // })
+    // socket.on('downvoted comment', (data) => {
+    //   props.editComment(data);
+    // })
+    // socket.on('update comment', (data) => {
+    //   props.editComment(data);
+    // })
   }
 
   componentDidUpdate() {
