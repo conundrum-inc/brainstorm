@@ -191,7 +191,7 @@ export function thunkUpVote(userId, commentId) {
     return axiosCall.UpVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        socket.emit('upvote', comment.data);
+        //socket.emit('upvote', comment.data);
       }
     )
   }
@@ -202,7 +202,7 @@ export function thunkDownVote(userId, commentId) {
     return axiosCall.DownVote(userId, commentId).then(
       (comment) => {
         dispatch(editComment(comment.data))
-        socket.emit('downvote', comment.data);
+        // socket.emit('downvote', comment.data);
       }
     )
   }
@@ -215,7 +215,7 @@ export function thunkAddUser() {
         // console.log('user data in thunkAddUser', user.data)
         dispatch(addUser(user.data[0]._id, user.data[0].displayName, user.data[0].image, user.data[0].email, user.data[0].created_sessions, user.data[0].accessible_sessions, user.data[0].comments)) // CHECK THESE USER VALUES!!!!!!
         //send the email to the server to identify the socket
-        socket.emit('add email', user.data[0].email)
+        // socket.emit('add email', user.data[0].email)
       }
     )
   }
@@ -250,7 +250,7 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
           (comments) => {
             dispatch(updateComments(comments.data))
             console.log('comments.data in thunk', comments.data)
-            socket.emit('new comment', comments.data);
+            // socket.emit('new comment', comments.data);
           }
         )
       }
@@ -264,7 +264,7 @@ export function thunkEditComment(commentId, title, text) {
       comment => {
         console.log('inside thunkEditComment comment: ', comment.data)
         dispatch(editComment(comment.data))
-        socket.emit('update', comment.data);
+        // socket.emit('update', comment.data);
       }
     )
   }
@@ -286,7 +286,7 @@ export function thunkCreateSession(title, text, userId) {
       (comment) => {
         console.log('inside thunkCreateSession .then');
         //subscribe the socket to the room
-        socket.emit('join session', comment.data.session_id); 
+        // socket.emit('join session', comment.data.session_id); 
         dispatch(updateSession(comment.data.session_id, title))
         dispatch(addComment(comment.data))
         dispatch(thunkUpdateUser(userId))
@@ -301,13 +301,13 @@ export function thunkCreateSessionAndInvite(title, text, userId, emailArray) {
       (comment) => {
         console.log('inside thunkCreateSessionAndInvite .then', comment.data.session_id);
         //subscribe the socket to the room
-        socket.emit('join session', comment.data.session_id);
+        // socket.emit('join session', comment.data.session_id);
         //notify invited users
         var session = {
           _id: comment.data.session_id,
           title: title
         }
-        socket.emit('invite users', emailArray, session); 
+        // socket.emit('invite users', emailArray, session); 
         dispatch(updateSession(comment.data.session_id, title))
         dispatch(addComment(comment.data))
         dispatch(thunkUpdateUser(userId))
@@ -322,7 +322,7 @@ export function thunkUpdateSession(sessionId, title) {
       (comments) => {
         console.log('in thunkUpdateSession')
         //subscribe the socket to the room
-        socket.emit('join session', sessionId); 
+        // socket.emit('join session', sessionId); 
         dispatch(updateSession(sessionId, title))
         dispatch(updateComments(comments.data))
       }

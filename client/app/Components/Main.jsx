@@ -23,15 +23,15 @@ class Main extends React.Component {
 
     //if there is a session on the persisted state, subscribe the client to that room
     if (this.props.session) {
-      socket.emit('join session', this.props.session.sessionId)
+      // socket.emit('join session', this.props.session.sessionId)
     }
 
     //when a session invitation event is detected
-    socket.on('new session', function(session) {
+    // socket.on('new session', function(session) {
       //add the new session id to the state
-      console.log('new invite')
-      this.props.addSession(session)
-    }.bind(this))
+    //   console.log('new invite')
+    //   this.props.addSession(session)
+    // }.bind(this))
   }
 
   componentWillMount() {
@@ -47,7 +47,7 @@ class Main extends React.Component {
       _id: this.props.session.sessionId,
       title: this.props.session.title
     }
-    socket.emit('invite users', array, new_session)
+    // socket.emit('invite users', array, new_session)
     this.props.hideInviteDetail();
   }
 
