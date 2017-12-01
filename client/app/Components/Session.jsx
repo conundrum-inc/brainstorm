@@ -20,7 +20,7 @@ class Session extends React.Component {
     super(props);
 
 
-    socket listeners
+    //socket listeners
     socket.on('update session', function(message, session) {
       if (session) {
         message += session
