@@ -320,7 +320,7 @@ export function thunkUpdateSession(sessionId, title) {
   return function(dispatch) {
     return axiosCall.GetSession(sessionId).then(
       (comments) => {
-        console.log("axiosCall.GetSession has returned with comments: ", comments)
+        
         //subscribe the socket to the room
         socket.emit('join session', sessionId); 
         dispatch(updateSession(sessionId, title))
