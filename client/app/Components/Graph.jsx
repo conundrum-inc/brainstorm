@@ -28,7 +28,19 @@ class Graph extends React.Component {
     d3.select(window).on("resize", () => resize(this.d3Graph))
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    //only update if we have received new comments
+    var prevRootComment = this.props.comments[0];
+    var nextRootComment = nextProps.comments[0];
+    //if comments have not come back from the database yet, don't update
+    if (nextProps.comments.length === 0) {
+      return false
+    }
+    return JSON.stringify(prevRootComment) !== JSON.stringify(nextRootComment);
+  }
+
   componentDidUpdate() {
+    console.log('graph componentDidUpdate: ', this.props.comments)
     if (this.props.comments[0]._id === coords[0].key) {
       var nodes = commentsToNodes(this.props.comments, coords)
     } else {
