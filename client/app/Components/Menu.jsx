@@ -60,7 +60,6 @@ const Menu = (props) => {
             New Session!
           </Button>
           <Button className="menu-btn-logout" bsStyle="info" href={LOGOUT_PAGE_ROUTE}>
-            <NavLink to={LOGOUT_PAGE_ROUTE}></NavLink>
             Logout
           </Button>
 
