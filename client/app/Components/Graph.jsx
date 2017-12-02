@@ -40,7 +40,7 @@ class Graph extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('graph componentDidUpdate: ', this.props.comments)
+    
     if (this.props.comments[0]._id === coords[0].key) {
       var nodes = commentsToNodes(this.props.comments, coords)
     } else {
