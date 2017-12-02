@@ -4,11 +4,11 @@ import { commentsDummyData } from '../dummyData.js'
 function comments(state = commentsDummyData, action) {
   switch(action.type){
     case 'ADD_COMMENT':
-    console.log("Updating state Comment Added");
+    
       return [...state, action.comment]; // comment is an object with all comment properties
 
     case 'EDIT_COMMENT':
-      console.log("Comment Edited");
+      
       var commentIndex = _.findIndex(state, ['_id', action.comment._id])
 
       return [
@@ -18,11 +18,11 @@ function comments(state = commentsDummyData, action) {
       ]
 
     case 'CLEAR_COMMENTS':
-      console.log("Comments cleared!")
+      
       return [] // clears comments from state
 
     case 'UPDATE_COMMENTS':
-      // console.log("Comments updated!", action.comments)
+      
       return action.comments // clears comments from state
 
     default:

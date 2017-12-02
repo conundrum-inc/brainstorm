@@ -14,7 +14,7 @@ import { LOGOUT_PAGE_ROUTE } from '../../routes.js';
 
 
 const ProfilePage = (props) => {
-  console.log('ProfilePage props: ', props)
+  
 
   return (
     <div>

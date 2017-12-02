@@ -23,7 +23,7 @@ const Menu = (props) => {
     
     var title = e.target.getAttribute('data-title');
     var sessionId = e.target.getAttribute('data-key');
-    console.log('title clicked: ', title)
+    
     props.thunkUpdateSession(sessionId, title);
     
     props.hideMenu();

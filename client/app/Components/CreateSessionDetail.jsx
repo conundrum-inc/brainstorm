@@ -15,8 +15,8 @@ import { Button, FormGroup, Form, Col, FormControl, ControlLabel } from 'react-b
 class CreateSessionDetail extends React.Component {
 
   onSubmit(e, props) {
-    console.log('e: ', e);
-    console.log('props: ', props);
+    
+    
     e.preventDefault();
     this.props.clearComments();
     var array = buildEmailArray(e.target.emails.value);
