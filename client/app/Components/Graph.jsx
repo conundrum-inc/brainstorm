@@ -30,13 +30,13 @@ class Graph extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     //only update if we have received new comments
-    var prevRootComment = this.props.comments[0];
-    var nextRootComment = nextProps.comments[0];
+    var prevComments = this.props.comments;
+    var nextComments = nextProps.comments;
     //if comments have not come back from the database yet, don't update
     if (nextProps.comments.length === 0) {
       return false
     }
-    return JSON.stringify(prevRootComment) !== JSON.stringify(nextRootComment);
+    return JSON.stringify(prevComments) !== JSON.stringify(nextComments);
   }
 
   componentDidUpdate() {
