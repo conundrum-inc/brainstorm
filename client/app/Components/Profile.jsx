@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import CreateSessionDetail from './CreateSessionDetail.jsx';
 
 const Profile = (props) => {
-  console.log('Profile props: ', props)
+  
   return (
     <div className="profile-text">
       <h3>Your profile:</h3>
@@ -14,7 +14,7 @@ const Profile = (props) => {
       <p className="email">{props.user.email}</p>
       <Button
         className="profile-btn-new-session"
-        onClick={() => { console.log('making session modal visible'); props.showCreateSession(); }}
+        onClick={() => {  props.showCreateSession(); }}
       >
         New Session!
       </Button>

@@ -27,7 +27,7 @@ export function downVote(score, commentId) {
 
 
 export function addComment(comment) {
-  console.log("Comment Added");
+  
   return {
     type: 'ADD_COMMENT',
     comment
@@ -35,7 +35,7 @@ export function addComment(comment) {
 }
 
 export function editComment(comment) {
-  console.log("Comment Edited");
+  
   return {
     type: 'EDIT_COMMENT',
     comment
@@ -43,7 +43,7 @@ export function editComment(comment) {
 }
 
 export function clearComments() {
-  console.log('clearComments is working');
+  
   return {
     type: 'CLEAR_COMMENTS'
   }
@@ -66,7 +66,7 @@ export function updateComments(comments) {
 }
 
 export function updateUserCreatedSessions(sessionId) {
-  console.log("User created sessions updated");
+  
   return {
     type: 'UPDATE_USER_CREATED_SESSIONS',
     sessionId
@@ -99,7 +99,7 @@ export function showCreateSession() {
 }
 
 export function hideCreateSession() {
-  console.log('hiding session');
+  
   return {
     type: 'HIDE_CREATE_SESSION'
   }
@@ -212,7 +212,7 @@ export function thunkAddUser() {
   return function(dispatch) {
     return axiosCall.login().then(
       (user) => {
-        // console.log('user data in thunkAddUser', user.data)
+         
         dispatch(addUser(user.data[0]._id, user.data[0].displayName, user.data[0].image, user.data[0].email, user.data[0].created_sessions, user.data[0].accessible_sessions, user.data[0].comments)) // CHECK THESE USER VALUES!!!!!!
         //send the email to the server to identify the socket
         socket.emit('add email', user.data[0].email)
@@ -225,7 +225,7 @@ export function thunkUpdateUser(userId) {
   return function(dispatch) {
     return axiosCall.findUser(userId).then(
       (user) => {
-        // console.log('user data in thunkUpdateUser', user.data)
+        
         dispatch(addUser(user.data._id, user.data.displayName, user.data.image, user.data.email, user.data.created_sessions, user.data.accessible_sessions, user.data.comments)) // CHECK THESE USER VALUES!!!!!!
       }
     )
@@ -249,7 +249,7 @@ export function thunkAddComment(userId, parentId, sessionId, title, text) {
         axiosCall.GetSession(comment.data.session_id).then(
           (comments) => {
             dispatch(updateComments(comments.data))
-            console.log('comments.data in thunk', comments.data)
+            
             socket.emit('new comment', comments.data);
           }
         )
@@ -262,7 +262,7 @@ export function thunkEditComment(commentId, title, text) {
   return function(dispatch) {
     return axiosCall.EditComment(commentId, title, text).then(
       comment => {
-        console.log('inside thunkEditComment comment: ', comment.data)
+        
         dispatch(editComment(comment.data))
         socket.emit('update', comment.data);
       }
@@ -284,7 +284,7 @@ export function thunkCreateSession(title, text, userId) {
   return function(dispatch) {
     return axiosCall.CreateSession(title, text, userId).then(
       (comment) => {
-        console.log('inside thunkCreateSession .then');
+        
         //subscribe the socket to the room
         socket.emit('join session', comment.data.session_id); 
         dispatch(updateSession(comment.data.session_id, title))
@@ -299,7 +299,7 @@ export function thunkCreateSessionAndInvite(title, text, userId, emailArray) {
   return function(dispatch) {
     return axiosCall.CreateSession(title, text, userId).then(
       (comment) => {
-        console.log('inside thunkCreateSessionAndInvite .then', comment.data.session_id);
+        
         //subscribe the socket to the room
         socket.emit('join session', comment.data.session_id);
         //notify invited users
@@ -320,7 +320,7 @@ export function thunkUpdateSession(sessionId, title) {
   return function(dispatch) {
     return axiosCall.GetSession(sessionId).then(
       (comments) => {
-        console.log('in thunkUpdateSession')
+        
         //subscribe the socket to the room
         socket.emit('join session', sessionId); 
         dispatch(updateSession(sessionId, title))

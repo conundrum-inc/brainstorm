@@ -1,3 +1,4 @@
+
 import React from 'react'
 import * as d3 from 'd3'
 import {event as currentEvent} from 'd3'
@@ -21,7 +22,7 @@ class Graph extends React.Component {
   componentDidMount() {
     coords = {};
     var nodes = commentsToNodes(this.props.comments);
-    console.log('rendering with nodes: ', nodes);
+    
     this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph));
     this.forceLayout(this.d3Graph, nodes, false)
     d3.select(window).on("resize", () => resize(this.d3Graph))
@@ -33,7 +34,7 @@ class Graph extends React.Component {
     } else {
       var nodes = commentsToNodes(this.props.comments)
     }
-    console.log('re-rendering with nodes: ', nodes)
+    
     this.forceLayout(this.d3Graph, nodes, true)
   }
 

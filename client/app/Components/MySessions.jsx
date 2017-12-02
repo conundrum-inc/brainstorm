@@ -3,17 +3,6 @@ import { AUTH_PAGE_ROUTE } from '../routes.js';
 import Menu from './Menu.jsx'
 
 const MySessions = (props) => {
-  console.log('MySessions props: ', props);
-  // var handleClick = function() {
-  //   console.log('clicked!');
-  // }
-
-  // function handleClick(e) {
-  //   console.log(e.target.getAttribute('data-key'), props);
-  //   // props.thunkUpdateSession(e.target.getAttribute('data-key'));
-  // }
-
- // href={MAIN_PAGE_ROUTE} --- goes in a tag on line 28
 
   return (
       <div>

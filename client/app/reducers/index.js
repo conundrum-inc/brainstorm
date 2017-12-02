@@ -12,7 +12,7 @@ import session from './session';
 import currentNode from './currentNode';
 import inviteDetailVisible from './inviteDetailVisible'
 import editCommentDetailVisible from './editCommentDetailVisible'
-// import user from './user';
+
 
 const rootReducer = combineReducers({comments, detailViewVisible, createSessionVisible, inviteDetailVisible, menuVisible, editCommentDetailVisible, nodes, links, user, session, currentNode, routing: routerReducer });
 

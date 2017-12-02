@@ -25,7 +25,7 @@ export function AddComment(userId, parentId, sessionId, title, text) {
 }
 
 export function EditComment(commentId, title, text) {
-  console.log('inside EditComment axios call')
+  
   return axios.put('/comment', {
     comment_id: commentId,
     title: title,
@@ -66,7 +66,7 @@ export function GetSession(sessionId) {
 // }
 
 export function findUser(userId) {
-  console.log('inside findUser axios call!')
+  
   return axios.get('/findUser', {
     params: {
       id: userId
@@ -75,7 +75,7 @@ export function findUser(userId) {
 }
 
 export function inviteUsers(emailArray, sessionId) {
-  console.log('inside inviteUsers axios call!', emailArray, sessionId)
+  
   return axios.post('/addUserToSession', {
     emails: emailArray,
     session_id: sessionId
@@ -94,10 +94,10 @@ export function logout() {
 // axios call to server to check for session
 
 export function authenticate() {
-  console.log('inside authenticate!')
+  
   return axios.get('/authenticate').then(
     (data) => {
-      console.log('DATA FROM AUTH FUNCTION', data.status);
+      
       return data.status;
     }
   );

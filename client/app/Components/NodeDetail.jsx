@@ -34,7 +34,7 @@ class NodeDetail extends React.Component {
   }
 
   handleEditClick(e, props) {
-    console.log('in handleEditClick');
+    
     this.props.hideDetail();
     this.props.showEditCommentDetail();
   }
@@ -42,7 +42,7 @@ class NodeDetail extends React.Component {
   // LINK TO EMOJI CHEAT SHEET: https://www.webpagefx.com/tools/emoji-cheat-sheet/
 
   upvote() {
-    console.log('commentId: ', this.props.currentNode.key)
+    
     this.props.thunkUpVote(this.props.user.userId, this.props.currentNode.key)
 
   }
@@ -53,7 +53,7 @@ class NodeDetail extends React.Component {
 
 
   render() {
-    console.log('userId: ', this.props.user.userId, 'currentNodeCreatorId: ', this.props.currentNode.creatorId, 'currentNodeParentId: ', this.props.currentNode.parentId)
+    
     if (this.props.user.userId === this.props.currentNode.creatorId && this.props.currentNode.parentId !== 'root') {
       var editButton =  <Button className="edit-comment-btn" onClick={this.handleEditClick.bind(this)} >Edit</Button>
     }

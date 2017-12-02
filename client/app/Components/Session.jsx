@@ -25,7 +25,6 @@ class Session extends React.Component {
       if (session) {
         message += session
       }
-      console.log('SERVER: ', message);
     })
 
     socket.on('socket comment', (comments) => {

@@ -29,7 +29,7 @@ class Main extends React.Component {
     //when a session invitation event is detected
     socket.on('new session', function(session) {
       //add the new session id to the state
-      console.log('new invite')
+      
       this.props.addSession(session)
     }.bind(this))
   }
